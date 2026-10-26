@@ -1,0 +1,18 @@
+enum Role {
+  SYSTEM_ADMIN
+  RECRUITER
+  SUB_RECRUITER
+  CANDIDATE
+}
+
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+  DELETED
+}
+
+enum AuthProvider {
+  CREDENTIAL
+  GITHUB
+  GOOGLE
+}
