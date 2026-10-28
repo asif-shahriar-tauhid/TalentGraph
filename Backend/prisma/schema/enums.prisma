@@ -1,18 +1,57 @@
 enum Role {
-  SYSTEM_ADMIN
-  RECRUITER
-  SUB_RECRUITER
   CANDIDATE
+  RECRUITER
 }
 
-enum UserStatus {
+enum ApplicationStatus {
+  APPLIED
+  ASSESSMENT_PENDING
+  UNDER_REVIEW
+  SHORTLISTED
+  INTERVIEW
+  REJECTED
+}
+
+enum EvidenceType {
+  CV_PARSED
+  GITHUB_REPO
+  ASSESSMENT_RESULT
+}
+
+enum SubscriptionTier {
+  FREE
+  PRO
+  TEAM
+  PREMIUM
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE
+  SHORT_ANSWER
+}
+
+enum AttemptStatus {
+  STARTED
+  COMPLETED
+  REVIEWED
+}
+
+enum PaymentGateway {
+  STRIPE
+  SSLCOMMERZ
+  BKASH
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  REFUNDED
+}
+
+enum SubscriptionStatus {
   ACTIVE
-  BLOCKED
-  DELETED
-}
-
-enum AuthProvider {
-  CREDENTIAL
-  GITHUB
-  GOOGLE
+  CANCELED
+  PAST_DUE
+  INCOMPLETE
 }

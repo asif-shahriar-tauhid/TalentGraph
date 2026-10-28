@@ -1,0 +1,235 @@
+model CandidateProfile {
+  id               String           @id @default(uuid())
+  userId           String           @unique
+  name             String
+  headline         String
+  education        Json
+  links            Json
+  cvUrl            String
+  subscriptionTier SubscriptionTier
+  user             User             @relation(fields: [userId], references: [id])
+  skills           CandidateSkill[]
+  githubRepos      GitHubRepo[]
+  applications     Application[]
+  subscriptions    Subscription[]
+  transactions     Transaction[]
+}
+
+model Company {
+  id               String             @id @default(uuid())
+  name             String
+  description      String
+  website          String
+  logoUrl          String
+  subscriptionTier SubscriptionTier
+  recruiters       RecruiterProfile[]
+  jobs             Job[]
+  subscriptions    Subscription[]
+  transactions     Transaction[]
+}
+
+model RecruiterProfile {
+  id        String  @id @default(uuid())
+  userId    String  @unique
+  companyId String
+  name      String
+  user      User    @relation(fields: [userId], references: [id])
+  company   Company @relation(fields: [companyId], references: [id])
+  jobs      Job[]
+}
+
+model Skill {
+  id              String                @id @default(uuid())
+  name            String                @unique
+  aliases         String[]
+  category        String
+  candidateSkills CandidateSkill[]
+  jobRequirements JobSkillRequirement[]
+}
+
+model CandidateSkill {
+  id           String           @id @default(uuid())
+  candidateId  String
+  skillId      String
+  overallScore Float
+  candidate    CandidateProfile @relation(fields: [candidateId], references: [id])
+  skill        Skill            @relation(fields: [skillId], references: [id])
+  evidence     Evidence[]
+}
+
+model Evidence {
+  id               String                @id @default(uuid())
+  candidateSkillId String
+  type             EvidenceType
+  sourceUrl        String
+  description      String
+  extractedScore   Float
+  metadata         Json
+  embedding        Unsupported("vector")
+  createdAt        DateTime              @default(now())
+  candidateSkill   CandidateSkill        @relation(fields: [candidateSkillId], references: [id])
+}
+
+model GitHubRepo {
+  id           String           @id @default(uuid())
+  candidateId  String
+  repoName     String
+  repoUrl      String
+  languages    Json
+  dependencies Json
+  stargazers   Int
+  lastCommitAt DateTime
+  candidate    CandidateProfile @relation(fields: [candidateId], references: [id])
+}
+
+model Job {
+  id           String                @id @default(uuid())
+  companyId    String
+  recruiterId  String
+  title        String
+  description  String
+  status       String
+  assessmentId String?
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
+  company      Company               @relation(fields: [companyId], references: [id])
+  recruiter    RecruiterProfile      @relation(fields: [recruiterId], references: [id])
+  assessment   AssessmentTemplate?   @relation(fields: [assessmentId], references: [id])
+  requirements JobSkillRequirement[]
+  applications Application[]
+}
+
+model JobSkillRequirement {
+  id           String  @id @default(uuid())
+  jobId        String
+  skillId      String
+  weight       Float
+  minThreshold Float
+  isPreferred  Boolean
+  job          Job     @relation(fields: [jobId], references: [id])
+  skill        Skill   @relation(fields: [skillId], references: [id])
+}
+
+model Application {
+  id                 String              @id @default(uuid())
+  jobId              String
+  candidateId        String
+  status             ApplicationStatus
+  matchScore         Float
+  matchExplanation   String
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  job                Job                 @relation(fields: [jobId], references: [id])
+  candidate          CandidateProfile    @relation(fields: [candidateId], references: [id])
+  assessmentAttempts AssessmentAttempt[]
+}
+
+model AssessmentTemplate {
+  id          String     @id @default(uuid())
+  title       String
+  description String
+  jobs        Job[]
+  questions   Question[]
+}
+
+model Question {
+  id            String             @id @default(uuid())
+  templateId    String
+  text          String
+  type          QuestionType
+  options       Json
+  correctAnswer String
+  timeLimitSecs Int
+  template      AssessmentTemplate @relation(fields: [templateId], references: [id])
+  answers       AssessmentAnswer[]
+}
+
+model AssessmentAttempt {
+  id             String                    @id @default(uuid())
+  applicationId  String
+  status         AttemptStatus
+  totalScore     Float
+  startedAt      DateTime
+  completedAt    DateTime
+  application    Application               @relation(fields: [applicationId], references: [id])
+  answers        AssessmentAnswer[]
+  snapshots      AssessmentSnapshot[]
+  audioSnapshots AssessmentAudioSnapshot[]
+  integrityFlags IntegrityFlag[]
+}
+
+model AssessmentAnswer {
+  id             String            @id @default(uuid())
+  attemptId      String
+  questionId     String
+  providedAnswer String
+  isCorrect      Boolean
+  score          Float
+  timeTakenSecs  Int
+  attempt        AssessmentAttempt @relation(fields: [attemptId], references: [id])
+  question       Question          @relation(fields: [questionId], references: [id])
+}
+
+model AssessmentSnapshot {
+  id        String            @id @default(uuid())
+  attemptId String
+  imageUrl  String
+  timestamp DateTime
+  attempt   AssessmentAttempt @relation(fields: [attemptId], references: [id])
+}
+
+model AssessmentAudioSnapshot {
+  id                 String            @id @default(uuid())
+  attemptId          String
+  audioUrl           String
+  durationSecs       Int
+  decibelLevel       Float
+  detectedVoiceCount Int
+  transcription      String
+  timestamp          DateTime
+  attempt            AssessmentAttempt @relation(fields: [attemptId], references: [id])
+  flags              IntegrityFlag[]
+}
+
+model IntegrityFlag {
+  id              String                   @id @default(uuid())
+  attemptId       String
+  audioSnapshotId String?
+  type            String
+  description     String
+  timestamp       DateTime
+  attempt         AssessmentAttempt        @relation(fields: [attemptId], references: [id])
+  audioSnapshot   AssessmentAudioSnapshot? @relation(fields: [audioSnapshotId], references: [id])
+}
+
+model Subscription {
+  id                    String             @id @default(uuid())
+  tier                  SubscriptionTier
+  status                SubscriptionStatus
+  companyId             String?
+  candidateId           String?
+  gateway               PaymentGateway
+  gatewaySubscriptionId String
+  currentPeriodStart    DateTime
+  currentPeriodEnd      DateTime
+  cancelAtPeriodEnd     Boolean
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+  company               Company?           @relation(fields: [companyId], references: [id])
+  candidate             CandidateProfile?  @relation(fields: [candidateId], references: [id])
+}
+
+model Transaction {
+  id                   String            @id @default(uuid())
+  amount               Float
+  currency             String
+  companyId            String?
+  candidateId          String?
+  gateway              PaymentGateway
+  gatewayTransactionId String            @unique
+  status               PaymentStatus
+  description          String
+  createdAt            DateTime          @default(now())
+  company              Company?          @relation(fields: [companyId], references: [id])
+  candidate            CandidateProfile? @relation(fields: [candidateId], references: [id])
+}

@@ -18,6 +18,101 @@ export { Prisma }
 export * as $Enums from './enums'
 export * from './enums';
 /**
+ * Model CandidateProfile
+ * 
+ */
+export type CandidateProfile = Prisma.CandidateProfileModel
+/**
+ * Model Company
+ * 
+ */
+export type Company = Prisma.CompanyModel
+/**
+ * Model RecruiterProfile
+ * 
+ */
+export type RecruiterProfile = Prisma.RecruiterProfileModel
+/**
+ * Model Skill
+ * 
+ */
+export type Skill = Prisma.SkillModel
+/**
+ * Model CandidateSkill
+ * 
+ */
+export type CandidateSkill = Prisma.CandidateSkillModel
+/**
+ * Model Evidence
+ * 
+ */
+export type Evidence = Prisma.EvidenceModel
+/**
+ * Model GitHubRepo
+ * 
+ */
+export type GitHubRepo = Prisma.GitHubRepoModel
+/**
+ * Model Job
+ * 
+ */
+export type Job = Prisma.JobModel
+/**
+ * Model JobSkillRequirement
+ * 
+ */
+export type JobSkillRequirement = Prisma.JobSkillRequirementModel
+/**
+ * Model Application
+ * 
+ */
+export type Application = Prisma.ApplicationModel
+/**
+ * Model AssessmentTemplate
+ * 
+ */
+export type AssessmentTemplate = Prisma.AssessmentTemplateModel
+/**
+ * Model Question
+ * 
+ */
+export type Question = Prisma.QuestionModel
+/**
+ * Model AssessmentAttempt
+ * 
+ */
+export type AssessmentAttempt = Prisma.AssessmentAttemptModel
+/**
+ * Model AssessmentAnswer
+ * 
+ */
+export type AssessmentAnswer = Prisma.AssessmentAnswerModel
+/**
+ * Model AssessmentSnapshot
+ * 
+ */
+export type AssessmentSnapshot = Prisma.AssessmentSnapshotModel
+/**
+ * Model AssessmentAudioSnapshot
+ * 
+ */
+export type AssessmentAudioSnapshot = Prisma.AssessmentAudioSnapshotModel
+/**
+ * Model IntegrityFlag
+ * 
+ */
+export type IntegrityFlag = Prisma.IntegrityFlagModel
+/**
+ * Model Subscription
+ * 
+ */
+export type Subscription = Prisma.SubscriptionModel
+/**
+ * Model Transaction
+ * 
+ */
+export type Transaction = Prisma.TransactionModel
+/**
  * Model User
  * 
  */

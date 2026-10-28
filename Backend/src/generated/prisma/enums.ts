@@ -10,28 +10,85 @@
 */
 
 export const Role = {
-  SYSTEM_ADMIN: 'SYSTEM_ADMIN',
-  RECRUITER: 'RECRUITER',
-  SUB_RECRUITER: 'SUB_RECRUITER',
-  CANDIDATE: 'CANDIDATE'
+  CANDIDATE: 'CANDIDATE',
+  RECRUITER: 'RECRUITER'
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
 
 
-export const UserStatus = {
+export const ApplicationStatus = {
+  APPLIED: 'APPLIED',
+  ASSESSMENT_PENDING: 'ASSESSMENT_PENDING',
+  UNDER_REVIEW: 'UNDER_REVIEW',
+  SHORTLISTED: 'SHORTLISTED',
+  INTERVIEW: 'INTERVIEW',
+  REJECTED: 'REJECTED'
+} as const
+
+export type ApplicationStatus = (typeof ApplicationStatus)[keyof typeof ApplicationStatus]
+
+
+export const EvidenceType = {
+  CV_PARSED: 'CV_PARSED',
+  GITHUB_REPO: 'GITHUB_REPO',
+  ASSESSMENT_RESULT: 'ASSESSMENT_RESULT'
+} as const
+
+export type EvidenceType = (typeof EvidenceType)[keyof typeof EvidenceType]
+
+
+export const SubscriptionTier = {
+  FREE: 'FREE',
+  PRO: 'PRO',
+  TEAM: 'TEAM',
+  PREMIUM: 'PREMIUM'
+} as const
+
+export type SubscriptionTier = (typeof SubscriptionTier)[keyof typeof SubscriptionTier]
+
+
+export const QuestionType = {
+  MULTIPLE_CHOICE: 'MULTIPLE_CHOICE',
+  SHORT_ANSWER: 'SHORT_ANSWER'
+} as const
+
+export type QuestionType = (typeof QuestionType)[keyof typeof QuestionType]
+
+
+export const AttemptStatus = {
+  STARTED: 'STARTED',
+  COMPLETED: 'COMPLETED',
+  REVIEWED: 'REVIEWED'
+} as const
+
+export type AttemptStatus = (typeof AttemptStatus)[keyof typeof AttemptStatus]
+
+
+export const PaymentGateway = {
+  STRIPE: 'STRIPE',
+  SSLCOMMERZ: 'SSLCOMMERZ',
+  BKASH: 'BKASH'
+} as const
+
+export type PaymentGateway = (typeof PaymentGateway)[keyof typeof PaymentGateway]
+
+
+export const PaymentStatus = {
+  PENDING: 'PENDING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED',
+  REFUNDED: 'REFUNDED'
+} as const
+
+export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
+
+
+export const SubscriptionStatus = {
   ACTIVE: 'ACTIVE',
-  BLOCKED: 'BLOCKED',
-  DELETED: 'DELETED'
+  CANCELED: 'CANCELED',
+  PAST_DUE: 'PAST_DUE',
+  INCOMPLETE: 'INCOMPLETE'
 } as const
 
-export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
-
-
-export const AuthProvider = {
-  CREDENTIAL: 'CREDENTIAL',
-  GITHUB: 'GITHUB',
-  GOOGLE: 'GOOGLE'
-} as const
-
-export type AuthProvider = (typeof AuthProvider)[keyof typeof AuthProvider]
+export type SubscriptionStatus = (typeof SubscriptionStatus)[keyof typeof SubscriptionStatus]
