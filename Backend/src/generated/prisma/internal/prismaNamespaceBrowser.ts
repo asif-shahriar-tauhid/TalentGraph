@@ -51,6 +51,25 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  CandidateProfile: 'CandidateProfile',
+  Company: 'Company',
+  RecruiterProfile: 'RecruiterProfile',
+  Skill: 'Skill',
+  CandidateSkill: 'CandidateSkill',
+  Evidence: 'Evidence',
+  GitHubRepo: 'GitHubRepo',
+  Job: 'Job',
+  JobSkillRequirement: 'JobSkillRequirement',
+  Application: 'Application',
+  AssessmentTemplate: 'AssessmentTemplate',
+  Question: 'Question',
+  AssessmentAttempt: 'AssessmentAttempt',
+  AssessmentAnswer: 'AssessmentAnswer',
+  AssessmentSnapshot: 'AssessmentSnapshot',
+  AssessmentAudioSnapshot: 'AssessmentAudioSnapshot',
+  IntegrityFlag: 'IntegrityFlag',
+  Subscription: 'Subscription',
+  Transaction: 'Transaction',
   User: 'User'
 } as const
 
@@ -70,22 +89,255 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const UserScalarFieldEnum = {
+export const CandidateProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  headline: 'headline',
+  education: 'education',
+  links: 'links',
+  cvUrl: 'cvUrl',
+  subscriptionTier: 'subscriptionTier'
+} as const
+
+export type CandidateProfileScalarFieldEnum = (typeof CandidateProfileScalarFieldEnum)[keyof typeof CandidateProfileScalarFieldEnum]
+
+
+export const CompanyScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  email: 'email',
-  password: 'password',
-  githubId: 'githubId',
-  googleId: 'googleId',
-  authProvider: 'authProvider',
-  emailVerified: 'emailVerified',
-  role: 'role',
+  description: 'description',
+  website: 'website',
+  logoUrl: 'logoUrl',
+  subscriptionTier: 'subscriptionTier'
+} as const
+
+export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
+
+
+export const RecruiterProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  companyId: 'companyId',
+  name: 'name'
+} as const
+
+export type RecruiterProfileScalarFieldEnum = (typeof RecruiterProfileScalarFieldEnum)[keyof typeof RecruiterProfileScalarFieldEnum]
+
+
+export const SkillScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  aliases: 'aliases',
+  category: 'category'
+} as const
+
+export type SkillScalarFieldEnum = (typeof SkillScalarFieldEnum)[keyof typeof SkillScalarFieldEnum]
+
+
+export const CandidateSkillScalarFieldEnum = {
+  id: 'id',
+  candidateId: 'candidateId',
+  skillId: 'skillId',
+  overallScore: 'overallScore'
+} as const
+
+export type CandidateSkillScalarFieldEnum = (typeof CandidateSkillScalarFieldEnum)[keyof typeof CandidateSkillScalarFieldEnum]
+
+
+export const EvidenceScalarFieldEnum = {
+  id: 'id',
+  candidateSkillId: 'candidateSkillId',
+  type: 'type',
+  sourceUrl: 'sourceUrl',
+  description: 'description',
+  extractedScore: 'extractedScore',
+  metadata: 'metadata',
+  createdAt: 'createdAt'
+} as const
+
+export type EvidenceScalarFieldEnum = (typeof EvidenceScalarFieldEnum)[keyof typeof EvidenceScalarFieldEnum]
+
+
+export const GitHubRepoScalarFieldEnum = {
+  id: 'id',
+  candidateId: 'candidateId',
+  repoName: 'repoName',
+  repoUrl: 'repoUrl',
+  languages: 'languages',
+  dependencies: 'dependencies',
+  stargazers: 'stargazers',
+  lastCommitAt: 'lastCommitAt'
+} as const
+
+export type GitHubRepoScalarFieldEnum = (typeof GitHubRepoScalarFieldEnum)[keyof typeof GitHubRepoScalarFieldEnum]
+
+
+export const JobScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  recruiterId: 'recruiterId',
+  title: 'title',
+  description: 'description',
   status: 'status',
-  needPasswordChange: 'needPasswordChange',
+  assessmentId: 'assessmentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type JobScalarFieldEnum = (typeof JobScalarFieldEnum)[keyof typeof JobScalarFieldEnum]
+
+
+export const JobSkillRequirementScalarFieldEnum = {
+  id: 'id',
+  jobId: 'jobId',
+  skillId: 'skillId',
+  weight: 'weight',
+  minThreshold: 'minThreshold',
+  isPreferred: 'isPreferred'
+} as const
+
+export type JobSkillRequirementScalarFieldEnum = (typeof JobSkillRequirementScalarFieldEnum)[keyof typeof JobSkillRequirementScalarFieldEnum]
+
+
+export const ApplicationScalarFieldEnum = {
+  id: 'id',
+  jobId: 'jobId',
+  candidateId: 'candidateId',
+  status: 'status',
+  matchScore: 'matchScore',
+  matchExplanation: 'matchExplanation',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ApplicationScalarFieldEnum = (typeof ApplicationScalarFieldEnum)[keyof typeof ApplicationScalarFieldEnum]
+
+
+export const AssessmentTemplateScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description'
+} as const
+
+export type AssessmentTemplateScalarFieldEnum = (typeof AssessmentTemplateScalarFieldEnum)[keyof typeof AssessmentTemplateScalarFieldEnum]
+
+
+export const QuestionScalarFieldEnum = {
+  id: 'id',
+  templateId: 'templateId',
+  text: 'text',
+  type: 'type',
+  options: 'options',
+  correctAnswer: 'correctAnswer',
+  timeLimitSecs: 'timeLimitSecs'
+} as const
+
+export type QuestionScalarFieldEnum = (typeof QuestionScalarFieldEnum)[keyof typeof QuestionScalarFieldEnum]
+
+
+export const AssessmentAttemptScalarFieldEnum = {
+  id: 'id',
+  applicationId: 'applicationId',
+  status: 'status',
+  totalScore: 'totalScore',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt'
+} as const
+
+export type AssessmentAttemptScalarFieldEnum = (typeof AssessmentAttemptScalarFieldEnum)[keyof typeof AssessmentAttemptScalarFieldEnum]
+
+
+export const AssessmentAnswerScalarFieldEnum = {
+  id: 'id',
+  attemptId: 'attemptId',
+  questionId: 'questionId',
+  providedAnswer: 'providedAnswer',
+  isCorrect: 'isCorrect',
+  score: 'score',
+  timeTakenSecs: 'timeTakenSecs'
+} as const
+
+export type AssessmentAnswerScalarFieldEnum = (typeof AssessmentAnswerScalarFieldEnum)[keyof typeof AssessmentAnswerScalarFieldEnum]
+
+
+export const AssessmentSnapshotScalarFieldEnum = {
+  id: 'id',
+  attemptId: 'attemptId',
   imageUrl: 'imageUrl',
-  imagePublicId: 'imagePublicId',
-  isDeleted: 'isDeleted',
-  deletedAt: 'deletedAt',
+  timestamp: 'timestamp'
+} as const
+
+export type AssessmentSnapshotScalarFieldEnum = (typeof AssessmentSnapshotScalarFieldEnum)[keyof typeof AssessmentSnapshotScalarFieldEnum]
+
+
+export const AssessmentAudioSnapshotScalarFieldEnum = {
+  id: 'id',
+  attemptId: 'attemptId',
+  audioUrl: 'audioUrl',
+  durationSecs: 'durationSecs',
+  decibelLevel: 'decibelLevel',
+  detectedVoiceCount: 'detectedVoiceCount',
+  transcription: 'transcription',
+  timestamp: 'timestamp'
+} as const
+
+export type AssessmentAudioSnapshotScalarFieldEnum = (typeof AssessmentAudioSnapshotScalarFieldEnum)[keyof typeof AssessmentAudioSnapshotScalarFieldEnum]
+
+
+export const IntegrityFlagScalarFieldEnum = {
+  id: 'id',
+  attemptId: 'attemptId',
+  audioSnapshotId: 'audioSnapshotId',
+  type: 'type',
+  description: 'description',
+  timestamp: 'timestamp'
+} as const
+
+export type IntegrityFlagScalarFieldEnum = (typeof IntegrityFlagScalarFieldEnum)[keyof typeof IntegrityFlagScalarFieldEnum]
+
+
+export const SubscriptionScalarFieldEnum = {
+  id: 'id',
+  tier: 'tier',
+  status: 'status',
+  companyId: 'companyId',
+  candidateId: 'candidateId',
+  gateway: 'gateway',
+  gatewaySubscriptionId: 'gatewaySubscriptionId',
+  currentPeriodStart: 'currentPeriodStart',
+  currentPeriodEnd: 'currentPeriodEnd',
+  cancelAtPeriodEnd: 'cancelAtPeriodEnd',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
+
+
+export const TransactionScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  currency: 'currency',
+  companyId: 'companyId',
+  candidateId: 'candidateId',
+  gateway: 'gateway',
+  gatewayTransactionId: 'gatewayTransactionId',
+  status: 'status',
+  description: 'description',
+  createdAt: 'createdAt'
+} as const
+
+export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
+
+
+export const UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  passwordHash: 'passwordHash',
+  role: 'role',
+  githubId: 'githubId',
+  githubToken: 'githubToken',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -101,12 +353,28 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 export const NullsOrder = {
