@@ -32,7 +32,7 @@ const uploadProfileImage = async (buffer: Buffer, userId: string) => {
     await deleteFromCloudinary(currentUser.imagePublicId);
   }
 
-  const { password: _, ...userData } = updatedUser;
+  const { password: _, githubToken: _gh, ...userData } = updatedUser;
   return userData;
 };
 
@@ -42,7 +42,7 @@ const updateProfile = async (userId: string, payload: IUpdateProfilePayload) => 
     data: payload,
   });
 
-  const { password: _, ...userData } = updatedUser;
+  const { password: _, githubToken: _gh, ...userData } = updatedUser;
   return userData;
 };
 
@@ -55,7 +55,7 @@ const getUserById = async (id: string) => {
     throw new AppError(httpStatus.NOT_FOUND, "User not found.");
   }
 
-  const { password: _, ...userData } = user;
+  const { password: _, githubToken: _gh, ...userData } = user;
   return userData;
 };
 
@@ -128,7 +128,7 @@ const updateUserStatus = async (id: string, payload: IUpdateUserStatusPayload) =
     data: payload,
   });
 
-  const { password: _, ...userData } = updatedUser;
+  const { password: _, githubToken: _gh, ...userData } = updatedUser;
   return userData;
 };
 

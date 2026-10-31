@@ -117,7 +117,7 @@ const verifyEmail = async (payload: IVerifyEmailPayload) => {
     config.jwt_refresh_expires_in,
   );
 
-  const { password: _, ...userData } = newUser;
+  const { password: _, githubToken: _gh, ...userData } = newUser;
   return { user: userData, accessToken, refreshToken };
 };
 
@@ -167,7 +167,7 @@ const loginUser = async (payload: ILoginUserPayload) => {
     config.jwt_refresh_expires_in,
   );
 
-  const { password: _, ...userData } = user;
+  const { password: _, githubToken: _gh, ...userData } = user;
   return { user: userData, accessToken, refreshToken };
 };
 
@@ -182,15 +182,14 @@ const githubAuthCallback = async (payload: IGithubAuthPayload) => {
   });
 
   if (user) {
-    if (!user.githubId) {
-      user = await prisma.user.update({
-        where: { id: user.id },
-        data: {
-          githubId: ghProfile.id,
-          imageUrl: user.imageUrl || ghProfile.avatarUrl,
-        },
-      });
-    }
+    user = await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        githubId: user.githubId || ghProfile.id,
+        githubToken: ghAccessToken,
+        imageUrl: user.imageUrl || ghProfile.avatarUrl,
+      },
+    });
 
     if (user.status === "BLOCKED") {
       throw new AppError(httpStatus.FORBIDDEN, "Your account has been blocked.");
@@ -204,6 +203,7 @@ const githubAuthCallback = async (payload: IGithubAuthPayload) => {
         name: ghProfile.name,
         email: ghProfile.email,
         githubId: ghProfile.id,
+        githubToken: ghAccessToken,
         imageUrl: ghProfile.avatarUrl,
         authProvider: "GITHUB",
         emailVerified: true,
@@ -230,7 +230,7 @@ const githubAuthCallback = async (payload: IGithubAuthPayload) => {
     config.jwt_refresh_expires_in,
   );
 
-  const { password: _, ...userData } = user;
+  const { password: _, githubToken: _gh, ...userData } = user;
   return { user: userData, accessToken, refreshToken };
 };
 
@@ -349,7 +349,7 @@ const getMe = async (requestUser: IRequestUser) => {
     throw new AppError(httpStatus.NOT_FOUND, "User profile not found.");
   }
 
-  const { password: _, ...userData } = user;
+  const { password: _, githubToken: _gh, ...userData } = user;
   return userData;
 };
 

@@ -292,7 +292,7 @@ export type JobCreateInput = {
   id?: string
   title: string
   description: string
-  status: string
+  status?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutJobsInput
@@ -308,7 +308,7 @@ export type JobUncheckedCreateInput = {
   recruiterId: string
   title: string
   description: string
-  status: string
+  status?: string
   assessmentId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -350,7 +350,7 @@ export type JobCreateManyInput = {
   recruiterId: string
   title: string
   description: string
-  status: string
+  status?: string
   assessmentId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -512,10 +512,6 @@ export type JobUncheckedUpdateManyWithoutRecruiterNestedInput = {
   deleteMany?: Prisma.JobScalarWhereInput | Prisma.JobScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type JobCreateNestedOneWithoutRequirementsInput = {
   create?: Prisma.XOR<Prisma.JobCreateWithoutRequirementsInput, Prisma.JobUncheckedCreateWithoutRequirementsInput>
   connectOrCreate?: Prisma.JobCreateOrConnectWithoutRequirementsInput
@@ -590,7 +586,7 @@ export type JobCreateWithoutCompanyInput = {
   id?: string
   title: string
   description: string
-  status: string
+  status?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   recruiter: Prisma.RecruiterProfileCreateNestedOneWithoutJobsInput
@@ -604,7 +600,7 @@ export type JobUncheckedCreateWithoutCompanyInput = {
   recruiterId: string
   title: string
   description: string
-  status: string
+  status?: string
   assessmentId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -657,7 +653,7 @@ export type JobCreateWithoutRecruiterInput = {
   id?: string
   title: string
   description: string
-  status: string
+  status?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutJobsInput
@@ -671,7 +667,7 @@ export type JobUncheckedCreateWithoutRecruiterInput = {
   companyId: string
   title: string
   description: string
-  status: string
+  status?: string
   assessmentId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -709,7 +705,7 @@ export type JobCreateWithoutRequirementsInput = {
   id?: string
   title: string
   description: string
-  status: string
+  status?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutJobsInput
@@ -724,7 +720,7 @@ export type JobUncheckedCreateWithoutRequirementsInput = {
   recruiterId: string
   title: string
   description: string
-  status: string
+  status?: string
   assessmentId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -777,7 +773,7 @@ export type JobCreateWithoutApplicationsInput = {
   id?: string
   title: string
   description: string
-  status: string
+  status?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutJobsInput
@@ -792,7 +788,7 @@ export type JobUncheckedCreateWithoutApplicationsInput = {
   recruiterId: string
   title: string
   description: string
-  status: string
+  status?: string
   assessmentId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -845,7 +841,7 @@ export type JobCreateWithoutAssessmentInput = {
   id?: string
   title: string
   description: string
-  status: string
+  status?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutJobsInput
@@ -860,7 +856,7 @@ export type JobUncheckedCreateWithoutAssessmentInput = {
   recruiterId: string
   title: string
   description: string
-  status: string
+  status?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   requirements?: Prisma.JobSkillRequirementUncheckedCreateNestedManyWithoutJobInput
@@ -898,7 +894,7 @@ export type JobCreateManyCompanyInput = {
   recruiterId: string
   title: string
   description: string
-  status: string
+  status?: string
   assessmentId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -946,7 +942,7 @@ export type JobCreateManyRecruiterInput = {
   companyId: string
   title: string
   description: string
-  status: string
+  status?: string
   assessmentId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -995,7 +991,7 @@ export type JobCreateManyAssessmentInput = {
   recruiterId: string
   title: string
   description: string
-  status: string
+  status?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }

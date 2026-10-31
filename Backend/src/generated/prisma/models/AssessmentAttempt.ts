@@ -39,6 +39,10 @@ export type AssessmentAttemptMinAggregateOutputType = {
   applicationId: string | null
   status: $Enums.AttemptStatus | null
   totalScore: number | null
+  reviewVerdict: $Enums.IntegrityReviewVerdict | null
+  reviewerId: string | null
+  reviewReason: string | null
+  reviewedAt: Date | null
   startedAt: Date | null
   completedAt: Date | null
 }
@@ -48,6 +52,10 @@ export type AssessmentAttemptMaxAggregateOutputType = {
   applicationId: string | null
   status: $Enums.AttemptStatus | null
   totalScore: number | null
+  reviewVerdict: $Enums.IntegrityReviewVerdict | null
+  reviewerId: string | null
+  reviewReason: string | null
+  reviewedAt: Date | null
   startedAt: Date | null
   completedAt: Date | null
 }
@@ -57,6 +65,11 @@ export type AssessmentAttemptCountAggregateOutputType = {
   applicationId: number
   status: number
   totalScore: number
+  configSnapshot: number
+  reviewVerdict: number
+  reviewerId: number
+  reviewReason: number
+  reviewedAt: number
   startedAt: number
   completedAt: number
   _all: number
@@ -76,6 +89,10 @@ export type AssessmentAttemptMinAggregateInputType = {
   applicationId?: true
   status?: true
   totalScore?: true
+  reviewVerdict?: true
+  reviewerId?: true
+  reviewReason?: true
+  reviewedAt?: true
   startedAt?: true
   completedAt?: true
 }
@@ -85,6 +102,10 @@ export type AssessmentAttemptMaxAggregateInputType = {
   applicationId?: true
   status?: true
   totalScore?: true
+  reviewVerdict?: true
+  reviewerId?: true
+  reviewReason?: true
+  reviewedAt?: true
   startedAt?: true
   completedAt?: true
 }
@@ -94,6 +115,11 @@ export type AssessmentAttemptCountAggregateInputType = {
   applicationId?: true
   status?: true
   totalScore?: true
+  configSnapshot?: true
+  reviewVerdict?: true
+  reviewerId?: true
+  reviewReason?: true
+  reviewedAt?: true
   startedAt?: true
   completedAt?: true
   _all?: true
@@ -190,8 +216,13 @@ export type AssessmentAttemptGroupByOutputType = {
   applicationId: string
   status: $Enums.AttemptStatus
   totalScore: number
+  configSnapshot: runtime.JsonValue
+  reviewVerdict: $Enums.IntegrityReviewVerdict
+  reviewerId: string | null
+  reviewReason: string | null
+  reviewedAt: Date | null
   startedAt: Date
-  completedAt: Date
+  completedAt: Date | null
   _count: AssessmentAttemptCountAggregateOutputType | null
   _avg: AssessmentAttemptAvgAggregateOutputType | null
   _sum: AssessmentAttemptSumAggregateOutputType | null
@@ -222,8 +253,13 @@ export type AssessmentAttemptWhereInput = {
   applicationId?: Prisma.StringFilter<"AssessmentAttempt"> | string
   status?: Prisma.EnumAttemptStatusFilter<"AssessmentAttempt"> | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFilter<"AssessmentAttempt"> | number
+  configSnapshot?: Prisma.JsonFilter<"AssessmentAttempt">
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFilter<"AssessmentAttempt"> | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.StringNullableFilter<"AssessmentAttempt"> | string | null
+  reviewReason?: Prisma.StringNullableFilter<"AssessmentAttempt"> | string | null
+  reviewedAt?: Prisma.DateTimeNullableFilter<"AssessmentAttempt"> | Date | string | null
   startedAt?: Prisma.DateTimeFilter<"AssessmentAttempt"> | Date | string
-  completedAt?: Prisma.DateTimeFilter<"AssessmentAttempt"> | Date | string
+  completedAt?: Prisma.DateTimeNullableFilter<"AssessmentAttempt"> | Date | string | null
   application?: Prisma.XOR<Prisma.ApplicationScalarRelationFilter, Prisma.ApplicationWhereInput>
   answers?: Prisma.AssessmentAnswerListRelationFilter
   snapshots?: Prisma.AssessmentSnapshotListRelationFilter
@@ -236,8 +272,13 @@ export type AssessmentAttemptOrderByWithRelationInput = {
   applicationId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   totalScore?: Prisma.SortOrder
+  configSnapshot?: Prisma.SortOrder
+  reviewVerdict?: Prisma.SortOrder
+  reviewerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  reviewReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  reviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   startedAt?: Prisma.SortOrder
-  completedAt?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   application?: Prisma.ApplicationOrderByWithRelationInput
   answers?: Prisma.AssessmentAnswerOrderByRelationAggregateInput
   snapshots?: Prisma.AssessmentSnapshotOrderByRelationAggregateInput
@@ -253,8 +294,13 @@ export type AssessmentAttemptWhereUniqueInput = Prisma.AtLeast<{
   applicationId?: Prisma.StringFilter<"AssessmentAttempt"> | string
   status?: Prisma.EnumAttemptStatusFilter<"AssessmentAttempt"> | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFilter<"AssessmentAttempt"> | number
+  configSnapshot?: Prisma.JsonFilter<"AssessmentAttempt">
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFilter<"AssessmentAttempt"> | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.StringNullableFilter<"AssessmentAttempt"> | string | null
+  reviewReason?: Prisma.StringNullableFilter<"AssessmentAttempt"> | string | null
+  reviewedAt?: Prisma.DateTimeNullableFilter<"AssessmentAttempt"> | Date | string | null
   startedAt?: Prisma.DateTimeFilter<"AssessmentAttempt"> | Date | string
-  completedAt?: Prisma.DateTimeFilter<"AssessmentAttempt"> | Date | string
+  completedAt?: Prisma.DateTimeNullableFilter<"AssessmentAttempt"> | Date | string | null
   application?: Prisma.XOR<Prisma.ApplicationScalarRelationFilter, Prisma.ApplicationWhereInput>
   answers?: Prisma.AssessmentAnswerListRelationFilter
   snapshots?: Prisma.AssessmentSnapshotListRelationFilter
@@ -267,8 +313,13 @@ export type AssessmentAttemptOrderByWithAggregationInput = {
   applicationId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   totalScore?: Prisma.SortOrder
+  configSnapshot?: Prisma.SortOrder
+  reviewVerdict?: Prisma.SortOrder
+  reviewerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  reviewReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  reviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   startedAt?: Prisma.SortOrder
-  completedAt?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.AssessmentAttemptCountOrderByAggregateInput
   _avg?: Prisma.AssessmentAttemptAvgOrderByAggregateInput
   _max?: Prisma.AssessmentAttemptMaxOrderByAggregateInput
@@ -284,16 +335,26 @@ export type AssessmentAttemptScalarWhereWithAggregatesInput = {
   applicationId?: Prisma.StringWithAggregatesFilter<"AssessmentAttempt"> | string
   status?: Prisma.EnumAttemptStatusWithAggregatesFilter<"AssessmentAttempt"> | $Enums.AttemptStatus
   totalScore?: Prisma.FloatWithAggregatesFilter<"AssessmentAttempt"> | number
+  configSnapshot?: Prisma.JsonWithAggregatesFilter<"AssessmentAttempt">
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictWithAggregatesFilter<"AssessmentAttempt"> | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.StringNullableWithAggregatesFilter<"AssessmentAttempt"> | string | null
+  reviewReason?: Prisma.StringNullableWithAggregatesFilter<"AssessmentAttempt"> | string | null
+  reviewedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AssessmentAttempt"> | Date | string | null
   startedAt?: Prisma.DateTimeWithAggregatesFilter<"AssessmentAttempt"> | Date | string
-  completedAt?: Prisma.DateTimeWithAggregatesFilter<"AssessmentAttempt"> | Date | string
+  completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AssessmentAttempt"> | Date | string | null
 }
 
 export type AssessmentAttemptCreateInput = {
   id?: string
-  status: $Enums.AttemptStatus
-  totalScore: number
-  startedAt: Date | string
-  completedAt: Date | string
+  status?: $Enums.AttemptStatus
+  totalScore?: number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: $Enums.IntegrityReviewVerdict
+  reviewerId?: string | null
+  reviewReason?: string | null
+  reviewedAt?: Date | string | null
+  startedAt?: Date | string
+  completedAt?: Date | string | null
   application: Prisma.ApplicationCreateNestedOneWithoutAssessmentAttemptsInput
   answers?: Prisma.AssessmentAnswerCreateNestedManyWithoutAttemptInput
   snapshots?: Prisma.AssessmentSnapshotCreateNestedManyWithoutAttemptInput
@@ -304,10 +365,15 @@ export type AssessmentAttemptCreateInput = {
 export type AssessmentAttemptUncheckedCreateInput = {
   id?: string
   applicationId: string
-  status: $Enums.AttemptStatus
-  totalScore: number
-  startedAt: Date | string
-  completedAt: Date | string
+  status?: $Enums.AttemptStatus
+  totalScore?: number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: $Enums.IntegrityReviewVerdict
+  reviewerId?: string | null
+  reviewReason?: string | null
+  reviewedAt?: Date | string | null
+  startedAt?: Date | string
+  completedAt?: Date | string | null
   answers?: Prisma.AssessmentAnswerUncheckedCreateNestedManyWithoutAttemptInput
   snapshots?: Prisma.AssessmentSnapshotUncheckedCreateNestedManyWithoutAttemptInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotUncheckedCreateNestedManyWithoutAttemptInput
@@ -318,8 +384,13 @@ export type AssessmentAttemptUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   application?: Prisma.ApplicationUpdateOneRequiredWithoutAssessmentAttemptsNestedInput
   answers?: Prisma.AssessmentAnswerUpdateManyWithoutAttemptNestedInput
   snapshots?: Prisma.AssessmentSnapshotUpdateManyWithoutAttemptNestedInput
@@ -332,8 +403,13 @@ export type AssessmentAttemptUncheckedUpdateInput = {
   applicationId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.AssessmentAnswerUncheckedUpdateManyWithoutAttemptNestedInput
   snapshots?: Prisma.AssessmentSnapshotUncheckedUpdateManyWithoutAttemptNestedInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotUncheckedUpdateManyWithoutAttemptNestedInput
@@ -343,18 +419,28 @@ export type AssessmentAttemptUncheckedUpdateInput = {
 export type AssessmentAttemptCreateManyInput = {
   id?: string
   applicationId: string
-  status: $Enums.AttemptStatus
-  totalScore: number
-  startedAt: Date | string
-  completedAt: Date | string
+  status?: $Enums.AttemptStatus
+  totalScore?: number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: $Enums.IntegrityReviewVerdict
+  reviewerId?: string | null
+  reviewReason?: string | null
+  reviewedAt?: Date | string | null
+  startedAt?: Date | string
+  completedAt?: Date | string | null
 }
 
 export type AssessmentAttemptUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type AssessmentAttemptUncheckedUpdateManyInput = {
@@ -362,8 +448,13 @@ export type AssessmentAttemptUncheckedUpdateManyInput = {
   applicationId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type AssessmentAttemptListRelationFilter = {
@@ -381,6 +472,11 @@ export type AssessmentAttemptCountOrderByAggregateInput = {
   applicationId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   totalScore?: Prisma.SortOrder
+  configSnapshot?: Prisma.SortOrder
+  reviewVerdict?: Prisma.SortOrder
+  reviewerId?: Prisma.SortOrder
+  reviewReason?: Prisma.SortOrder
+  reviewedAt?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
 }
@@ -394,6 +490,10 @@ export type AssessmentAttemptMaxOrderByAggregateInput = {
   applicationId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   totalScore?: Prisma.SortOrder
+  reviewVerdict?: Prisma.SortOrder
+  reviewerId?: Prisma.SortOrder
+  reviewReason?: Prisma.SortOrder
+  reviewedAt?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
 }
@@ -403,6 +503,10 @@ export type AssessmentAttemptMinOrderByAggregateInput = {
   applicationId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   totalScore?: Prisma.SortOrder
+  reviewVerdict?: Prisma.SortOrder
+  reviewerId?: Prisma.SortOrder
+  reviewReason?: Prisma.SortOrder
+  reviewedAt?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
 }
@@ -460,6 +564,10 @@ export type AssessmentAttemptUncheckedUpdateManyWithoutApplicationNestedInput = 
 
 export type EnumAttemptStatusFieldUpdateOperationsInput = {
   set?: $Enums.AttemptStatus
+}
+
+export type EnumIntegrityReviewVerdictFieldUpdateOperationsInput = {
+  set?: $Enums.IntegrityReviewVerdict
 }
 
 export type AssessmentAttemptCreateNestedOneWithoutAnswersInput = {
@@ -520,10 +628,15 @@ export type AssessmentAttemptUpdateOneRequiredWithoutIntegrityFlagsNestedInput =
 
 export type AssessmentAttemptCreateWithoutApplicationInput = {
   id?: string
-  status: $Enums.AttemptStatus
-  totalScore: number
-  startedAt: Date | string
-  completedAt: Date | string
+  status?: $Enums.AttemptStatus
+  totalScore?: number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: $Enums.IntegrityReviewVerdict
+  reviewerId?: string | null
+  reviewReason?: string | null
+  reviewedAt?: Date | string | null
+  startedAt?: Date | string
+  completedAt?: Date | string | null
   answers?: Prisma.AssessmentAnswerCreateNestedManyWithoutAttemptInput
   snapshots?: Prisma.AssessmentSnapshotCreateNestedManyWithoutAttemptInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotCreateNestedManyWithoutAttemptInput
@@ -532,10 +645,15 @@ export type AssessmentAttemptCreateWithoutApplicationInput = {
 
 export type AssessmentAttemptUncheckedCreateWithoutApplicationInput = {
   id?: string
-  status: $Enums.AttemptStatus
-  totalScore: number
-  startedAt: Date | string
-  completedAt: Date | string
+  status?: $Enums.AttemptStatus
+  totalScore?: number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: $Enums.IntegrityReviewVerdict
+  reviewerId?: string | null
+  reviewReason?: string | null
+  reviewedAt?: Date | string | null
+  startedAt?: Date | string
+  completedAt?: Date | string | null
   answers?: Prisma.AssessmentAnswerUncheckedCreateNestedManyWithoutAttemptInput
   snapshots?: Prisma.AssessmentSnapshotUncheckedCreateNestedManyWithoutAttemptInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotUncheckedCreateNestedManyWithoutAttemptInput
@@ -576,16 +694,26 @@ export type AssessmentAttemptScalarWhereInput = {
   applicationId?: Prisma.StringFilter<"AssessmentAttempt"> | string
   status?: Prisma.EnumAttemptStatusFilter<"AssessmentAttempt"> | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFilter<"AssessmentAttempt"> | number
+  configSnapshot?: Prisma.JsonFilter<"AssessmentAttempt">
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFilter<"AssessmentAttempt"> | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.StringNullableFilter<"AssessmentAttempt"> | string | null
+  reviewReason?: Prisma.StringNullableFilter<"AssessmentAttempt"> | string | null
+  reviewedAt?: Prisma.DateTimeNullableFilter<"AssessmentAttempt"> | Date | string | null
   startedAt?: Prisma.DateTimeFilter<"AssessmentAttempt"> | Date | string
-  completedAt?: Prisma.DateTimeFilter<"AssessmentAttempt"> | Date | string
+  completedAt?: Prisma.DateTimeNullableFilter<"AssessmentAttempt"> | Date | string | null
 }
 
 export type AssessmentAttemptCreateWithoutAnswersInput = {
   id?: string
-  status: $Enums.AttemptStatus
-  totalScore: number
-  startedAt: Date | string
-  completedAt: Date | string
+  status?: $Enums.AttemptStatus
+  totalScore?: number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: $Enums.IntegrityReviewVerdict
+  reviewerId?: string | null
+  reviewReason?: string | null
+  reviewedAt?: Date | string | null
+  startedAt?: Date | string
+  completedAt?: Date | string | null
   application: Prisma.ApplicationCreateNestedOneWithoutAssessmentAttemptsInput
   snapshots?: Prisma.AssessmentSnapshotCreateNestedManyWithoutAttemptInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotCreateNestedManyWithoutAttemptInput
@@ -595,10 +723,15 @@ export type AssessmentAttemptCreateWithoutAnswersInput = {
 export type AssessmentAttemptUncheckedCreateWithoutAnswersInput = {
   id?: string
   applicationId: string
-  status: $Enums.AttemptStatus
-  totalScore: number
-  startedAt: Date | string
-  completedAt: Date | string
+  status?: $Enums.AttemptStatus
+  totalScore?: number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: $Enums.IntegrityReviewVerdict
+  reviewerId?: string | null
+  reviewReason?: string | null
+  reviewedAt?: Date | string | null
+  startedAt?: Date | string
+  completedAt?: Date | string | null
   snapshots?: Prisma.AssessmentSnapshotUncheckedCreateNestedManyWithoutAttemptInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotUncheckedCreateNestedManyWithoutAttemptInput
   integrityFlags?: Prisma.IntegrityFlagUncheckedCreateNestedManyWithoutAttemptInput
@@ -624,8 +757,13 @@ export type AssessmentAttemptUpdateWithoutAnswersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   application?: Prisma.ApplicationUpdateOneRequiredWithoutAssessmentAttemptsNestedInput
   snapshots?: Prisma.AssessmentSnapshotUpdateManyWithoutAttemptNestedInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotUpdateManyWithoutAttemptNestedInput
@@ -637,8 +775,13 @@ export type AssessmentAttemptUncheckedUpdateWithoutAnswersInput = {
   applicationId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   snapshots?: Prisma.AssessmentSnapshotUncheckedUpdateManyWithoutAttemptNestedInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotUncheckedUpdateManyWithoutAttemptNestedInput
   integrityFlags?: Prisma.IntegrityFlagUncheckedUpdateManyWithoutAttemptNestedInput
@@ -646,10 +789,15 @@ export type AssessmentAttemptUncheckedUpdateWithoutAnswersInput = {
 
 export type AssessmentAttemptCreateWithoutSnapshotsInput = {
   id?: string
-  status: $Enums.AttemptStatus
-  totalScore: number
-  startedAt: Date | string
-  completedAt: Date | string
+  status?: $Enums.AttemptStatus
+  totalScore?: number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: $Enums.IntegrityReviewVerdict
+  reviewerId?: string | null
+  reviewReason?: string | null
+  reviewedAt?: Date | string | null
+  startedAt?: Date | string
+  completedAt?: Date | string | null
   application: Prisma.ApplicationCreateNestedOneWithoutAssessmentAttemptsInput
   answers?: Prisma.AssessmentAnswerCreateNestedManyWithoutAttemptInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotCreateNestedManyWithoutAttemptInput
@@ -659,10 +807,15 @@ export type AssessmentAttemptCreateWithoutSnapshotsInput = {
 export type AssessmentAttemptUncheckedCreateWithoutSnapshotsInput = {
   id?: string
   applicationId: string
-  status: $Enums.AttemptStatus
-  totalScore: number
-  startedAt: Date | string
-  completedAt: Date | string
+  status?: $Enums.AttemptStatus
+  totalScore?: number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: $Enums.IntegrityReviewVerdict
+  reviewerId?: string | null
+  reviewReason?: string | null
+  reviewedAt?: Date | string | null
+  startedAt?: Date | string
+  completedAt?: Date | string | null
   answers?: Prisma.AssessmentAnswerUncheckedCreateNestedManyWithoutAttemptInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotUncheckedCreateNestedManyWithoutAttemptInput
   integrityFlags?: Prisma.IntegrityFlagUncheckedCreateNestedManyWithoutAttemptInput
@@ -688,8 +841,13 @@ export type AssessmentAttemptUpdateWithoutSnapshotsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   application?: Prisma.ApplicationUpdateOneRequiredWithoutAssessmentAttemptsNestedInput
   answers?: Prisma.AssessmentAnswerUpdateManyWithoutAttemptNestedInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotUpdateManyWithoutAttemptNestedInput
@@ -701,8 +859,13 @@ export type AssessmentAttemptUncheckedUpdateWithoutSnapshotsInput = {
   applicationId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.AssessmentAnswerUncheckedUpdateManyWithoutAttemptNestedInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotUncheckedUpdateManyWithoutAttemptNestedInput
   integrityFlags?: Prisma.IntegrityFlagUncheckedUpdateManyWithoutAttemptNestedInput
@@ -710,10 +873,15 @@ export type AssessmentAttemptUncheckedUpdateWithoutSnapshotsInput = {
 
 export type AssessmentAttemptCreateWithoutAudioSnapshotsInput = {
   id?: string
-  status: $Enums.AttemptStatus
-  totalScore: number
-  startedAt: Date | string
-  completedAt: Date | string
+  status?: $Enums.AttemptStatus
+  totalScore?: number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: $Enums.IntegrityReviewVerdict
+  reviewerId?: string | null
+  reviewReason?: string | null
+  reviewedAt?: Date | string | null
+  startedAt?: Date | string
+  completedAt?: Date | string | null
   application: Prisma.ApplicationCreateNestedOneWithoutAssessmentAttemptsInput
   answers?: Prisma.AssessmentAnswerCreateNestedManyWithoutAttemptInput
   snapshots?: Prisma.AssessmentSnapshotCreateNestedManyWithoutAttemptInput
@@ -723,10 +891,15 @@ export type AssessmentAttemptCreateWithoutAudioSnapshotsInput = {
 export type AssessmentAttemptUncheckedCreateWithoutAudioSnapshotsInput = {
   id?: string
   applicationId: string
-  status: $Enums.AttemptStatus
-  totalScore: number
-  startedAt: Date | string
-  completedAt: Date | string
+  status?: $Enums.AttemptStatus
+  totalScore?: number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: $Enums.IntegrityReviewVerdict
+  reviewerId?: string | null
+  reviewReason?: string | null
+  reviewedAt?: Date | string | null
+  startedAt?: Date | string
+  completedAt?: Date | string | null
   answers?: Prisma.AssessmentAnswerUncheckedCreateNestedManyWithoutAttemptInput
   snapshots?: Prisma.AssessmentSnapshotUncheckedCreateNestedManyWithoutAttemptInput
   integrityFlags?: Prisma.IntegrityFlagUncheckedCreateNestedManyWithoutAttemptInput
@@ -752,8 +925,13 @@ export type AssessmentAttemptUpdateWithoutAudioSnapshotsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   application?: Prisma.ApplicationUpdateOneRequiredWithoutAssessmentAttemptsNestedInput
   answers?: Prisma.AssessmentAnswerUpdateManyWithoutAttemptNestedInput
   snapshots?: Prisma.AssessmentSnapshotUpdateManyWithoutAttemptNestedInput
@@ -765,8 +943,13 @@ export type AssessmentAttemptUncheckedUpdateWithoutAudioSnapshotsInput = {
   applicationId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.AssessmentAnswerUncheckedUpdateManyWithoutAttemptNestedInput
   snapshots?: Prisma.AssessmentSnapshotUncheckedUpdateManyWithoutAttemptNestedInput
   integrityFlags?: Prisma.IntegrityFlagUncheckedUpdateManyWithoutAttemptNestedInput
@@ -774,10 +957,15 @@ export type AssessmentAttemptUncheckedUpdateWithoutAudioSnapshotsInput = {
 
 export type AssessmentAttemptCreateWithoutIntegrityFlagsInput = {
   id?: string
-  status: $Enums.AttemptStatus
-  totalScore: number
-  startedAt: Date | string
-  completedAt: Date | string
+  status?: $Enums.AttemptStatus
+  totalScore?: number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: $Enums.IntegrityReviewVerdict
+  reviewerId?: string | null
+  reviewReason?: string | null
+  reviewedAt?: Date | string | null
+  startedAt?: Date | string
+  completedAt?: Date | string | null
   application: Prisma.ApplicationCreateNestedOneWithoutAssessmentAttemptsInput
   answers?: Prisma.AssessmentAnswerCreateNestedManyWithoutAttemptInput
   snapshots?: Prisma.AssessmentSnapshotCreateNestedManyWithoutAttemptInput
@@ -787,10 +975,15 @@ export type AssessmentAttemptCreateWithoutIntegrityFlagsInput = {
 export type AssessmentAttemptUncheckedCreateWithoutIntegrityFlagsInput = {
   id?: string
   applicationId: string
-  status: $Enums.AttemptStatus
-  totalScore: number
-  startedAt: Date | string
-  completedAt: Date | string
+  status?: $Enums.AttemptStatus
+  totalScore?: number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: $Enums.IntegrityReviewVerdict
+  reviewerId?: string | null
+  reviewReason?: string | null
+  reviewedAt?: Date | string | null
+  startedAt?: Date | string
+  completedAt?: Date | string | null
   answers?: Prisma.AssessmentAnswerUncheckedCreateNestedManyWithoutAttemptInput
   snapshots?: Prisma.AssessmentSnapshotUncheckedCreateNestedManyWithoutAttemptInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotUncheckedCreateNestedManyWithoutAttemptInput
@@ -816,8 +1009,13 @@ export type AssessmentAttemptUpdateWithoutIntegrityFlagsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   application?: Prisma.ApplicationUpdateOneRequiredWithoutAssessmentAttemptsNestedInput
   answers?: Prisma.AssessmentAnswerUpdateManyWithoutAttemptNestedInput
   snapshots?: Prisma.AssessmentSnapshotUpdateManyWithoutAttemptNestedInput
@@ -829,8 +1027,13 @@ export type AssessmentAttemptUncheckedUpdateWithoutIntegrityFlagsInput = {
   applicationId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.AssessmentAnswerUncheckedUpdateManyWithoutAttemptNestedInput
   snapshots?: Prisma.AssessmentSnapshotUncheckedUpdateManyWithoutAttemptNestedInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotUncheckedUpdateManyWithoutAttemptNestedInput
@@ -838,18 +1041,28 @@ export type AssessmentAttemptUncheckedUpdateWithoutIntegrityFlagsInput = {
 
 export type AssessmentAttemptCreateManyApplicationInput = {
   id?: string
-  status: $Enums.AttemptStatus
-  totalScore: number
-  startedAt: Date | string
-  completedAt: Date | string
+  status?: $Enums.AttemptStatus
+  totalScore?: number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: $Enums.IntegrityReviewVerdict
+  reviewerId?: string | null
+  reviewReason?: string | null
+  reviewedAt?: Date | string | null
+  startedAt?: Date | string
+  completedAt?: Date | string | null
 }
 
 export type AssessmentAttemptUpdateWithoutApplicationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.AssessmentAnswerUpdateManyWithoutAttemptNestedInput
   snapshots?: Prisma.AssessmentSnapshotUpdateManyWithoutAttemptNestedInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotUpdateManyWithoutAttemptNestedInput
@@ -860,8 +1073,13 @@ export type AssessmentAttemptUncheckedUpdateWithoutApplicationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.AssessmentAnswerUncheckedUpdateManyWithoutAttemptNestedInput
   snapshots?: Prisma.AssessmentSnapshotUncheckedUpdateManyWithoutAttemptNestedInput
   audioSnapshots?: Prisma.AssessmentAudioSnapshotUncheckedUpdateManyWithoutAttemptNestedInput
@@ -872,8 +1090,13 @@ export type AssessmentAttemptUncheckedUpdateManyWithoutApplicationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   totalScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  configSnapshot?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  reviewVerdict?: Prisma.EnumIntegrityReviewVerdictFieldUpdateOperationsInput | $Enums.IntegrityReviewVerdict
+  reviewerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -939,6 +1162,11 @@ export type AssessmentAttemptSelect<ExtArgs extends runtime.Types.Extensions.Int
   applicationId?: boolean
   status?: boolean
   totalScore?: boolean
+  configSnapshot?: boolean
+  reviewVerdict?: boolean
+  reviewerId?: boolean
+  reviewReason?: boolean
+  reviewedAt?: boolean
   startedAt?: boolean
   completedAt?: boolean
   application?: boolean | Prisma.ApplicationDefaultArgs<ExtArgs>
@@ -954,6 +1182,11 @@ export type AssessmentAttemptSelectCreateManyAndReturn<ExtArgs extends runtime.T
   applicationId?: boolean
   status?: boolean
   totalScore?: boolean
+  configSnapshot?: boolean
+  reviewVerdict?: boolean
+  reviewerId?: boolean
+  reviewReason?: boolean
+  reviewedAt?: boolean
   startedAt?: boolean
   completedAt?: boolean
   application?: boolean | Prisma.ApplicationDefaultArgs<ExtArgs>
@@ -964,6 +1197,11 @@ export type AssessmentAttemptSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   applicationId?: boolean
   status?: boolean
   totalScore?: boolean
+  configSnapshot?: boolean
+  reviewVerdict?: boolean
+  reviewerId?: boolean
+  reviewReason?: boolean
+  reviewedAt?: boolean
   startedAt?: boolean
   completedAt?: boolean
   application?: boolean | Prisma.ApplicationDefaultArgs<ExtArgs>
@@ -974,11 +1212,16 @@ export type AssessmentAttemptSelectScalar = {
   applicationId?: boolean
   status?: boolean
   totalScore?: boolean
+  configSnapshot?: boolean
+  reviewVerdict?: boolean
+  reviewerId?: boolean
+  reviewReason?: boolean
+  reviewedAt?: boolean
   startedAt?: boolean
   completedAt?: boolean
 }
 
-export type AssessmentAttemptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "applicationId" | "status" | "totalScore" | "startedAt" | "completedAt", ExtArgs["result"]["assessmentAttempt"]>
+export type AssessmentAttemptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "applicationId" | "status" | "totalScore" | "configSnapshot" | "reviewVerdict" | "reviewerId" | "reviewReason" | "reviewedAt" | "startedAt" | "completedAt", ExtArgs["result"]["assessmentAttempt"]>
 export type AssessmentAttemptInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   application?: boolean | Prisma.ApplicationDefaultArgs<ExtArgs>
   answers?: boolean | Prisma.AssessmentAttempt$answersArgs<ExtArgs>
@@ -1008,8 +1251,13 @@ export type $AssessmentAttemptPayload<ExtArgs extends runtime.Types.Extensions.I
     applicationId: string
     status: $Enums.AttemptStatus
     totalScore: number
+    configSnapshot: runtime.JsonValue
+    reviewVerdict: $Enums.IntegrityReviewVerdict
+    reviewerId: string | null
+    reviewReason: string | null
+    reviewedAt: Date | null
     startedAt: Date
-    completedAt: Date
+    completedAt: Date | null
   }, ExtArgs["result"]["assessmentAttempt"]>
   composites: {}
 }
@@ -1442,6 +1690,11 @@ export interface AssessmentAttemptFieldRefs {
   readonly applicationId: Prisma.FieldRef<"AssessmentAttempt", 'String'>
   readonly status: Prisma.FieldRef<"AssessmentAttempt", 'AttemptStatus'>
   readonly totalScore: Prisma.FieldRef<"AssessmentAttempt", 'Float'>
+  readonly configSnapshot: Prisma.FieldRef<"AssessmentAttempt", 'Json'>
+  readonly reviewVerdict: Prisma.FieldRef<"AssessmentAttempt", 'IntegrityReviewVerdict'>
+  readonly reviewerId: Prisma.FieldRef<"AssessmentAttempt", 'String'>
+  readonly reviewReason: Prisma.FieldRef<"AssessmentAttempt", 'String'>
+  readonly reviewedAt: Prisma.FieldRef<"AssessmentAttempt", 'DateTime'>
   readonly startedAt: Prisma.FieldRef<"AssessmentAttempt", 'DateTime'>
   readonly completedAt: Prisma.FieldRef<"AssessmentAttempt", 'DateTime'>
 }

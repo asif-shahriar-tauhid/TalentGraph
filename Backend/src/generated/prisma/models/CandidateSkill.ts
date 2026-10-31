@@ -225,6 +225,7 @@ export type CandidateSkillOrderByWithRelationInput = {
 
 export type CandidateSkillWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  candidateId_skillId?: Prisma.CandidateSkillCandidateIdSkillIdCompoundUniqueInput
   AND?: Prisma.CandidateSkillWhereInput | Prisma.CandidateSkillWhereInput[]
   OR?: Prisma.CandidateSkillWhereInput[]
   NOT?: Prisma.CandidateSkillWhereInput | Prisma.CandidateSkillWhereInput[]
@@ -234,7 +235,7 @@ export type CandidateSkillWhereUniqueInput = Prisma.AtLeast<{
   candidate?: Prisma.XOR<Prisma.CandidateProfileScalarRelationFilter, Prisma.CandidateProfileWhereInput>
   skill?: Prisma.XOR<Prisma.SkillScalarRelationFilter, Prisma.SkillWhereInput>
   evidence?: Prisma.EvidenceListRelationFilter
-}, "id">
+}, "id" | "candidateId_skillId">
 
 export type CandidateSkillOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -317,6 +318,11 @@ export type CandidateSkillListRelationFilter = {
 
 export type CandidateSkillOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type CandidateSkillCandidateIdSkillIdCompoundUniqueInput = {
+  candidateId: string
+  skillId: string
 }
 
 export type CandidateSkillCountOrderByAggregateInput = {
@@ -443,6 +449,12 @@ export type FloatFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type CandidateSkillCreateNestedOneWithoutEvidenceInput = {
+  create?: Prisma.XOR<Prisma.CandidateSkillCreateWithoutEvidenceInput, Prisma.CandidateSkillUncheckedCreateWithoutEvidenceInput>
+  connectOrCreate?: Prisma.CandidateSkillCreateOrConnectWithoutEvidenceInput
+  connect?: Prisma.CandidateSkillWhereUniqueInput
 }
 
 export type CandidateSkillUpdateOneRequiredWithoutEvidenceNestedInput = {

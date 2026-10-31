@@ -1,6 +1,36 @@
 enum Role {
   CANDIDATE
   RECRUITER
+  SUB_RECRUITER
+  SYSTEM_ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+  DELETED
+}
+
+enum AuthProvider {
+  CREDENTIAL
+  GITHUB
+  GOOGLE
+}
+
+enum CompanyVerificationStatus {
+  DRAFT
+  PENDING
+  NEEDS_MORE_INFO
+  VERIFIED
+  REJECTED
+}
+
+enum JobStatus {
+  DRAFT
+  PENDING_VERIFICATION
+  ACTIVE
+  CLOSED
+  ARCHIVED
 }
 
 enum ApplicationStatus {
@@ -36,6 +66,12 @@ enum AttemptStatus {
   REVIEWED
 }
 
+enum IntegrityReviewVerdict {
+  PENDING
+  NO_VIOLATION
+  CONFIRMED_VIOLATION
+}
+
 enum PaymentGateway {
   STRIPE
   SSLCOMMERZ
@@ -54,4 +90,11 @@ enum SubscriptionStatus {
   CANCELED
   PAST_DUE
   INCOMPLETE
+}
+
+enum BackgroundJobStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
 }
