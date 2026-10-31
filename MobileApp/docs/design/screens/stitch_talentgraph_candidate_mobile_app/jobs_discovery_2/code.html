@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#0D0D0F;color:#F5F5F5;-webkit-tap-highlight-color:transparent;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 0.5rem);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'on-secondary-fixed-variant': '#47464a', 'on-primary-fixed-variant': '#793100', 'tertiary': '#ffb690', 'tertiary-fixed': '#ffdbca', 'on-primary-container': '#4b1b00', 'on-error-container': '#ffdad6', 'secondary-fixed': '#e4e1e5', 'outline-variant': '#574238', 'destructive': '#E5484D', 'on-background': '#e3e1ec', 'text-primary': '#F5F5F5', 'inverse-surface': '#e3e1ec', 'text-secondary': '#A1A1AA', 'surface-container-low': '#1a1b23', 'primary': '#ffb691', 'secondary': '#c8c6c9', 'on-tertiary': '#542100', 'surface-container-lowest': '#0d0e15', 'on-secondary-container': '#b6b4b8', 'surface-variant': '#34343c', 'surface-container-high': '#292931', 'surface-elevated': '#19191C', 'on-primary': '#552000', 'primary-container': '#e56f27', 'primary-fixed-dim': '#ffb691', 'primary-fixed': '#ffdbcb', 'surface-dim': '#12131a', 'inverse-primary': '#9f4200', 'error-container': '#93000a', 'outline': '#a68b7f', 'success': '#22C55E', 'on-secondary': '#303033', 'secondary-container': '#47464a', 'tertiary-fixed-dim': '#ffb690', 'surface-tint': '#ffb691', 'tertiary-container': '#df7331', 'surface-bright': '#383841', 'warning': '#F59E0B', 'on-surface-variant': '#dec0b3', 'surface': '#12131a', 'border-divider': '#3F3F46', 'on-surface': '#e3e1ec', 'error': '#ffb4ab', 'on-secondary-fixed': '#1b1b1e', 'inverse-on-surface': '#2f3038', 'surface-container': '#1e1f27', 'on-tertiary-fixed': '#331100', 'secondary-fixed-dim': '#c8c6c9', 'background': '#0D0D0F', 'on-primary-fixed': '#341100', 'on-error': '#690005', 'on-tertiary-container': '#4a1c00', 'cta-text': '#18181B', 'on-tertiary-fixed-variant': '#783200', 'surface-container-highest': '#34343c' }, borderRadius: { DEFAULT: '0.25rem', lg: '0.5rem', xl: '0.75rem', full: '9999px' }, spacing: { 'space-md': '1rem', 'space-2xs': '0.25rem', 'space-xs': '0.5rem', 'gutter-mobile': '0.75rem', 'space-sm': '0.75rem', 'gutter': '1rem', 'space-xl': '1.5rem', 'margin': '1rem', 'space-lg': '1.25rem', 'space-2xl': '2rem', 'margin-compact': '0.75rem' }, fontFamily: { 'headline-sm': ['Inter'], 'body-md': ['Inter'], 'body-sm': ['Inter'], 'label-sm': ['Inter'], 'metadata': ['Inter'], 'display-lg-mobile': ['Inter'], 'display-lg': ['Inter'], 'label-md': ['Inter'], 'timer-display': ['Inter'], 'headline-md': ['Inter'], 'body-lg': ['Inter'] }, fontSize: { 'headline-sm': ['18px', { lineHeight: '24px', fontWeight: '600' }], 'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }], 'body-sm': ['13px', { lineHeight: '18px', fontWeight: '400' }], 'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.02em', fontWeight: '500' }], 'metadata': ['12px', { lineHeight: '16px', fontWeight: '400' }], 'display-lg-mobile': ['24px', { lineHeight: '32px', letterSpacing: '-0.02em', fontWeight: '700' }], 'display-lg': ['28px', { lineHeight: '36px', letterSpacing: '-0.02em', fontWeight: '700' }], 'label-md': ['14px', { lineHeight: '20px', letterSpacing: '0.01em', fontWeight: '600' }], 'timer-display': ['16px', { lineHeight: '20px', letterSpacing: '0.04em', fontWeight: '600' }], 'headline-md': ['20px', { lineHeight: '28px', letterSpacing: '-0.01em', fontWeight: '600' }], 'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body-md text-text-primary min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-cta-text"><header class="fixed top-0 w-full z-50 pt-safe bg-background/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs"><img alt="TalentGraph Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U97agoXIwiCKwzW-3OewsiWdWrxdGkHbW1MGXiAx5dq_r_DkSuK_J898BEZwotMjT9li9U-9OJT1oh7GHpZkyjuugqFyY7RPfiES19vvDkhSJFCOIYnmNwjRx-0XZGc3LfHfOq37cgWNy49hOyIEmwyjiLfFBfJyr0EAOXIW8qCJd3kY4thp2CQXvqhn4Hn1S4zMCz-qGLXV-0tp2fCxVT7mhk0pLw6wwN3yu0vkEPTLXrX1uQw4LEn_bq"/><span class="font-headline-sm text-headline-sm tracking-tight text-text-primary">TalentGraph</span></div><div class="flex items-center gap-space-xs"><span class="sr-only">Jobs</span><button aria-label="Toggle theme appearance" class="w-11 h-11 flex items-center justify-center rounded-lg text-text-secondary hover:text-text-primary transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">dark_mode</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-2xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-28 px-margin bg-background"><div class="flex flex-col w-full max-w-md mx-auto space-y-space-lg pb-space-xl">
+<!-- Subtle Ambient Glow Element for Human Warmth without clutter -->
+<div class="relative w-full overflow-hidden rounded-xl bg-surface-container-low p-space-lg shadow-sm">
+<div class="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-primary-container/10 blur-2xl pointer-events-none"></div>
+<!-- Editorial Positioning / Hook -->
+<div class="flex items-center gap-space-xs mb-space-sm">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-container/20 text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+        Technical Candidate Workspace
+      </span>
+</div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-text-primary tracking-tight">
+      Don't just claim a skill. <span class="text-primary">Prove it.</span>
+</h1>
+<p class="font-body-md text-body-md text-text-secondary mt-space-xs leading-relaxed">
+      TalentGraph builds your verified candidate profile by correlating resume claims with public GitHub commit history and focused, mobile-timed skill evaluations.
+    </p>
+</div>
+<!-- Evidence Trail Motif (Restrained diagnostic step rail) -->
+<div class="bg-surface-elevated rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-border-divider/30">
+<span class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Evaluation Sequence</span>
+<span class="font-metadata text-metadata text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+        Evidence-Based
+      </span>
+</div>
+<!-- The 3 Step Evidence Rails -->
+<div class="relative pl-6 space-y-space-md before:absolute before:left-2 before:top-2 before:bottom-2 before:w-[2px] before:bg-border-divider">
+<!-- Node 1: Profile & CV -->
+<div class="relative group">
+<div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-surface-elevated flex items-center justify-center">
+<div class="w-2.5 h-2.5 rounded-full bg-primary-container"></div>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-label-md text-label-md text-text-primary">CV Snapshot &amp; Role Intent</h2>
+<span class="px-1.5 py-0.5 rounded bg-surface-variant font-metadata text-[10px] text-text-secondary">Step 01</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary mt-0.5">
+            Structured ingestion of claimed architectural experience and core competencies.
+          </p>
+</div>
+</div>
+<!-- Node 2: Telemetry -->
+<div class="relative group">
+<div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-surface-elevated flex items-center justify-center">
+<div class="w-2.5 h-2.5 rounded-full bg-primary-container"></div>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-label-md text-label-md text-text-primary">GitHub Telemetry Corroboration</h2>
+<span class="px-1.5 py-0.5 rounded bg-surface-variant font-metadata text-[10px] text-text-secondary">Step 02</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary mt-0.5">
+            Read-only pattern verification of public commits, pull requests, and languages used.
+          </p>
+</div>
+</div>
+<!-- Node 3: Timed Evaluation -->
+<div class="relative group">
+<div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-surface-elevated flex items-center justify-center">
+<div class="w-2.5 h-2.5 rounded-full bg-surface-elevated border-2 border-primary-container"></div>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-label-md text-label-md text-text-primary">Focused Mobile Assessment</h2>
+<span class="px-1.5 py-0.5 rounded bg-surface-variant font-metadata text-[10px] text-text-secondary">Step 03</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary mt-0.5">
+            Calibrated technical evaluations completed in distraction-free assessment mode.
+          </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary Authentication Section -->
+<div class="space-y-space-sm pt-space-xs">
+<!-- GitHub OAuth Action Button -->
+<button aria-label="Continue with GitHub" class="w-full min-h-[52px] px-space-md py-space-sm bg-primary-container hover:bg-tertiary-container active:scale-[0.99] text-cta-text font-label-md text-label-md rounded-lg flex items-center justify-center gap-3 transition-all duration-150 shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background" id="github-auth-btn" type="button">
+<!-- Standard GitHub Octocat SVG mark -->
+<svg aria-hidden="true" class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path>
+</svg>
+<span>Continue with GitHub</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<!-- Email Routing Context Notice -->
+<div class="flex items-start gap-2 px-space-xs py-2 text-text-secondary">
+<span class="material-symbols-outlined text-[16px] text-text-secondary mt-0.5 shrink-0">mark_email_read</span>
+<p class="font-body-sm text-body-sm text-text-secondary leading-tight">
+        Invitations and verification confirmations are delivered to your primary GitHub email address.
+      </p>
+</div>
+<!-- Security & Scope Transparency Card -->
+<div class="bg-surface-elevated/70 rounded-lg p-space-sm space-y-1.5">
+<div class="flex items-center gap-1.5 text-text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-success">lock</span>
+<span>Public Data Guarantee</span>
+</div>
+<p class="font-metadata text-metadata text-text-secondary leading-normal">
+        We request read-only access to verify public repository activity. Repository analysis requires separate explicit consent; signing in does not grant access to private code or account credentials.
+      </p>
+</div>
+</div>
+<!-- Interactive Readiness Insight Drawer (Candidate Delight) -->
+<div class="bg-surface-container rounded-lg p-space-sm">
+<button aria-controls="faq-content" aria-expanded="false" class="w-full flex items-center justify-between text-left text-text-primary focus:outline-none" id="faq-toggle" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">terminal</span>
+<span class="font-label-sm text-label-sm">Why is GitHub required for candidates?</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-text-secondary transition-transform duration-200" id="faq-chevron">expand_more</span>
+</button>
+<div class="hidden pt-space-xs mt-space-xs font-body-sm text-body-sm text-text-secondary space-y-1 leading-relaxed" id="faq-content">
+<p>
+        Engineering roles require concrete implementation proof. Linking GitHub replaces resume self-ratings with tangible telemetry—showing commit regularity, code ownership, and real-world syntax fluency.
+      </p>
+</div>
+</div>
+<!-- Footer & Candidate Terms -->
+<footer class="pt-space-xs text-center space-y-space-xs">
+<div class="flex items-center justify-center gap-4 text-text-secondary font-label-sm text-label-sm">
+<a class="hover:text-text-primary transition-colors underline-offset-4 hover:underline py-1" href="#privacy">Privacy Policy</a>
+<span class="text-border-divider">•</span>
+<a class="hover:text-text-primary transition-colors underline-offset-4 hover:underline py-1" href="#terms">Candidate Terms</a>
+<span class="text-border-divider">•</span>
+<a class="hover:text-text-primary transition-colors underline-offset-4 hover:underline py-1" href="#verification-faq">Code FAQ</a>
+</div>
+<p class="font-metadata text-metadata text-text-secondary/70">
+      TalentGraph Candidate Workspace • v2.4.0 (Engine v8)
+    </p>
+</footer>
+</div>
+<script>
+  (function() {
+    // Interactive accordion toggle for Candidate verification explainer
+    const faqToggle = document.getElementById('faq-toggle');
+    const faqContent = document.getElementById('faq-content');
+    const faqChevron = document.getElementById('faq-chevron');
+
+    if (faqToggle && faqContent && faqChevron) {
+      faqToggle.addEventListener('click', () => {
+        const isExpanded = faqToggle.getAttribute('aria-expanded') === 'true';
+        faqToggle.setAttribute('aria-expanded', !isExpanded);
+        faqContent.classList.toggle('hidden');
+        faqChevron.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+      });
+    }
+
+    // Micro-interaction on GitHub sign-in button
+    const authBtn = document.getElementById('github-auth-btn');
+    if (authBtn) {
+      authBtn.addEventListener('click', (e) => {
+        // Feedback visual ripple simulation
+        authBtn.classList.add('opacity-90');
+        setTimeout(() => authBtn.classList.remove('opacity-90'), 200);
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-elevated/95 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.6)]" data-active-classes="text-primary font-medium"><div class="grid grid-cols-3 h-16 max-w-md mx-auto items-center px-space-xs"><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-text-secondary transition-colors relative group" data-path="jobs" href="#"><span class="material-symbols-outlined text-[22px]">work</span><span class="font-label-sm text-label-sm mt-0.5">Jobs</span><span class="w-1 h-1 rounded-full bg-primary mt-1 opacity-0 group-[.text-primary]:opacity-100 transition-opacity"></span></a><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-text-secondary transition-colors relative group" data-path="assessments" href="#"><span class="material-symbols-outlined text-[22px]">assignment_turned_in</span><span class="font-label-sm text-label-sm mt-0.5">Assessments</span><span class="w-1 h-1 rounded-full bg-primary mt-1 opacity-0 group-[.text-primary]:opacity-100 transition-opacity"></span></a><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-text-secondary transition-colors relative group" data-path="notifications" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute -top-0.5 -right-1 w-2 h-2 rounded-full bg-primary-container ring-2 ring-surface-elevated"></span></div><span class="font-label-sm text-label-sm mt-0.5">Notifications</span><span class="w-1 h-1 rounded-full bg-primary mt-1 opacity-0 group-[.text-primary]:opacity-100 transition-opacity"></span></a></div></nav></body></html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html class="" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#0D0D0F;color:#F5F5F5;-webkit-tap-highlight-color:transparent;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 0.5rem);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'on-secondary-fixed-variant': '#47464a', 'on-primary-fixed-variant': '#793100', 'tertiary': '#ffb690', 'tertiary-fixed': '#ffdbca', 'on-primary-container': '#4b1b00', 'on-error-container': '#ffdad6', 'secondary-fixed': '#e4e1e5', 'outline-variant': '#574238', 'destructive': '#E5484D', 'on-background': '#e3e1ec', 'text-primary': '#F5F5F5', 'inverse-surface': '#e3e1ec', 'text-secondary': '#A1A1AA', 'surface-container-low': '#1a1b23', 'primary': '#ffb691', 'secondary': '#c8c6c9', 'on-tertiary': '#542100', 'surface-container-lowest': '#0d0e15', 'on-secondary-container': '#b6b4b8', 'surface-variant': '#34343c', 'surface-container-high': '#292931', 'surface-elevated': '#19191C', 'on-primary': '#552000', 'primary-container': '#e56f27', 'primary-fixed-dim': '#ffb691', 'primary-fixed': '#ffdbcb', 'surface-dim': '#12131a', 'inverse-primary': '#9f4200', 'error-container': '#93000a', 'outline': '#a68b7f', 'success': '#22C55E', 'on-secondary': '#303033', 'secondary-container': '#47464a', 'tertiary-fixed-dim': '#ffb690', 'surface-tint': '#ffb691', 'tertiary-container': '#df7331', 'surface-bright': '#383841', 'warning': '#F59E0B', 'on-surface-variant': '#dec0b3', 'surface': '#12131a', 'border-divider': '#3F3F46', 'on-surface': '#e3e1ec', 'error': '#ffb4ab', 'on-secondary-fixed': '#1b1b1e', 'inverse-on-surface': '#2f3038', 'surface-container': '#1e1f27', 'on-tertiary-fixed': '#331100', 'secondary-fixed-dim': '#c8c6c9', 'background': '#0D0D0F', 'on-primary-fixed': '#341100', 'on-error': '#690005', 'on-tertiary-container': '#4a1c00', 'cta-text': '#18181B', 'on-tertiary-fixed-variant': '#783200', 'surface-container-highest': '#34343c' }, borderRadius: { DEFAULT: '0.25rem', lg: '0.5rem', xl: '0.75rem', full: '9999px' }, spacing: { 'space-md': '1rem', 'space-2xs': '0.25rem', 'space-xs': '0.5rem', 'gutter-mobile': '0.75rem', 'space-sm': '0.75rem', 'gutter': '1rem', 'space-xl': '1.5rem', 'margin': '1rem', 'space-lg': '1.25rem', 'space-2xl': '2rem', 'margin-compact': '0.75rem' }, fontFamily: { 'headline-sm': ['Inter'], 'body-md': ['Inter'], 'body-sm': ['Inter'], 'label-sm': ['Inter'], 'metadata': ['Inter'], 'display-lg-mobile': ['Inter'], 'display-lg': ['Inter'], 'label-md': ['Inter'], 'timer-display': ['Inter'], 'headline-md': ['Inter'], 'body-lg': ['Inter'] }, fontSize: { 'headline-sm': ['18px', { lineHeight: '24px', fontWeight: '600' }], 'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }], 'body-sm': ['13px', { lineHeight: '18px', fontWeight: '400' }], 'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.02em', fontWeight: '500' }], 'metadata': ['12px', { lineHeight: '16px', fontWeight: '400' }], 'display-lg-mobile': ['24px', { lineHeight: '32px', letterSpacing: '-0.02em', fontWeight: '700' }], 'display-lg': ['28px', { lineHeight: '36px', letterSpacing: '-0.02em', fontWeight: '700' }], 'label-md': ['14px', { lineHeight: '20px', letterSpacing: '0.01em', fontWeight: '600' }], 'timer-display': ['16px', { lineHeight: '20px', letterSpacing: '0.04em', fontWeight: '600' }], 'headline-md': ['20px', { lineHeight: '28px', letterSpacing: '-0.01em', fontWeight: '600' }], 'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-background font-body-md text-text-primary min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-cta-text"><header class="fixed top-0 w-full z-50 pt-safe bg-[#FAFAFA]/90 backdrop-blur-xl border-b border-[#E4E4E7]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs"><img alt="TalentGraph Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U97agoXIwiCKwzW-3OewsiWdWrxdGkHbW1MGXiAx5dq_r_DkSuK_J898BEZwotMjT9li9U-9OJT1oh7GHpZkyjuugqFyY7RPfiES19vvDkhSJFCOIYnmNwjRx-0XZGc3LfHfOq37cgWNy49hOyIEmwyjiLfFBfJyr0EAOXIW8qCJd3kY4thp2CQXvqhn4Hn1S4zMCz-qGLXV-0tp2fCxVT7mhk0pLw6wwN3yu0vkEPTLXrX1uQw4LEn_bq"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-text-primary leading-tight">TalentGraph</span><span class="font-metadata text-[11px] text-text-secondary leading-none">Find your next technical role</span></div></div><div class="flex items-center gap-space-xs"><button aria-label="Toggle theme appearance" class="w-11 h-11 flex items-center justify-center rounded-lg text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5] transition-colors" id="theme-toggle-btn" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-28 px-margin bg-[#FAFAFA]"><div class="flex flex-col w-full pb-8"><!-- Eyebrow & Live Title Bar -->
+<div class="flex flex-col gap-1 mb-3">
+<div class="flex items-center justify-between">
+<span class="font-metadata text-[11px] text-[#71717A] font-semibold tracking-wider uppercase">Technical Opportunities</span>
+<!-- Live Counter Indicator in Warning Amber Soft Style -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FEF3C7] border border-[#FDE68A] shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#B45309]"></span>
+<span class="font-metadata text-metadata text-[#B45309] font-medium">0 Matching Roles</span>
+</div>
+</div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-[#18181B] tracking-tight">Signal Discovery</h1>
+</div>
+<!-- Active Search Input Container -->
+<div class="flex items-center gap-2 mb-3">
+<div class="flex-1 flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-[#FFFFFF] border border-[#E4E4E7] shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-[#71717A]">search</span>
+<input aria-label="Active role query" class="bg-transparent flex-1 text-[#18181B] font-body-sm text-body-sm font-medium outline-none placeholder:text-[#71717A]" id="active-job-query" type="text" value="Zero-Knowledge Cryptographer"/>
+<button aria-label="Clear active query text" class="w-5 h-5 rounded-full bg-[#F4F4F5] hover:bg-[#E4E4E7] flex items-center justify-center text-[#71717A] hover:text-[#18181B] active:scale-95 transition-all" id="clear-query-btn" type="button">
+<span class="material-symbols-outlined text-[13px]">close</span>
+</button>
+</div>
+<!-- Active Filter Launcher Trigger -->
+<button aria-label="3 Discovery filters currently applied" class="relative w-11 h-11 rounded-xl bg-[#FFFFFF] border border-[#E4E4E7] flex items-center justify-center text-[#71717A] hover:text-[#18181B] active:scale-95 transition-all shadow-sm" id="open-filters-pill" type="button">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+<span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#D4621A] text-white font-label-sm text-[10px] font-bold flex items-center justify-center">3</span>
+</button>
+</div>
+<!-- Perspective Tabs -->
+<div class="flex items-center gap-2 mb-3">
+<button class="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#18181B] text-white font-label-sm text-label-sm font-medium shadow-sm" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-[#D4621A]"></span>
+    All Jobs
+  </button>
+<button class="px-3 py-1.5 rounded-full text-[#71717A] hover:text-[#18181B] font-label-sm text-label-sm transition-colors" type="button">
+    Recommended
+  </button>
+<button class="px-3 py-1.5 rounded-full text-[#71717A] hover:text-[#18181B] font-label-sm text-label-sm transition-colors" type="button">
+    Saved Jobs
+  </button>
+</div>
+<!-- Active Applied Filter Chips -->
+<div class="flex flex-wrap gap-2 mb-4" id="applied-chips-cluster">
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FFFFFF] border border-[#E4E4E7] text-[#18181B] text-label-sm font-label-sm shadow-sm">
+<span>Remote</span>
+<button aria-label="Remove Remote filter" class="remove-chip-btn flex items-center justify-center text-[#71717A] hover:text-[#18181B]" type="button">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FFFFFF] border border-[#E4E4E7] text-[#18181B] text-label-sm font-label-sm shadow-sm">
+<span>Staff Level</span>
+<button aria-label="Remove Staff Level filter" class="remove-chip-btn flex items-center justify-center text-[#71717A] hover:text-[#18181B]" type="button">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FFFFFF] border border-[#E4E4E7] text-[#18181B] text-label-sm font-label-sm shadow-sm">
+<span>Applied Cryptography</span>
+<button aria-label="Remove Applied Cryptography filter" class="remove-chip-btn flex items-center justify-center text-[#71717A] hover:text-[#18181B]" type="button">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+</div>
+<!-- Evidence Trail Empty State Card in Light Surface -->
+<div class="w-full rounded-2xl bg-[#FFFFFF] border border-[#E4E4E7] p-6 text-center shadow-sm relative overflow-hidden flex flex-col items-center">
+<!-- Restrained Geometric Node Iconography with Brand Accent -->
+<div class="w-16 h-16 rounded-2xl bg-[#FFF1E8] border border-[#FED7AA] flex items-center justify-center mb-4 relative shadow-inner">
+<svg aria-hidden="true" class="w-10 h-10" fill="none" viewbox="0 0 40 40">
+<!-- Concentric dashed telemetry radar perimeter -->
+<circle cx="20" cy="20" r="16" stroke="#D4D4D8" stroke-dasharray="3 3" stroke-width="1.5"></circle>
+<circle cx="20" cy="20" opacity="0.7" r="9" stroke="#D4D4D8" stroke-width="1"></circle>
+<!-- Fine crosshair rails -->
+<line opacity="0.5" stroke="#D4D4D8" stroke-width="1" x1="20" x2="20" y1="4" y2="36"></line>
+<line opacity="0.5" stroke="#D4D4D8" stroke-width="1" x1="4" x2="36" y1="20" y2="20"></line>
+<!-- Isolated signal node -->
+<circle cx="20" cy="20" fill="#D4621A" r="3.5"></circle>
+<!-- Search prism locator -->
+<path d="M26 26L30 30" stroke="#D4621A" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B45309] opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#B45309]"></span>
+</span>
+</div>
+<!-- Editorial Honest Copy -->
+<h2 class="font-headline-sm text-headline-sm text-[#18181B] mb-2">No jobs match these filters</h2>
+<p class="font-body-md text-body-md text-[#71717A] leading-relaxed max-w-xs mb-6">
+    We couldn't find any verified roles matching <span class="text-[#18181B] font-medium">"Zero-Knowledge Cryptographer"</span> with your current location, seniority, and skill filters applied.
+  </p>
+<!-- Action Docks -->
+<div class="w-full flex flex-col gap-2.5">
+<button class="w-full min-h-[48px] py-3 px-5 rounded-lg bg-[#D4621A] hover:bg-[#B94F0B] active:bg-[#B94F0B] text-white font-label-md text-label-md font-semibold transition-colors flex items-center justify-center gap-2 shadow-sm" id="clear-all-filters-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">filter_alt_off</span>
+      Clear all filters
+    </button>
+<button class="w-full min-h-[48px] py-2.5 px-4 rounded-lg bg-[#F4F4F5] hover:bg-[#E4E4E7] border border-[#E4E4E7] text-[#18181B] font-label-md text-label-md font-medium transition-colors flex items-center justify-center gap-2" id="reset-search-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+      Reset search to All Jobs
+    </button>
+</div>
+<!-- Technical Diagnostic & Signal Recommendations -->
+<div class="w-full rounded-xl bg-[#F4F4F5] border border-[#E4E4E7] p-4 text-left mt-5 shadow-sm">
+<div class="flex items-center gap-2 font-label-sm text-[11px] font-semibold text-[#71717A] uppercase tracking-wider mb-3">
+<span class="material-symbols-outlined text-[16px] text-[#D4621A]">lightbulb</span>
+      Search Recommendations
+    </div>
+<div class="flex flex-col gap-2.5 font-body-sm text-body-sm text-[#71717A]">
+<div class="flex items-start gap-2.5">
+<span class="w-1.5 h-1.5 rounded-full bg-[#D4621A] mt-1.5 shrink-0"></span>
+<span class="leading-snug">Try broadening your skill tags (e.g. searching <button class="text-[#D4621A] hover:underline font-medium suggest-term" type="button">"Distributed Systems"</button> or <button class="text-[#D4621A] hover:underline font-medium suggest-term" type="button">"Rust"</button>)</span>
+</div>
+<div class="flex items-start gap-2.5">
+<span class="w-1.5 h-1.5 rounded-full bg-[#A1A1AA] mt-1.5 shrink-0"></span>
+<span class="leading-snug">Expand work arrangement to <span class="text-[#18181B] font-medium">Worldwide / Hybrid</span> to review batch synchronizations</span>
+</div>
+<div class="flex items-start gap-2.5">
+<span class="w-1.5 h-1.5 rounded-full bg-[#A1A1AA] mt-1.5 shrink-0"></span>
+<span class="leading-snug">Subscribe to direct alert notifications when new cryptography kernel roles are verified</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Verification Realtime Guarantee Cue -->
+<div class="text-center font-metadata text-metadata text-[#71717A] py-4 px-2">
+  Roles are published directly by verified engineering infrastructure teams and updated in real time.
+</div></div>
+<script>
+  (function() {
+    const clearQueryBtn = document.getElementById('clear-query-btn');
+    const activeJobQuery = document.getElementById('active-job-query');
+    const clearAllFiltersBtn = document.getElementById('clear-all-filters-btn');
+    const resetSearchBtn = document.getElementById('reset-search-btn');
+    const appliedChipsCluster = document.getElementById('applied-chips-cluster');
+    const removeButtons = document.querySelectorAll('.remove-chip-btn');
+    const suggestTerms = document.querySelectorAll('.suggest-term');
+
+    // Clear search text field
+    if (clearQueryBtn && activeJobQuery) {
+      clearQueryBtn.addEventListener('click', () => {
+        activeJobQuery.value = '';
+        activeJobQuery.focus();
+      });
+    }
+
+    // Dismiss individual chip pill
+    removeButtons.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const parentPill = this.closest('div');
+        if (parentPill) {
+          parentPill.style.transition = 'opacity 150ms ease, transform 150ms ease';
+          parentPill.style.opacity = '0';
+          parentPill.style.transform = 'scale(0.9)';
+          setTimeout(() => parentPill.remove(), 160);
+        }
+      });
+    });
+
+    // Reset all filters action
+    if (clearAllFiltersBtn) {
+      clearAllFiltersBtn.addEventListener('click', () => {
+        if (appliedChipsCluster) {
+          appliedChipsCluster.innerHTML = '<span class="font-metadata text-metadata text-text-secondary italic">All filters removed. Syncing fresh index...</span>';
+        }
+      });
+    }
+
+    // Quick fill suggestion
+    suggestTerms.forEach(term => {
+      term.addEventListener('click', function() {
+        const text = this.innerText.replace(/"/g, '');
+        if (activeJobQuery) {
+          activeJobQuery.value = text;
+          activeJobQuery.focus();
+        }
+      });
+    });
+
+    // Reset to base search
+    if (resetSearchBtn && activeJobQuery) {
+      resetSearchBtn.addEventListener('click', () => {
+        activeJobQuery.value = '';
+        if (appliedChipsCluster) {
+          appliedChipsCluster.innerHTML = '';
+        }
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#FFFFFF]/95 backdrop-blur-xl border-t border-[#E4E4E7] shadow-[0_-2px_10px_rgba(0,0,0,0.05)]" data-active-classes="text-[#D4621A] font-medium"><div class="grid grid-cols-3 h-16 max-w-md mx-auto items-center px-space-xs"><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#D4621A] font-medium transition-colors relative group" data-path="jobs" href="#"><span class="material-symbols-outlined text-[22px]">work</span><span class="font-label-sm text-label-sm mt-0.5">Jobs</span><span class="w-1 h-1 rounded-full bg-[#D4621A] mt-1"></span></a><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#71717A] hover:text-[#18181B] transition-colors relative group" data-path="assessments" href="#"><span class="material-symbols-outlined text-[22px]">assignment_turned_in</span><span class="font-label-sm text-label-sm mt-0.5">Assessments</span><span class="w-1 h-1 rounded-full bg-[#D4621A] mt-1 opacity-0"></span></a><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#71717A] hover:text-[#18181B] transition-colors relative group" data-path="notifications" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute -top-0.5 -right-1 w-2 h-2 rounded-full bg-[#D4621A] ring-2 ring-white"></span></div><span class="font-label-sm text-label-sm mt-0.5">Notifications</span><span class="w-1 h-1 rounded-full bg-[#D4621A] mt-1 opacity-0"></span></a></div></nav><div class="fixed inset-0 z-50 pointer-events-none transition-opacity duration-200 opacity-0" id="filters-modal-backdrop"><div class="absolute inset-0 bg-[#000000]/30 backdrop-blur-sm" id="filters-backdrop-scrim"></div><div class="absolute bottom-0 inset-x-0 bg-[#FFFFFF] rounded-t-2xl border-t border-[#E4E4E7] shadow-2xl max-h-[751px] flex flex-col transform translate-y-full transition-transform duration-300 pointer-events-auto pb-safe" id="filters-modal-panel"><div class="flex items-center justify-between p-4 border-b border-[#E4E4E7]"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[#D4621A] text-[20px]">tune</span><h2 class="font-headline-sm text-headline-sm text-[#18181B]">Discovery Filters</h2></div><button aria-label="Close filters" class="w-9 h-9 rounded-lg flex items-center justify-center text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5] transition-colors" id="close-filters-btn" type="button"><span class="material-symbols-outlined text-[20px]">close</span></button></div><div class="overflow-y-auto p-4 flex flex-col gap-5"><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider font-semibold">Work Arrangement</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-[#D4621A] text-white font-label-sm text-label-sm font-medium" type="button">Remote</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] text-[#18181B] font-label-sm text-label-sm border border-[#E4E4E7]" type="button">Hybrid</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] text-[#18181B] font-label-sm text-label-sm border border-[#E4E4E7]" type="button">On-site</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider font-semibold">Job Type</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-[#D4621A] text-white font-label-sm text-label-sm font-medium" type="button">Full-time</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] text-[#18181B] font-label-sm text-label-sm border border-[#E4E4E7]" type="button">Contract</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] text-[#18181B] font-label-sm text-label-sm border border-[#E4E4E7]" type="button">Advisory</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider font-semibold">Experience Level</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-[#D4621A] text-white font-label-sm text-label-sm font-medium" type="button">Senior &amp; Staff</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] text-[#18181B] font-label-sm text-label-sm border border-[#E4E4E7]" type="button">Principal</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] text-[#18181B] font-label-sm text-label-sm border border-[#E4E4E7]" type="button">Founding / Lead</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider font-semibold">Evidence Requirement</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] text-[#18181B] font-label-sm text-label-sm border border-[#E4E4E7]" type="button">Direct Assessment</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] text-[#18181B] font-label-sm text-label-sm border border-[#E4E4E7]" type="button">Telemetry Benchmark</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] text-[#18181B] font-label-sm text-label-sm border border-[#E4E4E7]" type="button">Take-home Kernel</button></div></div></div><div class="p-4 border-t border-[#E4E4E7] flex items-center justify-between gap-3 bg-[#FFFFFF]"><button class="px-4 py-2.5 rounded-lg text-[#71717A] hover:text-[#18181B] font-label-md text-label-md transition-colors" id="reset-filters-btn" type="button">Reset filters</button><button class="flex-1 px-4 py-2.5 rounded-lg bg-[#D4621A] hover:bg-[#B94F0B] active:bg-[#B94F0B] text-white font-label-md text-label-md font-semibold transition-colors flex items-center justify-center gap-1.5" id="apply-filters-btn" type="button">Apply filters</button></div></div></div>
+</body></html>

@@ -1,0 +1,197 @@
+.
+├── active_assessment_network_connection_interrupted_1
+│   ├── code.html
+│   └── screen.png
+├── active_assessment_network_connection_interrupted_2
+│   ├── code.html
+│   └── screen.png
+├── active_assessment_network_connection_interrupted_3
+│   ├── code.html
+│   └── screen.png
+├── active_assessment_network_connection_interrupted_light_mode
+│   ├── code.html
+│   └── screen.png
+├── active_assessment_question_3_of_7_1
+│   ├── code.html
+│   └── screen.png
+├── active_assessment_question_3_of_7_2
+│   ├── code.html
+│   └── screen.png
+├── application_blocked_saved_cv_required
+│   ├── code.html
+│   └── screen.png
+├── application_blocked_saved_cv_required_light_mode
+│   ├── code.html
+│   └── screen.png
+├── application_review_staff_distributed_systems_engineer
+│   ├── code.html
+│   └── screen.png
+├── application_review_staff_distributed_systems_engineer_light_mode_1
+│   ├── code.html
+│   └── screen.png
+├── application_review_staff_distributed_systems_engineer_light_mode_2
+│   ├── code.html
+│   └── screen.png
+├── application_submitted_staff_distributed_systems_engineer
+│   ├── code.html
+│   └── screen.png
+├── application_submitted_staff_distributed_systems_engineer_light_mode
+│   ├── code.html
+│   └── screen.png
+├── application_unavailable_already_submitted_1
+│   ├── code.html
+│   └── screen.png
+├── application_unavailable_already_submitted_2
+│   ├── code.html
+│   └── screen.png
+├── application_unavailable_already_submitted_dark_mode
+│   ├── code.html
+│   └── screen.png
+├── application_unavailable_already_submitted_light_mode
+│   ├── code.html
+│   └── screen.png
+├── assessment_center
+│   ├── code.html
+│   └── screen.png
+├── assessment_center_light_mode_1
+│   ├── code.html
+│   └── screen.png
+├── assessment_center_light_mode_2
+│   ├── code.html
+│   └── screen.png
+├── assessment_early_submit_confirmation_dialog_1
+│   ├── code.html
+│   └── screen.png
+├── assessment_early_submit_confirmation_dialog_2
+│   ├── code.html
+│   └── screen.png
+├── assessment_preflight_camera_permission_required_1
+│   ├── code.html
+│   └── screen.png
+├── assessment_preflight_camera_permission_required_2
+│   ├── code.html
+│   └── screen.png
+├── assessment_preflight_staff_distributed_systems_engineer_1
+│   ├── code.html
+│   └── screen.png
+├── assessment_preflight_staff_distributed_systems_engineer_2
+│   ├── code.html
+│   └── screen.png
+├── assessment_result_staff_distributed_systems_engineer
+│   ├── code.html
+│   └── screen.png
+├── assessment_result_staff_distributed_systems_engineer_light_mode
+│   ├── code.html
+│   └── screen.png
+├── assessment_submitted_staff_distributed_systems_engineer
+│   ├── code.html
+│   └── screen.png
+├── assessment_submitted_staff_distributed_systems_engineer_light_mode
+│   ├── code.html
+│   └── screen.png
+├── assessment_unavailable_session_closed
+│   ├── code.html
+│   └── screen.png
+├── assessment_unavailable_session_closed_light_mode
+│   ├── code.html
+│   └── screen.png
+├── candidate_notifications_read_state_sync_failed_toast_1
+│   ├── code.html
+│   └── screen.png
+├── candidate_notifications_read_state_sync_failed_toast_2
+│   ├── code.html
+│   └── screen.png
+├── candidate_notifications_stream_1
+│   ├── code.html
+│   └── screen.png
+├── candidate_notifications_stream_2
+│   ├── code.html
+│   └── screen.png
+├── candidate_welcome_sign_in
+│   ├── code.html
+│   └── screen.png
+├── candidate_welcome_sign_in_light_mode
+│   ├── code.html
+│   └── screen.png
+├── email_verification_pending
+│   ├── code.html
+│   └── screen.png
+├── email_verification_pending_light_mode
+│   ├── code.html
+│   └── screen.png
+├── evidence_trail
+│   └── DESIGN.md
+├── github_connection_cancelled
+│   ├── code.html
+│   └── screen.png
+├── github_connection_cancelled_light_mode_1
+│   ├── code.html
+│   └── screen.png
+├── github_connection_cancelled_light_mode_2
+│   ├── code.html
+│   └── screen.png
+├── github_connection_cancelled_light_mode_3
+│   ├── code.html
+│   └── screen.png
+├── job_details_staff_distributed_systems_engineer_1
+│   ├── code.html
+│   └── screen.png
+├── job_details_staff_distributed_systems_engineer_2
+│   ├── code.html
+│   └── screen.png
+├── jobs_discovery_1
+│   ├── code.html
+│   └── screen.png
+├── jobs_discovery_2
+│   └── code.html
+├── jobs_discovery_3
+│   ├── code.html
+│   └── screen.png
+├── jobs_discovery_no_matching_results
+│   ├── code.html
+│   └── screen.png
+├── jobs_discovery_no_matching_results_light_mode
+│   ├── code.html
+│   └── screen.png
+├── jobs_filters_bottom_sheet_1
+│   ├── code.html
+│   └── screen.png
+├── jobs_filters_bottom_sheet_2
+│   ├── code.html
+│   └── screen.png
+├── jobs_filters_bottom_sheet_light_mode_1
+│   ├── code.html
+│   └── screen.png
+├── jobs_filters_bottom_sheet_light_mode_2
+│   ├── code.html
+│   └── screen.png
+├── jobs_filters_bottom_sheet_light_mode_3
+│   ├── code.html
+│   └── screen.png
+├── jobs_filters_bottom_sheet_light_mode_4
+│   ├── code.html
+│   └── screen.png
+├── notification_destination_handoff_application_tracking_1
+│   ├── code.html
+│   └── screen.png
+├── notification_destination_handoff_application_tracking_2
+│   ├── code.html
+│   └── screen.png
+├── project_structure.txt
+├── skill_percentiles_staff_distributed_systems_engineer
+│   ├── code.html
+│   └── screen.png
+├── skill_percentiles_staff_distributed_systems_engineer_light_mode_1
+│   ├── code.html
+│   └── screen.png
+├── skill_percentiles_staff_distributed_systems_engineer_light_mode_2
+│   ├── code.html
+│   └── screen.png
+├── talentgraph_mobile_app_source_of_truth_v1.0.md
+├── talentgraph_mobile_design_direction_design.md
+├── untitled_prototype_1
+│   └── code.html
+└── untitled_prototype_2
+    └── code.html
+
+66 directories, 129 files

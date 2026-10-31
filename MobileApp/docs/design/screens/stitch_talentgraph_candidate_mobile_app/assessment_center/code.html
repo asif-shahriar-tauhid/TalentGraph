@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#0D0D0F;color:#F5F5F5;-webkit-tap-highlight-color:transparent;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 0.5rem);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'on-secondary-fixed-variant': '#47464a', 'on-primary-fixed-variant': '#793100', 'tertiary': '#ffb690', 'tertiary-fixed': '#ffdbca', 'on-primary-container': '#4b1b00', 'on-error-container': '#ffdad6', 'secondary-fixed': '#e4e1e5', 'outline-variant': '#574238', 'destructive': '#E5484D', 'on-background': '#e3e1ec', 'text-primary': '#F5F5F5', 'inverse-surface': '#e3e1ec', 'text-secondary': '#A1A1AA', 'surface-container-low': '#1a1b23', 'primary': '#ffb691', 'secondary': '#c8c6c9', 'on-tertiary': '#542100', 'surface-container-lowest': '#0d0e15', 'on-secondary-container': '#b6b4b8', 'surface-variant': '#34343c', 'surface-container-high': '#292931', 'surface-elevated': '#19191C', 'on-primary': '#552000', 'primary-container': '#e56f27', 'primary-fixed-dim': '#ffb691', 'primary-fixed': '#ffdbcb', 'surface-dim': '#12131a', 'inverse-primary': '#9f4200', 'error-container': '#93000a', 'outline': '#a68b7f', 'success': '#22C55E', 'on-secondary': '#303033', 'secondary-container': '#47464a', 'tertiary-fixed-dim': '#ffb690', 'surface-tint': '#ffb691', 'tertiary-container': '#df7331', 'surface-bright': '#383841', 'warning': '#F59E0B', 'on-surface-variant': '#dec0b3', 'surface': '#12131a', 'border-divider': '#3F3F46', 'on-surface': '#e3e1ec', 'error': '#ffb4ab', 'on-secondary-fixed': '#1b1b1e', 'inverse-on-surface': '#2f3038', 'surface-container': '#1e1f27', 'on-tertiary-fixed': '#331100', 'secondary-fixed-dim': '#c8c6c9', 'background': '#0D0D0F', 'on-primary-fixed': '#341100', 'on-error': '#690005', 'on-tertiary-container': '#4a1c00', 'cta-text': '#18181B', 'on-tertiary-fixed-variant': '#783200', 'surface-container-highest': '#34343c' }, borderRadius: { DEFAULT: '0.25rem', lg: '0.5rem', xl: '0.75rem', full: '9999px' }, spacing: { 'space-md': '1rem', 'space-2xs': '0.25rem', 'space-xs': '0.5rem', 'gutter-mobile': '0.75rem', 'space-sm': '0.75rem', 'gutter': '1rem', 'space-xl': '1.5rem', 'margin': '1rem', 'space-lg': '1.25rem', 'space-2xl': '2rem', 'margin-compact': '0.75rem' }, fontFamily: { 'headline-sm': ['Inter'], 'body-md': ['Inter'], 'body-sm': ['Inter'], 'label-sm': ['Inter'], 'metadata': ['Inter'], 'display-lg-mobile': ['Inter'], 'display-lg': ['Inter'], 'label-md': ['Inter'], 'timer-display': ['Inter'], 'headline-md': ['Inter'], 'body-lg': ['Inter'] }, fontSize: { 'headline-sm': ['18px', { lineHeight: '24px', fontWeight: '600' }], 'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }], 'body-sm': ['13px', { lineHeight: '18px', fontWeight: '400' }], 'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.02em', fontWeight: '500' }], 'metadata': ['12px', { lineHeight: '16px', fontWeight: '400' }], 'display-lg-mobile': ['24px', { lineHeight: '32px', letterSpacing: '-0.02em', fontWeight: '700' }], 'display-lg': ['28px', { lineHeight: '36px', letterSpacing: '-0.02em', fontWeight: '700' }], 'label-md': ['14px', { lineHeight: '20px', letterSpacing: '0.01em', fontWeight: '600' }], 'timer-display': ['16px', { lineHeight: '20px', letterSpacing: '0.04em', fontWeight: '600' }], 'headline-md': ['20px', { lineHeight: '28px', letterSpacing: '-0.01em', fontWeight: '600' }], 'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body-md text-text-primary min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-cta-text"><header class="fixed top-0 w-full z-50 pt-safe bg-background/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs"><img alt="TalentGraph Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U97agoXIwiCKwzW-3OewsiWdWrxdGkHbW1MGXiAx5dq_r_DkSuK_J898BEZwotMjT9li9U-9OJT1oh7GHpZkyjuugqFyY7RPfiES19vvDkhSJFCOIYnmNwjRx-0XZGc3LfHfOq37cgWNy49hOyIEmwyjiLfFBfJyr0EAOXIW8qCJd3kY4thp2CQXvqhn4Hn1S4zMCz-qGLXV-0tp2fCxVT7mhk0pLw6wwN3yu0vkEPTLXrX1uQw4LEn_bq"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-text-primary leading-tight">TalentGraph</span><span class="font-metadata text-[11px] text-text-secondary leading-none">Find your next technical role</span></div></div><div class="flex items-center gap-space-xs"><button aria-label="Toggle theme appearance" class="w-11 h-11 flex items-center justify-center rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-elevated transition-colors" id="theme-toggle-btn" type="button"><span class="material-symbols-outlined text-[20px]">dark_mode</span></button></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-28 px-margin bg-background"><div class="flex flex-col w-full pb-10">
+<!-- Screen Context Header (without repeating app branding) -->
+<div class="flex flex-col gap-space-2xs mb-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-text-primary tracking-tight">Assessment Center</h1>
+</div>
+<span class="font-metadata text-metadata px-2.5 py-1 rounded-full bg-surface-container-high text-text-secondary">
+        Candidate Portal
+      </span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary">
+      Synchronous technical evaluations and verified evidence logs.
+    </p>
+</div>
+<!-- Shared Session Protocol Banner -->
+<section aria-labelledby="protocol-heading" class="bg-surface-elevated rounded-xl p-space-md mb-space-xl relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-container"></div>
+<div class="flex items-start gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+</div>
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h2 class="font-label-md text-label-md text-text-primary" id="protocol-heading">Shared Session Protocol</h2>
+<span class="font-metadata text-metadata text-primary bg-primary/10 px-2 py-0.5 rounded-full font-medium">Synchronous Only</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary leading-relaxed">
+          All invited candidates attend the same recruiter-scheduled session start time simultaneously. Individual appointment booking or on-demand start is strictly not supported.
+        </p>
+<div class="flex items-center gap-2 mt-1 pt-2 border-t-0 font-metadata text-metadata text-text-secondary">
+<span class="material-symbols-outlined text-[15px] text-text-secondary">schedule</span>
+<span>Timezone displayed: Coordinated Universal Time (UTC)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Filter Tabs -->
+<div aria-label="Assessment Status Filters" class="flex items-center gap-space-xs mb-space-lg overflow-x-auto pb-1" role="tablist">
+<button aria-selected="true" class="px-3.5 py-2 rounded-full bg-primary-container text-cta-text font-label-sm text-label-sm font-semibold flex items-center gap-1.5 shrink-0 transition-colors shadow-sm" id="filter-all" role="tab" type="button">
+<span>All Invitations</span>
+<span class="bg-cta-text/20 px-1.5 py-0.2 rounded-full font-metadata text-[11px]">3</span>
+</button>
+<button aria-selected="false" class="px-3.5 py-2 rounded-full bg-surface-container text-text-secondary hover:text-text-primary font-label-sm text-label-sm shrink-0 transition-colors" id="filter-upcoming" role="tab" type="button">
+<span>Upcoming Cohorts (1)</span>
+</button>
+<button aria-selected="false" class="px-3.5 py-2 rounded-full bg-surface-container text-text-secondary hover:text-text-primary font-label-sm text-label-sm shrink-0 transition-colors" id="filter-completed" role="tab" type="button">
+<span>Evaluated &amp; Sealed (2)</span>
+</button>
+</div>
+<!-- Evidence Trail Cards List -->
+<div class="flex flex-col gap-space-xl">
+<!-- Section: Active & Upcoming Cohorts -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between px-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-secondary flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-warning"></span>
+          Active &amp; Upcoming Cohort
+        </span>
+<span class="font-metadata text-metadata text-text-secondary">1 Active Invitee Slot</span>
+</div>
+<!-- Card 1: Upcoming Shared Session (Aether Telemetry Systems) -->
+<article class="bg-surface-elevated rounded-xl p-space-md flex flex-col gap-space-md transition-all shadow-sm relative">
+<!-- Visual Accent Notch -->
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-1.5 text-text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-success text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-text-primary font-medium">Aether Telemetry Systems</span>
+<span class="text-text-secondary">·</span>
+<span class="font-metadata text-metadata text-text-secondary">Kernel Team</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary leading-snug">
+              Staff Distributed Systems Engineer - High Throughput Telemetry
+            </h3>
+</div>
+<span class="shrink-0 px-2.5 py-1 rounded-md bg-warning/15 text-warning font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">event_upcoming</span>
+            Upcoming
+          </span>
+</div>
+<!-- Recruiter Technical Configuration Spec -->
+<div class="bg-surface-container rounded-lg p-space-sm flex flex-col gap-2">
+<div class="font-label-sm text-[11px] uppercase tracking-wider text-text-secondary">Recruiter Test Configuration</div>
+<div class="grid grid-cols-2 gap-2 text-text-primary">
+<div class="flex items-center gap-2 bg-surface-container-high/60 rounded px-2.5 py-2">
+<span class="material-symbols-outlined text-[18px] text-primary">data_object</span>
+<div class="flex flex-col min-w-0">
+<span class="font-metadata text-[11px] text-text-secondary">Structure</span>
+<span class="font-label-sm text-label-sm font-semibold truncate">6 Architecture Questions</span>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high/60 rounded px-2.5 py-2">
+<span class="material-symbols-outlined text-[18px] text-primary">timer</span>
+<div class="flex flex-col min-w-0">
+<span class="font-metadata text-[11px] text-text-secondary">Duration</span>
+<span class="font-label-sm text-label-sm font-semibold truncate">45 Minutes Total</span>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-2 bg-surface-container-high/40 rounded px-2.5 py-2 font-metadata text-metadata text-text-secondary">
+<span class="material-symbols-outlined text-[16px] text-text-secondary shrink-0 mt-0.5">photo_camera</span>
+<span class="leading-tight">Integrity rule: Front-camera snapshot protocol active (5 non-disruptive random verifications during execution).</span>
+</div>
+</div>
+<!-- Evidence Trail Timeline (Synchronous Timing) -->
+<div class="bg-surface-container-lowest/80 rounded-lg p-space-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between font-label-sm text-[11px] uppercase tracking-wider text-text-secondary">
+<span>Synchronous Timing Schedule</span>
+<span class="text-primary font-semibold">Strict Schedule</span>
+</div>
+<!-- Trail Item 1: Scheduled Start -->
+<div class="flex items-start gap-space-sm relative">
+<div class="flex flex-col items-center">
+<div class="w-3 h-3 rounded-full bg-primary-container flex items-center justify-center ring-4 ring-primary-container/20"></div>
+<div class="w-0.5 h-10 bg-border-divider/50 my-0.5"></div>
+</div>
+<div class="flex flex-col min-w-0 pb-1">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-label-sm text-label-sm font-semibold text-text-primary">Scheduled Cohort Start</span>
+<span class="px-1.5 py-0.2 rounded bg-primary-container/20 text-primary font-metadata text-[10px] font-semibold uppercase">Simultaneous</span>
+</div>
+<div class="font-timer-display text-timer-display text-text-primary tracking-wide mt-0.5">
+                Thursday, Oct 29, 2026 · 14:00 UTC
+              </div>
+<span class="font-metadata text-metadata text-text-secondary mt-0.5">
+                All 18 cohort candidates begin session simultaneously at 14:00 UTC.
+              </span>
+</div>
+</div>
+<!-- Trail Item 2: Window Cutoff / Expiry -->
+<div class="flex items-start gap-space-sm relative">
+<div class="flex flex-col items-center">
+<div class="w-3 h-3 rounded-full bg-surface-container-high border-0 ring-2 ring-border-divider/40"></div>
+<div class="w-0.5 h-8 bg-border-divider/50 my-0.5"></div>
+</div>
+<div class="flex flex-col min-w-0 pb-1">
+<span class="font-label-sm text-label-sm text-text-secondary">Invitation Window Cutoff</span>
+<span class="font-metadata text-metadata text-text-primary font-medium mt-0.5">
+                Oct 29, 2026 · 13:50 UTC (Preflight verification closure)
+              </span>
+<span class="font-metadata text-[11px] text-text-secondary">
+                Failure to complete preflight before cutoff forfeits the cohort slot.
+              </span>
+</div>
+</div>
+<!-- Trail Item 3: Issued Date -->
+<div class="flex items-start gap-space-sm">
+<div class="flex flex-col items-center">
+<div class="w-3 h-3 rounded-full bg-surface-container-high"></div>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-metadata text-metadata text-text-secondary">Invitation Dispatched</span>
+<span class="font-metadata text-metadata text-text-secondary">
+                Oct 24, 2026 via Aether Lead Recruiting Node
+              </span>
+</div>
+</div>
+</div>
+<!-- Action Station -->
+<div class="flex flex-col gap-2 pt-1">
+<!-- Disabled Primary CTA with clear synchronous reason -->
+<button aria-disabled="true" class="w-full h-12 rounded-lg bg-surface-container-high text-text-secondary font-label-md text-label-md flex items-center justify-center gap-2 cursor-not-allowed opacity-90 transition-none" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span>Opens at 14:00 UTC</span>
+</button>
+<div class="p-2.5 rounded-lg bg-surface-container/60 flex items-start gap-2 text-text-secondary font-metadata text-metadata">
+<span class="material-symbols-outlined text-[16px] text-text-secondary shrink-0 mt-0.5">info</span>
+<span>Session locked until server confirms scheduled cohort start time. Preflight workspace opens exactly 10 minutes prior (13:50 UTC).</span>
+</div>
+<!-- Secondary Action: Preflight Check -->
+<button class="w-full min-h-[48px] py-2.5 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high text-text-primary font-label-md text-label-md transition-colors flex items-center justify-between group" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">mobile_share_stack</span>
+<span>Run Camera &amp; Diagnostic Preflight</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-text-secondary group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</button>
+</div>
+</article>
+</div>
+<!-- Section: Completed & Released Results -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between px-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-text-secondary flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-success"></span>
+          Completed &amp; Released Results
+        </span>
+<span class="font-metadata text-metadata text-text-secondary">2 Sealed Records</span>
+</div>
+<!-- Card 2: Completed / Result Released (Crucible Data) -->
+<article class="bg-surface-elevated rounded-xl p-space-md flex flex-col gap-space-md shadow-sm">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-1.5 text-text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-success text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-text-primary font-medium">Crucible Data</span>
+<span class="text-text-secondary">·</span>
+<span class="font-metadata text-metadata text-text-secondary">Infrastructure</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary leading-snug">
+              Senior Infrastructure Engineer - Storage Engine
+            </h3>
+</div>
+<span class="shrink-0 px-2.5 py-1 rounded-md bg-success/15 text-success font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">task_alt</span>
+            Result Released
+          </span>
+</div>
+<!-- Session Completion Telemetry Summary -->
+<div class="grid grid-cols-2 gap-2 text-text-primary">
+<div class="bg-surface-container rounded-lg p-2.5 flex flex-col">
+<span class="font-metadata text-[11px] text-text-secondary uppercase tracking-wider">Completed At</span>
+<span class="font-label-md text-label-md font-semibold mt-0.5">Oct 18, 2026</span>
+<span class="font-metadata text-metadata text-text-secondary">16:45 UTC</span>
+</div>
+<div class="bg-surface-container rounded-lg p-2.5 flex flex-col">
+<span class="font-metadata text-[11px] text-text-secondary uppercase tracking-wider">Session Scope</span>
+<span class="font-label-md text-label-md font-semibold mt-0.5">45m Recorded</span>
+<span class="font-metadata text-metadata text-text-secondary">8 of 8 answered</span>
+</div>
+</div>
+<!-- Released Status Dossier -->
+<div class="bg-surface-container-high/60 rounded-lg p-space-sm flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-success"></div>
+<span class="font-label-sm text-label-sm font-semibold text-text-primary">
+              Technical Assessment Qualified
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary leading-relaxed">
+            Criterion benchmarks satisfied across concurrency control, compaction algorithms, and disk I/O primitives. Recruiter team review is currently ongoing.
+          </p>
+<div class="flex items-center gap-1.5 font-metadata text-[11px] text-text-secondary pt-1 border-t-0">
+<span class="material-symbols-outlined text-[14px] text-text-secondary">lock_clock</span>
+<span>Zero peer metrics disclosed. Dossier is strictly confidential between candidate and Crucible Data.</span>
+</div>
+</div>
+<!-- Action: View Feedback Dossier -->
+<button class="w-full min-h-[48px] px-4 py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-text-primary font-label-md text-label-md transition-colors flex items-center justify-between group" type="button">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">assignment_turned_in</span>
+<span>View Released Feedback &amp; Dossier</span>
+</span>
+<span class="material-symbols-outlined text-[18px] text-text-secondary group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</button>
+</article>
+<!-- Card 3: Submitted & Evaluation Sealed (Veritas Labs) -->
+<article class="bg-surface-elevated rounded-xl p-space-md flex flex-col gap-space-md shadow-sm">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-1.5 text-text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-success text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-text-primary font-medium">Veritas Labs</span>
+<span class="text-text-secondary">·</span>
+<span class="font-metadata text-metadata text-text-secondary">Security Protocol</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary leading-snug">
+              Staff Cryptographic Protocols Researcher
+            </h3>
+</div>
+<span class="shrink-0 px-2.5 py-1 rounded-md bg-secondary-container/70 text-text-secondary font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">encrypted</span>
+            Sealed
+          </span>
+</div>
+<div class="bg-surface-container rounded-lg p-space-sm flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-text-secondary font-metadata text-metadata">
+<span>Completed: Oct 02, 2026 · 11:20 UTC</span>
+<span>Duration: 60 min</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary leading-relaxed">
+            Assessment submission cryptographically sealed. Evaluation reports and individual breakdowns are released only upon explicit recruiter decision milestone.
+          </p>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-metadata text-metadata text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+            Pending Recruiter Calibration
+          </span>
+<button class="font-label-sm text-label-sm text-primary hover:text-primary-fixed-dim transition-colors py-2 px-1" type="button">
+            Receipt &amp; SHA Hash →
+          </button>
+</div>
+</article>
+</div>
+<!-- Edge State & Policy Transparency Callout -->
+<div class="bg-surface-container/50 rounded-xl p-space-md flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-text-secondary text-[20px] shrink-0 mt-0.5">help_outline</span>
+<div class="flex flex-col gap-1 text-text-secondary">
+<h4 class="font-label-md text-label-md text-text-primary">Missed Cohort or Disconnect Policy</h4>
+<p class="font-body-sm text-body-sm leading-relaxed">
+          If network connectivity fails during a synchronous cohort session, your state remains cached for 180 seconds. Expired cohorts without check-in cannot be restarted autonomously; contact the hiring coordinator directly.
+        </p>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Filter tabs visual state management
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterAll = document.getElementById('filter-all');
+    const filterUpcoming = document.getElementById('filter-upcoming');
+    const filterCompleted = document.getElementById('filter-completed');
+    const buttons = [filterAll, filterUpcoming, filterCompleted];
+
+    buttons.forEach(btn => {
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => {
+          b.setAttribute('aria-selected', 'false');
+          b.className = 'px-3.5 py-2 rounded-full bg-surface-container text-text-secondary hover:text-text-primary font-label-sm text-label-sm shrink-0 transition-colors';
+        });
+        btn.setAttribute('aria-selected', 'true');
+        btn.className = 'px-3.5 py-2 rounded-full bg-primary-container text-cta-text font-label-sm text-label-sm font-semibold flex items-center gap-1.5 shrink-0 transition-colors shadow-sm';
+      });
+    });
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-elevated/95 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.6)]" data-active-classes="text-primary font-medium"><div class="grid grid-cols-3 h-16 max-w-md mx-auto items-center px-space-xs"><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-text-secondary transition-colors relative group" data-path="jobs" href="#"><span class="material-symbols-outlined text-[22px]">work</span><span class="font-label-sm text-label-sm mt-0.5">Jobs</span><span class="w-1 h-1 rounded-full bg-primary mt-1 opacity-0 group-[.text-primary]:opacity-100 transition-opacity"></span></a><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-text-secondary transition-colors relative group" data-path="assessments" href="#"><span class="material-symbols-outlined text-[22px]">assignment_turned_in</span><span class="font-label-sm text-label-sm mt-0.5">Assessments</span><span class="w-1 h-1 rounded-full bg-primary mt-1 opacity-0 group-[.text-primary]:opacity-100 transition-opacity"></span></a><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-text-secondary transition-colors relative group" data-path="notifications" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute -top-0.5 -right-1 w-2 h-2 rounded-full bg-primary-container ring-2 ring-surface-elevated"></span></div><span class="font-label-sm text-label-sm mt-0.5">Notifications</span><span class="w-1 h-1 rounded-full bg-primary mt-1 opacity-0 group-[.text-primary]:opacity-100 transition-opacity"></span></a></div></nav><div class="fixed inset-0 z-50 pointer-events-none transition-opacity duration-200 opacity-0" id="filters-modal-backdrop"><div class="absolute inset-0 bg-background/80 backdrop-blur-sm" id="filters-backdrop-scrim"></div><div class="absolute bottom-0 inset-x-0 bg-surface-elevated rounded-t-2xl border-t border-border-divider/50 shadow-2xl max-h-[751px] flex flex-col transform translate-y-full transition-transform duration-300 pointer-events-auto pb-safe" id="filters-modal-panel"><div class="flex items-center justify-between p-4 border-b border-border-divider/30"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[20px]">tune</span><h2 class="font-headline-sm text-headline-sm text-text-primary">Discovery Filters</h2></div><button aria-label="Close filters" class="w-9 h-9 rounded-lg flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-surface-container transition-colors" id="close-filters-btn" type="button"><span class="material-symbols-outlined text-[20px]">close</span></button></div><div class="overflow-y-auto p-4 flex flex-col gap-5"><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Work Arrangement</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-primary-container text-cta-text font-label-sm text-label-sm font-medium" type="button">Remote</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Hybrid</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">On-site</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Job Type</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-primary-container text-cta-text font-label-sm text-label-sm font-medium" type="button">Full-time</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Contract</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Advisory</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Experience Level</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-primary-container text-cta-text font-label-sm text-label-sm font-medium" type="button">Senior &amp; Staff</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Principal</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Founding / Lead</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Evidence Requirement</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Direct Assessment</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Telemetry Benchmark</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Take-home Kernel</button></div></div></div><div class="p-4 border-t border-border-divider/30 flex items-center justify-between gap-3 bg-surface-elevated"><button class="px-4 py-2.5 rounded-lg text-text-secondary hover:text-text-primary font-label-md text-label-md transition-colors" id="reset-filters-btn" type="button">Reset filters</button><button class="flex-1 px-4 py-2.5 rounded-lg bg-primary-container text-cta-text font-label-md text-label-md font-semibold active:bg-primary-container/90 transition-colors flex items-center justify-center gap-1.5" id="apply-filters-btn" type="button">Apply filters</button></div></div></div>
+</body></html>

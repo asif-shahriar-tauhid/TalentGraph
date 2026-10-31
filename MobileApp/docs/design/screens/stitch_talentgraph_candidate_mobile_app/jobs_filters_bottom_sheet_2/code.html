@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<meta content="mobile_tab" name="shell-type"/>
+<style>
+    @layer base {
+      html, body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #0D0D0F;
+        color: #F5F5F5;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        overscroll-behavior-y: none;
+      }
+      .pb-safe {
+        padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 0.5rem);
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'secondary-fixed-dim': '#c8c6c9',
+            'surface-tint': '#ffb691',
+            'on-primary': '#552000',
+            'primary-fixed': '#ffdbcb',
+            'on-secondary-fixed-variant': '#47464a',
+            'tertiary': '#ffb690',
+            'on-error': '#690005',
+            'surface-elevated': '#19191C',
+            'secondary-container': '#47464a',
+            'primary-fixed-dim': '#ffb691',
+            'tertiary-container': '#df7331',
+            'on-tertiary-container': '#4a1c00',
+            'on-secondary': '#303033',
+            'destructive': '#E5484D',
+            'text-primary': '#F5F5F5',
+            'success': '#22C55E',
+            'secondary-fixed': '#e4e1e5',
+            'on-tertiary-fixed-variant': '#783200',
+            'on-surface': '#e3e1ec',
+            'surface-bright': '#383841',
+            'surface': '#12131a',
+            'cta-text': '#18181B',
+            'on-background': '#e3e1ec',
+            'surface-container-lowest': '#0d0e15',
+            'surface-container-highest': '#34343c',
+            'outline-variant': '#574238',
+            'background': '#0D0D0F',
+            'primary-container': '#D4621A',
+            'text-secondary': '#A1A1AA',
+            'on-surface-variant': '#dec0b3',
+            'inverse-primary': '#9f4200',
+            'inverse-surface': '#e3e1ec',
+            'on-error-container': '#ffdad6',
+            'outline': '#a68b7f',
+            'error': '#ffb4ab',
+            'primary': '#ffb691',
+            'on-secondary-fixed': '#1b1b1e',
+            'on-primary-fixed': '#341100',
+            'surface-container': '#1e1f27',
+            'border-divider': '#3F3F46',
+            'tertiary-fixed': '#ffdbca',
+            'on-primary-fixed-variant': '#793100',
+            'secondary': '#c8c6c9',
+            'on-secondary-container': '#b6b4b8',
+            'on-tertiary': '#542100',
+            'on-primary-container': '#4b1b00',
+            'tertiary-fixed-dim': '#ffb690',
+            'error-container': '#93000a',
+            'on-tertiary-fixed': '#331100',
+            'surface-container-low': '#1a1b23',
+            'surface-dim': '#12131a',
+            'surface-container-high': '#292931',
+            'warning': '#F59E0B',
+            'inverse-on-surface': '#2f3038',
+            'surface-variant': '#34343c'
+          },
+          fontFamily: {
+            'body-md': ['Inter'],
+            'headline-sm': ['Inter'],
+            'label-md': ['Inter'],
+            'label-sm': ['Inter'],
+            'metadata': ['Inter']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#0D0D0F] font-body-md text-[#F5F5F5] min-h-screen flex flex-col antialiased selection:bg-[#D4621A] selection:text-[#18181B] overflow-x-hidden">
+<!-- Fixed Top Header -->
+<header class="fixed top-0 inset-x-0 z-30 pt-safe bg-[#0D0D0F]/90 backdrop-blur-xl border-b border-[#3F3F46]/30">
+<div class="h-14 px-4 flex items-center justify-between gap-3">
+<div class="flex items-center gap-2">
+<img alt="TalentGraph Brand Mark" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U97agoXIwiCKwzW-3OewsiWdWrxdGkHbW1MGXiAx5dq_r_DkSuK_J898BEZwotMjT9li9U-9OJT1oh7GHpZkyjuugqFyY7RPfiES19vvDkhSJFCOIYnmNwjRx-0XZGc3LfHfOq37cgWNy49hOyIEmwyjiLfFBfJyr0EAOXIW8qCJd3kY4thp2CQXvqhn4Hn1S4zMCz-qGLXV-0tp2fCxVT7mhk0pLw6wwN3yu0vkEPTLXrX1uQw4LEn_bq"/>
+<div class="flex flex-col">
+<span class="font-semibold text-base tracking-tight text-[#F5F5F5] leading-tight">TalentGraph</span>
+<span class="text-[11px] text-[#A1A1AA] leading-none">Find your next technical role</span>
+</div>
+</div>
+<button aria-label="Toggle theme appearance" class="w-10 h-10 flex items-center justify-center rounded-lg text-[#A1A1AA] hover:text-[#F5F5F5] hover:bg-[#19191C] transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">dark_mode</span>
+</button>
+</div>
+</header>
+<!-- Background Jobs Discovery Context (Dimmed Canvas) -->
+<main class="flex-1 w-full pt-16 pb-20 px-4 opacity-25 filter blur-[1px] pointer-events-none select-none flex flex-col gap-4">
+<!-- Search Bar -->
+<div class="flex items-center justify-between gap-2 bg-[#19191C] p-3 rounded-xl border border-[#3F3F46]/40">
+<div class="flex items-center gap-2 text-[#A1A1AA] text-sm">
+<span class="material-symbols-outlined text-[18px]">search</span>
+<span>Search role, distributed system...</span>
+</div>
+<div class="w-7 h-7 rounded-lg bg-[#252528] flex items-center justify-center text-[#F5F5F5]">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+</div>
+</div>
+<!-- Active Job Card 1 -->
+<div class="bg-[#19191C] p-4 rounded-xl border border-[#3F3F46]/40 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-sm text-[#F5F5F5]">Staff Distributed Systems Engineer</span>
+<span class="material-symbols-outlined text-[#22C55E] text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-[#A1A1AA]">
+<span>Aegis Sentinel Labs</span>
+<span>•</span>
+<span>Remote</span>
+<span>•</span>
+<span>3d ago</span>
+</div>
+<div class="flex flex-wrap gap-1.5 mt-1">
+<span class="px-2 py-0.5 rounded bg-[#252528] text-xs text-[#F5F5F5]">Go</span>
+<span class="px-2 py-0.5 rounded bg-[#252528] text-xs text-[#F5F5F5]">Raft</span>
+<span class="px-2 py-0.5 rounded bg-[#252528] text-xs text-[#F5F5F5]">Telemetry</span>
+</div>
+</div>
+<!-- Active Job Card 2 -->
+<div class="bg-[#19191C] p-4 rounded-xl border border-[#3F3F46]/40 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-sm text-[#F5F5F5]">Founding Cloud Architect</span>
+<span class="material-symbols-outlined text-[#22C55E] text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-[#A1A1AA]">
+<span>Nexus Cloud Infrastructure</span>
+<span>•</span>
+<span>Remote</span>
+</div>
+</div>
+</main>
+<!-- Modal Scrim Overlay -->
+<div class="fixed inset-0 z-40 bg-[#000000bb] backdrop-blur-[2px]"></div>
+<!-- Bottom Sheet Container (Fully Visible, Anchored above bottom bar) -->
+<aside aria-labelledby="filter-sheet-title" aria-modal="true" class="fixed inset-x-0 bottom-[4.5rem] top-[10%] z-50 flex flex-col bg-[#19191C] rounded-t-2xl border-t border-x border-[#3F3F46] shadow-2xl overflow-hidden" role="dialog">
+<!-- Drag Handle -->
+<div class="w-full pt-2.5 pb-1 flex justify-center flex-shrink-0">
+<div class="w-10 h-1 bg-[#52525B] rounded-full"></div>
+</div>
+<!-- Sheet Header -->
+<div class="px-4 py-2.5 flex items-center justify-between border-b border-[#3F3F46]/50 flex-shrink-0 bg-[#19191C]">
+<div class="flex items-center gap-2.5">
+<h2 class="font-semibold text-lg text-[#F5F5F5] tracking-tight" id="filter-sheet-title">Filter Jobs</h2>
+<span class="bg-[#252528] text-[#D4621A] text-xs font-medium px-2 py-0.5 rounded-full border border-[#D4621A]/30 flex items-center gap-1" id="active-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-[#D4621A]"></span>
+<span id="active-count-text">3 active</span>
+</span>
+</div>
+<button aria-label="Close filter sheet" class="w-8 h-8 rounded-lg flex items-center justify-center text-[#A1A1AA] hover:text-[#F5F5F5] hover:bg-[#252528] transition-colors" id="close-filter-sheet-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Scrollable Filter Content Body -->
+<div class="flex-1 overflow-y-auto px-4 py-3 space-y-5 overscroll-contain">
+<!-- 1. Work Arrangement -->
+<section class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold uppercase tracking-wider text-[#A1A1AA]">Work Arrangement</span>
+<span class="text-[11px] text-[#A1A1AA]/80">Multi-select</span>
+</div>
+<div aria-label="Work Arrangement" class="flex flex-wrap gap-2" role="group">
+<!-- Selected: Remote -->
+<button class="filter-chip-btn selected flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#D4621A] text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="work-arrangement" data-value="remote" type="button">
+<span class="material-symbols-outlined text-[#D4621A] text-[16px]">check</span>
+<span>Remote</span>
+</button>
+<button class="filter-chip-btn flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="work-arrangement" data-value="hybrid" type="button">
+<span>Hybrid</span>
+</button>
+<button class="filter-chip-btn flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="work-arrangement" data-value="onsite" type="button">
+<span>On-site</span>
+</button>
+</div>
+</section>
+<!-- 2. Experience Level -->
+<section class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold uppercase tracking-wider text-[#A1A1AA]">Experience Level</span>
+<span class="text-[11px] text-[#A1A1AA]/80">Multi-select</span>
+</div>
+<div aria-label="Experience Level" class="flex flex-wrap gap-2" role="group">
+<button class="filter-chip-btn flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="experience" data-value="entry" type="button">
+<span>Entry</span>
+</button>
+<button class="filter-chip-btn flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="experience" data-value="mid" type="button">
+<span>Mid-level</span>
+</button>
+<!-- Selected: Senior -->
+<button class="filter-chip-btn selected flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#D4621A] text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="experience" data-value="senior" type="button">
+<span class="material-symbols-outlined text-[#D4621A] text-[16px]">check</span>
+<span>Senior</span>
+</button>
+<!-- Selected: Staff & Principal -->
+<button class="filter-chip-btn selected flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#D4621A] text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="experience" data-value="staff" type="button">
+<span class="material-symbols-outlined text-[#D4621A] text-[16px]">check</span>
+<span>Staff &amp; Principal</span>
+</button>
+</div>
+</section>
+<!-- 3. Job Type -->
+<section class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold uppercase tracking-wider text-[#A1A1AA]">Job Type</span>
+<span class="text-[11px] text-[#A1A1AA]/80">Multi-select</span>
+</div>
+<div aria-label="Job Type" class="flex flex-wrap gap-2" role="group">
+<!-- Selected: Full-time -->
+<button class="filter-chip-btn selected flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#D4621A] text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="job-type" data-value="full-time" type="button">
+<span class="material-symbols-outlined text-[#D4621A] text-[16px]">check</span>
+<span>Full-time</span>
+</button>
+<button class="filter-chip-btn flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="job-type" data-value="contract" type="button">
+<span>Contract</span>
+</button>
+<button class="filter-chip-btn flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="job-type" data-value="part-time" type="button">
+<span>Part-time</span>
+</button>
+</div>
+</section>
+<!-- 4. Required Skills -->
+<section class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold uppercase tracking-wider text-[#A1A1AA]">Required Skills</span>
+<span class="text-[11px] text-[#A1A1AA]">Verified commit telemetry</span>
+</div>
+<div aria-label="Required Skills" class="flex flex-wrap gap-2" role="group">
+<!-- Selected: TypeScript -->
+<button class="filter-chip-btn selected flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#D4621A] text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="skills" data-value="typescript" type="button">
+<span class="material-symbols-outlined text-[15px] text-[#A1A1AA]">code</span>
+<span>TypeScript</span>
+<span class="material-symbols-outlined text-[#D4621A] text-[14px]">check</span>
+</button>
+<!-- Selected: Go -->
+<button class="filter-chip-btn selected flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#D4621A] text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="skills" data-value="go" type="button">
+<span class="material-symbols-outlined text-[15px] text-[#A1A1AA]">code</span>
+<span>Go</span>
+<span class="material-symbols-outlined text-[#D4621A] text-[14px]">check</span>
+</button>
+<button class="filter-chip-btn flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="skills" data-value="rust" type="button">
+<span class="material-symbols-outlined text-[15px]">terminal</span>
+<span>Rust</span>
+</button>
+<button class="filter-chip-btn flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="skills" data-value="python" type="button">
+<span class="material-symbols-outlined text-[15px]">terminal</span>
+<span>Python</span>
+</button>
+<button class="filter-chip-btn flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="skills" data-value="distributed-systems" type="button">
+<span class="material-symbols-outlined text-[15px]">hub</span>
+<span>Distributed Systems</span>
+</button>
+<button class="filter-chip-btn flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="skills" data-value="kubernetes" type="button">
+<span class="material-symbols-outlined text-[15px]">deployed_code</span>
+<span>Kubernetes</span>
+</button>
+<button class="filter-chip-btn flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="skills" data-value="aws" type="button">
+<span class="material-symbols-outlined text-[15px]">cloud</span>
+<span>AWS</span>
+</button>
+</div>
+</section>
+<!-- 5. Company Criteria -->
+<section class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold uppercase tracking-wider text-[#A1A1AA]">Company Criteria</span>
+<span class="text-[11px] text-[#A1A1AA]/80">Engineering caliber</span>
+</div>
+<div aria-label="Company Criteria" class="flex flex-wrap gap-2" role="group">
+<button class="filter-chip-btn flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="company" data-value="all-companies" type="button">
+<span>All Companies</span>
+</button>
+<!-- Selected: Verified Teams Only -->
+<button class="filter-chip-btn selected flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#D4621A] text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="company" data-value="verified" type="button">
+<span class="material-symbols-outlined text-[#22C55E] text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>Verified Teams Only</span>
+<span class="material-symbols-outlined text-[#D4621A] text-[14px]">check</span>
+</button>
+<button class="filter-chip-btn flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="company" data-value="nexus" type="button">
+<span>Nexus Cloud Infrastructure</span>
+</button>
+<button class="filter-chip-btn flex items-center gap-1.5 px-3 py-2 min-h-[38px] rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="company" data-value="aegis" type="button">
+<span>Aegis Sentinel Labs</span>
+</button>
+</div>
+</section>
+<!-- 6. Date Posted -->
+<section class="flex flex-col gap-2 pb-2">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold uppercase tracking-wider text-[#A1A1AA]">Date Posted</span>
+<span class="text-[11px] text-[#A1A1AA]/80">Signal freshness</span>
+</div>
+<div aria-label="Date Posted" class="grid grid-cols-2 gap-2" role="group">
+<button class="filter-chip-btn flex items-center justify-center min-h-[38px] px-3 py-2 rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="posted-date" data-value="any" type="button">
+<span>Any time</span>
+</button>
+<button class="filter-chip-btn flex items-center justify-center min-h-[38px] px-3 py-2 rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="posted-date" data-value="24h" type="button">
+<span>Past 24h</span>
+</button>
+<!-- Selected: Past week -->
+<button class="filter-chip-btn selected flex items-center justify-center gap-1.5 min-h-[38px] px-3 py-2 rounded-lg bg-[#252528] border border-[#D4621A] text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="posted-date" data-value="week" type="button">
+<span class="material-symbols-outlined text-[#D4621A] text-[16px]">check</span>
+<span>Past week</span>
+</button>
+<button class="filter-chip-btn flex items-center justify-center min-h-[38px] px-3 py-2 rounded-lg bg-[#252528] border border-[#3F3F46] text-[#A1A1AA] hover:text-[#F5F5F5] text-xs font-medium transition-all active:scale-95" data-filter-group="posted-date" data-value="month" type="button">
+<span>Past month</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Sheet Sticky Footer Action Bar -->
+<div class="sticky bottom-0 bg-[#19191C] border-t border-[#3F3F46] p-4 flex items-center gap-3 flex-shrink-0 shadow-[0_-4px_16px_rgba(0,0,0,0.5)]">
+<button class="text-[#A1A1AA] hover:text-[#F5F5F5] bg-[#252528] px-4 py-3 rounded-xl border border-[#3F3F46] text-sm font-medium transition-all active:scale-95 flex items-center justify-center" id="reset-all-filters-btn" type="button">
+        Reset all (3)
+      </button>
+<button class="dominant brand button bg-[#D4621A] text-[#18181B] font-semibold px-5 py-3 rounded-xl flex-1 text-center flex items-center justify-center gap-2 hover:brightness-105 active:scale-[0.98] transition-all" id="apply-filters-dock-btn" type="button">
+<span>Show 38 Verified Roles</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</aside>
+<!-- Bottom Navigation Bar (Persistent 3 destinations) -->
+<nav class="fixed bottom-0 inset-x-0 h-[4.5rem] z-50 pb-safe bg-[#12131A] border-t border-[#3F3F46]/50 shadow-[0_-4px_20px_rgba(0,0,0,0.7)]" data-active-classes="text-[#D4621A] font-medium">
+<div class="grid grid-cols-3 h-full max-w-md mx-auto items-center px-2">
+<!-- Jobs (Active) -->
+<a class="flex flex-col items-center justify-center py-1 text-[#D4621A] transition-colors relative" data-path="jobs" href="#">
+<span class="material-symbols-outlined text-[22px]">work</span>
+<span class="text-xs font-medium mt-0.5">Jobs</span>
+<span class="w-1 h-1 rounded-full bg-[#D4621A] mt-1"></span>
+</a>
+<!-- Assessments -->
+<a class="flex flex-col items-center justify-center py-1 text-[#A1A1AA] hover:text-[#F5F5F5] transition-colors relative" data-path="assessments" href="#">
+<span class="material-symbols-outlined text-[22px]">assignment_turned_in</span>
+<span class="text-xs mt-0.5">Assessments</span>
+<span class="w-1 h-1 rounded-full bg-transparent mt-1"></span>
+</a>
+<!-- Notifications -->
+<a class="flex flex-col items-center justify-center py-1 text-[#A1A1AA] hover:text-[#F5F5F5] transition-colors relative" data-path="notifications" href="#">
+<div class="relative flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute -top-0.5 -right-1 w-2 h-2 rounded-full bg-[#D4621A] ring-2 ring-[#12131A]"></span>
+</div>
+<span class="text-xs mt-0.5">Notifications</span>
+<span class="w-1 h-1 rounded-full bg-transparent mt-1"></span>
+</a>
+</div>
+</nav>
+</body></html>

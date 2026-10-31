@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-high": "#292931", "on-secondary": "#303033", "error-container": "#93000a", "outline": "#a68b7f", "text-primary": "#F5F5F5", "surface": "#12131a", "success": "#22C55E", "tertiary-fixed-dim": "#ffb690", "on-background": "#e3e1ec", "on-surface": "#e3e1ec", "tertiary-fixed": "#ffdbca", "surface-bright": "#383841", "primary-container": "#e56f27", "on-secondary-container": "#b6b4b8", "error": "#ffb4ab", "on-primary": "#552000", "border-divider": "#3F3F46", "background": "#0D0D0F", "tertiary-container": "#df7331", "surface-tint": "#ffb691", "secondary-fixed": "#e4e1e5", "secondary": "#c8c6c9", "on-secondary-fixed-variant": "#47464a", "on-surface-variant": "#dec0b3", "surface-container-highest": "#34343c", "text-secondary": "#A1A1AA", "on-error-container": "#ffdad6", "surface-container": "#1e1f27", "on-tertiary-container": "#4a1c00", "tertiary": "#ffb690", "surface-container-low": "#1a1b23", "on-primary-container": "#4b1b00", "surface-dim": "#12131a", "warning": "#F59E0B", "inverse-primary": "#9f4200", "surface-container-lowest": "#0d0e15", "on-primary-fixed-variant": "#793100", "primary-fixed": "#ffdbcb", "on-error": "#690005", "inverse-surface": "#e3e1ec", "primary": "#ffb691", "surface-variant": "#34343c", "outline-variant": "#574238", "surface-elevated": "#19191C", "cta-text": "#18181B", "secondary-fixed-dim": "#c8c6c9", "on-tertiary-fixed-variant": "#783200", "on-tertiary": "#542100", "on-secondary-fixed": "#1b1b1e", "on-tertiary-fixed": "#331100", "secondary-container": "#47464a", "destructive": "#E5484D", "on-primary-fixed": "#341100", "primary-fixed-dim": "#ffb691", "inverse-on-surface": "#2f3038" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-lg": "1.25rem", "gutter-mobile": "0.75rem", "space-2xs": "0.25rem", "space-md": "1rem", "space-sm": "0.75rem", "space-xl": "1.5rem", "space-xs": "0.5rem", "space-2xl": "2rem", "margin": "1rem", "gutter": "1rem", "margin-compact": "0.75rem" }, fontFamily: { "body-sm": ["Inter"], "label-md": ["Inter"], "display-lg": ["Inter"], "metadata": ["Inter"], "display-lg-mobile": ["Inter"], "timer-display": ["Inter"], "headline-md": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Inter"], "label-sm": ["Inter"], "body-lg": ["Inter"] }, fontSize: { "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "display-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "metadata": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "display-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "timer-display": ["16px", { "lineHeight": "20px", "letterSpacing": "0.04em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-[#FAFAFA] text-[#18181B] font-body-md text-body-md antialiased flex flex-col min-h-screen selection:bg-[#FFF1E8] selection:text-[#D4621A]"><header class="fixed top-0 w-full z-50 pt-safe bg-white/95 backdrop-blur-xl border-b border-[#E4E4E7] shadow-[0_1px_4px_rgba(0,0,0,0.05)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="text-[#D4621A] font-headline-md text-headline-md tracking-tight select-none font-bold">Talent<span class="text-[#18181B]">Graph</span></span><span class="hidden">Assessments</span></div><div class="flex items-center gap-space-xs"><button aria-label="Toggle Appearance" class="w-11 h-11 flex items-center justify-center rounded-lg text-[#71717A] hover:text-[#18181B] active:text-[#D4621A] transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button><div class="relative flex items-center justify-center w-11 h-11"><div class="w-8 h-8 rounded-full bg-[#D4621A] flex items-center justify-center"><span class="material-symbols-outlined text-white text-[18px]">person</span></div><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#15803D] ring-2 ring-white"></span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-[#FAFAFA]"><div class="flex flex-col w-full text-[#18181B]">
+<!-- Top Navigation & Stage Indicator -->
+<div class="px-margin pt-space-xs pb-space-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between gap-space-xs">
+<a class="inline-flex items-center gap-space-2xs text-[#71717A] hover:text-[#18181B] active:text-[#18181B] py-space-2xs min-h-[48px] -ml-1 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span class="font-label-md text-label-md font-semibold">Assessments</span>
+</a>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#DCFCE7] text-[#15803D] border border-[#BBF7D0]">
+<span class="w-2 h-2 rounded-full bg-[#15803D] animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-semibold">Result Released &amp; Authorized</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 text-[#71717A]">
+<span class="material-symbols-outlined text-[16px] text-[#D4621A]">terminal</span>
+<span class="font-metadata text-metadata tracking-wider uppercase font-semibold">Stage A11 · Released Assessment Result &amp; Technical Breakdown</span>
+</div>
+</div>
+<!-- Header Brief Card -->
+<div class="px-margin mb-space-md">
+<div class="bg-white rounded-xl p-space-md flex flex-col gap-space-sm border border-[#E4E4E7] shadow-sm">
+<div class="flex flex-col gap-1">
+<h1 class="font-headline-md text-headline-md text-[#18181B] tracking-tight leading-snug font-bold">
+          Staff Distributed Systems Engineer - High Throughput Telemetry
+        </h1>
+<div class="flex flex-wrap items-center gap-x-2 gap-y-1 pt-1">
+<span class="font-label-md text-label-md text-[#18181B] font-semibold">Aether Telemetry Systems</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#DCFCE7] text-[#15803D] border border-[#BBF7D0] font-metadata text-metadata font-medium">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+            Verified Infrastructure Entity
+          </span>
+</div>
+</div>
+<div class="pt-space-xs flex flex-col gap-1 text-[#71717A]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-[#71717A]">event_note</span>
+<span class="font-metadata text-metadata text-[#71717A]">Thursday, Oct 29, 2026 · Synchronous Cohort A</span>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] mt-0.5 text-[#71717A]">fingerprint</span>
+<span class="font-metadata text-metadata font-mono leading-tight break-all text-[#71717A]">
+            Receipt SHA-256: 8f4b7a09c2e... · Evaluated Nov 02, 2026 · 11:20 UTC
+          </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary Score Summary Section -->
+<div class="px-margin mb-space-md">
+<div class="bg-white rounded-xl p-space-md border border-[#E4E4E7] shadow-sm flex flex-col gap-space-md relative overflow-hidden">
+<!-- Status pill banner -->
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-[#71717A] tracking-wide uppercase font-semibold">Candidate Dossier</span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#F4F4F5] text-[#71717A] border border-[#E4E4E7] font-metadata text-metadata font-medium">
+<span class="material-symbols-outlined text-[14px] text-[#D4621A]">lock_open_right</span>
+          Results Released by Recruiter
+        </span>
+</div>
+<!-- Core score readout -->
+<div class="flex items-baseline justify-between pt-space-2xs">
+<div class="flex flex-col">
+<span class="font-metadata text-metadata uppercase tracking-wider text-[#71717A] font-medium">Total Score Recorded</span>
+<div class="flex items-baseline gap-1.5 mt-0.5">
+<span class="font-display-lg text-display-lg font-bold text-[#18181B] tracking-tight">118</span>
+<span class="font-headline-sm text-headline-sm text-[#71717A] font-semibold">/ 140 Points</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-metadata text-metadata uppercase tracking-wider text-[#71717A] font-medium">Calculated Yield</span>
+<span class="font-display-lg text-display-lg font-bold text-[#D4621A] tracking-tight mt-0.5">84.3%</span>
+</div>
+</div>
+<!-- Linear visual progress bar representation -->
+<div class="w-full bg-[#E4E4E7] h-2 rounded-full overflow-hidden">
+<div class="bg-[#D4621A] h-full rounded-full" style="width: 84.3%;"></div>
+</div>
+<!-- Objective rubric disclaimer note -->
+<div class="bg-[#F4F4F5] rounded-lg p-space-sm flex items-start gap-space-xs text-[#71717A] border border-[#E4E4E7]">
+<span class="material-symbols-outlined text-[18px] text-[#71717A] mt-0.5 shrink-0">info</span>
+<p class="font-body-sm text-body-sm leading-relaxed text-[#71717A]">
+          Official evaluation score computed across 7 technical prompts. Passing thresholds, interview advancement, and hiring decisions are determined solely by the hiring team's internal rubric; no automated pass/fail verdict is generated.
+        </p>
+</div>
+</div>
+</div>
+<!-- Evidence Trail: 3-Stage Assessment Milestones -->
+<div class="px-margin mb-space-md">
+<div class="bg-white rounded-xl p-space-md border border-[#E4E4E7] shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-2xs">
+<span class="font-label-md text-label-md text-[#18181B] tracking-tight font-semibold">Evidence Trail · Milestones</span>
+<span class="font-metadata text-metadata text-[#15803D] font-semibold">3 of 3 Completed</span>
+</div>
+<!-- Vertical progress rails -->
+<div class="flex flex-col py-1">
+<!-- Milestone 1 -->
+<div class="flex items-start gap-space-sm relative">
+<div class="flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-[#DCFCE7] border border-[#BBF7D0] flex items-center justify-center shrink-0 z-10">
+<span class="material-symbols-outlined text-[16px] text-[#15803D] font-bold">check</span>
+</div>
+<div class="w-[2px] h-10 bg-[#E4E4E7]"></div>
+</div>
+<div class="flex flex-col pb-2">
+<span class="font-label-md text-label-md text-[#18181B] font-semibold">Attempt Submitted &amp; Sealed</span>
+<span class="font-body-sm text-body-sm text-[#71717A]">Completed · Oct 29, 14:38 UTC</span>
+</div>
+</div>
+<!-- Milestone 2 -->
+<div class="flex items-start gap-space-sm relative">
+<div class="flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-[#DCFCE7] border border-[#BBF7D0] flex items-center justify-center shrink-0 z-10">
+<span class="material-symbols-outlined text-[16px] text-[#15803D] font-bold">check</span>
+</div>
+<div class="w-[2px] h-10 bg-[#E4E4E7]"></div>
+</div>
+<div class="flex flex-col pb-2">
+<span class="font-label-md text-label-md text-[#18181B] font-semibold">Environmental Integrity Review</span>
+<span class="font-body-sm text-body-sm text-[#71717A]">Concluded · Standard Review Complete</span>
+</div>
+</div>
+<!-- Milestone 3 -->
+<div class="flex items-start gap-space-sm">
+<div class="flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-[#FFF1E8] border border-[#D4621A]/30 flex items-center justify-center shrink-0 z-10">
+<span class="material-symbols-outlined text-[16px] text-[#D4621A] font-bold">done_all</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-[#D4621A] font-semibold">Technical Score &amp; Feedback Release</span>
+<span class="font-body-sm text-body-sm text-[#71717A]">Released · Nov 02, 11:20 UTC</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Authorized Technical Skill Breakdown -->
+<div class="px-margin mb-space-md">
+<div class="flex flex-col gap-space-xs mb-space-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-[#18181B] tracking-tight font-bold">
+          Authorized Skill Breakdown
+        </h2>
+<span class="font-metadata text-metadata text-[#71717A] font-mono">4 Assessed Vectors</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#71717A]">
+        Diagnostic evaluations validated against the Staff Distributed Systems benchmark rubric.
+      </p>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Skill 1 -->
+<div class="bg-white rounded-xl p-space-md border border-[#E4E4E7] shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex flex-col">
+<h3 class="font-label-md text-label-md text-[#18181B] font-semibold">Distributed Consensus &amp; Raft Log Replication</h3>
+<span class="font-metadata text-metadata text-[#71717A]">Core Consensus Safety</span>
+</div>
+<div class="flex flex-col items-end shrink-0">
+<span class="font-label-md text-label-md text-[#D4621A] font-bold">36 / 40 pts</span>
+<span class="font-metadata text-metadata text-[#71717A]">90.0%</span>
+</div>
+</div>
+<div class="w-full bg-[#E4E4E7] h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-[#D4621A] h-full rounded-full" style="width: 90%;"></div>
+</div>
+<div class="bg-[#F4F4F5] rounded-lg p-space-xs mt-1 text-[#71717A] flex items-start gap-2 border border-[#E4E4E7]">
+<span class="material-symbols-outlined text-[16px] text-[#D4621A] shrink-0 mt-0.5">chat_bubble_outline</span>
+<p class="font-body-sm text-body-sm leading-relaxed text-[#18181B]">
+            Quorum handling during network partition demonstrated deep familiarity with Raft leader election and log reconciliation invariants.
+          </p>
+</div>
+</div>
+<!-- Skill 2 -->
+<div class="bg-white rounded-xl p-space-md border border-[#E4E4E7] shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex flex-col">
+<h3 class="font-label-md text-label-md text-[#18181B] font-semibold">High-Throughput Telemetry Ingestion &amp; Kafka Partitioning</h3>
+<span class="font-metadata text-metadata text-[#71717A]">Streaming &amp; Queue Invariants</span>
+</div>
+<div class="flex flex-col items-end shrink-0">
+<span class="font-label-md text-label-md text-[#D4621A] font-bold">32 / 40 pts</span>
+<span class="font-metadata text-metadata text-[#71717A]">80.0%</span>
+</div>
+</div>
+<div class="w-full bg-[#E4E4E7] h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-[#D4621A] h-full rounded-full" style="width: 80%;"></div>
+</div>
+<div class="bg-[#F4F4F5] rounded-lg p-space-xs mt-1 text-[#71717A] flex items-start gap-2 border border-[#E4E4E7]">
+<span class="material-symbols-outlined text-[16px] text-[#D4621A] shrink-0 mt-0.5">chat_bubble_outline</span>
+<p class="font-body-sm text-body-sm leading-relaxed text-[#18181B]">
+            Solid backpressure design and consumer group rebalancing strategy; minor edge-case latency on unordered timestamp spikes.
+          </p>
+</div>
+</div>
+<!-- Skill 3 -->
+<div class="bg-white rounded-xl p-space-md border border-[#E4E4E7] shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex flex-col">
+<h3 class="font-label-md text-label-md text-[#18181B] font-semibold">Concurrency Primitives, Memory Models &amp; Lock-Free Data Structures</h3>
+<span class="font-metadata text-metadata text-[#71717A]">Kernel / System Memory Ergonomics</span>
+</div>
+<div class="flex flex-col items-end shrink-0">
+<span class="font-label-md text-label-md text-[#D4621A] font-bold">30 / 35 pts</span>
+<span class="font-metadata text-metadata text-[#71717A]">85.7%</span>
+</div>
+</div>
+<div class="w-full bg-[#E4E4E7] h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-[#D4621A] h-full rounded-full" style="width: 85.7%;"></div>
+</div>
+<div class="bg-[#F4F4F5] rounded-lg p-space-xs mt-1 text-[#71717A] flex items-start gap-2 border border-[#E4E4E7]">
+<span class="material-symbols-outlined text-[16px] text-[#D4621A] shrink-0 mt-0.5">chat_bubble_outline</span>
+<p class="font-body-sm text-body-sm leading-relaxed text-[#18181B]">
+            Accurate memory barrier placement and CAS loop efficiency; clear handling of ABA mitigation.
+          </p>
+</div>
+</div>
+<!-- Skill 4 -->
+<div class="bg-white rounded-xl p-space-md border border-[#E4E4E7] shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex flex-col">
+<h3 class="font-label-md text-label-md text-[#18181B] font-semibold">Failure Domains &amp; Fault-Tolerant System Architecture</h3>
+<span class="font-metadata text-metadata text-[#71717A]">Degraded Topology &amp; Bulkheading</span>
+</div>
+<div class="flex flex-col items-end shrink-0">
+<span class="font-label-md text-label-md text-[#D4621A] font-bold">20 / 25 pts</span>
+<span class="font-metadata text-metadata text-[#71717A]">80.0%</span>
+</div>
+</div>
+<div class="w-full bg-[#E4E4E7] h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-[#D4621A] h-full rounded-full" style="width: 80%;"></div>
+</div>
+<div class="bg-[#F4F4F5] rounded-lg p-space-xs mt-1 text-[#71717A] flex items-start gap-2 border border-[#E4E4E7]">
+<span class="material-symbols-outlined text-[16px] text-[#D4621A] shrink-0 mt-0.5">chat_bubble_outline</span>
+<p class="font-body-sm text-body-sm leading-relaxed text-[#18181B]">
+            Thorough bulkhead isolation and degraded mode behavior; graceful failover topology.
+          </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Prompt Performance Summary (Questions 1 to 7) -->
+<div class="px-margin mb-space-md">
+<div class="bg-white rounded-xl p-space-md border border-[#E4E4E7] shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-[#18181B] tracking-tight font-bold">
+            Prompt Performance Summary
+          </h2>
+<span class="font-metadata text-metadata px-2 py-0.5 bg-[#F4F4F5] rounded text-[#71717A] border border-[#E4E4E7] font-medium">7 Prompts</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#71717A] leading-relaxed">
+          Summary of released marks per technical prompt. Unreleased solution keys and recruiter notes remain private to ensure assessment pool integrity.
+        </p>
+</div>
+<div class="flex flex-col divide-y divide-[#E4E4E7]">
+<!-- Q1 -->
+<div class="py-space-sm flex items-center justify-between gap-space-xs first:pt-0">
+<div class="flex items-start gap-space-xs min-w-0">
+<span class="font-mono text-label-sm text-[#D4621A] shrink-0 w-6 pt-0.5 font-bold">Q1</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-[#18181B] truncate font-semibold">Cluster Quorum &amp; Partition Resolution</span>
+<span class="font-metadata text-metadata text-[#15803D] font-medium">Full Marks</span>
+</div>
+</div>
+<span class="font-label-md text-label-md text-[#18181B] whitespace-nowrap font-mono shrink-0 font-semibold">20 / 20</span>
+</div>
+<!-- Q2 -->
+<div class="py-space-sm flex items-center justify-between gap-space-xs">
+<div class="flex items-start gap-space-xs min-w-0">
+<span class="font-mono text-label-sm text-[#D4621A] shrink-0 w-6 pt-0.5 font-bold">Q2</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-[#18181B] truncate font-semibold">Zero-Copy Serialization Formats</span>
+<span class="font-metadata text-metadata text-[#B45309] font-medium">Partial Marks</span>
+</div>
+</div>
+<span class="font-label-md text-label-md text-[#18181B] whitespace-nowrap font-mono shrink-0 font-semibold">16 / 20</span>
+</div>
+<!-- Q3 -->
+<div class="py-space-sm flex items-center justify-between gap-space-xs">
+<div class="flex items-start gap-space-xs min-w-0">
+<span class="font-mono text-label-sm text-[#D4621A] shrink-0 w-6 pt-0.5 font-bold">Q3</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-[#18181B] truncate font-semibold">Raft Majority Quorum Post-Partition State</span>
+<span class="font-metadata text-metadata text-[#15803D] font-medium">Full Marks</span>
+</div>
+</div>
+<span class="font-label-md text-label-md text-[#18181B] whitespace-nowrap font-mono shrink-0 font-semibold">20 / 20</span>
+</div>
+<!-- Q4 -->
+<div class="py-space-sm flex items-center justify-between gap-space-xs">
+<div class="flex items-start gap-space-xs min-w-0">
+<span class="font-mono text-label-sm text-[#D4621A] shrink-0 w-6 pt-0.5 font-bold">Q4</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-[#18181B] truncate font-semibold">Log Compaction &amp; Snapshot Isolation</span>
+<span class="font-metadata text-metadata text-[#15803D] font-medium">Strong Demonstration</span>
+</div>
+</div>
+<span class="font-label-md text-label-md text-[#18181B] whitespace-nowrap font-mono shrink-0 font-semibold">18 / 20</span>
+</div>
+<!-- Q5 -->
+<div class="py-space-sm flex items-center justify-between gap-space-xs">
+<div class="flex items-start gap-space-xs min-w-0">
+<span class="font-mono text-label-sm text-[#D4621A] shrink-0 w-6 pt-0.5 font-bold">Q5</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-[#18181B] truncate font-semibold">Lock-Free Ring Buffer Implementation</span>
+<span class="font-metadata text-metadata text-[#71717A] font-medium">Minor Inefficiency Identified</span>
+</div>
+</div>
+<span class="font-label-md text-label-md text-[#18181B] whitespace-nowrap font-mono shrink-0 font-semibold">15 / 20</span>
+</div>
+<!-- Q6 -->
+<div class="py-space-sm flex items-center justify-between gap-space-xs">
+<div class="flex items-start gap-space-xs min-w-0">
+<span class="font-mono text-label-sm text-[#D4621A] shrink-0 w-6 pt-0.5 font-bold">Q6</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-[#18181B] truncate font-semibold">Cross-Region Telemetry Pipeline Resilience</span>
+<span class="font-metadata text-metadata text-[#15803D] font-medium">Valid Architecture</span>
+</div>
+</div>
+<span class="font-label-md text-label-md text-[#18181B] whitespace-nowrap font-mono shrink-0 font-semibold">15 / 20</span>
+</div>
+<!-- Q7 -->
+<div class="py-space-sm flex items-center justify-between gap-space-xs last:pb-0">
+<div class="flex items-start gap-space-xs min-w-0">
+<span class="font-mono text-label-sm text-[#D4621A] shrink-0 w-6 pt-0.5 font-bold">Q7</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-[#18181B] truncate font-semibold">Backpressure &amp; Flow Control Under Surge</span>
+<span class="font-metadata text-metadata text-[#71717A] font-medium">Satisfactory Model</span>
+</div>
+</div>
+<span class="font-label-md text-label-md text-[#18181B] whitespace-nowrap font-mono shrink-0 font-semibold">14 / 20</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Candidate Improvement & Next Steps Notice -->
+<div class="px-margin mb-space-lg">
+<div class="bg-white rounded-xl p-space-md border border-[#E4E4E7] shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[#D4621A] text-[20px]">account_tree</span>
+<h2 class="font-headline-sm text-headline-sm text-[#18181B] font-bold">Next Steps in Hiring Process</h2>
+</div>
+<p class="font-body-sm text-body-sm text-[#71717A] leading-relaxed">
+        Aether Telemetry Systems engineering leads review released technical scores alongside candidate application profiles. If selected for subsequent team architectural interviews, the recruiting coordinator will reach out directly via notification and email.
+      </p>
+<div class="pt-space-xs flex items-start gap-space-xs text-[#71717A] bg-[#F4F4F5] rounded-lg p-space-sm border border-[#E4E4E7]">
+<span class="material-symbols-outlined text-[16px] text-[#71717A] shrink-0 mt-0.5">verified_user</span>
+<p class="font-metadata text-metadata leading-relaxed text-[#71717A]">
+          Candidate results are private and visible only to you and authorized Aether Telemetry hiring reviewers. Peer comparison data and internal interview stage cutoffs are not published.
+        </p>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="px-margin flex flex-col gap-space-sm pb-12">
+<button class="w-full h-12 bg-[#D4621A] hover:bg-[#B94F0B] active:bg-[#B94F0B] text-[#18181B] font-label-md text-label-md font-semibold rounded-lg flex items-center justify-center gap-space-xs transition-colors shadow-sm min-h-[48px]" type="button">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span>Back to Assessments</span>
+</button>
+<button class="w-full h-12 bg-white hover:bg-[#F4F4F5] active:bg-[#F4F4F5] text-[#18181B] border border-[#E4E4E7] font-label-md text-label-md font-semibold rounded-lg flex items-center justify-center gap-space-xs transition-colors shadow-sm min-h-[48px]" type="button">
+<span class="material-symbols-outlined text-[20px] text-[#71717A]">open_in_new</span>
+<span class="truncate">View Related Job (Staff Distributed Systems Engineer)</span>
+</button>
+</div>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-white/95 backdrop-blur-xl border-t border-[#E4E4E7] shadow-[0_-1px_4px_rgba(0,0,0,0.05)]" data-active-classes="text-[#D4621A] font-semibold"><div class="flex justify-around items-center h-16 px-margin"><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[48px] gap-space-2xs text-[#71717A] hover:text-[#18181B] transition-colors" data-path="jobs" href="#"><span class="material-symbols-outlined text-[22px]">work</span><span class="font-label-sm text-label-sm tracking-wide">Jobs</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] min-h-[48px] gap-space-2xs transition-colors text-[#D4621A] font-semibold" data-path="assessments" href="#"><span class="material-symbols-outlined text-[22px]">quiz</span><span class="font-label-sm text-label-sm tracking-wide">Assessments</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[48px] gap-space-2xs text-[#71717A] hover:text-[#18181B] transition-colors" data-path="notifications" href="#"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="font-label-sm text-label-sm tracking-wide">Notifications</span></a></div></nav></body></html>

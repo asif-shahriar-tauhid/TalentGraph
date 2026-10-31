@@ -1,0 +1,431 @@
+.
+├── Backend
+│   ├── agents.md
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── prisma
+│   │   ├── migrations
+│   │   │   ├── 20261028153536_first_migration_of_talent_graph_database
+│   │   │   │   └── migration.sql
+│   │   │   └── migration_lock.toml
+│   │   └── schema
+│   │       ├── enums.prisma
+│   │       ├── schema.prisma
+│   │       ├── talentgraph.prisma
+│   │       └── user.prisma
+│   ├── prisma.config.ts
+│   ├── src
+│   │   ├── app
+│   │   │   ├── config
+│   │   │   │   └── index.ts
+│   │   │   ├── lib
+│   │   │   │   ├── cloudinary.ts
+│   │   │   │   ├── githubAuth.ts
+│   │   │   │   ├── multer.ts
+│   │   │   │   ├── nodemailer.ts
+│   │   │   │   ├── prisma.ts
+│   │   │   │   └── redis.ts
+│   │   │   ├── middleware
+│   │   │   │   ├── checkAuth.ts
+│   │   │   │   ├── globalErrorHandler.ts
+│   │   │   │   ├── notFound.ts
+│   │   │   │   └── validateRequest.ts
+│   │   │   ├── module
+│   │   │   │   ├── auth
+│   │   │   │   │   ├── auth.controller.ts
+│   │   │   │   │   ├── auth.interface.ts
+│   │   │   │   │   ├── auth.route.ts
+│   │   │   │   │   ├── auth.service.ts
+│   │   │   │   │   └── auth.validation.ts
+│   │   │   │   └── user
+│   │   │   │       ├── user.controller.ts
+│   │   │   │       ├── user.interface.ts
+│   │   │   │       ├── user.route.ts
+│   │   │   │       ├── user.service.ts
+│   │   │   │       └── user.validation.ts
+│   │   │   ├── templates
+│   │   │   │   ├── forgot-password.ejs
+│   │   │   │   └── registrationOTP.ejs
+│   │   │   └── utils
+│   │   │       ├── AppError.ts
+│   │   │       ├── catchAsync.ts
+│   │   │       ├── jwt.ts
+│   │   │       ├── seed.ts
+│   │   │       └── sendResponse.ts
+│   │   ├── app.ts
+│   │   ├── generated
+│   │   │   └── prisma
+│   │   │       ├── browser.ts
+│   │   │       ├── client.ts
+│   │   │       ├── commonInputTypes.ts
+│   │   │       ├── enums.ts
+│   │   │       ├── internal
+│   │   │       │   ├── class.ts
+│   │   │       │   ├── prismaNamespaceBrowser.ts
+│   │   │       │   └── prismaNamespace.ts
+│   │   │       ├── models
+│   │   │       │   ├── Application.ts
+│   │   │       │   ├── AssessmentAnswer.ts
+│   │   │       │   ├── AssessmentAttempt.ts
+│   │   │       │   ├── AssessmentAudioSnapshot.ts
+│   │   │       │   ├── AssessmentSnapshot.ts
+│   │   │       │   ├── AssessmentTemplate.ts
+│   │   │       │   ├── CandidateProfile.ts
+│   │   │       │   ├── CandidateSkill.ts
+│   │   │       │   ├── Company.ts
+│   │   │       │   ├── Evidence.ts
+│   │   │       │   ├── GitHubRepo.ts
+│   │   │       │   ├── IntegrityFlag.ts
+│   │   │       │   ├── JobSkillRequirement.ts
+│   │   │       │   ├── Job.ts
+│   │   │       │   ├── Question.ts
+│   │   │       │   ├── RecruiterProfile.ts
+│   │   │       │   ├── Skill.ts
+│   │   │       │   ├── Subscription.ts
+│   │   │       │   ├── Transaction.ts
+│   │   │       │   └── User.ts
+│   │   │       └── models.ts
+│   │   └── server.ts
+│   └── tsconfig.json
+├── frontend
+│   ├── AGENTS.md
+│   ├── DESIGN.md
+│   ├── eslint.config.mjs
+│   ├── next.config.ts
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── public
+│   │   ├── favicon.ico
+│   │   ├── file.svg
+│   │   ├── globe.svg
+│   │   ├── next.svg
+│   │   ├── vercel.svg
+│   │   └── window.svg
+│   ├── README.md
+│   ├── src
+│   │   ├── api
+│   │   │   ├── auth.api.ts
+│   │   │   └── index.ts
+│   │   ├── app
+│   │   │   ├── (dashboard)
+│   │   │   │   ├── admin
+│   │   │   │   │   ├── layout.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── candidate
+│   │   │   │   │   ├── layout.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── recruiter
+│   │   │   │       ├── layout.tsx
+│   │   │   │       └── page.tsx
+│   │   │   ├── error.tsx
+│   │   │   ├── global-error.tsx
+│   │   │   ├── globals.css
+│   │   │   ├── layout.tsx
+│   │   │   ├── loading.tsx
+│   │   │   ├── not-found.tsx
+│   │   │   ├── (public)
+│   │   │   │   ├── (authentication)
+│   │   │   │   │   ├── account-verify
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── forgot-password
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── login
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   ├── register
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   └── reset-password
+│   │   │   │   │       └── page.tsx
+│   │   │   │   └── (marketing)
+│   │   │   │       ├── layout.tsx
+│   │   │   │       └── page.tsx
+│   │   │   └── unauthorized
+│   │   │       └── page.tsx
+│   │   ├── asset
+│   │   │   └── svg
+│   │   │       ├── GithubIcon.tsx
+│   │   │       └── Logo.tsx
+│   │   ├── components
+│   │   │   ├── common
+│   │   │   │   ├── RoleGuard.tsx
+│   │   │   │   ├── ThemeToggle.tsx
+│   │   │   │   └── UserAvatar.tsx
+│   │   │   ├── form
+│   │   │   │   ├── forgot-password-form.tsx
+│   │   │   │   ├── login-form.tsx
+│   │   │   │   ├── register-form.tsx
+│   │   │   │   ├── reset-password-form.tsx
+│   │   │   │   └── verify-email-form.tsx
+│   │   │   ├── layouts
+│   │   │   │   ├── dashboard
+│   │   │   │   │   ├── DashboardHeader.tsx
+│   │   │   │   │   ├── DashboardShell.tsx
+│   │   │   │   │   ├── DashboardSidebar.tsx
+│   │   │   │   │   ├── dashboard.types.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── public
+│   │   │   │       ├── AuthLayout.tsx
+│   │   │   │       ├── Footer.tsx
+│   │   │   │       ├── Header.tsx
+│   │   │   │       └── index.ts
+│   │   │   └── ui
+│   │   │       ├── badge.tsx
+│   │   │       ├── button.tsx
+│   │   │       ├── field.tsx
+│   │   │       ├── goey-toaster.tsx
+│   │   │       ├── input.tsx
+│   │   │       ├── spinner.tsx
+│   │   │       └── textarea.tsx
+│   │   ├── hooks
+│   │   │   ├── auth.hooks.ts
+│   │   │   └── index.ts
+│   │   ├── lib
+│   │   │   ├── apiClient.ts
+│   │   │   ├── authUtils.ts
+│   │   │   └── utils.ts
+│   │   ├── providers
+│   │   │   ├── authProvider.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── queryProvider.tsx
+│   │   │   └── themeProvider.tsx
+│   │   ├── proxy.ts
+│   │   ├── types
+│   │   │   ├── auth.types.ts
+│   │   │   ├── dashboard.types.ts
+│   │   │   └── index.ts
+│   │   └── validation
+│   │       ├── auth.validation.ts
+│   │       └── index.ts
+│   ├── TalentGraph_STITCH_SOURCE_OF_TRUTH_v1.3.md
+│   └── tsconfig.json
+├── MobileApp
+│   ├── AGENTS.md
+│   ├── developer_setup_guide.md
+│   ├── docs
+│   │   ├── api
+│   │   │   ├── auth-contract.md
+│   │   │   └── reference
+│   │   ├── decisions
+│   │   │   └── open-questions.md
+│   │   ├── design
+│   │   │   ├── DESIGN.md
+│   │   │   ├── screens
+│   │   │   │   ├── _archive
+│   │   │   │   ├── assessments 
+│   │   │   │   ├── auth
+│   │   │   │   ├── jobs
+│   │   │   │   ├── notifications 
+│   │   │   │   ├── README.md
+│   │   │   │   ├── shared-states
+│   │   │   │   └── stitch_talentgraph_candidate_mobile_app
+│   │   │   │       ├── active_assessment_network_connection_interrupted_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── active_assessment_network_connection_interrupted_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── active_assessment_network_connection_interrupted_3
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── active_assessment_network_connection_interrupted_light_mode
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── active_assessment_question_3_of_7_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── active_assessment_question_3_of_7_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── application_blocked_saved_cv_required
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── application_blocked_saved_cv_required_light_mode
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── application_review_staff_distributed_systems_engineer
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── application_review_staff_distributed_systems_engineer_light_mode_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── application_review_staff_distributed_systems_engineer_light_mode_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── application_submitted_staff_distributed_systems_engineer
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── application_submitted_staff_distributed_systems_engineer_light_mode
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── application_unavailable_already_submitted_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── application_unavailable_already_submitted_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── application_unavailable_already_submitted_dark_mode
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── application_unavailable_already_submitted_light_mode
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_center
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_center_light_mode_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_center_light_mode_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_early_submit_confirmation_dialog_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_early_submit_confirmation_dialog_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_preflight_camera_permission_required_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_preflight_camera_permission_required_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_preflight_staff_distributed_systems_engineer_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_preflight_staff_distributed_systems_engineer_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_result_staff_distributed_systems_engineer
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_result_staff_distributed_systems_engineer_light_mode
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_submitted_staff_distributed_systems_engineer
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_submitted_staff_distributed_systems_engineer_light_mode
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_unavailable_session_closed
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── assessment_unavailable_session_closed_light_mode
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── candidate_notifications_read_state_sync_failed_toast_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── candidate_notifications_read_state_sync_failed_toast_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── candidate_notifications_stream_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── candidate_notifications_stream_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── candidate_welcome_sign_in
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── candidate_welcome_sign_in_light_mode
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── email_verification_pending
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── email_verification_pending_light_mode
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── evidence_trail
+│   │   │   │       │   └── DESIGN.md
+│   │   │   │       ├── github_connection_cancelled
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── github_connection_cancelled_light_mode_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── github_connection_cancelled_light_mode_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── github_connection_cancelled_light_mode_3
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── job_details_staff_distributed_systems_engineer_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── job_details_staff_distributed_systems_engineer_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── jobs_discovery_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── jobs_discovery_2
+│   │   │   │       │   └── code.html
+│   │   │   │       ├── jobs_discovery_3
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── jobs_discovery_no_matching_results
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── jobs_discovery_no_matching_results_light_mode
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── jobs_filters_bottom_sheet_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── jobs_filters_bottom_sheet_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── jobs_filters_bottom_sheet_light_mode_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── jobs_filters_bottom_sheet_light_mode_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── jobs_filters_bottom_sheet_light_mode_3
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── jobs_filters_bottom_sheet_light_mode_4
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── notification_destination_handoff_application_tracking_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── notification_destination_handoff_application_tracking_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── skill_percentiles_staff_distributed_systems_engineer
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── skill_percentiles_staff_distributed_systems_engineer_light_mode_1
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── skill_percentiles_staff_distributed_systems_engineer_light_mode_2
+│   │   │   │       │   ├── code.html
+│   │   │   │       │   └── screen.png
+│   │   │   │       ├── talentgraph_mobile_app_source_of_truth_v1.0.md
+│   │   │   │       ├── talentgraph_mobile_design_direction_design.md
+│   │   │   │       ├── untitled_prototype_1
+│   │   │   │       │   └── code.html
+│   │   │   │       └── untitled_prototype_2
+│   │   │   │           └── code.html
+│   │   │   └── tokens.md
+│   │   ├── README.md
+│   │   ├── spec
+│   │   │   ├── auth-scope.md
+│   │   │   └── mobile-source-of-truth.md
+│   │   └── tasks
+│   │       ├── T01-scaffold.md
+│   │       ├── T02-theme.md
+│   │       ├── T03-core-network-storage.md
+│   │       ├── T04-auth-domain-data.md
+│   │       ├── T05-router-shell.md
+│   │       ├── T06-auth-screens.md
+│   │       └── T07-verify-harden.md
+│   ├── mobile_agent_guidelines.md
+│   ├── mobile_design_guidelines.md
+│   └── mobile_feature_architecture_spec.md
+└── project_structure.txt
+
+133 directories, 296 files

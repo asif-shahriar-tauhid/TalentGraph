@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>TalentGraph</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-low": "#1a1b23", "on-tertiary-fixed-variant": "#783200", "surface-container-high": "#292931", "surface-variant": "#34343c", "on-error-container": "#ffdad6", "primary-fixed": "#ffdbcb", "on-secondary-fixed-variant": "#47464a", "outline-variant": "#574238", "on-secondary-fixed": "#1b1b1e", "secondary-fixed": "#e4e1e5", "surface-bright": "#383841", "text-primary": "#F5F5F5", "destructive": "#E5484D", "inverse-primary": "#9f4200", "surface": "#12131a", "tertiary-fixed": "#ffdbca", "tertiary-container": "#df7331", "error-container": "#93000a", "primary-container": "#e56f27", "surface-container-lowest": "#0d0e15", "on-tertiary-container": "#4a1c00", "secondary-fixed-dim": "#c8c6c9", "on-tertiary": "#542100", "border-divider": "#3F3F46", "tertiary-fixed-dim": "#ffb690", "inverse-surface": "#e3e1ec", "secondary-container": "#47464a", "on-secondary-container": "#b6b4b8", "on-primary-container": "#4b1b00", "primary-fixed-dim": "#ffb691", "surface-container": "#1e1f27", "on-primary": "#552000", "background": "#0D0D0F", "on-background": "#e3e1ec", "on-surface": "#e3e1ec", "tertiary": "#ffb690", "success": "#22C55E", "on-primary-fixed-variant": "#793100", "secondary": "#c8c6c9", "primary": "#ffb691", "on-tertiary-fixed": "#331100", "surface-tint": "#ffb691", "text-secondary": "#A1A1AA", "outline": "#a68b7f", "surface-elevated": "#19191C", "cta-text": "#18181B", "warning": "#F59E0B", "surface-container-highest": "#34343c", "on-secondary": "#303033", "on-error": "#690005", "on-primary-fixed": "#341100", "inverse-on-surface": "#2f3038", "surface-dim": "#12131a", "on-surface-variant": "#dec0b3", "error": "#ffb4ab" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.75rem", "space-xl": "1.5rem", "space-2xs": "0.25rem", "gutter-mobile": "0.75rem", "space-md": "1rem", "space-xs": "0.5rem", "space-lg": "1.25rem", "margin": "1rem", "gutter": "1rem", "space-2xl": "2rem", "margin-compact": "0.75rem" }, "fontFamily": { "headline-sm": ["Inter"], "headline-md": ["Inter"], "metadata": ["Inter"], "timer-display": ["Inter"], "label-sm": ["Inter"], "body-lg": ["Inter"], "body-md": ["Inter"], "body-sm": ["Inter"], "label-md": ["Inter"], "display-lg": ["Inter"], "display-lg-mobile": ["Inter"] }, "fontSize": { "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "metadata": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "timer-display": ["16px", { "lineHeight": "20px", "letterSpacing": "0.04em", "fontWeight": "600" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "display-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "display-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;}body{overscroll-behavior:none;background-color:#0D0D0F;color:#F5F5F5;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-background font-body-md text-body-md text-text-primary min-h-screen flex flex-col antialiased"><header class="fixed top-0 inset-x-0 z-50 bg-surface-elevated/85 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-2.5 h-2.5 rounded-full bg-primary-container inline-block"></span><span class="font-headline-sm text-headline-sm tracking-tight text-text-primary">TalentGraph</span></div><div class="flex items-center gap-space-xs"><button aria-label="Toggle dark or light theme" class="w-11 h-11 flex items-center justify-center text-text-secondary hover:text-text-primary rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">dark_mode</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-28 px-margin bg-background"><div class="flex flex-col w-full">
+<!-- Screen Header -->
+<div class="flex flex-col gap-space-xs mb-space-lg">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-text-primary tracking-tight">Notifications</h1>
+<p class="font-metadata text-metadata text-text-secondary mt-1">
+          Activity stream synchronized with TalentGraph web workspace
+        </p>
+</div>
+<button aria-label="Mark all notifications as read" class="flex items-center gap-1.5 px-space-sm py-2 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-text-secondary hover:text-text-primary min-h-[44px] shrink-0" id="mark-all-read-btn" type="button">
+<span class="material-symbols-outlined text-[18px] text-text-secondary">done_all</span>
+<span class="font-label-sm text-label-sm">Mark all read</span>
+</button>
+</div>
+<!-- Filter Controls Bar -->
+<div aria-label="Notification Filters" class="flex items-center gap-space-xs overflow-x-auto py-2 -mx-margin px-margin no-scrollbar" role="tablist">
+<button class="filter-pill active flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary-container text-cta-text font-label-sm text-label-sm shrink-0 transition-colors" data-filter="all" type="button">
+<span>All</span>
+<span class="px-1.5 py-0.2 bg-on-primary-container/20 rounded-full text-[11px] font-semibold">6</span>
+</button>
+<button class="filter-pill flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-elevated hover:bg-surface-container text-text-secondary hover:text-text-primary font-label-sm text-label-sm shrink-0 transition-colors" data-filter="unread" type="button">
+<span>Unread</span>
+<span class="px-1.5 py-0.2 bg-primary-container text-cta-text rounded-full text-[11px] font-semibold" id="unread-counter-badge">2</span>
+</button>
+<button class="filter-pill flex items-center px-3 py-1.5 rounded-full bg-surface-elevated hover:bg-surface-container text-text-secondary hover:text-text-primary font-label-sm text-label-sm shrink-0 transition-colors" data-filter="assessments" type="button">
+        Assessments
+      </button>
+<button class="filter-pill flex items-center px-3 py-1.5 rounded-full bg-surface-elevated hover:bg-surface-container text-text-secondary hover:text-text-primary font-label-sm text-label-sm shrink-0 transition-colors" data-filter="applications" type="button">
+        Applications
+      </button>
+<button class="filter-pill flex items-center px-3 py-1.5 rounded-full bg-surface-elevated hover:bg-surface-container text-text-secondary hover:text-text-primary font-label-sm text-label-sm shrink-0 transition-colors" data-filter="skills" type="button">
+        SkillGraph / GitHub
+      </button>
+<button class="filter-pill flex items-center px-3 py-1.5 rounded-full bg-surface-elevated hover:bg-surface-container text-text-secondary hover:text-text-primary font-label-sm text-label-sm shrink-0 transition-colors" data-filter="account" type="button">
+        Account
+      </button>
+</div>
+</div>
+<!-- Activity Stream List (Evidence Trail Architecture) -->
+<div class="relative flex flex-col gap-space-md" id="notifications-stream">
+<!-- Continuous Evidence Trail Backbone Line -->
+<div class="absolute left-[13px] top-6 bottom-6 w-[2px] bg-border-divider/50 pointer-events-none"></div>
+<!-- ITEM 1: Unread — Assessment Invitation & Cohort Session -->
+<article class="notification-item unread relative flex items-start gap-space-md bg-surface-elevated rounded-xl p-space-md transition-all shadow-sm" data-category="assessments" data-id="n1">
+<!-- Evidence Node -->
+<div class="relative z-10 flex flex-col items-center pt-1 shrink-0">
+<span class="w-3.5 h-3.5 rounded-full bg-primary-container ring-4 ring-background flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-surface"></span>
+</span>
+</div>
+<!-- Content Column -->
+<div class="flex-1 flex flex-col gap-space-xs min-w-0">
+<div class="flex items-center justify-between gap-space-xs flex-wrap">
+<div class="flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-label-sm text-label-sm font-semibold tracking-wide uppercase text-[11px]">
+              Assessments
+            </span>
+<span class="flex items-center gap-1 font-metadata text-metadata text-success">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+              Cohort Verified
+            </span>
+</div>
+<span class="font-metadata text-metadata text-text-secondary">12m ago</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary tracking-tight">
+          Assessment Session Scheduled: Staff Distributed Systems Engineer
+        </h2>
+<div class="flex items-center gap-1.5 font-metadata text-metadata text-text-secondary">
+<span class="font-medium text-text-primary">Aether Telemetry Systems</span>
+<span>•</span>
+<span>Infrastructure Partner</span>
+</div>
+<!-- Strict Synchronized Assessment Notice -->
+<div class="p-space-sm rounded-lg bg-surface-container-low text-text-secondary font-body-sm text-body-sm leading-relaxed mt-1">
+<p class="text-text-primary font-medium mb-1 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">schedule</span>
+            Synchronous Cohort • Thursday, Oct 29, 2026 at 14:00 UTC
+          </p>
+          You are invited to the recruiter-published synchronized assessment cohort on Thursday, Oct 29, 2026 at 14:00 UTC (Coordinated Universal Time). The 45-minute timed cohort session opens automatically at this scheduled time; individual time-slot selection is not available.
+        </div>
+<!-- Actions -->
+<div class="flex items-center gap-space-sm pt-2 flex-wrap">
+<button class="px-space-md py-2.5 rounded-lg bg-primary-container hover:bg-tertiary-container transition-colors text-cta-text font-label-md text-label-md min-h-[44px] flex items-center justify-center gap-1.5 font-semibold" type="button">
+<span>View Preflight &amp; Details</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="mark-single-read px-space-sm py-2 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-text-secondary hover:text-text-primary font-label-sm text-label-sm min-h-[44px] flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Mark as read</span>
+</button>
+</div>
+</div>
+</article>
+<!-- ITEM 2: Unread — Technical Score & Dossier Released -->
+<article class="notification-item unread relative flex items-start gap-space-md bg-surface-elevated rounded-xl p-space-md transition-all shadow-sm" data-category="assessments" data-id="n2">
+<!-- Evidence Node -->
+<div class="relative z-10 flex flex-col items-center pt-1 shrink-0">
+<span class="w-3.5 h-3.5 rounded-full bg-primary-container ring-4 ring-background flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-surface"></span>
+</span>
+</div>
+<div class="flex-1 flex flex-col gap-space-xs min-w-0">
+<div class="flex items-center justify-between gap-space-xs flex-wrap"><div class="flex items-center gap-space-xs flex-wrap"><span class="px-2 py-0.5 rounded bg-surface-container text-primary font-label-sm text-label-sm font-semibold tracking-wide uppercase text-[11px]">Assessments</span><span class="px-1.5 py-0.5 rounded bg-surface-container-high text-text-secondary font-metadata text-[11px]">Dossier Ready</span><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-error-container/30 text-destructive font-metadata text-[11px] font-medium"><span class="material-symbols-outlined text-[13px]">sync_problem</span><span>Sync failed · Unread</span></span></div><span class="font-metadata text-metadata text-text-secondary">2h ago</span></div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary tracking-tight">
+          Technical Score &amp; Dossier Released: Staff Distributed Systems Engineer
+        </h2>
+<p class="font-body-md text-body-md text-text-secondary leading-relaxed">
+          Aether Telemetry Systems has published your authorized diagnostic score (118 / 140 pts, 84.3% yield) across 7 prompt items. Environmental review completed with verified receipt.
+        </p>
+<!-- Metric Highlight Capsule -->
+<div class="flex items-center gap-space-md py-1.5 px-space-sm bg-surface-container-low rounded-lg mt-0.5">
+<div class="flex items-baseline gap-1">
+<span class="font-headline-sm text-headline-sm text-success">84.3%</span>
+<span class="font-metadata text-metadata text-text-secondary">Cohort Benchmark</span>
+</div>
+<span class="text-border-divider">•</span>
+<div class="font-metadata text-metadata text-text-secondary">7 Verified Items</div>
+</div>
+<div class="flex items-center gap-space-sm pt-2 flex-wrap"><button class="px-space-md py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-text-primary font-label-md text-label-md min-h-[44px] flex items-center gap-1.5" type="button"><span>Inspect Released Result</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span></button><button class="mark-single-read px-space-sm py-2 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-destructive hover:text-text-primary font-label-sm text-label-sm min-h-[44px] flex items-center gap-1.5 border border-destructive/40" type="button"><span class="material-symbols-outlined text-[16px]">sync</span><span>Retry sync</span></button></div>
+</div>
+</article>
+<!-- ITEM 3: Read — Application Submission Confirmed -->
+<article class="notification-item read relative flex items-start gap-space-md bg-surface-elevated rounded-xl p-space-md opacity-90 transition-all shadow-sm" data-category="applications" data-id="n3">
+<!-- Muted Node for Read Status -->
+<div class="relative z-10 flex flex-col items-center pt-1 shrink-0">
+<span class="w-3.5 h-3.5 rounded-full bg-surface-container-high ring-4 ring-background flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-border-divider"></span>
+</span>
+</div>
+<div class="flex-1 flex flex-col gap-space-xs min-w-0">
+<div class="flex items-center justify-between gap-space-xs flex-wrap">
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-secondary font-label-sm text-label-sm font-semibold tracking-wide uppercase text-[11px]">
+            Applications
+          </span>
+<span class="font-metadata text-metadata text-text-secondary">1d ago</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary tracking-tight">
+          Application Sealed: Staff Distributed Systems Engineer
+        </h2>
+<p class="font-body-md text-body-md text-text-secondary leading-relaxed">
+          Your application was confirmed by Aether Telemetry Systems engineering team with reference <span class="font-medium text-text-primary">#APP-8842-DS</span>. Saved CV snapshot v2.4 attached.
+        </p>
+<div class="flex items-center gap-2 font-metadata text-metadata text-text-secondary">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+<span>Application Received • Oct 28, 16:15 UTC</span>
+</div>
+<div class="pt-1">
+<a class="inline-flex items-center gap-1 text-primary hover:underline font-label-md text-label-md py-1" href="#">
+<span>View Application Status</span>
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+</a>
+</div>
+</div>
+</article>
+<!-- ITEM 4: Read — SkillGraph / GitHub External Website Handoff -->
+<article class="notification-item read relative flex items-start gap-space-md bg-surface-elevated rounded-xl p-space-md opacity-90 transition-all shadow-sm" data-category="skills" data-id="n4">
+<div class="relative z-10 flex flex-col items-center pt-1 shrink-0">
+<span class="w-3.5 h-3.5 rounded-full bg-surface-container-high ring-4 ring-background flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-border-divider"></span>
+</span>
+</div>
+<div class="flex-1 flex flex-col gap-space-xs min-w-0">
+<div class="flex items-center justify-between gap-space-xs flex-wrap">
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-secondary font-label-sm text-label-sm font-semibold tracking-wide uppercase text-[11px]">
+            SkillGraph / GitHub
+          </span>
+<span class="font-metadata text-metadata text-text-secondary">2d ago</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary tracking-tight">
+          GitHub Repository Sync Completed
+        </h2>
+<p class="font-body-md text-body-md text-text-secondary leading-relaxed">
+          5 public repositories analyzed for distributed systems evidence. Comprehensive SkillGraph radar benchmarks, evidence explorer, and repository selection are available on the TalentGraph website.
+        </p>
+<!-- Desktop Web Handoff Callout Box -->
+<div class="p-space-sm rounded-lg bg-surface-container-low text-text-secondary font-body-sm text-body-sm leading-relaxed mt-1">
+<div class="flex items-center gap-1.5 text-text-primary font-medium mb-1">
+<span class="material-symbols-outlined text-[16px] text-primary">laptop_mac</span>
+<span>TalentGraph Web Feature</span>
+</div>
+          Repository selection and SkillGraph deep explorer are desktop/web-only tools. Visit <span class="font-medium text-text-primary">talentgraph.io/skills</span> from your desktop browser to inspect full radar metrics.
+        </div>
+<div class="pt-2">
+<a class="inline-flex items-center gap-1.5 px-space-md py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-text-primary font-label-md text-label-md min-h-[44px]" href="https://talentgraph.io/skills" rel="noopener noreferrer" target="_blank">
+<span>Open in Browser</span>
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+</div>
+</article>
+<!-- ITEM 5: Read — Primary Candidate Email Verified -->
+<article class="notification-item read relative flex items-start gap-space-md bg-surface-elevated rounded-xl p-space-md opacity-90 transition-all shadow-sm" data-category="account" data-id="n5">
+<div class="relative z-10 flex flex-col items-center pt-1 shrink-0">
+<span class="w-3.5 h-3.5 rounded-full bg-surface-container-high ring-4 ring-background flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-border-divider"></span>
+</span>
+</div>
+<div class="flex-1 flex flex-col gap-space-xs min-w-0">
+<div class="flex items-center justify-between gap-space-xs flex-wrap">
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-secondary font-label-sm text-label-sm font-semibold tracking-wide uppercase text-[11px]">
+            Account
+          </span>
+<span class="font-metadata text-metadata text-text-secondary">4d ago</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary tracking-tight">
+          Primary Candidate Email Verified
+        </h2>
+<p class="font-body-md text-body-md text-text-secondary leading-relaxed">
+          Your candidate profile email (<span class="text-text-primary font-mono text-[13px]">alex.chen@distributed.dev</span>) was cryptographically verified for assessment cohort invitations.
+        </p>
+<div class="flex items-center gap-1.5 font-metadata text-metadata text-success mt-1">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+<span>Security Handshake Verified</span>
+</div>
+</div>
+</article>
+<!-- ITEM 6: Read — Job Recommendation -->
+<article class="notification-item read relative flex items-start gap-space-md bg-surface-elevated rounded-xl p-space-md opacity-90 transition-all shadow-sm" data-category="applications" data-id="n6">
+<div class="relative z-10 flex flex-col items-center pt-1 shrink-0">
+<span class="w-3.5 h-3.5 rounded-full bg-surface-container-high ring-4 ring-background flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-border-divider"></span>
+</span>
+</div>
+<div class="flex-1 flex flex-col gap-space-xs min-w-0">
+<div class="flex items-center justify-between gap-space-xs flex-wrap">
+<span class="px-2 py-0.5 rounded bg-surface-container text-text-secondary font-label-sm text-label-sm font-semibold tracking-wide uppercase text-[11px]">
+            Applications
+          </span>
+<span class="font-metadata text-metadata text-text-secondary">5d ago</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary tracking-tight">
+          New Relevant Role: Principal Platform Architect
+        </h2>
+<p class="font-body-md text-body-md text-text-secondary leading-relaxed">
+          Nexus Core Systems posted a role matching your distributed systems background. Review requirements and verified company credentials.
+        </p>
+<div class="pt-1">
+<button class="inline-flex items-center gap-1 text-primary hover:underline font-label-md text-label-md py-1" type="button">
+<span>View Role Brief</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Empty State Placeholder (for filtered views with 0 items) -->
+<div class="hidden flex-col items-center justify-center p-space-2xl text-center bg-surface-elevated rounded-xl my-space-md" id="filter-empty-state">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-text-secondary mb-space-sm">
+<span class="material-symbols-outlined text-[24px]">notifications_off</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-1">No matching activity</h3>
+<p class="font-body-md text-body-md text-text-secondary max-w-[280px]">
+      There are no notifications matching your current filter in the localized evidence trail.
+    </p>
+</div>
+<!-- Synchronization & Privacy Footer Card -->
+<footer class="mt-space-xl p-space-md rounded-xl bg-surface-container-low flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-text-secondary text-[20px] shrink-0 mt-0.5">sync_lock</span>
+<div class="flex flex-col gap-1">
+<h3 class="font-label-sm text-label-sm text-text-primary font-semibold">Evidence Integrity &amp; Privacy</h3>
+<p class="font-metadata text-metadata text-text-secondary leading-relaxed">
+        Notifications synchronize automatically with your TalentGraph web dashboard. Private recruiter notes, unreleased candidate ranking percentiles, and proctoring capture telemetry are excluded from candidate feeds.
+      </p>
+</div>
+</footer>
+</div>
+<script>
+  (function () {
+    const filterPills = document.querySelectorAll('.filter-pill');
+    const items = document.querySelectorAll('.notification-item');
+    const emptyState = document.getElementById('filter-empty-state');
+    const markAllBtn = document.getElementById('mark-all-read-btn');
+    const unreadCounterBadge = document.getElementById('unread-counter-badge');
+    const singleMarkReadBtns = document.querySelectorAll('.mark-single-read');
+
+    let currentFilter = 'all';
+
+    function updateUnreadCount() {
+      const unreadItems = document.querySelectorAll('.notification-item.unread');
+      const count = unreadItems.length;
+      if (unreadCounterBadge) {
+        unreadCounterBadge.textContent = count;
+        if (count === 0) {
+          unreadCounterBadge.classList.add('opacity-40');
+        } else {
+          unreadCounterBadge.classList.remove('opacity-40');
+        }
+      }
+    }
+
+    function applyFilter(filter) {
+      currentFilter = filter;
+      let visibleCount = 0;
+
+      items.forEach(item => {
+        const category = item.getAttribute('data-category');
+        const isUnread = item.classList.contains('unread');
+
+        let match = false;
+        if (filter === 'all') {
+          match = true;
+        } else if (filter === 'unread') {
+          match = isUnread;
+        } else if (filter === category) {
+          match = true;
+        }
+
+        if (match) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      if (emptyState) {
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden');
+          emptyState.classList.add('flex');
+        } else {
+          emptyState.classList.add('hidden');
+          emptyState.classList.remove('flex');
+        }
+      }
+    }
+
+    // Filter pill click listener
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', function () {
+        filterPills.forEach(p => {
+          p.classList.remove('bg-primary-container', 'text-cta-text', 'active');
+          p.classList.add('bg-surface-elevated', 'text-text-secondary');
+        });
+        this.classList.remove('bg-surface-elevated', 'text-text-secondary');
+        this.classList.add('bg-primary-container', 'text-cta-text', 'active');
+
+        const filter = this.getAttribute('data-filter');
+        applyFilter(filter);
+      });
+    });
+
+    // Mark single notification read
+    singleMarkReadBtns.forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const article = this.closest('.notification-item');
+        if (article) {
+          markItemAsRead(article);
+        }
+      });
+    });
+
+    function markItemAsRead(article) {
+      article.classList.remove('unread');
+      article.classList.add('read', 'opacity-90');
+
+      // Update Evidence Trail node appearance
+      const nodeRing = article.querySelector('.ring-background');
+      if (nodeRing) {
+        nodeRing.className = 'w-3.5 h-3.5 rounded-full bg-surface-container-high ring-4 ring-background flex items-center justify-center';
+        const innerDot = nodeRing.querySelector('span');
+        if (innerDot) {
+          innerDot.className = 'w-1.5 h-1.5 rounded-full bg-border-divider';
+        }
+      }
+
+      // Hide or update mark read button
+      const markBtn = article.querySelector('.mark-single-read');
+      if (markBtn) {
+        markBtn.remove();
+      }
+
+      updateUnreadCount();
+      if (currentFilter === 'unread') {
+        applyFilter('unread');
+      }
+    }
+
+    // Mark all as read
+    if (markAllBtn) {
+      markAllBtn.addEventListener('click', function () {
+        const unreadItems = document.querySelectorAll('.notification-item.unread');
+        unreadItems.forEach(item => markItemAsRead(item));
+      });
+    }
+
+    // Initial count sync
+    updateUnreadCount();
+  })();
+</script></main><aside aria-label="Sync error alert" aria-live="assertive" class="fixed bottom-20 inset-x-3 z-50 rounded-xl bg-surface-elevated border border-border-divider shadow-[0_4px_20px_rgba(0,0,0,0.6)] p-3 text-text-primary transition-all max-w-md mx-auto" role="alert"><div class="flex items-start gap-2.5"><div class="w-8 h-8 rounded-full bg-error-container/30 text-destructive flex items-center justify-center shrink-0 mt-0.5"><span class="material-symbols-outlined text-[20px]">error</span></div><div class="flex-1 min-w-0 pr-1"><div class="flex items-center gap-1.5 flex-wrap"><span class="font-label-md text-label-md font-semibold text-text-primary">Sync Failed</span><span class="font-metadata text-[11px] px-1.5 py-0.2 rounded bg-surface-container text-text-secondary uppercase tracking-wide">Status unchanged</span></div><p class="font-body-sm text-body-sm text-text-secondary mt-0.5 leading-snug">Could not update notification read status. Check connection and retry.</p><div class="flex items-center gap-2 mt-2"><button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary-container text-cta-text font-label-sm text-label-sm font-semibold hover:bg-tertiary-container transition-colors min-h-[44px]" type="button"><span class="material-symbols-outlined text-[16px]">refresh</span><span>Retry</span></button><button class="inline-flex items-center px-2 py-1.5 rounded-lg text-text-secondary hover:text-text-primary font-label-sm text-label-sm min-h-[44px] transition-colors" onclick="this.closest('aside').remove()" type="button"><span>Dismiss</span></button></div></div><button aria-label="Dismiss alert" class="text-text-secondary hover:text-text-primary p-1.5 rounded-lg shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors" onclick="this.closest('aside').remove()" type="button"><span class="material-symbols-outlined text-[18px]">close</span></button></div></aside><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-elevated/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.4)]" data-active-classes="text-primary font-semibold"><div class="flex justify-around items-center h-16 px-gutter-mobile"><a class="flex-1 flex flex-col items-center justify-center h-full min-h-[48px] text-text-secondary hover:text-text-primary transition-colors" data-path="jobs" href="#"><span class="material-symbols-outlined text-[22px]">work</span><span class="font-label-sm text-label-sm mt-0.5">Jobs</span></a><a class="flex-1 flex flex-col items-center justify-center h-full min-h-[48px] text-text-secondary hover:text-text-primary transition-colors" data-path="assessments" href="#"><span class="material-symbols-outlined text-[22px]">assignment_turned_in</span><span class="font-label-sm text-label-sm mt-0.5">Assessments</span></a><a aria-current="page" class="flex-1 flex flex-col items-center justify-center h-full min-h-[48px] transition-colors relative text-primary font-semibold" data-path="notifications" href="#"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="font-label-sm text-label-sm mt-0.5">Notifications</span></a></div></nav></body></html>
