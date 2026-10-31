@@ -245,6 +245,7 @@ export type JobSkillRequirementOrderByWithRelationInput = {
 
 export type JobSkillRequirementWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  jobId_skillId?: Prisma.JobSkillRequirementJobIdSkillIdCompoundUniqueInput
   AND?: Prisma.JobSkillRequirementWhereInput | Prisma.JobSkillRequirementWhereInput[]
   OR?: Prisma.JobSkillRequirementWhereInput[]
   NOT?: Prisma.JobSkillRequirementWhereInput | Prisma.JobSkillRequirementWhereInput[]
@@ -255,7 +256,7 @@ export type JobSkillRequirementWhereUniqueInput = Prisma.AtLeast<{
   isPreferred?: Prisma.BoolFilter<"JobSkillRequirement"> | boolean
   job?: Prisma.XOR<Prisma.JobScalarRelationFilter, Prisma.JobWhereInput>
   skill?: Prisma.XOR<Prisma.SkillScalarRelationFilter, Prisma.SkillWhereInput>
-}, "id">
+}, "id" | "jobId_skillId">
 
 export type JobSkillRequirementOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -352,6 +353,11 @@ export type JobSkillRequirementListRelationFilter = {
 
 export type JobSkillRequirementOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type JobSkillRequirementJobIdSkillIdCompoundUniqueInput = {
+  jobId: string
+  skillId: string
 }
 
 export type JobSkillRequirementCountOrderByAggregateInput = {
@@ -473,10 +479,6 @@ export type JobSkillRequirementUncheckedUpdateManyWithoutJobNestedInput = {
   update?: Prisma.JobSkillRequirementUpdateWithWhereUniqueWithoutJobInput | Prisma.JobSkillRequirementUpdateWithWhereUniqueWithoutJobInput[]
   updateMany?: Prisma.JobSkillRequirementUpdateManyWithWhereWithoutJobInput | Prisma.JobSkillRequirementUpdateManyWithWhereWithoutJobInput[]
   deleteMany?: Prisma.JobSkillRequirementScalarWhereInput | Prisma.JobSkillRequirementScalarWhereInput[]
-}
-
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
 }
 
 export type JobSkillRequirementCreateWithoutSkillInput = {

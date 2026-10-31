@@ -39,6 +39,8 @@ export type GitHubRepoMinAggregateOutputType = {
   candidateId: string | null
   repoName: string | null
   repoUrl: string | null
+  isSelected: boolean | null
+  lastSyncCommitSha: string | null
   stargazers: number | null
   lastCommitAt: Date | null
 }
@@ -48,6 +50,8 @@ export type GitHubRepoMaxAggregateOutputType = {
   candidateId: string | null
   repoName: string | null
   repoUrl: string | null
+  isSelected: boolean | null
+  lastSyncCommitSha: string | null
   stargazers: number | null
   lastCommitAt: Date | null
 }
@@ -57,6 +61,8 @@ export type GitHubRepoCountAggregateOutputType = {
   candidateId: number
   repoName: number
   repoUrl: number
+  isSelected: number
+  lastSyncCommitSha: number
   languages: number
   dependencies: number
   stargazers: number
@@ -78,6 +84,8 @@ export type GitHubRepoMinAggregateInputType = {
   candidateId?: true
   repoName?: true
   repoUrl?: true
+  isSelected?: true
+  lastSyncCommitSha?: true
   stargazers?: true
   lastCommitAt?: true
 }
@@ -87,6 +95,8 @@ export type GitHubRepoMaxAggregateInputType = {
   candidateId?: true
   repoName?: true
   repoUrl?: true
+  isSelected?: true
+  lastSyncCommitSha?: true
   stargazers?: true
   lastCommitAt?: true
 }
@@ -96,6 +106,8 @@ export type GitHubRepoCountAggregateInputType = {
   candidateId?: true
   repoName?: true
   repoUrl?: true
+  isSelected?: true
+  lastSyncCommitSha?: true
   languages?: true
   dependencies?: true
   stargazers?: true
@@ -194,6 +206,8 @@ export type GitHubRepoGroupByOutputType = {
   candidateId: string
   repoName: string
   repoUrl: string
+  isSelected: boolean
+  lastSyncCommitSha: string | null
   languages: runtime.JsonValue
   dependencies: runtime.JsonValue
   stargazers: number
@@ -228,6 +242,8 @@ export type GitHubRepoWhereInput = {
   candidateId?: Prisma.StringFilter<"GitHubRepo"> | string
   repoName?: Prisma.StringFilter<"GitHubRepo"> | string
   repoUrl?: Prisma.StringFilter<"GitHubRepo"> | string
+  isSelected?: Prisma.BoolFilter<"GitHubRepo"> | boolean
+  lastSyncCommitSha?: Prisma.StringNullableFilter<"GitHubRepo"> | string | null
   languages?: Prisma.JsonFilter<"GitHubRepo">
   dependencies?: Prisma.JsonFilter<"GitHubRepo">
   stargazers?: Prisma.IntFilter<"GitHubRepo"> | number
@@ -240,6 +256,8 @@ export type GitHubRepoOrderByWithRelationInput = {
   candidateId?: Prisma.SortOrder
   repoName?: Prisma.SortOrder
   repoUrl?: Prisma.SortOrder
+  isSelected?: Prisma.SortOrder
+  lastSyncCommitSha?: Prisma.SortOrderInput | Prisma.SortOrder
   languages?: Prisma.SortOrder
   dependencies?: Prisma.SortOrder
   stargazers?: Prisma.SortOrder
@@ -255,6 +273,8 @@ export type GitHubRepoWhereUniqueInput = Prisma.AtLeast<{
   candidateId?: Prisma.StringFilter<"GitHubRepo"> | string
   repoName?: Prisma.StringFilter<"GitHubRepo"> | string
   repoUrl?: Prisma.StringFilter<"GitHubRepo"> | string
+  isSelected?: Prisma.BoolFilter<"GitHubRepo"> | boolean
+  lastSyncCommitSha?: Prisma.StringNullableFilter<"GitHubRepo"> | string | null
   languages?: Prisma.JsonFilter<"GitHubRepo">
   dependencies?: Prisma.JsonFilter<"GitHubRepo">
   stargazers?: Prisma.IntFilter<"GitHubRepo"> | number
@@ -267,6 +287,8 @@ export type GitHubRepoOrderByWithAggregationInput = {
   candidateId?: Prisma.SortOrder
   repoName?: Prisma.SortOrder
   repoUrl?: Prisma.SortOrder
+  isSelected?: Prisma.SortOrder
+  lastSyncCommitSha?: Prisma.SortOrderInput | Prisma.SortOrder
   languages?: Prisma.SortOrder
   dependencies?: Prisma.SortOrder
   stargazers?: Prisma.SortOrder
@@ -286,6 +308,8 @@ export type GitHubRepoScalarWhereWithAggregatesInput = {
   candidateId?: Prisma.StringWithAggregatesFilter<"GitHubRepo"> | string
   repoName?: Prisma.StringWithAggregatesFilter<"GitHubRepo"> | string
   repoUrl?: Prisma.StringWithAggregatesFilter<"GitHubRepo"> | string
+  isSelected?: Prisma.BoolWithAggregatesFilter<"GitHubRepo"> | boolean
+  lastSyncCommitSha?: Prisma.StringNullableWithAggregatesFilter<"GitHubRepo"> | string | null
   languages?: Prisma.JsonWithAggregatesFilter<"GitHubRepo">
   dependencies?: Prisma.JsonWithAggregatesFilter<"GitHubRepo">
   stargazers?: Prisma.IntWithAggregatesFilter<"GitHubRepo"> | number
@@ -296,6 +320,8 @@ export type GitHubRepoCreateInput = {
   id?: string
   repoName: string
   repoUrl: string
+  isSelected?: boolean
+  lastSyncCommitSha?: string | null
   languages: Prisma.JsonNullValueInput | runtime.InputJsonValue
   dependencies: Prisma.JsonNullValueInput | runtime.InputJsonValue
   stargazers: number
@@ -308,6 +334,8 @@ export type GitHubRepoUncheckedCreateInput = {
   candidateId: string
   repoName: string
   repoUrl: string
+  isSelected?: boolean
+  lastSyncCommitSha?: string | null
   languages: Prisma.JsonNullValueInput | runtime.InputJsonValue
   dependencies: Prisma.JsonNullValueInput | runtime.InputJsonValue
   stargazers: number
@@ -318,6 +346,8 @@ export type GitHubRepoUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   repoName?: Prisma.StringFieldUpdateOperationsInput | string
   repoUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastSyncCommitSha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   languages?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   dependencies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   stargazers?: Prisma.IntFieldUpdateOperationsInput | number
@@ -330,6 +360,8 @@ export type GitHubRepoUncheckedUpdateInput = {
   candidateId?: Prisma.StringFieldUpdateOperationsInput | string
   repoName?: Prisma.StringFieldUpdateOperationsInput | string
   repoUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastSyncCommitSha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   languages?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   dependencies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   stargazers?: Prisma.IntFieldUpdateOperationsInput | number
@@ -341,6 +373,8 @@ export type GitHubRepoCreateManyInput = {
   candidateId: string
   repoName: string
   repoUrl: string
+  isSelected?: boolean
+  lastSyncCommitSha?: string | null
   languages: Prisma.JsonNullValueInput | runtime.InputJsonValue
   dependencies: Prisma.JsonNullValueInput | runtime.InputJsonValue
   stargazers: number
@@ -351,6 +385,8 @@ export type GitHubRepoUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   repoName?: Prisma.StringFieldUpdateOperationsInput | string
   repoUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastSyncCommitSha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   languages?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   dependencies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   stargazers?: Prisma.IntFieldUpdateOperationsInput | number
@@ -362,6 +398,8 @@ export type GitHubRepoUncheckedUpdateManyInput = {
   candidateId?: Prisma.StringFieldUpdateOperationsInput | string
   repoName?: Prisma.StringFieldUpdateOperationsInput | string
   repoUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastSyncCommitSha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   languages?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   dependencies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   stargazers?: Prisma.IntFieldUpdateOperationsInput | number
@@ -383,6 +421,8 @@ export type GitHubRepoCountOrderByAggregateInput = {
   candidateId?: Prisma.SortOrder
   repoName?: Prisma.SortOrder
   repoUrl?: Prisma.SortOrder
+  isSelected?: Prisma.SortOrder
+  lastSyncCommitSha?: Prisma.SortOrder
   languages?: Prisma.SortOrder
   dependencies?: Prisma.SortOrder
   stargazers?: Prisma.SortOrder
@@ -398,6 +438,8 @@ export type GitHubRepoMaxOrderByAggregateInput = {
   candidateId?: Prisma.SortOrder
   repoName?: Prisma.SortOrder
   repoUrl?: Prisma.SortOrder
+  isSelected?: Prisma.SortOrder
+  lastSyncCommitSha?: Prisma.SortOrder
   stargazers?: Prisma.SortOrder
   lastCommitAt?: Prisma.SortOrder
 }
@@ -407,6 +449,8 @@ export type GitHubRepoMinOrderByAggregateInput = {
   candidateId?: Prisma.SortOrder
   repoName?: Prisma.SortOrder
   repoUrl?: Prisma.SortOrder
+  isSelected?: Prisma.SortOrder
+  lastSyncCommitSha?: Prisma.SortOrder
   stargazers?: Prisma.SortOrder
   lastCommitAt?: Prisma.SortOrder
 }
@@ -457,18 +501,16 @@ export type GitHubRepoUncheckedUpdateManyWithoutCandidateNestedInput = {
   deleteMany?: Prisma.GitHubRepoScalarWhereInput | Prisma.GitHubRepoScalarWhereInput[]
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type GitHubRepoCreateWithoutCandidateInput = {
   id?: string
   repoName: string
   repoUrl: string
+  isSelected?: boolean
+  lastSyncCommitSha?: string | null
   languages: Prisma.JsonNullValueInput | runtime.InputJsonValue
   dependencies: Prisma.JsonNullValueInput | runtime.InputJsonValue
   stargazers: number
@@ -479,6 +521,8 @@ export type GitHubRepoUncheckedCreateWithoutCandidateInput = {
   id?: string
   repoName: string
   repoUrl: string
+  isSelected?: boolean
+  lastSyncCommitSha?: string | null
   languages: Prisma.JsonNullValueInput | runtime.InputJsonValue
   dependencies: Prisma.JsonNullValueInput | runtime.InputJsonValue
   stargazers: number
@@ -519,6 +563,8 @@ export type GitHubRepoScalarWhereInput = {
   candidateId?: Prisma.StringFilter<"GitHubRepo"> | string
   repoName?: Prisma.StringFilter<"GitHubRepo"> | string
   repoUrl?: Prisma.StringFilter<"GitHubRepo"> | string
+  isSelected?: Prisma.BoolFilter<"GitHubRepo"> | boolean
+  lastSyncCommitSha?: Prisma.StringNullableFilter<"GitHubRepo"> | string | null
   languages?: Prisma.JsonFilter<"GitHubRepo">
   dependencies?: Prisma.JsonFilter<"GitHubRepo">
   stargazers?: Prisma.IntFilter<"GitHubRepo"> | number
@@ -529,6 +575,8 @@ export type GitHubRepoCreateManyCandidateInput = {
   id?: string
   repoName: string
   repoUrl: string
+  isSelected?: boolean
+  lastSyncCommitSha?: string | null
   languages: Prisma.JsonNullValueInput | runtime.InputJsonValue
   dependencies: Prisma.JsonNullValueInput | runtime.InputJsonValue
   stargazers: number
@@ -539,6 +587,8 @@ export type GitHubRepoUpdateWithoutCandidateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   repoName?: Prisma.StringFieldUpdateOperationsInput | string
   repoUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastSyncCommitSha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   languages?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   dependencies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   stargazers?: Prisma.IntFieldUpdateOperationsInput | number
@@ -549,6 +599,8 @@ export type GitHubRepoUncheckedUpdateWithoutCandidateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   repoName?: Prisma.StringFieldUpdateOperationsInput | string
   repoUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastSyncCommitSha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   languages?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   dependencies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   stargazers?: Prisma.IntFieldUpdateOperationsInput | number
@@ -559,6 +611,8 @@ export type GitHubRepoUncheckedUpdateManyWithoutCandidateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   repoName?: Prisma.StringFieldUpdateOperationsInput | string
   repoUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastSyncCommitSha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   languages?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   dependencies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   stargazers?: Prisma.IntFieldUpdateOperationsInput | number
@@ -572,6 +626,8 @@ export type GitHubRepoSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   candidateId?: boolean
   repoName?: boolean
   repoUrl?: boolean
+  isSelected?: boolean
+  lastSyncCommitSha?: boolean
   languages?: boolean
   dependencies?: boolean
   stargazers?: boolean
@@ -584,6 +640,8 @@ export type GitHubRepoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   candidateId?: boolean
   repoName?: boolean
   repoUrl?: boolean
+  isSelected?: boolean
+  lastSyncCommitSha?: boolean
   languages?: boolean
   dependencies?: boolean
   stargazers?: boolean
@@ -596,6 +654,8 @@ export type GitHubRepoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   candidateId?: boolean
   repoName?: boolean
   repoUrl?: boolean
+  isSelected?: boolean
+  lastSyncCommitSha?: boolean
   languages?: boolean
   dependencies?: boolean
   stargazers?: boolean
@@ -608,13 +668,15 @@ export type GitHubRepoSelectScalar = {
   candidateId?: boolean
   repoName?: boolean
   repoUrl?: boolean
+  isSelected?: boolean
+  lastSyncCommitSha?: boolean
   languages?: boolean
   dependencies?: boolean
   stargazers?: boolean
   lastCommitAt?: boolean
 }
 
-export type GitHubRepoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "candidateId" | "repoName" | "repoUrl" | "languages" | "dependencies" | "stargazers" | "lastCommitAt", ExtArgs["result"]["gitHubRepo"]>
+export type GitHubRepoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "candidateId" | "repoName" | "repoUrl" | "isSelected" | "lastSyncCommitSha" | "languages" | "dependencies" | "stargazers" | "lastCommitAt", ExtArgs["result"]["gitHubRepo"]>
 export type GitHubRepoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   candidate?: boolean | Prisma.CandidateProfileDefaultArgs<ExtArgs>
 }
@@ -635,6 +697,8 @@ export type $GitHubRepoPayload<ExtArgs extends runtime.Types.Extensions.Internal
     candidateId: string
     repoName: string
     repoUrl: string
+    isSelected: boolean
+    lastSyncCommitSha: string | null
     languages: runtime.JsonValue
     dependencies: runtime.JsonValue
     stargazers: number
@@ -1067,6 +1131,8 @@ export interface GitHubRepoFieldRefs {
   readonly candidateId: Prisma.FieldRef<"GitHubRepo", 'String'>
   readonly repoName: Prisma.FieldRef<"GitHubRepo", 'String'>
   readonly repoUrl: Prisma.FieldRef<"GitHubRepo", 'String'>
+  readonly isSelected: Prisma.FieldRef<"GitHubRepo", 'Boolean'>
+  readonly lastSyncCommitSha: Prisma.FieldRef<"GitHubRepo", 'String'>
   readonly languages: Prisma.FieldRef<"GitHubRepo", 'Json'>
   readonly dependencies: Prisma.FieldRef<"GitHubRepo", 'Json'>
   readonly stargazers: Prisma.FieldRef<"GitHubRepo", 'Int'>

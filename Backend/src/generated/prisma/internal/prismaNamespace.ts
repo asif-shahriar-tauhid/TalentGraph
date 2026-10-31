@@ -416,6 +416,8 @@ export const ModelName = {
   IntegrityFlag: 'IntegrityFlag',
   Subscription: 'Subscription',
   Transaction: 'Transaction',
+  Notification: 'Notification',
+  BackgroundJob: 'BackgroundJob',
   User: 'User'
 } as const
 
@@ -432,7 +434,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "candidateProfile" | "company" | "recruiterProfile" | "skill" | "candidateSkill" | "evidence" | "gitHubRepo" | "job" | "jobSkillRequirement" | "application" | "assessmentTemplate" | "question" | "assessmentAttempt" | "assessmentAnswer" | "assessmentSnapshot" | "assessmentAudioSnapshot" | "integrityFlag" | "subscription" | "transaction" | "user"
+    modelProps: "candidateProfile" | "company" | "recruiterProfile" | "skill" | "candidateSkill" | "evidence" | "gitHubRepo" | "job" | "jobSkillRequirement" | "application" | "assessmentTemplate" | "question" | "assessmentAttempt" | "assessmentAnswer" | "assessmentSnapshot" | "assessmentAudioSnapshot" | "integrityFlag" | "subscription" | "transaction" | "notification" | "backgroundJob" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -830,6 +832,18 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
           args: Prisma.EvidenceFindManyArgs<ExtArgs>
           result: runtime.Types.Utils.PayloadToResult<Prisma.$EvidencePayload>[]
         }
+        create: {
+          args: Prisma.EvidenceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvidencePayload>
+        }
+        createMany: {
+          args: Prisma.EvidenceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EvidenceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvidencePayload>[]
+        }
         delete: {
           args: Prisma.EvidenceDeleteArgs<ExtArgs>
           result: runtime.Types.Utils.PayloadToResult<Prisma.$EvidencePayload>
@@ -849,6 +863,10 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         updateManyAndReturn: {
           args: Prisma.EvidenceUpdateManyAndReturnArgs<ExtArgs>
           result: runtime.Types.Utils.PayloadToResult<Prisma.$EvidencePayload>[]
+        }
+        upsert: {
+          args: Prisma.EvidenceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvidencePayload>
         }
         aggregate: {
           args: Prisma.EvidenceAggregateArgs<ExtArgs>
@@ -1826,6 +1844,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Notification: {
+      payload: Prisma.$NotificationPayload<ExtArgs>
+      fields: Prisma.NotificationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.NotificationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.NotificationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPayload>
+        }
+        findFirst: {
+          args: Prisma.NotificationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.NotificationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPayload>
+        }
+        findMany: {
+          args: Prisma.NotificationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+        }
+        create: {
+          args: Prisma.NotificationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPayload>
+        }
+        createMany: {
+          args: Prisma.NotificationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.NotificationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+        }
+        delete: {
+          args: Prisma.NotificationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPayload>
+        }
+        update: {
+          args: Prisma.NotificationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPayload>
+        }
+        deleteMany: {
+          args: Prisma.NotificationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.NotificationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.NotificationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+        }
+        upsert: {
+          args: Prisma.NotificationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPayload>
+        }
+        aggregate: {
+          args: Prisma.NotificationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNotification>
+        }
+        groupBy: {
+          args: Prisma.NotificationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.NotificationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificationCountAggregateOutputType> | number
+        }
+      }
+    }
+    BackgroundJob: {
+      payload: Prisma.$BackgroundJobPayload<ExtArgs>
+      fields: Prisma.BackgroundJobFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BackgroundJobFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackgroundJobPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BackgroundJobFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackgroundJobPayload>
+        }
+        findFirst: {
+          args: Prisma.BackgroundJobFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackgroundJobPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BackgroundJobFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackgroundJobPayload>
+        }
+        findMany: {
+          args: Prisma.BackgroundJobFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackgroundJobPayload>[]
+        }
+        create: {
+          args: Prisma.BackgroundJobCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackgroundJobPayload>
+        }
+        createMany: {
+          args: Prisma.BackgroundJobCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BackgroundJobCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackgroundJobPayload>[]
+        }
+        delete: {
+          args: Prisma.BackgroundJobDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackgroundJobPayload>
+        }
+        update: {
+          args: Prisma.BackgroundJobUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackgroundJobPayload>
+        }
+        deleteMany: {
+          args: Prisma.BackgroundJobDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BackgroundJobUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BackgroundJobUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackgroundJobPayload>[]
+        }
+        upsert: {
+          args: Prisma.BackgroundJobUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BackgroundJobPayload>
+        }
+        aggregate: {
+          args: Prisma.BackgroundJobAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBackgroundJob>
+        }
+        groupBy: {
+          args: Prisma.BackgroundJobGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BackgroundJobGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BackgroundJobCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BackgroundJobCountAggregateOutputType> | number
+        }
+      }
+    }
     User: {
       payload: Prisma.$UserPayload<ExtArgs>
       fields: Prisma.UserFieldRefs
@@ -1947,6 +2113,8 @@ export const CandidateProfileScalarFieldEnum = {
   education: 'education',
   links: 'links',
   cvUrl: 'cvUrl',
+  githubSyncCount: 'githubSyncCount',
+  githubSyncResetAt: 'githubSyncResetAt',
   subscriptionTier: 'subscriptionTier'
 } as const
 
@@ -1959,6 +2127,10 @@ export const CompanyScalarFieldEnum = {
   description: 'description',
   website: 'website',
   logoUrl: 'logoUrl',
+  verificationStatus: 'verificationStatus',
+  verificationDocuments: 'verificationDocuments',
+  recruiterAffiliationProof: 'recruiterAffiliationProof',
+  rejectionReason: 'rejectionReason',
   subscriptionTier: 'subscriptionTier'
 } as const
 
@@ -2014,6 +2186,8 @@ export const GitHubRepoScalarFieldEnum = {
   candidateId: 'candidateId',
   repoName: 'repoName',
   repoUrl: 'repoUrl',
+  isSelected: 'isSelected',
+  lastSyncCommitSha: 'lastSyncCommitSha',
   languages: 'languages',
   dependencies: 'dependencies',
   stargazers: 'stargazers',
@@ -2055,7 +2229,9 @@ export const ApplicationScalarFieldEnum = {
   jobId: 'jobId',
   candidateId: 'candidateId',
   status: 'status',
+  cvSnapshotUrl: 'cvSnapshotUrl',
   matchScore: 'matchScore',
+  perSkillBreakdown: 'perSkillBreakdown',
   matchExplanation: 'matchExplanation',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -2067,7 +2243,8 @@ export type ApplicationScalarFieldEnum = (typeof ApplicationScalarFieldEnum)[key
 export const AssessmentTemplateScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  description: 'description'
+  description: 'description',
+  overallDurationSecs: 'overallDurationSecs'
 } as const
 
 export type AssessmentTemplateScalarFieldEnum = (typeof AssessmentTemplateScalarFieldEnum)[keyof typeof AssessmentTemplateScalarFieldEnum]
@@ -2080,6 +2257,7 @@ export const QuestionScalarFieldEnum = {
   type: 'type',
   options: 'options',
   correctAnswer: 'correctAnswer',
+  points: 'points',
   timeLimitSecs: 'timeLimitSecs'
 } as const
 
@@ -2091,6 +2269,11 @@ export const AssessmentAttemptScalarFieldEnum = {
   applicationId: 'applicationId',
   status: 'status',
   totalScore: 'totalScore',
+  configSnapshot: 'configSnapshot',
+  reviewVerdict: 'reviewVerdict',
+  reviewerId: 'reviewerId',
+  reviewReason: 'reviewReason',
+  reviewedAt: 'reviewedAt',
   startedAt: 'startedAt',
   completedAt: 'completedAt'
 } as const
@@ -2181,13 +2364,52 @@ export const TransactionScalarFieldEnum = {
 export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
 
 
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  category: 'category',
+  title: 'title',
+  message: 'message',
+  targetUrl: 'targetUrl',
+  isRead: 'isRead',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+export const BackgroundJobScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  status: 'status',
+  correlationId: 'correlationId',
+  payload: 'payload',
+  retryCount: 'retryCount',
+  errorSummary: 'errorSummary',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BackgroundJobScalarFieldEnum = (typeof BackgroundJobScalarFieldEnum)[keyof typeof BackgroundJobScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   email: 'email',
-  passwordHash: 'passwordHash',
+  password: 'password',
   role: 'role',
+  status: 'status',
+  authProvider: 'authProvider',
+  emailVerified: 'emailVerified',
+  needPasswordChange: 'needPasswordChange',
   githubId: 'githubId',
   githubToken: 'githubToken',
+  imageUrl: 'imageUrl',
+  imagePublicId: 'imagePublicId',
+  isAssessmentBanned: 'isAssessmentBanned',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -2270,6 +2492,34 @@ export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$Prisma
 
 
 /**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
  * Reference to a field of type 'SubscriptionTier'
  */
 export type EnumSubscriptionTierFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionTier'>
@@ -2280,6 +2530,20 @@ export type EnumSubscriptionTierFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'SubscriptionTier[]'
  */
 export type ListEnumSubscriptionTierFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionTier[]'>
+    
+
+
+/**
+ * Reference to a field of type 'CompanyVerificationStatus'
+ */
+export type EnumCompanyVerificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CompanyVerificationStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'CompanyVerificationStatus[]'
+ */
+export type ListEnumCompanyVerificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CompanyVerificationStatus[]'>
     
 
 
@@ -2308,34 +2572,6 @@ export type EnumEvidenceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'EvidenceType[]'
  */
 export type ListEnumEvidenceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EvidenceType[]'>
-    
-
-
-/**
- * Reference to a field of type 'DateTime'
- */
-export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-/**
- * Reference to a field of type 'DateTime[]'
- */
-export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-/**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -2389,6 +2625,20 @@ export type ListEnumAttemptStatusFieldRefInput<$PrismaModel> = FieldRefInputType
 
 
 /**
+ * Reference to a field of type 'IntegrityReviewVerdict'
+ */
+export type EnumIntegrityReviewVerdictFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'IntegrityReviewVerdict'>
+    
+
+
+/**
+ * Reference to a field of type 'IntegrityReviewVerdict[]'
+ */
+export type ListEnumIntegrityReviewVerdictFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'IntegrityReviewVerdict[]'>
+    
+
+
+/**
  * Reference to a field of type 'SubscriptionStatus'
  */
 export type EnumSubscriptionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionStatus'>
@@ -2431,6 +2681,20 @@ export type ListEnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType
 
 
 /**
+ * Reference to a field of type 'BackgroundJobStatus'
+ */
+export type EnumBackgroundJobStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BackgroundJobStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'BackgroundJobStatus[]'
+ */
+export type ListEnumBackgroundJobStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BackgroundJobStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Role'
  */
 export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
@@ -2441,6 +2705,34 @@ export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'Role[]'
  */
 export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+/**
+ * Reference to a field of type 'UserStatus'
+ */
+export type EnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'UserStatus[]'
+ */
+export type ListEnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AuthProvider'
+ */
+export type EnumAuthProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuthProvider'>
+    
+
+
+/**
+ * Reference to a field of type 'AuthProvider[]'
+ */
+export type ListEnumAuthProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuthProvider[]'>
     
 
 /**
@@ -2613,6 +2905,8 @@ export type GlobalOmitConfig = {
   integrityFlag?: Prisma.IntegrityFlagOmit
   subscription?: Prisma.SubscriptionOmit
   transaction?: Prisma.TransactionOmit
+  notification?: Prisma.NotificationOmit
+  backgroundJob?: Prisma.BackgroundJobOmit
   user?: Prisma.UserOmit
 }
 

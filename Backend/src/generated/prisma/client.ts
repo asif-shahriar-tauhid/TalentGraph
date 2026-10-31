@@ -137,6 +137,16 @@ export type Subscription = Prisma.SubscriptionModel
  */
 export type Transaction = Prisma.TransactionModel
 /**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
+/**
+ * Model BackgroundJob
+ * 
+ */
+export type BackgroundJob = Prisma.BackgroundJobModel
+/**
  * Model User
  * 
  */

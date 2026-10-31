@@ -296,6 +296,28 @@ export type EvidenceScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Evidence"> | Date | string
 }
 
+export type EvidenceCreateInput = {
+  id?: string
+  type: $Enums.EvidenceType
+  sourceUrl: string
+  description: string
+  extractedScore: number
+  metadata: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  candidateSkill: Prisma.CandidateSkillCreateNestedOneWithoutEvidenceInput
+}
+
+export type EvidenceUncheckedCreateInput = {
+  id?: string
+  candidateSkillId: string
+  type: $Enums.EvidenceType
+  sourceUrl: string
+  description: string
+  extractedScore: number
+  metadata: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+}
+
 export type EvidenceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumEvidenceTypeFieldUpdateOperationsInput | $Enums.EvidenceType
@@ -316,6 +338,17 @@ export type EvidenceUncheckedUpdateInput = {
   extractedScore?: Prisma.FloatFieldUpdateOperationsInput | number
   metadata?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type EvidenceCreateManyInput = {
+  id?: string
+  candidateSkillId: string
+  type: $Enums.EvidenceType
+  sourceUrl: string
+  description: string
+  extractedScore: number
+  metadata: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
 }
 
 export type EvidenceUpdateManyMutationInput = {
@@ -389,14 +422,24 @@ export type EvidenceSumOrderByAggregateInput = {
 }
 
 export type EvidenceCreateNestedManyWithoutCandidateSkillInput = {
+  create?: Prisma.XOR<Prisma.EvidenceCreateWithoutCandidateSkillInput, Prisma.EvidenceUncheckedCreateWithoutCandidateSkillInput> | Prisma.EvidenceCreateWithoutCandidateSkillInput[] | Prisma.EvidenceUncheckedCreateWithoutCandidateSkillInput[]
+  connectOrCreate?: Prisma.EvidenceCreateOrConnectWithoutCandidateSkillInput | Prisma.EvidenceCreateOrConnectWithoutCandidateSkillInput[]
+  createMany?: Prisma.EvidenceCreateManyCandidateSkillInputEnvelope
   connect?: Prisma.EvidenceWhereUniqueInput | Prisma.EvidenceWhereUniqueInput[]
 }
 
 export type EvidenceUncheckedCreateNestedManyWithoutCandidateSkillInput = {
+  create?: Prisma.XOR<Prisma.EvidenceCreateWithoutCandidateSkillInput, Prisma.EvidenceUncheckedCreateWithoutCandidateSkillInput> | Prisma.EvidenceCreateWithoutCandidateSkillInput[] | Prisma.EvidenceUncheckedCreateWithoutCandidateSkillInput[]
+  connectOrCreate?: Prisma.EvidenceCreateOrConnectWithoutCandidateSkillInput | Prisma.EvidenceCreateOrConnectWithoutCandidateSkillInput[]
+  createMany?: Prisma.EvidenceCreateManyCandidateSkillInputEnvelope
   connect?: Prisma.EvidenceWhereUniqueInput | Prisma.EvidenceWhereUniqueInput[]
 }
 
 export type EvidenceUpdateManyWithoutCandidateSkillNestedInput = {
+  create?: Prisma.XOR<Prisma.EvidenceCreateWithoutCandidateSkillInput, Prisma.EvidenceUncheckedCreateWithoutCandidateSkillInput> | Prisma.EvidenceCreateWithoutCandidateSkillInput[] | Prisma.EvidenceUncheckedCreateWithoutCandidateSkillInput[]
+  connectOrCreate?: Prisma.EvidenceCreateOrConnectWithoutCandidateSkillInput | Prisma.EvidenceCreateOrConnectWithoutCandidateSkillInput[]
+  upsert?: Prisma.EvidenceUpsertWithWhereUniqueWithoutCandidateSkillInput | Prisma.EvidenceUpsertWithWhereUniqueWithoutCandidateSkillInput[]
+  createMany?: Prisma.EvidenceCreateManyCandidateSkillInputEnvelope
   set?: Prisma.EvidenceWhereUniqueInput | Prisma.EvidenceWhereUniqueInput[]
   disconnect?: Prisma.EvidenceWhereUniqueInput | Prisma.EvidenceWhereUniqueInput[]
   delete?: Prisma.EvidenceWhereUniqueInput | Prisma.EvidenceWhereUniqueInput[]
@@ -407,6 +450,10 @@ export type EvidenceUpdateManyWithoutCandidateSkillNestedInput = {
 }
 
 export type EvidenceUncheckedUpdateManyWithoutCandidateSkillNestedInput = {
+  create?: Prisma.XOR<Prisma.EvidenceCreateWithoutCandidateSkillInput, Prisma.EvidenceUncheckedCreateWithoutCandidateSkillInput> | Prisma.EvidenceCreateWithoutCandidateSkillInput[] | Prisma.EvidenceUncheckedCreateWithoutCandidateSkillInput[]
+  connectOrCreate?: Prisma.EvidenceCreateOrConnectWithoutCandidateSkillInput | Prisma.EvidenceCreateOrConnectWithoutCandidateSkillInput[]
+  upsert?: Prisma.EvidenceUpsertWithWhereUniqueWithoutCandidateSkillInput | Prisma.EvidenceUpsertWithWhereUniqueWithoutCandidateSkillInput[]
+  createMany?: Prisma.EvidenceCreateManyCandidateSkillInputEnvelope
   set?: Prisma.EvidenceWhereUniqueInput | Prisma.EvidenceWhereUniqueInput[]
   disconnect?: Prisma.EvidenceWhereUniqueInput | Prisma.EvidenceWhereUniqueInput[]
   delete?: Prisma.EvidenceWhereUniqueInput | Prisma.EvidenceWhereUniqueInput[]
@@ -422,6 +469,42 @@ export type EnumEvidenceTypeFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type EvidenceCreateWithoutCandidateSkillInput = {
+  id?: string
+  type: $Enums.EvidenceType
+  sourceUrl: string
+  description: string
+  extractedScore: number
+  metadata: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+}
+
+export type EvidenceUncheckedCreateWithoutCandidateSkillInput = {
+  id?: string
+  type: $Enums.EvidenceType
+  sourceUrl: string
+  description: string
+  extractedScore: number
+  metadata: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+}
+
+export type EvidenceCreateOrConnectWithoutCandidateSkillInput = {
+  where: Prisma.EvidenceWhereUniqueInput
+  create: Prisma.XOR<Prisma.EvidenceCreateWithoutCandidateSkillInput, Prisma.EvidenceUncheckedCreateWithoutCandidateSkillInput>
+}
+
+export type EvidenceCreateManyCandidateSkillInputEnvelope = {
+  data: Prisma.EvidenceCreateManyCandidateSkillInput | Prisma.EvidenceCreateManyCandidateSkillInput[]
+  skipDuplicates?: boolean
+}
+
+export type EvidenceUpsertWithWhereUniqueWithoutCandidateSkillInput = {
+  where: Prisma.EvidenceWhereUniqueInput
+  update: Prisma.XOR<Prisma.EvidenceUpdateWithoutCandidateSkillInput, Prisma.EvidenceUncheckedUpdateWithoutCandidateSkillInput>
+  create: Prisma.XOR<Prisma.EvidenceCreateWithoutCandidateSkillInput, Prisma.EvidenceUncheckedCreateWithoutCandidateSkillInput>
 }
 
 export type EvidenceUpdateWithWhereUniqueWithoutCandidateSkillInput = {
@@ -446,6 +529,16 @@ export type EvidenceScalarWhereInput = {
   extractedScore?: Prisma.FloatFilter<"Evidence"> | number
   metadata?: Prisma.JsonFilter<"Evidence">
   createdAt?: Prisma.DateTimeFilter<"Evidence"> | Date | string
+}
+
+export type EvidenceCreateManyCandidateSkillInput = {
+  id?: string
+  type: $Enums.EvidenceType
+  sourceUrl: string
+  description: string
+  extractedScore: number
+  metadata: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
 }
 
 export type EvidenceUpdateWithoutCandidateSkillInput = {
@@ -492,6 +585,17 @@ export type EvidenceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   candidateSkill?: boolean | Prisma.CandidateSkillDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["evidence"]>
 
+export type EvidenceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  candidateSkillId?: boolean
+  type?: boolean
+  sourceUrl?: boolean
+  description?: boolean
+  extractedScore?: boolean
+  metadata?: boolean
+  createdAt?: boolean
+  candidateSkill?: boolean | Prisma.CandidateSkillDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["evidence"]>
 
 export type EvidenceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -518,6 +622,9 @@ export type EvidenceSelectScalar = {
 
 export type EvidenceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "candidateSkillId" | "type" | "sourceUrl" | "description" | "extractedScore" | "metadata" | "createdAt", ExtArgs["result"]["evidence"]>
 export type EvidenceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  candidateSkill?: boolean | Prisma.CandidateSkillDefaultArgs<ExtArgs>
+}
+export type EvidenceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   candidateSkill?: boolean | Prisma.CandidateSkillDefaultArgs<ExtArgs>
 }
 export type EvidenceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -628,6 +735,58 @@ export interface EvidenceDelegate<ExtArgs extends runtime.Types.Extensions.Inter
   findMany<T extends EvidenceFindManyArgs>(args?: Prisma.SelectSubset<T, EvidenceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EvidencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
   /**
+   * Create a Evidence.
+   * @param {EvidenceCreateArgs} args - Arguments to create a Evidence.
+   * @example
+   * // Create one Evidence
+   * const Evidence = await prisma.evidence.create({
+   *   data: {
+   *     // ... data to create a Evidence
+   *   }
+   * })
+   * 
+   */
+  create<T extends EvidenceCreateArgs>(args: Prisma.SelectSubset<T, EvidenceCreateArgs<ExtArgs>>): Prisma.Prisma__EvidenceClient<runtime.Types.Result.GetResult<Prisma.$EvidencePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+  /**
+   * Create many Evidences.
+   * @param {EvidenceCreateManyArgs} args - Arguments to create many Evidences.
+   * @example
+   * // Create many Evidences
+   * const evidence = await prisma.evidence.createMany({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   *     
+   */
+  createMany<T extends EvidenceCreateManyArgs>(args?: Prisma.SelectSubset<T, EvidenceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Create many Evidences and returns the data saved in the database.
+   * @param {EvidenceCreateManyAndReturnArgs} args - Arguments to create many Evidences.
+   * @example
+   * // Create many Evidences
+   * const evidence = await prisma.evidence.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many Evidences and only return the `id`
+   * const evidenceWithIdOnly = await prisma.evidence.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends EvidenceCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, EvidenceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EvidencePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a Evidence.
    * @param {EvidenceDeleteArgs} args - Arguments to delete one Evidence.
    * @example
@@ -720,6 +879,25 @@ export interface EvidenceDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    * 
    */
   updateManyAndReturn<T extends EvidenceUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, EvidenceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EvidencePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+  /**
+   * Create or update one Evidence.
+   * @param {EvidenceUpsertArgs} args - Arguments to update or create a Evidence.
+   * @example
+   * // Update or create a Evidence
+   * const evidence = await prisma.evidence.upsert({
+   *   create: {
+   *     // ... data to create a Evidence
+   *   },
+   *   update: {
+   *     // ... in case it already exists, update
+   *   },
+   *   where: {
+   *     // ... the filter for the Evidence we want to update
+   *   }
+   * })
+   */
+  upsert<T extends EvidenceUpsertArgs>(args: Prisma.SelectSubset<T, EvidenceUpsertArgs<ExtArgs>>): Prisma.Prisma__EvidenceClient<runtime.Types.Result.GetResult<Prisma.$EvidencePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
   /**
@@ -1104,6 +1282,62 @@ export type EvidenceFindManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
+ * Evidence create
+ */
+export type EvidenceCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Evidence
+   */
+  select?: Prisma.EvidenceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Evidence
+   */
+  omit?: Prisma.EvidenceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EvidenceInclude<ExtArgs> | null
+  /**
+   * The data needed to create a Evidence.
+   */
+  data: Prisma.XOR<Prisma.EvidenceCreateInput, Prisma.EvidenceUncheckedCreateInput>
+}
+
+/**
+ * Evidence createMany
+ */
+export type EvidenceCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * The data used to create many Evidences.
+   */
+  data: Prisma.EvidenceCreateManyInput | Prisma.EvidenceCreateManyInput[]
+  skipDuplicates?: boolean
+}
+
+/**
+ * Evidence createManyAndReturn
+ */
+export type EvidenceCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Evidence
+   */
+  select?: Prisma.EvidenceSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Evidence
+   */
+  omit?: Prisma.EvidenceOmit<ExtArgs> | null
+  /**
+   * The data used to create many Evidences.
+   */
+  data: Prisma.EvidenceCreateManyInput | Prisma.EvidenceCreateManyInput[]
+  skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EvidenceIncludeCreateManyAndReturn<ExtArgs> | null
+}
+
+/**
  * Evidence update
  */
 export type EvidenceUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1175,6 +1409,36 @@ export type EvidenceUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    * Choose, which related nodes to fetch as well
    */
   include?: Prisma.EvidenceIncludeUpdateManyAndReturn<ExtArgs> | null
+}
+
+/**
+ * Evidence upsert
+ */
+export type EvidenceUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Evidence
+   */
+  select?: Prisma.EvidenceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Evidence
+   */
+  omit?: Prisma.EvidenceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EvidenceInclude<ExtArgs> | null
+  /**
+   * The filter to search for the Evidence to update in case it exists.
+   */
+  where: Prisma.EvidenceWhereUniqueInput
+  /**
+   * In case the Evidence found by the `where` argument doesn't exist, create a new Evidence with this data.
+   */
+  create: Prisma.XOR<Prisma.EvidenceCreateInput, Prisma.EvidenceUncheckedCreateInput>
+  /**
+   * In case the Evidence was found with the provided `where` argument, update it with this data.
+   */
+  update: Prisma.XOR<Prisma.EvidenceUpdateInput, Prisma.EvidenceUncheckedUpdateInput>
 }
 
 /**

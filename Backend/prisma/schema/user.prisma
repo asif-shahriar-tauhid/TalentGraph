@@ -1,12 +1,23 @@
 model User {
-  id               String            @id @default(uuid())
-  email            String            @unique
-  passwordHash     String
-  role             Role
-  githubId         String?           @unique
-  githubToken      String?
-  candidateProfile CandidateProfile?
-  recruiterProfile RecruiterProfile?
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
+  id                 String            @id @default(uuid())
+  name               String
+  email              String            @unique
+  password           String?
+  role               Role              @default(CANDIDATE)
+  status             UserStatus        @default(ACTIVE)
+  authProvider       AuthProvider      @default(CREDENTIAL)
+  emailVerified      Boolean           @default(false)
+  needPasswordChange Boolean           @default(false)
+  githubId           String?           @unique
+  githubToken        String?
+  imageUrl           String            @default("")
+  imagePublicId      String            @default("")
+  isAssessmentBanned Boolean           @default(false)
+  isDeleted          Boolean           @default(false)
+  deletedAt          DateTime?
+  candidateProfile   CandidateProfile?
+  recruiterProfile   RecruiterProfile?
+  notifications      Notification[]
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
 }
