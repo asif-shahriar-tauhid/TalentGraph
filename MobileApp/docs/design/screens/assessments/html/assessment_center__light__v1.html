@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html class="bg-[#FAFAFA] text-[#18181B]" lang="en" style="background-color: #FAFAFA !important; color: #18181B;"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<meta content="mobile_tab" name="shell-type"/>
+<style>
+    @layer base {
+      html, body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #FAFAFA !important;
+        color: #18181B;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        overscroll-behavior-y: none;
+      }
+      .pb-safe {
+        padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 0.5rem);
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'text-primary': '#18181B',
+            'text-secondary': '#71717A',
+            'primary': '#D4621A',
+            'background': '#FAFAFA',
+            'cta-text': '#18181B',
+            'border-divider': '#E4E4E7'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            'headline-sm': ['Inter'],
+            'body-md': ['Inter'],
+            'body-sm': ['Inter'],
+            'label-sm': ['Inter'],
+            'metadata': ['Inter'],
+            'label-md': ['Inter'],
+            'headline-md': ['Inter'],
+            'body-lg': ['Inter']
+          },
+          fontSize: {
+            'headline-sm': ['18px', { lineHeight: '24px', fontWeight: '600' }],
+            'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+            'body-sm': ['13px', { lineHeight: '18px', fontWeight: '400' }],
+            'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.02em', fontWeight: '500' }],
+            'metadata': ['12px', { lineHeight: '16px', fontWeight: '400' }],
+            'label-md': ['14px', { lineHeight: '20px', letterSpacing: '0.01em', fontWeight: '600' }],
+            'headline-md': ['20px', { lineHeight: '28px', letterSpacing: '-0.01em', fontWeight: '600' }],
+            'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-body-md text-[#18181B] min-h-screen flex flex-col antialiased bg-[#FAFAFA]" style="background-color: #FAFAFA !important; color: #18181B;">
+<!-- 2. Top App Bar -->
+<header class="fixed top-0 w-full z-50 pt-safe bg-white border-b border-[#E4E4E7] shadow-sm">
+<div class="h-16 px-4 flex items-center justify-between gap-3 max-w-md mx-auto">
+<div class="flex items-center gap-2.5">
+<img alt="TalentGraph Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U97agoXIwiCKwzW-3OewsiWdWrxdGkHbW1MGXiAx5dq_r_DkSuK_J898BEZwotMjT9li9U-9OJT1oh7GHpZkyjuugqFyY7RPfiES19vvDkhSJFCOIYnmNwjRx-0XZGc3LfHfOq37cgWNy49hOyIEmwyjiLfFBfJyr0EAOXIW8qCJd3kY4thp2CQXvqhn4Hn1S4zMCz-qGLXV-0tp2fCxVT7mhk0pLw6wwN3yu0vkEPTLXrX1uQw4LEn_bq"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-1 leading-tight">
+<span class="font-headline-sm text-headline-sm font-bold tracking-tight text-[#18181B]">TalentGraph</span>
+<span class="w-2 h-2 rounded-full bg-[#D4621A] shrink-0"></span>
+</div>
+<span class="font-metadata text-[11px] text-[#71717A] leading-tight">Find your next technical role</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Toggle theme appearance" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] hover:bg-[#E4E4E7] transition-colors" id="theme-toggle-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">light_mode</span>
+</button>
+<button aria-label="User account" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#D4621A] font-label-md text-label-md font-bold hover:bg-[#FFF1E8] transition-colors" type="button">
+          TG
+        </button>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Content -->
+<main class="flex-1 flex flex-col relative w-full pt-20 pb-28 px-4 max-w-md mx-auto bg-[#FAFAFA]" style="background-color: #FAFAFA !important;">
+<div class="flex flex-col w-full text-[#18181B] gap-6">
+<!-- 3. Page Header -->
+<div class="flex flex-col gap-1.5 w-full pt-1">
+<div class="flex items-center justify-between gap-2 flex-wrap">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-[#D4621A] shrink-0"></span>
+<h1 class="font-headline-sm text-headline-sm font-bold text-[#18181B] tracking-tight">Assessment Center</h1>
+</div>
+<span class="inline-flex items-center px-2.5 py-1 rounded bg-[#F4F4F5] border border-[#E4E4E7] text-[#71717A] font-label-sm text-label-sm">Candidate Portal</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#71717A] leading-relaxed">
+          Synchronous technical evaluations and verified evidence logs.
+        </p>
+</div>
+<!-- 4. "Shared Session Protocol" Banner / Card -->
+<div class="flex flex-col bg-white border border-[#E4E4E7] border-l-4 border-l-[#D4621A] rounded-xl p-4 gap-3 shadow-sm">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2.5 text-[#18181B]">
+<div class="w-8 h-8 rounded-lg bg-[#FFF1E8] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px] text-[#D4621A]">groups</span>
+</div>
+<span class="font-headline-sm text-headline-sm font-bold text-[#18181B]">Shared Session Protocol</span>
+</div>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#FFF1E8] border border-[#FED7AA] text-[#D4621A] font-label-sm text-label-sm font-medium shrink-0">
+            Synchronous Only
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-[#71717A] leading-relaxed">
+          All invited candidates attend the same recruiter-scheduled session start time simultaneously. Individual appointment booking or on-demand start is strictly not supported.
+        </p>
+<div class="flex items-center gap-1.5 text-[#71717A] pt-2 border-t border-[#E4E4E7]">
+<span class="material-symbols-outlined text-[16px] shrink-0">schedule</span>
+<span class="font-metadata text-metadata">Timezone displayed: Coordinated Universal Time (UTC)</span>
+</div>
+</div>
+<!-- 5. Navigation Filter Tabs -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+<button class="px-3.5 py-1.5 rounded-full bg-[#D4621A] text-[#18181B] font-label-sm text-label-sm font-bold shrink-0 shadow-sm transition-colors" type="button">
+          All Invitations (3)
+        </button>
+<button class="px-3.5 py-1.5 rounded-full bg-white border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm shrink-0 hover:bg-[#F4F4F5] transition-colors flex items-center gap-1.5" type="button">
+<span>Upcoming Cohorts</span>
+<span class="px-1.5 py-0.2 rounded-full bg-[#F4F4F5] text-[11px] text-[#71717A] font-medium">1</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-white border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm shrink-0 hover:bg-[#F4F4F5] transition-colors" type="button">
+          Evaluations Completed (2)
+        </button>
+</div>
+<!-- 6. Section 1: Active & Upcoming Cohort -->
+<section class="flex flex-col gap-3 w-full">
+<div class="flex items-center justify-between gap-2 px-0.5">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-[#D4621A]"></span>
+<h2 class="font-label-sm text-label-sm tracking-wider uppercase text-[#71717A] font-semibold">ACTIVE &amp; UPCOMING COHORT</h2>
+</div>
+<span class="font-metadata text-metadata text-[#71717A]">1 Active Invitee Slot</span>
+</div>
+<!-- Main Cohort Card -->
+<div class="flex flex-col bg-white border border-[#E4E4E7] rounded-2xl p-4 gap-4 shadow-sm">
+<!-- Header row -->
+<div class="flex items-start justify-between gap-2 flex-wrap">
+<div class="flex items-center gap-2 flex-wrap min-w-0">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#DCFCE7] border border-[#BBF7D0] text-[#15803D] font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">verified_user</span>
+                Aether Telemetry Systems
+              </span>
+<span class="font-body-sm text-body-sm text-[#71717A]">· Kernel Team</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#FEF3C7] border border-[#FDE68A] text-[#B45309] font-label-sm text-label-sm font-medium shrink-0">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+              Upcoming
+            </span>
+</div>
+<!-- Job Title -->
+<h3 class="font-headline-sm text-headline-sm text-[#18181B] font-bold leading-snug">
+            Staff Distributed Systems Engineer - High Throughput Telemetry
+          </h3>
+<!-- Recruiter Test Configuration Sub-panel -->
+<div class="flex flex-col bg-[#F8FAFC] border border-[#E4E4E7] rounded-xl p-3 gap-2.5">
+<span class="font-label-sm text-label-sm text-[#71717A] font-semibold tracking-wider uppercase">Recruiter Test Configuration</span>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[#18181B]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-[#71717A] shrink-0">code</span>
+<span class="font-body-sm text-body-sm"><span class="text-[#71717A]">Structure:</span> 6 Architecture &amp; Coding Tasks</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-[#71717A] shrink-0">timer</span>
+<span class="font-body-sm text-body-sm"><span class="text-[#71717A]">Duration:</span> 45 Minutes Total</span>
+</div>
+</div>
+<div class="flex items-start gap-2 pt-1 border-t border-[#E4E4E7] text-[#71717A]">
+<span class="material-symbols-outlined text-[16px] text-[#71717A] shrink-0 mt-0.5">videocam</span>
+<span class="font-metadata text-metadata leading-relaxed">
+                Integrity rule: Front-camera snapshot protocol active (5 non-disruptive random verifications during execution).
+              </span>
+</div>
+</div>
+<!-- Synchronous Timing Schedule Box -->
+<div class="flex flex-col bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl p-3.5 gap-3">
+<div class="flex items-center justify-between border-b border-[#E4E4E7] pb-2">
+<span class="font-label-sm text-label-sm text-[#71717A] font-semibold tracking-wider uppercase">SYNCHRONOUS TIMING SCHEDULE</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-[#FEE2E2] text-[#DC2626] font-label-sm text-[10px] font-bold tracking-wide">STRICT SCHEDULE</span>
+</div>
+<!-- Evidence Trail Timeline -->
+<div class="flex flex-col gap-4 relative pl-5 pt-1">
+<!-- Rail Line -->
+<div class="absolute left-[7px] top-2.5 bottom-2.5 w-[1.5px] bg-[#E4E4E7]"></div>
+<!-- Timeline Item 1: Active Scheduled Start -->
+<div class="relative flex flex-col gap-0.5">
+<span class="absolute -left-5 top-1 w-3 h-3 rounded-full bg-[#D4621A] ring-4 ring-[#FFF1E8]"></span>
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-md text-label-md text-[#18181B] font-semibold">Scheduled Cohort Start</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-[#FEF3C7] border border-[#FDE68A] text-[#B45309] text-[10px] font-bold">SIMULTANEOUS</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-[#18181B] font-bold">Thursday, Oct 29, 2026 · 14:00 UTC</span>
+<p class="font-body-sm text-body-sm text-[#71717A]">All 18 cohort candidates begin session simultaneously at 14:00 UTC.</p>
+</div>
+<!-- Timeline Item 2: Cutoff -->
+<div class="relative flex flex-col gap-0.5">
+<span class="absolute -left-5 top-1 w-3 h-3 rounded-full bg-white border-2 border-[#71717A]"></span>
+<span class="font-label-sm text-label-sm text-[#71717A] font-semibold">Invitation Window Cutoff</span>
+<p class="font-body-sm text-body-sm text-[#71717A]">Oct 29, 2026 · 13:50 UTC (Preflight verification closure). Failure to complete preflight before cutoff forfeits the cohort slot.</p>
+</div>
+<!-- Timeline Item 3: Dispatched -->
+<div class="relative flex flex-col gap-0.5">
+<span class="absolute -left-5 top-1 w-3 h-3 rounded-full bg-white border-2 border-[#A1A1AA]"></span>
+<span class="font-label-sm text-label-sm text-[#71717A] font-semibold">Invitation Dispatched</span>
+<p class="font-body-sm text-body-sm text-[#71717A]">Oct 24, 2026 via Aether Lead Recruiting Node</p>
+</div>
+</div>
+</div>
+<!-- Status Banner & Preflight Action -->
+<div class="flex flex-col gap-2 pt-1">
+<div class="w-full min-h-[48px] px-4 py-2.5 rounded-lg bg-[#F4F4F5] border border-[#E4E4E7] text-[#71717A] font-label-md text-label-md font-medium flex items-center justify-center gap-2 cursor-not-allowed">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+              Opens at 14:00 UTC
+            </div>
+<div class="flex items-start gap-1.5 px-1 text-[#71717A]">
+<span class="material-symbols-outlined text-[15px] shrink-0 mt-0.5">info</span>
+<span class="font-metadata text-metadata leading-relaxed">
+                Session locked until server confirms scheduled cohort start time. Preflight workspace opens exactly 10 minutes prior (13:50 UTC).
+              </span>
+</div>
+<button class="w-full min-h-[48px] px-4 py-2.5 rounded-xl bg-white border-[1.5px] border-[#D4621A] text-[#D4621A] font-label-md text-label-md font-semibold hover:bg-[#FFF1E8] active:bg-[#FFF1E8] transition-colors flex items-center justify-center gap-1.5 mt-1 shadow-sm" type="button">
+              Run Camera &amp; Diagnostic Preflight →
+            </button>
+</div>
+</div>
+</section>
+<!-- 7. Section 2: Completed & Released Results -->
+<section class="flex flex-col gap-3 w-full">
+<div class="flex items-center justify-between gap-2 px-0.5">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-[#15803D]"></span>
+<h2 class="font-label-sm text-label-sm tracking-wider uppercase text-[#71717A] font-semibold">COMPLETED &amp; RELEASED RESULTS</h2>
+</div>
+<span class="font-metadata text-metadata text-[#71717A]">2 Sealed Records</span>
+</div>
+<!-- Record Card 1 (Crucible Data) -->
+<div class="flex flex-col bg-white border border-[#E4E4E7] rounded-2xl p-4 gap-3.5 shadow-sm">
+<div class="flex items-start justify-between gap-2 flex-wrap">
+<div class="flex items-center gap-2 flex-wrap min-w-0">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#DCFCE7] border border-[#BBF7D0] text-[#15803D] font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">verified_user</span>
+                Crucible Data
+              </span>
+<span class="font-body-sm text-body-sm text-[#71717A]">· Infrastructure</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#DCFCE7] border border-[#BBF7D0] text-[#15803D] font-label-sm text-label-sm font-medium shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-[#15803D]"></span>
+              Result Released
+            </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-[#18181B] font-bold leading-snug">
+            Senior Infrastructure Engineer - Storage Engine
+          </h3>
+<div class="grid grid-cols-2 gap-2 bg-[#FAFAFA] border border-[#E4E4E7] rounded-lg p-3">
+<div class="flex flex-col">
+<span class="font-metadata text-[11px] text-[#71717A] uppercase tracking-wider">Completed At</span>
+<span class="font-body-sm text-body-sm text-[#18181B] font-medium mt-0.5">Oct 18, 2026 · 16:45 UTC</span>
+</div>
+<div class="flex flex-col">
+<span class="font-metadata text-[11px] text-[#71717A] uppercase tracking-wider">Session Scope</span>
+<span class="font-body-sm text-body-sm text-[#18181B] font-medium mt-0.5">45m Recorded (8 of 8 answered)</span>
+</div>
+</div>
+<!-- Qualified Banner -->
+<div class="flex flex-col bg-[#DCFCE7] border border-[#BBF7D0] rounded-xl p-3 gap-2">
+<div class="flex items-center gap-1.5 text-[#15803D]">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-label-md text-label-md font-bold text-[#15803D]">Technical Assessment Qualified</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#18181B] leading-relaxed">
+              Criterion benchmarks satisfied across concurrency control, compaction algorithms, and disk I/O primitives. Recruiter team review is currently ongoing.
+            </p>
+<div class="flex items-start gap-1.5 pt-1.5 border-t border-[#BBF7D0] text-[#71717A]">
+<span class="material-symbols-outlined text-[15px] shrink-0 mt-0.5">lock</span>
+<span class="font-metadata text-metadata">Zero peer metrics disclosed. Dossier is strictly confidential between candidate and Crucible Data.</span>
+</div>
+</div>
+<button class="w-full min-h-[48px] px-4 py-2.5 rounded-lg bg-white border border-[#E4E4E7] text-[#18181B] font-label-md text-label-md font-semibold hover:bg-[#F4F4F5] active:bg-[#F4F4F5] transition-colors flex items-center justify-center gap-1 shadow-sm" type="button">
+            View Released Feedback &amp; Dossier →
+          </button>
+</div>
+<!-- Record Card 2 (Veritas Labs) -->
+<div class="flex flex-col bg-white border border-[#E4E4E7] rounded-2xl p-4 gap-3 shadow-sm">
+<div class="flex items-center justify-between gap-2 flex-wrap">
+<div class="flex items-center gap-1.5 flex-wrap min-w-0">
+<span class="font-label-md text-label-md font-semibold text-[#18181B]">Veritas Labs</span>
+<span class="font-body-sm text-body-sm text-[#71717A]">· Security Protocol</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-[#F4F4F5] border border-[#E4E4E7] text-[#71717A] font-label-sm text-label-sm shrink-0">
+<span class="material-symbols-outlined text-[13px]">lock</span>
+              Sealed
+            </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-[#18181B] font-bold leading-snug">
+            Staff Cryptographic Protocols Researcher
+          </h3>
+<div class="text-[#71717A] font-body-sm text-body-sm">
+            Completed: Oct 02, 2026 · 11:20 UTC | Duration: 60 min
+          </div>
+<p class="font-body-sm text-body-sm text-[#71717A] leading-relaxed">
+            Assessment submission cryptographically sealed. Evaluation reports and individual breakdowns are released only upon explicit recruiter decision milestone.
+          </p>
+<div class="flex items-center justify-between gap-2 pt-2 border-t border-[#E4E4E7]">
+<div class="flex items-center gap-1 text-[#71717A]">
+<span class="material-symbols-outlined text-[15px] shrink-0">hourglass_top</span>
+<span class="font-metadata text-metadata">Pending Recruiter Calibration</span>
+</div>
+<button class="font-label-sm text-label-sm font-semibold text-[#D4621A] hover:underline focus:outline-none" type="button">
+              Receipt &amp; SHA Hash →
+            </button>
+</div>
+</div>
+</section>
+<!-- 8. Section 3: Missed Cohort or Disconnect Policy Callout -->
+<div class="flex flex-col bg-[#F8FAFC] border border-[#E4E4E7] rounded-xl p-4 gap-2 shadow-sm">
+<div class="flex items-center gap-2 text-[#18181B]">
+<span class="material-symbols-outlined text-[18px] text-[#71717A]">help_outline</span>
+<span class="font-label-md text-label-md font-semibold text-[#18181B]">Missed Cohort or Disconnect Policy</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#71717A] leading-relaxed">
+          If network connectivity fails during a synchronous cohort session, your state remains cached for 180 seconds. Expired cohorts without check-in cannot be restarted autonomously; contact the hiring coordinator directly.
+        </p>
+</div>
+</div>
+</main>
+<!-- 9. Bottom Tab Navigation -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-white border-t border-[#E4E4E7] shadow-sm">
+<div class="grid grid-cols-3 h-16 max-w-md mx-auto items-center px-2">
+<a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#71717A] hover:text-[#18181B] transition-colors relative group" data-path="jobs" href="#">
+<span class="material-symbols-outlined text-[22px]">work</span>
+<span class="font-label-sm text-label-sm mt-0.5">Jobs</span>
+<span class="w-1 h-1 rounded-full bg-[#D4621A] mt-1 opacity-0"></span>
+</a>
+<a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#D4621A] font-bold transition-colors relative group" data-path="assessments" href="#">
+<span class="material-symbols-outlined text-[22px]">assignment_turned_in</span>
+<span class="font-label-sm text-label-sm mt-0.5">Assessments</span>
+<span class="w-1.5 h-1.5 rounded-full bg-[#D4621A] mt-1 opacity-100"></span>
+</a>
+<a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#71717A] hover:text-[#18181B] transition-colors relative group" data-path="notifications" href="#">
+<div class="relative flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute -top-0.5 -right-1 w-2 h-2 rounded-full bg-[#D4621A] ring-2 ring-white"></span>
+</div>
+<span class="font-label-sm text-label-sm mt-0.5">Notifications</span>
+<span class="w-1 h-1 rounded-full bg-[#D4621A] mt-1 opacity-0"></span>
+</a>
+</div>
+</nav>
+<script>
+    // Ensure strict Light Mode on render
+    (function() {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.style.backgroundColor = '#FAFAFA';
+      document.body.style.backgroundColor = '#FAFAFA';
+    })();
+  </script>
+</body></html>

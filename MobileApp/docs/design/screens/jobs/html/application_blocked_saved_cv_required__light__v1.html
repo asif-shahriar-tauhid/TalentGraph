@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#FAFAFA;color:#18181B;-webkit-tap-highlight-color:transparent;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 0.5rem);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'background': '#FAFAFA', 'surface-elevated': '#FFFFFF', 'surface-container': '#F4F4F5', 'surface-container-high': '#E4E4E7', 'surface-soft': '#FFF1E8', 'border-divider': '#E4E4E7', 'border-neutral': '#52525B', 'text-primary': '#18181B', 'text-secondary': '#71717A', 'primary': '#D4621A', 'primary-container': '#D4621A', 'cta-text': '#18181B', 'warning': '#B45309', 'warning-bg': '#FEF3C7', 'success': '#15803D', 'destructive': '#DC2626' }, borderRadius: { DEFAULT: '0.25rem', lg: '0.5rem', xl: '0.75rem', full: '9999px' }, spacing: { 'space-md': '1rem', 'space-2xs': '0.25rem', 'space-xs': '0.5rem', 'gutter-mobile': '0.75rem', 'space-sm': '0.75rem', 'gutter': '1rem', 'space-xl': '1.5rem', 'margin': '1rem', 'space-lg': '1.25rem', 'space-2xl': '2rem', 'margin-compact': '0.75rem' }, fontFamily: { 'headline-sm': ['Inter', 'sans-serif'], 'body-md': ['Inter', 'sans-serif'], 'body-sm': ['Inter', 'sans-serif'], 'label-sm': ['Inter', 'sans-serif'], 'metadata': ['Inter', 'sans-serif'], 'display-lg-mobile': ['Inter', 'sans-serif'], 'display-lg': ['Inter', 'sans-serif'], 'label-md': ['Inter', 'sans-serif'], 'timer-display': ['Inter', 'sans-serif'], 'headline-md': ['Inter', 'sans-serif'], 'body-lg': ['Inter', 'sans-serif'] }, fontSize: { 'headline-sm': ['18px', { lineHeight: '24px', fontWeight: '600' }], 'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }], 'body-sm': ['13px', { lineHeight: '18px', fontWeight: '400' }], 'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.02em', fontWeight: '500' }], 'metadata': ['12px', { lineHeight: '16px', fontWeight: '400' }], 'display-lg-mobile': ['24px', { lineHeight: '32px', letterSpacing: '-0.02em', fontWeight: '700' }], 'display-lg': ['28px', { lineHeight: '36px', letterSpacing: '-0.02em', fontWeight: '700' }], 'label-md': ['14px', { lineHeight: '20px', letterSpacing: '0.01em', fontWeight: '600' }], 'timer-display': ['16px', { lineHeight: '20px', letterSpacing: '0.04em', fontWeight: '600' }], 'headline-md': ['20px', { lineHeight: '28px', letterSpacing: '-0.01em', fontWeight: '600' }], 'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-[#FAFAFA] font-body-md text-[#18181B] min-h-screen flex flex-col antialiased selection:bg-[#FFF1E8] selection:text-[#D4621A]"><header class="fixed top-0 w-full z-50 pt-safe bg-[#FAFAFA]/90 backdrop-blur-xl border-b border-[#E4E4E7]/70 shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs"><img alt="TalentGraph Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U97agoXIwiCKwzW-3OewsiWdWrxdGkHbW1MGXiAx5dq_r_DkSuK_J898BEZwotMjT9li9U-9OJT1oh7GHpZkyjuugqFyY7RPfiES19vvDkhSJFCOIYnmNwjRx-0XZGc3LfHfOq37cgWNy49hOyIEmwyjiLfFBfJyr0EAOXIW8qCJd3kY4thp2CQXvqhn4Hn1S4zMCz-qGLXV-0tp2fCxVT7mhk0pLw6wwN3yu0vkEPTLXrX1uQw4LEn_bq"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-[#18181B] leading-tight">TalentGraph</span><span class="font-metadata text-[11px] text-[#71717A] leading-none">Find your next technical role</span></div></div><div class="flex items-center gap-space-xs"><button aria-label="Toggle theme appearance" class="w-11 h-11 flex items-center justify-center rounded-lg text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5] transition-colors" id="theme-toggle-btn" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-28 px-margin bg-[#FAFAFA]"><div class="flex flex-col w-full pb-6">
+<!-- Top Sub-header / Status Row -->
+<div class="flex items-center justify-between gap-space-xs py-2 mb-space-sm">
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-text-secondary hover:text-text-primary transition-colors group py-1" href="#">
+<span class="material-symbols-outlined text-[18px] transition-transform group-hover:-translate-x-0.5">arrow_back</span>
+<span>Back to Job</span>
+</a>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-warning-bg text-warning font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-warning animate-pulse"></span>
+<span>Application Blocked</span>
+</div>
+</div>
+<!-- Step Counter & Page Title -->
+<div class="flex flex-col gap-1.5 mb-space-lg">
+<span class="font-metadata text-metadata font-semibold tracking-wider text-text-secondary uppercase">
+      STEP 01 · VERIFICATION CHECK
+    </span>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-text-primary tracking-tight">
+      Saved Profile Required
+    </h1>
+<p class="font-body-md text-body-md text-text-secondary leading-relaxed">
+      A verified candidate CV snapshot is required before sealing an application evidence trail.
+    </p>
+</div>
+<!-- Target Role Context Card -->
+<section class="bg-surface-elevated rounded-xl p-space-md shadow-sm mb-space-md">
+<!-- Header row: Company, Verified badge, Deadline -->
+<div class="flex items-center justify-between flex-wrap gap-2 pb-1">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-text-primary font-medium">Aether Telemetry Systems</span>
+<span class="inline-flex items-center gap-1 text-[11px] leading-none font-medium text-success bg-[#DCFCE7] px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">check</span>
+<span>Verified</span>
+</span>
+</div>
+<span class="font-metadata text-metadata text-text-secondary">Closes Nov 14</span>
+</div>
+<!-- Role Title -->
+<h2 class="font-headline-sm text-headline-sm text-text-primary mt-1.5 leading-snug">
+      Staff Distributed Systems Engineer - High Throughput Telemetry
+    </h2>
+<!-- Job Metadata row -->
+<div class="flex items-center gap-1.5 flex-wrap mt-2 font-metadata text-metadata text-text-secondary">
+<span>Remote (NA &amp; EMEA)</span>
+<span class="text-text-secondary/60">•</span>
+<span>Full-time</span>
+<span class="text-text-secondary/60">•</span>
+<span>Staff / Principal</span>
+</div>
+<!-- Evidence Blueprint requirement row -->
+<div class="mt-3.5 pt-3 bg-surface-container rounded-lg px-3 py-2.5 flex items-center justify-between gap-2">
+<div class="flex items-center gap-2.5 min-w-0">
+<!-- Evidence trail incomplete indicator node -->
+<div class="relative flex items-center justify-center shrink-0 w-4 h-4">
+<span class="w-3.5 h-3.5 rounded-full bg-surface-soft flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+</span>
+</div>
+<span class="font-label-sm text-label-sm font-medium text-text-primary truncate">
+          Role evidence blueprint awaiting snapshot
+        </span>
+</div>
+<span class="font-metadata text-metadata font-mono text-text-secondary bg-surface-elevated px-2 py-0.5 rounded shadow-xs shrink-0">
+        1/2 REQ
+      </span>
+</div>
+</section>
+<!-- Primary Blocked Explanation Card (Platform Boundary) -->
+<section class="bg-surface-elevated rounded-xl p-space-md shadow-sm mb-space-lg flex flex-col">
+<!-- Header with document icon & badges -->
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-soft flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[22px]">description</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-text-primary">
+          No Saved CV Snapshot on File
+        </h3>
+<span class="font-metadata text-metadata text-text-secondary mt-0.5">
+          Platform Boundary · Desktop Portal Required
+        </span>
+</div>
+</div>
+<!-- Body explanation -->
+<p class="font-body-md text-body-md text-text-secondary leading-relaxed mt-3">
+      To ensure document integrity, verified CV parsing, and cryptographically linked portfolio telemetry, candidate profile and CV document management are hosted exclusively on the TalentGraph desktop web platform.
+    </p>
+<!-- Inner Guidance Container ("WHAT YOU'LL DO ON THE WEB PLATFORM") -->
+<div class="bg-surface-container rounded-lg p-3.5 mt-3.5 flex flex-col gap-2.5">
+<h4 class="font-metadata text-[11px] font-semibold tracking-wider text-text-secondary uppercase">
+        WHAT YOU'LL DO ON THE WEB PLATFORM
+      </h4>
+<!-- Step 1 -->
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[17px] shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-sm text-body-sm text-text-primary leading-snug">
+          Upload primary PDF/DOCX CV or synchronize technical work history.
+        </span>
+</div>
+<!-- Step 2 -->
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[17px] shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-body-sm text-body-sm text-text-primary leading-snug">
+          Authorize structural skills extraction and cryptographic document sealing.
+        </span>
+</div>
+<!-- Step 3 -->
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[17px] shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-body-sm text-body-sm text-text-primary leading-snug">
+          Once saved to your TalentGraph account, your profile snapshot becomes instantly available for one-tap applications on mobile.
+        </span>
+</div>
+</div>
+<!-- Trust & Ingestion note -->
+<div class="bg-surface-container/60 rounded-lg p-3 mt-3 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-text-secondary text-[18px] shrink-0 mt-0.5">verified_user</span>
+<p class="font-metadata text-metadata text-text-secondary leading-relaxed">
+        Zero mobile ingestion latency: Verified snapshots retain raw parser lineage for engineering hiring teams.
+      </p>
+</div>
+</section>
+<!-- Action Buttons Stack -->
+<div class="flex flex-col gap-2">
+<!-- Primary CTA: Continue on Website -->
+<button class="w-full h-12 bg-primary hover:bg-[#E47735] active:bg-[#B85214] text-cta-text font-label-md text-label-md font-semibold rounded-xl flex items-center justify-center gap-2 shadow-sm transition-colors" type="button">
+<span>Continue on Website</span>
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</button>
+<!-- Secondary Button: Back to Job -->
+<button class="w-full h-12 bg-surface-elevated hover:bg-surface-container active:bg-surface-container-high text-cta-text font-label-md text-label-md font-medium rounded-xl flex items-center justify-center transition-colors shadow-xs" type="button">
+<span>Back to Job</span>
+</button>
+<!-- Security footnote -->
+<p class="font-metadata text-metadata text-text-secondary text-center mt-1 leading-normal px-2">
+      A secure one-time session link will open in your default browser. Once your CV is uploaded, return here to apply.
+    </p>
+</div>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#FFFFFF]/95 backdrop-blur-xl border-t border-[#E4E4E7] shadow-[0_-2px_12px_rgba(0,0,0,0.06)]" data-active-classes="text-[#D4621A] font-semibold"><div class="grid grid-cols-3 h-16 max-w-md mx-auto items-center px-space-xs"><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#71717A] hover:text-[#18181B] transition-colors relative group" data-path="jobs" href="#"><span class="material-symbols-outlined text-[22px]">work</span><span class="font-label-sm text-label-sm mt-0.5">Jobs</span><span class="w-1.5 h-1.5 rounded-full bg-[#D4621A] mt-1 opacity-0 group-[.text-\\[\\#D4621A\\]]:opacity-100 transition-opacity"></span></a><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#D4621A] font-semibold transition-colors relative group" data-path="assessments" href="#"><span class="material-symbols-outlined text-[22px]">assignment_turned_in</span><span class="font-label-sm text-label-sm mt-0.5">Assessments</span><span class="w-1.5 h-1.5 rounded-full bg-[#D4621A] mt-1 opacity-100 transition-opacity"></span></a><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#71717A] hover:text-[#18181B] transition-colors relative group" data-path="notifications" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute -top-0.5 -right-1 w-2 h-2 rounded-full bg-[#D4621A] ring-2 ring-[#FFFFFF]"></span></div><span class="font-label-sm text-label-sm mt-0.5">Notifications</span><span class="w-1.5 h-1.5 rounded-full bg-[#D4621A] mt-1 opacity-0 group-[.text-\\[\\#D4621A\\]]:opacity-100 transition-opacity"></span></a></div></nav><div class="fixed inset-0 z-50 pointer-events-none transition-opacity duration-200 opacity-0" id="filters-modal-backdrop"><div class="absolute inset-0 bg-[#18181B]/40 backdrop-blur-sm" id="filters-backdrop-scrim"></div><div class="absolute bottom-0 inset-x-0 bg-[#FFFFFF] rounded-t-2xl border-t border-[#E4E4E7] shadow-2xl max-h-[751px] flex flex-col transform translate-y-full transition-transform duration-300 pointer-events-auto pb-safe" id="filters-modal-panel"><div class="flex items-center justify-between p-4 border-b border-[#E4E4E7]"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[#D4621A] text-[20px]">tune</span><h2 class="font-headline-sm text-headline-sm text-[#18181B]">Discovery Filters</h2></div><button aria-label="Close filters" class="w-9 h-9 rounded-lg flex items-center justify-center text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5] transition-colors" id="close-filters-btn" type="button"><span class="material-symbols-outlined text-[20px]">close</span></button></div><div class="overflow-y-auto p-4 flex flex-col gap-5"><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider">Work Arrangement</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-[#D4621A] text-[#18181B] font-label-sm text-label-sm font-semibold" type="button">Remote</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm font-medium" type="button">Hybrid</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm font-medium" type="button">On-site</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider">Job Type</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-[#D4621A] text-[#18181B] font-label-sm text-label-sm font-semibold" type="button">Full-time</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm font-medium" type="button">Contract</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm font-medium" type="button">Advisory</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider">Experience Level</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-[#D4621A] text-[#18181B] font-label-sm text-label-sm font-semibold" type="button">Senior &amp; Staff</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm font-medium" type="button">Principal</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm font-medium" type="button">Founding / Lead</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider">Evidence Requirement</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm font-medium" type="button">Direct Assessment</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm font-medium" type="button">Telemetry Benchmark</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm font-medium" type="button">Take-home Kernel</button></div></div></div><div class="p-4 border-t border-[#E4E4E7] flex items-center justify-between gap-3 bg-[#FFFFFF]"><button class="px-4 py-2.5 rounded-lg text-[#71717A] hover:text-[#18181B] font-label-md text-label-md transition-colors" id="reset-filters-btn" type="button">Reset filters</button><button class="flex-1 px-4 py-2.5 rounded-lg bg-[#D4621A] text-[#18181B] font-label-md text-label-md font-semibold active:bg-[#B85214] transition-colors flex items-center justify-center gap-1.5 shadow-sm" id="apply-filters-btn" type="button">Apply filters</button></div></div></div>
+</body></html>

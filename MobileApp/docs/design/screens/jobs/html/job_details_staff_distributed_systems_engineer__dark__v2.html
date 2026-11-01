@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#0D0D0F;color:#F5F5F5;-webkit-tap-highlight-color:transparent;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 0.5rem);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'on-secondary-fixed-variant': '#47464a', 'on-primary-fixed-variant': '#793100', 'tertiary': '#ffb690', 'tertiary-fixed': '#ffdbca', 'on-primary-container': '#4b1b00', 'on-error-container': '#ffdad6', 'secondary-fixed': '#e4e1e5', 'outline-variant': '#574238', 'destructive': '#E5484D', 'on-background': '#e3e1ec', 'text-primary': '#F5F5F5', 'inverse-surface': '#e3e1ec', 'text-secondary': '#A1A1AA', 'surface-container-low': '#1a1b23', 'primary': '#ffb691', 'secondary': '#c8c6c9', 'on-tertiary': '#542100', 'surface-container-lowest': '#0d0e15', 'on-secondary-container': '#b6b4b8', 'surface-variant': '#34343c', 'surface-container-high': '#292931', 'surface-elevated': '#19191C', 'on-primary': '#552000', 'primary-container': '#e56f27', 'primary-fixed-dim': '#ffb691', 'primary-fixed': '#ffdbcb', 'surface-dim': '#12131a', 'inverse-primary': '#9f4200', 'error-container': '#93000a', 'outline': '#a68b7f', 'success': '#22C55E', 'on-secondary': '#303033', 'secondary-container': '#47464a', 'tertiary-fixed-dim': '#ffb690', 'surface-tint': '#ffb691', 'tertiary-container': '#df7331', 'surface-bright': '#383841', 'warning': '#F59E0B', 'on-surface-variant': '#dec0b3', 'surface': '#12131a', 'border-divider': '#3F3F46', 'on-surface': '#e3e1ec', 'error': '#ffb4ab', 'on-secondary-fixed': '#1b1b1e', 'inverse-on-surface': '#2f3038', 'surface-container': '#1e1f27', 'on-tertiary-fixed': '#331100', 'secondary-fixed-dim': '#c8c6c9', 'background': '#0D0D0F', 'on-primary-fixed': '#341100', 'on-error': '#690005', 'on-tertiary-container': '#4a1c00', 'cta-text': '#18181B', 'on-tertiary-fixed-variant': '#783200', 'surface-container-highest': '#34343c' }, borderRadius: { DEFAULT: '0.25rem', lg: '0.5rem', xl: '0.75rem', full: '9999px' }, spacing: { 'space-md': '1rem', 'space-2xs': '0.25rem', 'space-xs': '0.5rem', 'gutter-mobile': '0.75rem', 'space-sm': '0.75rem', 'gutter': '1rem', 'space-xl': '1.5rem', 'margin': '1rem', 'space-lg': '1.25rem', 'space-2xl': '2rem', 'margin-compact': '0.75rem' }, fontFamily: { 'headline-sm': ['Inter'], 'body-md': ['Inter'], 'body-sm': ['Inter'], 'label-sm': ['Inter'], 'metadata': ['Inter'], 'display-lg-mobile': ['Inter'], 'display-lg': ['Inter'], 'label-md': ['Inter'], 'timer-display': ['Inter'], 'headline-md': ['Inter'], 'body-lg': ['Inter'] }, fontSize: { 'headline-sm': ['18px', { lineHeight: '24px', fontWeight: '600' }], 'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }], 'body-sm': ['13px', { lineHeight: '18px', fontWeight: '400' }], 'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.02em', fontWeight: '500' }], 'metadata': ['12px', { lineHeight: '16px', fontWeight: '400' }], 'display-lg-mobile': ['24px', { lineHeight: '32px', letterSpacing: '-0.02em', fontWeight: '700' }], 'display-lg': ['28px', { lineHeight: '36px', letterSpacing: '-0.02em', fontWeight: '700' }], 'label-md': ['14px', { lineHeight: '20px', letterSpacing: '0.01em', fontWeight: '600' }], 'timer-display': ['16px', { lineHeight: '20px', letterSpacing: '0.04em', fontWeight: '600' }], 'headline-md': ['20px', { lineHeight: '28px', letterSpacing: '-0.01em', fontWeight: '600' }], 'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body-md text-text-primary min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-cta-text"><header class="fixed top-0 w-full z-50 pt-safe bg-background/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs"><img alt="TalentGraph Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U97agoXIwiCKwzW-3OewsiWdWrxdGkHbW1MGXiAx5dq_r_DkSuK_J898BEZwotMjT9li9U-9OJT1oh7GHpZkyjuugqFyY7RPfiES19vvDkhSJFCOIYnmNwjRx-0XZGc3LfHfOq37cgWNy49hOyIEmwyjiLfFBfJyr0EAOXIW8qCJd3kY4thp2CQXvqhn4Hn1S4zMCz-qGLXV-0tp2fCxVT7mhk0pLw6wwN3yu0vkEPTLXrX1uQw4LEn_bq"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-text-primary leading-tight">TalentGraph</span><span class="font-metadata text-[11px] text-text-secondary leading-none">Find your next technical role</span></div></div><div class="flex items-center gap-space-xs"><button aria-label="Toggle theme appearance" class="w-11 h-11 flex items-center justify-center rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-elevated transition-colors" id="theme-toggle-btn" type="button"><span class="material-symbols-outlined text-[20px]">dark_mode</span></button></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-28 px-margin bg-background"><div class="flex flex-col w-full pb-36">
+<!-- Nav Bar / Action Strip -->
+<div class="flex items-center justify-between py-2 -mt-1 mb-space-sm">
+<a class="inline-flex items-center gap-1.5 py-1.5 px-2 rounded-lg bg-surface-elevated text-text-secondary active:text-text-primary transition-colors text-label-sm font-label-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Back to Jobs</span>
+</a>
+<div class="flex items-center gap-space-xs">
+<button aria-label="Bookmark this role" class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-elevated text-text-secondary active:text-primary transition-colors" id="save-job-header-btn" type="button">
+<span class="material-symbols-outlined text-[20px]" id="header-save-icon">bookmark_border</span>
+</button>
+<button aria-label="Share role" class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-elevated text-text-secondary active:text-text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+<!-- Role Header Brief Card -->
+<section class="bg-surface-elevated rounded-xl p-space-md shadow-sm mb-space-md">
+<!-- Team & Verified Status Badge -->
+<div class="flex flex-wrap items-center gap-space-xs mb-space-xs">
+<div class="flex items-center gap-1.5 bg-surface-container py-1 px-2.5 rounded-full">
+<span class="material-symbols-outlined text-success text-[15px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm text-text-primary">Aether Telemetry Systems</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-high py-1 px-2 rounded-full">
+<span class="material-symbols-outlined text-success text-[13px]">commit</span>
+<span class="font-metadata text-[11px] text-text-secondary">Commit verification active</span>
+</div>
+</div>
+<!-- Title with generous wrapping -->
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-text-primary tracking-tight mb-space-sm">
+      Staff Distributed Systems Engineer - High Throughput Telemetry
+    </h1>
+<!-- Metadata Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-space-md pt-space-xs">
+<div class="flex items-center gap-2 text-text-secondary">
+<span class="material-symbols-outlined text-[18px] text-primary">public</span>
+<span class="font-body-sm text-body-sm text-text-primary">Remote (North America &amp; EMEA)</span>
+</div>
+<div class="flex items-center gap-2 text-text-secondary">
+<span class="material-symbols-outlined text-[18px] text-primary">work_outline</span>
+<span class="font-body-sm text-body-sm text-text-primary">Full-time • Staff / Principal</span>
+</div>
+<div class="flex items-center gap-2 text-text-secondary">
+<span class="material-symbols-outlined text-[18px] text-primary">event</span>
+<span class="font-body-sm text-body-sm text-text-secondary">Closes <strong class="font-label-sm text-text-primary">Nov 14, 2026</strong></span>
+</div>
+<div class="flex items-center gap-2 text-text-secondary">
+<span class="material-symbols-outlined text-[18px] text-primary">schedule</span>
+<span class="font-metadata text-metadata text-text-secondary">Posted 3 days ago</span>
+</div>
+</div>
+</section>
+<!-- Role Mission Summary -->
+<section class="bg-surface-elevated rounded-xl p-space-md shadow-sm mb-space-md">
+<div class="flex items-center gap-2 mb-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">explore</span>
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Mission &amp; Scope</h2>
+</div>
+<p class="font-body-md text-body-md text-text-secondary leading-relaxed">
+      Join our core telemetry infrastructure team building low-latency stream processing pipelines handling over 2M commits and event traces daily. You will anchor system reliability, architect fault-tolerant ingestion services, and collaborate closely with open-source distributed tracing contributors.
+    </p>
+</section>
+<!-- Evidence Trail Responsibilities -->
+<section class="bg-surface-elevated rounded-xl p-space-md shadow-sm mb-space-md">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">checklist</span>
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Responsibilities</h2>
+</div>
+<span class="font-metadata text-metadata text-text-secondary">4 Core Areas</span>
+</div>
+<!-- Evidence Trail List -->
+<div class="relative pl-5 flex flex-col gap-space-md">
+<!-- Vertical Rail Line -->
+<div class="absolute left-1.5 top-2.5 bottom-2 w-[2px] bg-surface-container-high"></div>
+<!-- Item 1 -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-5 top-1.5 w-3 h-3 rounded-full bg-primary-container ring-4 ring-surface-elevated flex items-center justify-center"></div>
+<p class="font-body-md text-body-md text-text-primary">
+          Design and maintain high-throughput Go and Rust stream processors capable of sub-10ms p99 latency.
+        </p>
+</div>
+<!-- Item 2 -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-5 top-1.5 w-3 h-3 rounded-full bg-primary-container ring-4 ring-surface-elevated flex items-center justify-center"></div>
+<p class="font-body-md text-body-md text-text-primary">
+          Drive architecture reviews for zero-downtime database migrations across globally distributed clusters.
+        </p>
+</div>
+<!-- Item 3 -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-5 top-1.5 w-3 h-3 rounded-full bg-primary-container ring-4 ring-surface-elevated flex items-center justify-center"></div>
+<p class="font-body-md text-body-md text-text-primary">
+          Mentor senior and mid-level engineers through rigorous code reviews and telemetry-driven design docs.
+        </p>
+</div>
+<!-- Item 4 -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-5 top-1.5 w-3 h-3 rounded-full bg-primary-container ring-4 ring-surface-elevated flex items-center justify-center"></div>
+<p class="font-body-md text-body-md text-text-primary">
+          Partner with candidate assessment engineers to benchmark live coding sandbox environments.
+        </p>
+</div>
+</div>
+</section>
+<!-- Descriptive Job Criteria (Isolated from Evaluation Weights) -->
+<section class="bg-surface-elevated rounded-xl p-space-md shadow-sm mb-space-md">
+<div class="flex items-center gap-2 mb-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">rule</span>
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Role Requirements</h2>
+</div>
+<!-- Required Skills -->
+<div class="mb-space-md">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Required Skills</span>
+<span class="font-metadata text-[11px] text-text-secondary">Expected day one</span>
+</div>
+<div class="flex flex-wrap gap-space-xs">
+<span class="bg-surface-container px-3 py-1.5 rounded-lg text-text-primary font-label-sm text-label-sm">Go</span>
+<span class="bg-surface-container px-3 py-1.5 rounded-lg text-text-primary font-label-sm text-label-sm">Distributed Systems</span>
+<span class="bg-surface-container px-3 py-1.5 rounded-lg text-text-primary font-label-sm text-label-sm">Kubernetes</span>
+<span class="bg-surface-container px-3 py-1.5 rounded-lg text-text-primary font-label-sm text-label-sm">Kafka</span>
+<span class="bg-surface-container px-3 py-1.5 rounded-lg text-text-primary font-label-sm text-label-sm">High-Throughput Concurrency</span>
+</div>
+</div>
+<!-- Preferred Skills -->
+<div class="mb-space-md">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Preferred Skills</span>
+<span class="font-metadata text-[11px] text-text-secondary">Growth areas &amp; depth</span>
+</div>
+<div class="flex flex-wrap gap-space-xs">
+<span class="bg-surface-container-high px-3 py-1.5 rounded-lg text-text-secondary font-label-sm text-label-sm">Rust</span>
+<span class="bg-surface-container-high px-3 py-1.5 rounded-lg text-text-secondary font-label-sm text-label-sm">eBPF Profiling</span>
+<span class="bg-surface-container-high px-3 py-1.5 rounded-lg text-text-secondary font-label-sm text-label-sm">ClickHouse</span>
+<span class="bg-surface-container-high px-3 py-1.5 rounded-lg text-text-secondary font-label-sm text-label-sm">Terraform</span>
+</div>
+</div>
+<!-- Eligibility & Prerequisites -->
+<div class="bg-surface-container p-space-sm rounded-lg">
+<div class="flex items-center gap-1.5 mb-2">
+<span class="material-symbols-outlined text-text-secondary text-[16px]">verified_user</span>
+<span class="font-label-sm text-label-sm text-text-primary font-semibold">Eligibility &amp; Prerequisites</span>
+</div>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-text-secondary pl-1">
+<li class="flex items-start gap-2">
+<span class="text-primary font-bold">•</span>
+<span>Authorized to work in covered timezones (UTC-5 to UTC+3).</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-primary font-bold">•</span>
+<span>Demonstrated contribution history in production systems or verified open-source repositories.</span>
+</li>
+</ul>
+<p class="font-metadata text-[11px] text-text-secondary mt-2.5 pt-2 border-t border-surface-container-high">
+        Note: Minimum eligibility requirements are displayed as returned by verified org criteria; they operate independently of technical assessment weighting.
+      </p>
+</div>
+</section>
+<!-- CRITICAL: How This Role Is Evaluated -->
+<section class="bg-surface-elevated rounded-xl p-space-md shadow-sm mb-space-md">
+<!-- Header with Explicit Tag -->
+<div class="flex items-start justify-between gap-space-xs mb-space-xs">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">analytics</span>
+          How This Role Is Evaluated
+        </h2>
+<p class="font-metadata text-metadata text-text-secondary mt-1">
+          Recruiter-configured evaluation criteria for incoming candidates. Weights reflect relative contribution to overall technical review.
+        </p>
+</div>
+<span class="shrink-0 bg-surface-container px-2 py-0.5 rounded-full font-label-sm text-[11px] text-primary">
+        Illustrative example
+      </span>
+</div>
+<!-- Overall Weight Total Indicator -->
+<div class="flex items-center justify-between bg-surface-container px-3 py-2 rounded-lg mt-space-sm mb-space-sm">
+<span class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Evaluation Distribution</span>
+<span class="font-label-md text-label-md text-primary font-semibold">Total weight · 100%</span>
+</div>
+<!-- Segmented Proportional Bar -->
+<div aria-label="Skill weight distribution bar" class="w-full flex h-3 rounded-full overflow-hidden bg-surface-container-highest mb-space-md" role="progressbar">
+<!-- JavaScript/TypeScript 30% -->
+<div class="bg-primary-container h-full transition-all duration-300" style="width: 30%;" title="JavaScript/TypeScript: 30%"></div>
+<!-- React 25% -->
+<div class="bg-primary h-full transition-all duration-300" style="width: 25%;" title="React: 25%"></div>
+<!-- API Integration 20% -->
+<div class="bg-tertiary-container h-full transition-all duration-300" style="width: 20%;" title="API Integration: 20%"></div>
+<!-- Testing 15% -->
+<div class="bg-tertiary h-full transition-all duration-300" style="width: 15%;" title="Testing: 15%"></div>
+<!-- Git & Collaboration 10% -->
+<div class="bg-surface-bright h-full transition-all duration-300" style="width: 10%;" title="Git &amp; Collaboration: 10%"></div>
+</div>
+<!-- Dual-Channel Breakdown List -->
+<div class="flex flex-col gap-2.5">
+<!-- Skill 1 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-primary-container shrink-0"></span>
+<span class="font-body-md text-body-md text-text-primary">JavaScript / TypeScript</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-text-primary font-semibold">30%</span>
+</div>
+</div>
+<!-- Skill 2 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-primary shrink-0"></span>
+<span class="font-body-md text-body-md text-text-primary">React Frameworks &amp; State</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-text-primary font-semibold">25%</span>
+</div>
+</div>
+<!-- Skill 3 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-tertiary-container shrink-0"></span>
+<span class="font-body-md text-body-md text-text-primary">API Integration &amp; Protocols</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-text-primary font-semibold">20%</span>
+</div>
+</div>
+<!-- Skill 4 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-tertiary shrink-0"></span>
+<span class="font-body-md text-body-md text-text-primary">Automated Testing &amp; Reliability</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-text-primary font-semibold">15%</span>
+</div>
+</div>
+<!-- Skill 5 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-surface-bright shrink-0"></span>
+<span class="font-body-md text-body-md text-text-primary">Git &amp; Asynchronous Collaboration</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-text-primary font-semibold">10%</span>
+</div>
+</div>
+</div>
+<!-- Explanatory Callout Banner -->
+<div class="mt-space-md p-space-sm rounded-lg bg-surface-container flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-text-secondary leading-snug">
+<strong class="text-text-primary font-semibold">Evaluation note:</strong> A skill's weight reflects its evaluation proportion, not a standalone minimum qualification cutoff. Candidate match metrics are calculated post-submission.
+      </p>
+</div>
+</section>
+<!-- Company Overview & Culture -->
+<section class="bg-surface-elevated rounded-xl p-space-md shadow-sm mb-space-md">
+<div class="flex items-center gap-2 mb-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">corporate_fare</span>
+<h2 class="font-headline-sm text-headline-sm text-text-primary">About Aether Telemetry</h2>
+</div>
+<p class="font-body-md text-body-md text-text-secondary leading-relaxed mb-space-sm">
+      Aether Telemetry Systems builds high-performance distributed observability tooling for mission-critical multi-cloud deployments. Our culture prioritizes high-signal engineering, documented design trade-offs, and asynchronous code review over arbitrary meetings.
+    </p>
+<!-- Visual Work Culture Glimpse -->
+<div class="w-full h-36 rounded-lg bg-cover bg-center overflow-hidden relative" data-alt="A focused high-tech engineering team collaborative workspace in muted dark slate tones with warm amber desk lighting, dual monitors displaying stream telemetry graphs and dark mode terminal windows, minimalist architectural detailing matching a modern engineering lab atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPNFOjCELGVc8HNSgFJ9Vyq9-Wnm9SMvz5ZDnL7R-h5ddTtMbb2XPlVeTrD9_qrIsZNuVlhV-ITp5vVbvSl3gUWJAJd-KzM-nh9Ig4H6h7h3ar83qLcb2KbhGK01Flqybn8-mzKwvyTUsrowIf_Jj49UCzol0JyWqKlnt347ZiO5T6XMTwW8PPGpwjoZw_KlfQ6RYomTABi8uOgGLpaIAOy-dkFYwwUb-KfbK32zfqQtmMUdMwXnNAQQ')">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<div class="absolute bottom-2 left-3 flex items-center gap-1.5 text-text-primary">
+<span class="material-symbols-outlined text-primary text-[16px]">terminal</span>
+<span class="font-metadata text-[11px] font-medium">Distributed Systems Core • Zurich &amp; Remote</span>
+</div>
+</div>
+</section>
+<!-- Post-Application Contextual Hint Card -->
+<section class="bg-surface-container rounded-xl p-space-md shadow-sm mb-space-lg flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0 text-text-secondary">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-text-primary font-semibold">Applicant Analytics Protocol</span>
+<p class="font-body-sm text-body-sm text-text-secondary mt-0.5 leading-relaxed">
+        Applied to another role? View skill percentiles after application submission once enough eligible applicant data is confirmed.
+      </p>
+</div>
+</section>
+<!-- Pinned Sticky Action Dock (Positioned above persistent bottom navigation) -->
+<div class="fixed bottom-16 inset-x-0 z-40 bg-surface-elevated/95 backdrop-blur-md shadow-[0_-8px_24px_rgba(0,0,0,0.6)] px-margin py-3 max-w-md mx-auto">
+<div class="flex items-center gap-space-xs">
+<!-- Bookmark Button -->
+<button aria-label="Save this role to bookmarks" class="h-12 w-12 rounded-lg bg-surface-container flex items-center justify-center text-text-secondary active:text-primary transition-colors shrink-0" id="sticky-save-btn" type="button">
+<span class="material-symbols-outlined text-[22px]" id="sticky-save-icon">bookmark_border</span>
+</button>
+<!-- Primary Application Action -->
+<button class="flex-1 h-12 rounded-lg bg-primary-container text-cta-text font-label-md text-label-md font-semibold active:opacity-90 transition-all flex flex-col items-center justify-center leading-tight shadow-md" id="apply-btn" type="button">
+<span class="flex items-center gap-1.5">
+<span>Apply with Saved CV &amp; Profile</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</span>
+<span class="font-metadata text-[10px] opacity-80 font-normal">
+          Uses verified snapshot (alex.chen.dev.pdf)
+        </span>
+</button>
+</div>
+</div>
+<!-- Interactive Confirmation Toast (Hidden by default) -->
+<div class="fixed top-20 inset-x-margin max-w-md mx-auto z-50 transform -translate-y-12 opacity-0 pointer-events-none transition-all duration-300 bg-surface-bright text-text-primary p-3 rounded-xl shadow-xl flex items-center gap-3" id="application-toast">
+<div class="w-8 h-8 rounded-full bg-success/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-success text-[18px]">done_all</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm font-semibold text-text-primary">Application Snapshot Queued</span>
+<span class="font-metadata text-[11px] text-text-secondary truncate">Verified telemetry profile submitted to Aether Systems.</span>
+</div>
+</div>
+</div>
+<script>
+  (function initJobDetailsMicroInteractions() {
+    const saveHeaderBtn = document.getElementById('save-job-header-btn');
+    const stickySaveBtn = document.getElementById('sticky-save-btn');
+    const headerIcon = document.getElementById('header-save-icon');
+    const stickyIcon = document.getElementById('sticky-save-icon');
+    const applyBtn = document.getElementById('apply-btn');
+    const toast = document.getElementById('application-toast');
+
+    let isSaved = false;
+
+    function toggleSave() {
+      isSaved = !isSaved;
+      const iconName = isSaved ? 'bookmark' : 'bookmark_border';
+      const colorClass = isSaved ? 'text-primary' : 'text-text-secondary';
+      
+      [headerIcon, stickyIcon].forEach(icon => {
+        if (!icon) return;
+        icon.textContent = iconName;
+        if (isSaved) {
+          icon.style.fontVariationSettings = "'FILL' 1";
+          icon.parentElement.classList.add('text-primary');
+          icon.parentElement.classList.remove('text-text-secondary');
+        } else {
+          icon.style.fontVariationSettings = "'FILL' 0";
+          icon.parentElement.classList.remove('text-primary');
+          icon.parentElement.classList.add('text-text-secondary');
+        }
+      });
+    }
+
+    if (saveHeaderBtn) saveHeaderBtn.addEventListener('click', toggleSave);
+    if (stickySaveBtn) stickySaveBtn.addEventListener('click', toggleSave);
+
+    if (applyBtn && toast) {
+      applyBtn.addEventListener('click', () => {
+        // Show submission toast
+        toast.classList.remove('-translate-y-12', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100');
+        
+        applyBtn.innerHTML = `
+          <span class="flex items-center gap-1.5 font-label-md text-label-md font-semibold">
+            <span class="material-symbols-outlined text-[18px] text-cta-text">check</span>
+            <span>Application Submitted</span>
+          </span>
+          <span class="font-metadata text-[10px] opacity-80 font-normal">Tracking on Assessments tab</span>
+        `;
+        applyBtn.classList.remove('bg-primary-container');
+        applyBtn.classList.add('bg-success', 'text-cta-text');
+
+        setTimeout(() => {
+          toast.classList.add('-translate-y-12', 'opacity-0', 'pointer-events-none');
+          toast.classList.remove('translate-y-0', 'opacity-100');
+        }, 4000);
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-elevated/95 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.6)]" data-active-classes="text-primary font-medium"><div class="grid grid-cols-3 h-16 max-w-md mx-auto items-center px-space-xs"><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-text-secondary transition-colors relative group" data-path="jobs" href="#"><span class="material-symbols-outlined text-[22px]">work</span><span class="font-label-sm text-label-sm mt-0.5">Jobs</span><span class="w-1 h-1 rounded-full bg-primary mt-1 opacity-0 group-[.text-primary]:opacity-100 transition-opacity"></span></a><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-text-secondary transition-colors relative group" data-path="assessments" href="#"><span class="material-symbols-outlined text-[22px]">assignment_turned_in</span><span class="font-label-sm text-label-sm mt-0.5">Assessments</span><span class="w-1 h-1 rounded-full bg-primary mt-1 opacity-0 group-[.text-primary]:opacity-100 transition-opacity"></span></a><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-text-secondary transition-colors relative group" data-path="notifications" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute -top-0.5 -right-1 w-2 h-2 rounded-full bg-primary-container ring-2 ring-surface-elevated"></span></div><span class="font-label-sm text-label-sm mt-0.5">Notifications</span><span class="w-1 h-1 rounded-full bg-primary mt-1 opacity-0 group-[.text-primary]:opacity-100 transition-opacity"></span></a></div></nav><div class="fixed inset-0 z-50 pointer-events-none transition-opacity duration-200 opacity-0" id="filters-modal-backdrop"><div class="absolute inset-0 bg-background/80 backdrop-blur-sm" id="filters-backdrop-scrim"></div><div class="absolute bottom-0 inset-x-0 bg-surface-elevated rounded-t-2xl border-t border-border-divider/50 shadow-2xl max-h-[751px] flex flex-col transform translate-y-full transition-transform duration-300 pointer-events-auto pb-safe" id="filters-modal-panel"><div class="flex items-center justify-between p-4 border-b border-border-divider/30"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[20px]">tune</span><h2 class="font-headline-sm text-headline-sm text-text-primary">Discovery Filters</h2></div><button aria-label="Close filters" class="w-9 h-9 rounded-lg flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-surface-container transition-colors" id="close-filters-btn" type="button"><span class="material-symbols-outlined text-[20px]">close</span></button></div><div class="overflow-y-auto p-4 flex flex-col gap-5"><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Work Arrangement</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-primary-container text-cta-text font-label-sm text-label-sm font-medium" type="button">Remote</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Hybrid</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">On-site</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Job Type</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-primary-container text-cta-text font-label-sm text-label-sm font-medium" type="button">Full-time</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Contract</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Advisory</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Experience Level</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-primary-container text-cta-text font-label-sm text-label-sm font-medium" type="button">Senior &amp; Staff</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Principal</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Founding / Lead</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-text-secondary uppercase tracking-wider">Evidence Requirement</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Direct Assessment</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Telemetry Benchmark</button><button class="px-3 py-1.5 rounded-full bg-surface-container text-text-primary font-label-sm text-label-sm" type="button">Take-home Kernel</button></div></div></div><div class="p-4 border-t border-border-divider/30 flex items-center justify-between gap-3 bg-surface-elevated"><button class="px-4 py-2.5 rounded-lg text-text-secondary hover:text-text-primary font-label-md text-label-md transition-colors" id="reset-filters-btn" type="button">Reset filters</button><button class="flex-1 px-4 py-2.5 rounded-lg bg-primary-container text-cta-text font-label-md text-label-md font-semibold active:bg-primary-container/90 transition-colors flex items-center justify-center gap-1.5" id="apply-filters-btn" type="button">Apply filters</button></div></div></div>
+</body></html>

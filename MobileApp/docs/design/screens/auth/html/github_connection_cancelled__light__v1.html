@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<meta content="mobile_tab" name="shell-type"/>
+<title>TalentGraph - Authorization Cancelled</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "canvas": "#FAFAFA",
+            "surface-elevated": "#FFFFFF",
+            "primary": "#D4621A",
+            "text-primary": "#18181B",
+            "text-secondary": "#71717A",
+            "border-divider": "#E4E4E7",
+            "brand-soft": "#FFF1E8",
+            "brand-border": "#FED7AA",
+            "code-bg": "#F4F4F5",
+            "success-green": "#15803D"
+          },
+          fontFamily: {
+            sans: ["Inter", "system-ui", "-apple-system", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100dvh;
+      background-color: #FAFAFA !important;
+      color: #18181B !important;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    .pb-safe {
+      padding-bottom: max(env(safe-area-inset-bottom, 0px), 12px);
+    }
+    .pt-safe {
+      padding-top: max(env(safe-area-inset-top, 0px), 0px);
+    }
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-[#FAFAFA] text-[#18181B] min-h-screen flex flex-col justify-between">
+<!-- Top App Bar -->
+<header class="fixed top-0 inset-x-0 w-full z-50 pt-safe bg-[#FFFFFF] border-b border-[#E4E4E7] shadow-[0_1px_4px_rgba(0,0,0,0.03)]">
+<div class="h-14 max-w-md mx-auto px-4 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-[#FFF1E8] border border-[#FED7AA] flex items-center justify-center">
+<span class="material-symbols-outlined text-[#D4621A] text-[18px]">hub</span>
+</div>
+<span class="font-bold text-[18px] tracking-tight text-[#18181B]">TalentGraph</span>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Toggle theme appearance" class="w-9 h-9 flex items-center justify-center text-[#71717A] hover:text-[#18181B] rounded-lg transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">light_mode</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-[#FFF1E8] border border-[#FED7AA] flex items-center justify-center text-[#D4621A]">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Content Area -->
+<main class="flex-1 w-full max-w-md mx-auto pt-[72px] pb-[88px] px-4 flex flex-col items-center">
+<!-- Hero Status Section with Evidence Trail Anchor -->
+<div class="flex flex-col items-center text-center pt-2 pb-5 w-full">
+<!-- Evidence Node Graphic with Vertical Guide Rails -->
+<div class="relative flex items-center justify-center mb-3">
+<!-- Vertical connector line suggestion behind node -->
+<div class="absolute -top-3 w-[2px] h-3 bg-[#FED7AA]"></div>
+<div class="absolute -bottom-3 w-[2px] h-3 bg-[#FED7AA]"></div>
+<!-- Large Soft Surface Badge -->
+<div class="relative w-16 h-16 rounded-full bg-[#FFF1E8] border border-[#FED7AA] flex items-center justify-center shadow-xs">
+<!-- Disconnected / paused link icon -->
+<div class="w-11 h-11 rounded-full bg-[#FFFFFF] border border-[#FED7AA] flex items-center justify-center">
+<span class="material-symbols-outlined text-[#D4621A] text-[24px]">link_off</span>
+</div>
+<!-- Mini pause pill tag -->
+<div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#FFFFFF] border border-[#FED7AA] flex items-center justify-center text-[#B45309] shadow-xs">
+<span class="material-symbols-outlined text-[13px]">pause</span>
+</div>
+</div>
+</div>
+<!-- State Pill -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF1E8] border border-[#FED7AA] mb-2.5">
+<span class="w-2 h-2 rounded-full bg-[#D4621A] animate-pulse"></span>
+<span class="text-[11px] font-semibold tracking-wider text-[#B45309] uppercase">OAuth Handshake Paused</span>
+</div>
+<!-- Title -->
+<h1 class="text-[25px] leading-tight font-bold text-[#18181B] tracking-tight mb-2">
+        Authorization Cancelled
+      </h1>
+<!-- Subtitle Description -->
+<p class="text-[14px] leading-relaxed text-[#71717A] max-w-[340px]">
+        The GitHub connection request was cancelled before completion. No profile credentials or repository data were transferred.
+      </p>
+</div>
+<!-- Candidate Data Transparency Card -->
+<div class="w-full bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl p-4 sm:p-5 shadow-xs mb-3.5">
+<!-- Header -->
+<div class="flex items-center gap-2 pb-3 mb-3.5 border-b border-[#F4F4F5]">
+<div class="w-7 h-7 rounded-lg bg-[#FFF1E8] flex items-center justify-center text-[#D4621A]">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+<h2 class="text-[16px] font-bold text-[#18181B] leading-tight">
+          Candidate Data Transparency
+        </h2>
+</div>
+<!-- Evidence Trail Sequence -->
+<div class="relative flex flex-col space-y-4 pl-0.5">
+<!-- Thin Continuous Guide Rail -->
+<div class="absolute left-[11px] top-2 bottom-3 w-[2px] bg-[#E4E4E7]"></div>
+<!-- Node 1: Why GitHub is required -->
+<div class="relative flex items-start gap-3">
+<div class="relative z-10 w-6 h-6 rounded-full bg-[#FFFFFF] border-2 border-[#D4621A] flex items-center justify-center shrink-0 mt-0.5">
+<div class="w-2 h-2 rounded-full bg-[#D4621A]"></div>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-[14px] font-semibold text-[#18181B] leading-snug">Why GitHub is required</span>
+<p class="text-[13px] leading-relaxed text-[#71717A] mt-0.5">
+              TalentGraph verifies real-world code contributions to corroborate technical proficiencies objectively, bypassing outdated CV summaries.
+            </p>
+</div>
+</div>
+<!-- Node 2: Read-only public scope -->
+<div class="relative flex items-start gap-3">
+<div class="relative z-10 w-6 h-6 rounded-full bg-[#FFFFFF] border-2 border-[#A1A1AA] flex items-center justify-center shrink-0 mt-0.5">
+<div class="w-2 h-2 rounded-full bg-[#A1A1AA]"></div>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-[14px] font-semibold text-[#18181B] leading-snug">Read-only public scope</span>
+<p class="text-[13px] leading-relaxed text-[#71717A] mt-0.5">
+              We exclusively inspect public commit activity and repository architecture. Private codebases, organizations, and keys remain entirely inaccessible.
+            </p>
+</div>
+</div>
+<!-- Node 3: Zero consequence -->
+<div class="relative flex items-start gap-3">
+<div class="relative z-10 w-6 h-6 rounded-full bg-[#FFFFFF] border-2 border-[#A1A1AA] flex items-center justify-center shrink-0 mt-0.5">
+<div class="w-2 h-2 rounded-full bg-[#A1A1AA]"></div>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-[14px] font-semibold text-[#18181B] leading-snug">Zero consequence</span>
+<p class="text-[13px] leading-relaxed text-[#71717A] mt-0.5">
+              Halting authentication does not penalize your evaluation timeline. You can safely initiate the verification whenever you are ready.
+            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- OAuth Scope Box -->
+<div class="w-full bg-[#F4F4F5] border border-[#E4E4E7] rounded-xl px-3.5 py-3 flex items-center justify-between gap-2 mb-4">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-[#71717A] text-[18px] shrink-0">terminal</span>
+<div class="flex items-baseline gap-1.5 truncate">
+<span class="text-[12px] font-medium text-[#71717A]">OAuth Scope:</span>
+<span class="text-[12px] font-mono font-medium text-[#18181B] truncate">read:user, public_repo</span>
+</div>
+</div>
+<div class="inline-flex items-center gap-1 shrink-0 bg-[#FFFFFF] border border-[#E4E4E7] px-2 py-0.5 rounded text-[11px] font-medium text-[#15803D]">
+<span class="material-symbols-outlined text-[13px]">lock</span>
+<span>Standard TLS 1.3</span>
+</div>
+</div>
+<!-- Interactive Action Buttons -->
+<div class="w-full flex flex-col gap-2.5 mb-4">
+<!-- Primary CTA: Retry with GitHub -->
+<button class="w-full min-h-[48px] py-3.5 px-4 rounded-xl bg-[#D4621A] hover:bg-[#B94F0B] active:bg-[#B94F0B] text-[#18181B] font-bold text-[14px] flex items-center justify-center gap-2 transition-colors shadow-xs cursor-pointer" id="btn-retry" type="button">
+<!-- GitHub Mark SVG -->
+<svg aria-hidden="true" class="w-5 h-5 fill-current text-[#18181B] shrink-0" viewbox="0 0 24 24">
+<path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path>
+</svg>
+<span>Retry with GitHub →</span>
+</button>
+<!-- Secondary CTA: Back to Welcome -->
+<button class="w-full min-h-[48px] py-3.5 px-4 rounded-xl bg-[#FFFFFF] hover:bg-[#F4F4F5] active:bg-[#E4E4E7] border border-[#E4E4E7] text-[#18181B] font-medium text-[14px] flex items-center justify-center gap-1.5 transition-colors cursor-pointer" id="btn-back" type="button">
+<span>← Back to Welcome</span>
+</button>
+</div>
+<!-- Helper Notice -->
+<div class="w-full text-center px-2">
+<p class="text-[12px] leading-relaxed text-[#71717A]">
+        Invitations and technical assessments are linked to your validated GitHub handle. Encountering issues? Visit the 
+        <a class="font-medium text-[#D4621A] hover:underline transition-colors" href="#">Candidate Help Center</a>.
+      </p>
+</div>
+</main>
+<!-- Persistent Bottom Navigation Bar -->
+<nav class="fixed bottom-0 inset-x-0 w-full z-50 pb-safe bg-[#FFFFFF] border-t border-[#E4E4E7] shadow-[0_-1px_6px_rgba(0,0,0,0.03)]">
+<div class="grid grid-cols-3 h-16 max-w-md mx-auto items-center px-2">
+<!-- Tab 1: Jobs (Current / Active) -->
+<a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#D4621A] transition-colors relative" data-path="jobs" href="#">
+<span class="material-symbols-outlined text-[22px]">work</span>
+<span class="text-[11px] font-semibold mt-0.5">Jobs</span>
+<span class="w-1 h-1 rounded-full bg-[#D4621A] mt-0.5"></span>
+</a>
+<!-- Tab 2: Assessments -->
+<a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#71717A] hover:text-[#18181B] transition-colors relative" data-path="assessments" href="#">
+<span class="material-symbols-outlined text-[22px]">assignment_turned_in</span>
+<span class="text-[11px] font-medium mt-0.5">Assessments</span>
+</a>
+<!-- Tab 3: Notifications -->
+<a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#71717A] hover:text-[#18181B] transition-colors relative" data-path="notifications" href="#">
+<div class="relative flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute -top-0.5 -right-1 w-2 h-2 rounded-full bg-[#D4621A]"></span>
+</div>
+<span class="text-[11px] font-medium mt-0.5">Notifications</span>
+</a>
+</div>
+</nav>
+<script>
+    // Micro-interactions
+    document.getElementById('btn-retry')?.addEventListener('click', function() {
+      const btn = this;
+      const original = btn.innerHTML;
+      btn.innerHTML = `
+        <span class="w-4 h-4 rounded-full border-2 border-[#18181B] border-t-transparent animate-spin"></span>
+        <span>Reconnecting GitHub...</span>
+      `;
+      btn.classList.add('opacity-90', 'pointer-events-none');
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.classList.remove('opacity-90', 'pointer-events-none');
+      }, 1500);
+    });
+
+    document.querySelectorAll('button, a').forEach(el => {
+      el.addEventListener('touchstart', () => {
+        el.style.transform = 'scale(0.99)';
+      }, { passive: true });
+      el.addEventListener('touchend', () => {
+        el.style.transform = '';
+      }, { passive: true });
+    });
+  </script>
+</body></html>

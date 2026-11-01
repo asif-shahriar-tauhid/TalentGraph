@@ -1,0 +1,25 @@
+.dart_tool/
+build/
+.gradle/
+android/.gradle/
+android/app/build/
+ios/Pods/
+ios/.symlinks/
+*.g.dart
+*.freezed.dart
+.flutter-plugins*
+pubspec.lock
+coverage/
+# Secrets
+.env
+.env.*
+**/*.jks
+**/*.keystore
+**/key.properties
+**/google-services.json
+**/GoogleService-Info.plist
+# Archival references: read only when a task names them
+docs/spec/mobile-source-of-truth.md
+docs/design/DESIGN.md
+docs/design/screens/*.html
+docs/design/screens/_other/

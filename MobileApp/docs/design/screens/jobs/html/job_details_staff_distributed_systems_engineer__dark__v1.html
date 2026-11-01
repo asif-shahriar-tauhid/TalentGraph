@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#FAFAFA;color:#18181B;-webkit-tap-highlight-color:transparent;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 0.5rem);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+  'background': '#FAFAFA',
+  'surface-elevated': '#FFFFFF',
+  'surface-container': '#F4F4F5',
+  'surface-container-high': '#E4E4E7',
+  'surface-container-highest': '#D4D4D8',
+  'border-divider': '#E4E4E7',
+  'text-primary': '#18181B',
+  'text-secondary': '#71717A',
+  'neutral-icon': '#52525B',
+  'brand-accent': '#D4621A',
+  'brand-accent-hover': '#B94F0B',
+  'primary-container': '#D4621A',
+  'cta-text': '#18181B',
+  'soft-surface': '#FFF1E8',
+  'soft-border': '#FED7AA'
+}, borderRadius: { DEFAULT: '0.25rem', lg: '0.5rem', xl: '0.75rem', full: '9999px' }, spacing: { 'space-md': '1rem', 'space-2xs': '0.25rem', 'space-xs': '0.5rem', 'gutter-mobile': '0.75rem', 'space-sm': '0.75rem', 'gutter': '1rem', 'space-xl': '1.5rem', 'margin': '1rem', 'space-lg': '1.25rem', 'space-2xl': '2rem', 'margin-compact': '0.75rem' }, fontFamily: { 'headline-sm': ['Inter'], 'body-md': ['Inter'], 'body-sm': ['Inter'], 'label-sm': ['Inter'], 'metadata': ['Inter'], 'display-lg-mobile': ['Inter'], 'display-lg': ['Inter'], 'label-md': ['Inter'], 'timer-display': ['Inter'], 'headline-md': ['Inter'], 'body-lg': ['Inter'] }, fontSize: { 'headline-sm': ['18px', { lineHeight: '24px', fontWeight: '600' }], 'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }], 'body-sm': ['13px', { lineHeight: '18px', fontWeight: '400' }], 'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.02em', fontWeight: '500' }], 'metadata': ['12px', { lineHeight: '16px', fontWeight: '400' }], 'display-lg-mobile': ['24px', { lineHeight: '32px', letterSpacing: '-0.02em', fontWeight: '700' }], 'display-lg': ['28px', { lineHeight: '36px', letterSpacing: '-0.02em', fontWeight: '700' }], 'label-md': ['14px', { lineHeight: '20px', letterSpacing: '0.01em', fontWeight: '600' }], 'timer-display': ['16px', { lineHeight: '20px', letterSpacing: '0.04em', fontWeight: '600' }], 'headline-md': ['20px', { lineHeight: '28px', letterSpacing: '-0.01em', fontWeight: '600' }], 'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style></head><body class="bg-[#FAFAFA] font-body-md text-[#18181B] min-h-screen flex flex-col antialiased selection:bg-[#FFF1E8] selection:text-[#D4621A]"><header class="fixed top-0 w-full z-50 pt-safe bg-[#FFFFFF]/90 backdrop-blur-xl border-b border-[#E4E4E7] shadow-sm"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs"><img alt="TalentGraph Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U97agoXIwiCKwzW-3OewsiWdWrxdGkHbW1MGXiAx5dq_r_DkSuK_J898BEZwotMjT9li9U-9OJT1oh7GHpZkyjuugqFyY7RPfiES19vvDkhSJFCOIYnmNwjRx-0XZGc3LfHfOq37cgWNy49hOyIEmwyjiLfFBfJyr0EAOXIW8qCJd3kY4thp2CQXvqhn4Hn1S4zMCz-qGLXV-0tp2fCxVT7mhk0pLw6wwN3yu0vkEPTLXrX1uQw4LEn_bq"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-[#18181B] leading-tight">TalentGraph</span><span class="font-metadata text-[11px] text-[#71717A] leading-none">Find your next technical role</span></div></div><div class="flex items-center gap-space-xs"><button aria-label="Toggle theme appearance" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#F4F4F5] border border-[#E4E4E7] text-[#71717A] hover:text-[#18181B] transition-colors" id="theme-toggle-btn" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-36 px-margin bg-[#FAFAFA]"><div class="flex flex-col w-full pb-36">
+<!-- Nav Bar / Action Strip -->
+<div class="flex items-center justify-between py-2 -mt-1 mb-space-sm">
+<a class="inline-flex items-center gap-1.5 py-1.5 px-2.5 rounded-lg bg-[#FFFFFF] border border-[#E4E4E7] text-[#18181B] hover:bg-[#F4F4F5] active:bg-[#E4E4E7] transition-colors text-label-sm font-label-sm shadow-xs" href="#">
+<span class="material-symbols-outlined text-[18px] text-[#52525B]">arrow_back</span>
+<span>Back to Jobs</span>
+</a>
+<div class="flex items-center gap-space-xs">
+<button aria-label="Bookmark this role" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#F4F4F5] border border-[#E4E4E7] text-[#52525B] hover:text-[#D4621A] active:text-[#D4621A] transition-colors shadow-xs" id="save-job-header-btn" type="button">
+<span class="material-symbols-outlined text-[20px]" id="header-save-icon">bookmark_border</span>
+</button>
+<button aria-label="Share role" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#F4F4F5] border border-[#E4E4E7] text-[#52525B] hover:text-[#18181B] active:text-[#18181B] transition-colors shadow-xs" type="button">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+<!-- Role Header Brief Card -->
+<section class="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl p-space-md shadow-xs mb-space-md">
+<!-- Team & Verified Status Badge -->
+<div class="flex flex-wrap items-center gap-space-xs mb-space-xs">
+<div class="flex items-center gap-1.5 bg-[#DCFCE7] border border-[#BBF7D0] py-1 px-2.5 rounded-full">
+<span class="material-symbols-outlined text-[#15803D] text-[15px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm text-[#15803D] font-medium">Aether Telemetry Systems</span>
+</div>
+<div class="flex items-center gap-1 bg-[#DCFCE7] border border-[#BBF7D0] py-1 px-2 rounded-full">
+<span class="material-symbols-outlined text-[#15803D] text-[13px]">commit</span>
+<span class="font-metadata text-[11px] text-[#15803D] font-medium">Commit verification active</span>
+</div>
+</div>
+<!-- Title with generous wrapping -->
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-[#18181B] tracking-tight mb-space-sm">
+      Staff Distributed Systems Engineer - High Throughput Telemetry
+    </h1>
+<!-- Metadata Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-space-md pt-space-xs">
+<div class="flex items-center gap-2 text-[#71717A]">
+<span class="material-symbols-outlined text-[18px] text-[#D4621A]">public</span>
+<span class="font-body-sm text-body-sm text-[#18181B]">Remote (North America &amp; EMEA)</span>
+</div>
+<div class="flex items-center gap-2 text-[#71717A]">
+<span class="material-symbols-outlined text-[18px] text-[#D4621A]">work_outline</span>
+<span class="font-body-sm text-body-sm text-[#18181B]">Full-time • Staff / Principal</span>
+</div>
+<div class="flex items-center gap-2 text-[#71717A]">
+<span class="material-symbols-outlined text-[18px] text-[#D4621A]">event</span>
+<span class="font-body-sm text-body-sm text-[#71717A]">Closes <strong class="font-label-sm text-[#18181B]">Nov 14, 2026</strong></span>
+</div>
+<div class="flex items-center gap-2 text-[#71717A]">
+<span class="material-symbols-outlined text-[18px] text-[#D4621A]">schedule</span>
+<span class="font-metadata text-metadata text-[#71717A]">Posted 3 days ago</span>
+</div>
+</div>
+</section>
+<!-- Role Mission Summary -->
+<section class="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl p-space-md shadow-xs mb-space-md">
+<div class="flex items-center gap-2 mb-space-xs">
+<span class="material-symbols-outlined text-[#D4621A] text-[20px]">explore</span>
+<h2 class="font-headline-sm text-headline-sm text-[#18181B]">Mission &amp; Scope</h2>
+</div>
+<p class="font-body-md text-body-md text-[#27272A] leading-relaxed">
+      Join our core telemetry infrastructure team building low-latency stream processing pipelines handling over 2M commits and event traces daily. You will anchor system reliability, architect fault-tolerant ingestion services, and collaborate closely with open-source distributed tracing contributors.
+    </p>
+</section>
+<!-- Evidence Trail Responsibilities -->
+<section class="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl p-space-md shadow-xs mb-space-md">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#D4621A] text-[20px]">checklist</span>
+<h2 class="font-headline-sm text-headline-sm text-[#18181B]">Responsibilities</h2>
+</div>
+<span class="font-metadata text-metadata text-[#71717A]">4 Core Areas</span>
+</div>
+<!-- Evidence Trail List -->
+<div class="relative pl-5 flex flex-col gap-space-md">
+<!-- Vertical Rail Line -->
+<div class="absolute left-1.5 top-2.5 bottom-2 w-[2px] bg-[#E4E4E7]"></div>
+<!-- Item 1 -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-5 top-1.5 w-3 h-3 rounded-full bg-[#D4621A] ring-4 ring-[#FFFFFF] flex items-center justify-center"></div>
+<p class="font-body-md text-body-md text-[#18181B]">
+          Design and maintain high-throughput Go and Rust stream processors capable of sub-10ms p99 latency.
+        </p>
+</div>
+<!-- Item 2 -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-5 top-1.5 w-3 h-3 rounded-full bg-[#D4621A] ring-4 ring-[#FFFFFF] flex items-center justify-center"></div>
+<p class="font-body-md text-body-md text-[#18181B]">
+          Drive architecture reviews for zero-downtime database migrations across globally distributed clusters.
+        </p>
+</div>
+<!-- Item 3 -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-5 top-1.5 w-3 h-3 rounded-full bg-[#D4621A] ring-4 ring-[#FFFFFF] flex items-center justify-center"></div>
+<p class="font-body-md text-body-md text-[#18181B]">
+          Mentor senior and mid-level engineers through rigorous code reviews and telemetry-driven design docs.
+        </p>
+</div>
+<!-- Item 4 -->
+<div class="relative flex items-start gap-space-sm">
+<div class="absolute -left-5 top-1.5 w-3 h-3 rounded-full bg-[#D4621A] ring-4 ring-[#FFFFFF] flex items-center justify-center"></div>
+<p class="font-body-md text-body-md text-[#18181B]">
+          Partner with candidate assessment engineers to benchmark live coding sandbox environments.
+        </p>
+</div>
+</div>
+</section>
+<!-- Descriptive Job Criteria (Isolated from Evaluation Weights) -->
+<section class="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl p-space-md shadow-xs mb-space-md">
+<div class="flex items-center gap-2 mb-space-sm">
+<span class="material-symbols-outlined text-[#D4621A] text-[20px]">rule</span>
+<h2 class="font-headline-sm text-headline-sm text-[#18181B]">Role Requirements</h2>
+</div>
+<!-- Required Skills -->
+<div class="mb-space-md">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider font-semibold">Required Skills</span>
+<span class="font-metadata text-[11px] text-[#71717A]">Expected day one</span>
+</div>
+<div class="flex flex-wrap gap-space-xs">
+<span class="bg-[#F4F4F5] border border-[#E4E4E7] px-3 py-1.5 rounded-lg text-[#18181B] font-label-sm text-label-sm font-medium">Go</span>
+<span class="bg-[#F4F4F5] border border-[#E4E4E7] px-3 py-1.5 rounded-lg text-[#18181B] font-label-sm text-label-sm font-medium">Distributed Systems</span>
+<span class="bg-[#F4F4F5] border border-[#E4E4E7] px-3 py-1.5 rounded-lg text-[#18181B] font-label-sm text-label-sm font-medium">Kubernetes</span>
+<span class="bg-[#F4F4F5] border border-[#E4E4E7] px-3 py-1.5 rounded-lg text-[#18181B] font-label-sm text-label-sm font-medium">Kafka</span>
+<span class="bg-[#F4F4F5] border border-[#E4E4E7] px-3 py-1.5 rounded-lg text-[#18181B] font-label-sm text-label-sm font-medium">High-Throughput Concurrency</span>
+</div>
+</div>
+<!-- Preferred Skills -->
+<div class="mb-space-md">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider font-semibold">Preferred Skills</span>
+<span class="font-metadata text-[11px] text-[#71717A]">Growth areas &amp; depth</span>
+</div>
+<div class="flex flex-wrap gap-space-xs">
+<span class="bg-[#FAFAFA] border border-[#E4E4E7] px-3 py-1.5 rounded-lg text-[#52525B] font-label-sm text-label-sm font-medium">Rust</span>
+<span class="bg-[#FAFAFA] border border-[#E4E4E7] px-3 py-1.5 rounded-lg text-[#52525B] font-label-sm text-label-sm font-medium">eBPF Profiling</span>
+<span class="bg-[#FAFAFA] border border-[#E4E4E7] px-3 py-1.5 rounded-lg text-[#52525B] font-label-sm text-label-sm font-medium">ClickHouse</span>
+<span class="bg-[#FAFAFA] border border-[#E4E4E7] px-3 py-1.5 rounded-lg text-[#52525B] font-label-sm text-label-sm font-medium">Terraform</span>
+</div>
+</div>
+<!-- Eligibility & Prerequisites -->
+<div class="bg-[#F4F4F5] border border-[#E4E4E7] p-space-sm rounded-lg">
+<div class="flex items-center gap-1.5 mb-2">
+<span class="material-symbols-outlined text-[#52525B] text-[16px]">verified_user</span>
+<span class="font-label-sm text-label-sm text-[#18181B] font-semibold">Eligibility &amp; Prerequisites</span>
+</div>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-[#27272A] pl-1">
+<li class="flex items-start gap-2">
+<span class="text-[#D4621A] font-bold">•</span>
+<span>Authorized to work in covered timezones (UTC-5 to UTC+3).</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#D4621A] font-bold">•</span>
+<span>Demonstrated contribution history in production systems or verified open-source repositories.</span>
+</li>
+</ul>
+<p class="font-metadata text-[11px] text-[#71717A] mt-2.5 pt-2 border-t border-[#E4E4E7]">
+        Note: Minimum eligibility requirements are displayed as returned by verified org criteria; they operate independently of technical assessment weighting.
+      </p>
+</div>
+</section>
+<!-- CRITICAL: How This Role Is Evaluated -->
+<section class="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl p-space-md shadow-xs mb-space-md">
+<!-- Header with Explicit Tag -->
+<div class="flex items-start justify-between gap-space-xs mb-space-xs">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-[#18181B] flex items-center gap-2">
+<span class="material-symbols-outlined text-[#D4621A] text-[20px]">analytics</span>
+          How This Role Is Evaluated
+        </h2>
+<p class="font-metadata text-metadata text-[#71717A] mt-1">
+          Recruiter-configured evaluation criteria for incoming candidates. Weights reflect relative contribution to overall technical review.
+        </p>
+</div>
+<span class="shrink-0 bg-[#F4F4F5] border border-[#E4E4E7] px-2.5 py-0.5 rounded-full font-label-sm text-[11px] text-[#71717A] font-medium">
+        Illustrative example
+      </span>
+</div>
+<!-- Overall Weight Total Indicator -->
+<div class="flex items-center justify-between bg-[#F4F4F5] border border-[#E4E4E7] px-3 py-2 rounded-lg mt-space-sm mb-space-sm">
+<span class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider font-semibold">Evaluation Distribution</span>
+<span class="font-label-md text-label-md text-[#D4621A] font-bold">Total weight · 100%</span>
+</div>
+<!-- Segmented Proportional Bar -->
+<div aria-label="Skill weight distribution bar" class="w-full flex h-3 rounded-full overflow-hidden bg-[#E4E4E7] mb-space-md" role="progressbar">
+<!-- JavaScript/TypeScript 30% -->
+<div class="bg-[#D4621A] h-full transition-all duration-300" style="width: 30%;" title="JavaScript/TypeScript: 30%"></div>
+<!-- React 25% -->
+<div class="bg-[#E47735] h-full transition-all duration-300" style="width: 25%;" title="React: 25%"></div>
+<!-- API Integration 20% -->
+<div class="bg-[#F97316] h-full transition-all duration-300" style="width: 20%;" title="API Integration: 20%"></div>
+<!-- Testing 15% -->
+<div class="bg-[#FB923C] h-full transition-all duration-300" style="width: 15%;" title="Testing: 15%"></div>
+<!-- Git & Collaboration 10% -->
+<div class="bg-[#FED7AA] h-full transition-all duration-300" style="width: 10%;" title="Git &amp; Collaboration: 10%"></div>
+</div>
+<!-- Dual-Channel Breakdown List -->
+<div class="flex flex-col gap-2.5">
+<!-- Skill 1 -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-[#F4F4F5] border border-[#E4E4E7]">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-[#D4621A] shrink-0"></span>
+<span class="font-body-md text-body-md text-[#18181B] font-medium">JavaScript / TypeScript</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-[#18181B] font-bold">30%</span>
+</div>
+</div>
+<!-- Skill 2 -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-[#F4F4F5] border border-[#E4E4E7]">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-[#E47735] shrink-0"></span>
+<span class="font-body-md text-body-md text-[#18181B] font-medium">React Frameworks &amp; State</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-[#18181B] font-bold">25%</span>
+</div>
+</div>
+<!-- Skill 3 -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-[#F4F4F5] border border-[#E4E4E7]">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-[#F97316] shrink-0"></span>
+<span class="font-body-md text-body-md text-[#18181B] font-medium">API Integration &amp; Protocols</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-[#18181B] font-bold">20%</span>
+</div>
+</div>
+<!-- Skill 4 -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-[#F4F4F5] border border-[#E4E4E7]">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-[#FB923C] shrink-0"></span>
+<span class="font-body-md text-body-md text-[#18181B] font-medium">Automated Testing &amp; Reliability</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-[#18181B] font-bold">15%</span>
+</div>
+</div>
+<!-- Skill 5 -->
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-[#F4F4F5] border border-[#E4E4E7]">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-[#FED7AA] border border-[#E4E4E7] shrink-0"></span>
+<span class="font-body-md text-body-md text-[#18181B] font-medium">Git &amp; Asynchronous Collaboration</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-[#18181B] font-bold">10%</span>
+</div>
+</div>
+</div>
+<!-- Explanatory Callout Banner -->
+<div class="mt-space-md p-space-sm rounded-lg bg-[#FFF1E8] border border-[#FED7AA] flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[#D4621A] text-[20px] shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-[#71717A] leading-snug">
+<strong class="text-[#18181B] font-semibold">Evaluation note:</strong> A skill's weight reflects its evaluation proportion, not a standalone minimum qualification cutoff. Candidate match metrics are calculated post-submission.
+      </p>
+</div>
+</section>
+<!-- Company Overview & Culture -->
+<section class="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl p-space-md shadow-xs mb-space-md">
+<div class="flex items-center gap-2 mb-space-xs">
+<span class="material-symbols-outlined text-[#D4621A] text-[20px]">corporate_fare</span>
+<h2 class="font-headline-sm text-headline-sm text-[#18181B]">About Aether Telemetry</h2>
+</div>
+<p class="font-body-md text-body-md text-[#71717A] leading-relaxed mb-space-sm">
+      Aether Telemetry Systems builds high-performance distributed observability tooling for mission-critical multi-cloud deployments. Our culture prioritizes high-signal engineering, documented design trade-offs, and asynchronous code review over arbitrary meetings.
+    </p>
+<!-- Visual Work Culture Glimpse -->
+<div class="w-full h-36 rounded-lg bg-cover bg-center overflow-hidden relative border border-[#E4E4E7]" data-alt="A focused high-tech engineering team collaborative workspace in muted dark slate tones with warm amber desk lighting, dual monitors displaying stream telemetry graphs and dark mode terminal windows, minimalist architectural detailing matching a modern engineering lab atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPNFOjCELGVc8HNSgFJ9Vyq9-Wnm9SMvz5ZDnL7R-h5ddTtMbb2XPlVeTrD9_qrIsZNuVlhV-ITp5vVbvSl3gUWJAJd-KzM-nh9Ig4H6h7h3ar83qLcb2KbhGK01Flqybn8-mzKwvyTUsrowIf_Jj49UCzol0JyWqKlnt347ZiO5T6XMTwW8PPGpwjoZw_KlfQ6RYomTABi8uOgGLpaIAOy-dkFYwwUb-KfbK32zfqQtmMUdMwXnNAQQ')">
+<div class="absolute inset-0 bg-gradient-to-t from-[#18181B]/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-2 left-3 flex items-center gap-1.5 text-[#FFFFFF]">
+<span class="material-symbols-outlined text-[#D4621A] text-[16px]">terminal</span>
+<span class="font-metadata text-[11px] font-medium">Distributed Systems Core • Zurich &amp; Remote</span>
+</div>
+</div>
+</section>
+<!-- Post-Application Contextual Hint Card -->
+<section class="bg-[#F4F4F5] border border-[#E4E4E7] rounded-xl p-space-md shadow-xs mb-space-lg flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-[#FFFFFF] border border-[#E4E4E7] flex items-center justify-center shrink-0 text-[#52525B]">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-[#18181B] font-semibold">Applicant Analytics Protocol</span>
+<p class="font-body-sm text-body-sm text-[#71717A] mt-0.5 leading-relaxed">
+        Applied to another role? View skill percentiles after application submission once enough eligible applicant data is confirmed.
+      </p>
+</div>
+</section>
+<!-- Pinned Sticky Action Dock (Positioned above persistent bottom navigation) -->
+<div class="fixed bottom-16 inset-x-0 z-40 bg-[#FFFFFF]/95 backdrop-blur-md border-t border-[#E4E4E7] shadow-[0_-4px_16px_rgba(0,0,0,0.06)] px-margin py-3 max-w-md mx-auto">
+<div class="flex items-center gap-space-xs">
+<!-- Bookmark Button -->
+<button aria-label="Save this role to bookmarks" class="h-12 w-12 rounded-lg bg-[#F4F4F5] border border-[#E4E4E7] flex items-center justify-center text-[#52525B] hover:text-[#D4621A] active:text-[#D4621A] transition-colors shrink-0 shadow-xs" id="sticky-save-btn" type="button">
+<span class="material-symbols-outlined text-[22px]" id="sticky-save-icon">bookmark_border</span>
+</button>
+<!-- Primary Application Action -->
+<button class="flex-1 h-12 rounded-lg bg-[#D4621A] hover:bg-[#B94F0B] text-[#18181B] font-label-md text-label-md font-bold active:opacity-95 transition-all flex flex-col items-center justify-center leading-tight shadow-sm" id="apply-btn" type="button">
+<span class="flex items-center gap-1.5 font-bold">
+<span>Apply with Saved CV &amp; Profile</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</span>
+<span class="font-metadata text-[10px] text-[#18181B]/90 font-medium">
+          Uses verified snapshot (alex.chen.dev.pdf)
+        </span>
+</button>
+</div>
+</div>
+<!-- Interactive Confirmation Toast (Hidden by default) -->
+<div class="fixed top-20 inset-x-margin max-w-md mx-auto z-50 transform -translate-y-12 opacity-0 pointer-events-none transition-all duration-300 bg-[#FFFFFF] border border-[#E4E4E7] text-[#18181B] p-3 rounded-xl shadow-xl flex items-center gap-3" id="application-toast">
+<div class="w-8 h-8 rounded-full bg-[#DCFCE7] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[#15803D] text-[18px]">done_all</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm font-semibold text-[#18181B]">Application Snapshot Queued</span>
+<span class="font-metadata text-[11px] text-[#71717A] truncate">Verified telemetry profile submitted to Aether Systems.</span>
+</div>
+</div>
+</div>
+<script>
+  (function initJobDetailsMicroInteractions() {
+    const saveHeaderBtn = document.getElementById('save-job-header-btn');
+    const stickySaveBtn = document.getElementById('sticky-save-btn');
+    const headerIcon = document.getElementById('header-save-icon');
+    const stickyIcon = document.getElementById('sticky-save-icon');
+    const applyBtn = document.getElementById('apply-btn');
+    const toast = document.getElementById('application-toast');
+
+    let isSaved = false;
+
+    function toggleSave() {
+      isSaved = !isSaved;
+      const iconName = isSaved ? 'bookmark' : 'bookmark_border';
+      
+      [headerIcon, stickyIcon].forEach(icon => {
+        if (!icon) return;
+        icon.textContent = iconName;
+        if (isSaved) {
+          icon.style.fontVariationSettings = "'FILL' 1";
+          icon.parentElement.classList.add('text-[#D4621A]', 'border-[#FED7AA]');
+          icon.parentElement.classList.remove('text-[#52525B]', 'border-[#E4E4E7]');
+        } else {
+          icon.style.fontVariationSettings = "'FILL' 0";
+          icon.parentElement.classList.remove('text-[#D4621A]', 'border-[#FED7AA]');
+          icon.parentElement.classList.add('text-[#52525B]', 'border-[#E4E4E7]');
+        }
+      });
+    }
+
+    if (saveHeaderBtn) saveHeaderBtn.addEventListener('click', toggleSave);
+    if (stickySaveBtn) stickySaveBtn.addEventListener('click', toggleSave);
+
+    if (applyBtn && toast) {
+      applyBtn.addEventListener('click', () => {
+        // Show submission toast
+        toast.classList.remove('-translate-y-12', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100');
+        
+        applyBtn.innerHTML = `
+          <span class="flex items-center gap-1.5 font-label-md text-label-md font-bold text-[#15803D]">
+            <span class="material-symbols-outlined text-[18px]">check</span>
+            <span>Application Submitted</span>
+          </span>
+          <span class="font-metadata text-[10px] text-[#15803D] font-medium">Tracking on Assessments tab</span>
+        `;
+        applyBtn.classList.remove('bg-[#D4621A]', 'hover:bg-[#B94F0B]');
+        applyBtn.classList.add('bg-[#DCFCE7]', 'border', 'border-[#BBF7D0]');
+
+        setTimeout(() => {
+          toast.classList.add('-translate-y-12', 'opacity-0', 'pointer-events-none');
+          toast.classList.remove('translate-y-0', 'opacity-100');
+        }, 4000);
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#FFFFFF]/95 backdrop-blur-xl border-t border-[#E4E4E7] shadow-[0_-4px_16px_rgba(0,0,0,0.05)]" data-active-classes="text-[#D4621A] font-medium"><div class="grid grid-cols-3 h-16 max-w-md mx-auto items-center px-space-xs"><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#D4621A] transition-colors relative group" data-path="jobs" href="#"><span class="material-symbols-outlined text-[22px]">work</span><span class="font-label-sm text-label-sm mt-0.5 font-medium">Jobs</span><span class="w-1 h-1 rounded-full bg-[#D4621A] mt-1 opacity-100 transition-opacity"></span></a><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#71717A] hover:text-[#18181B] transition-colors relative group" data-path="assessments" href="#"><span class="material-symbols-outlined text-[22px]">assignment_turned_in</span><span class="font-label-sm text-label-sm mt-0.5">Assessments</span><span class="w-1 h-1 rounded-full bg-[#D4621A] mt-1 opacity-0 group-[.text-[#D4621A]]:opacity-100 transition-opacity"></span></a><a class="flex flex-col items-center justify-center min-h-[48px] py-1 text-[#71717A] hover:text-[#18181B] transition-colors relative group" data-path="notifications" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute -top-0.5 -right-1 w-2 h-2 rounded-full bg-[#D4621A] ring-2 ring-[#FFFFFF]"></span></div><span class="font-label-sm text-label-sm mt-0.5">Notifications</span><span class="w-1 h-1 rounded-full bg-[#D4621A] mt-1 opacity-0 group-[.text-[#D4621A]]:opacity-100 transition-opacity"></span></a></div></nav><div class="fixed inset-0 z-50 pointer-events-none transition-opacity duration-200 opacity-0" id="filters-modal-backdrop"><div class="absolute inset-0 bg-[#18181B]/40 backdrop-blur-xs" id="filters-backdrop-scrim"></div><div class="absolute bottom-0 inset-x-0 bg-[#FFFFFF] rounded-t-2xl border-t border-[#E4E4E7] shadow-2xl max-h-[751px] flex flex-col transform translate-y-full transition-transform duration-300 pointer-events-auto pb-safe" id="filters-modal-panel"><div class="flex items-center justify-between p-4 border-b border-[#E4E4E7]"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[#D4621A] text-[20px]">tune</span><h2 class="font-headline-sm text-headline-sm text-[#18181B]">Discovery Filters</h2></div><button aria-label="Close filters" class="w-9 h-9 rounded-lg flex items-center justify-center text-[#71717A] hover:text-[#18181B] hover:bg-[#F4F4F5] transition-colors" id="close-filters-btn" type="button"><span class="material-symbols-outlined text-[20px]">close</span></button></div><div class="overflow-y-auto p-4 flex flex-col gap-5"><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider font-semibold">Work Arrangement</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-[#D4621A] text-[#18181B] font-label-sm text-label-sm font-semibold" type="button">Remote</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm" type="button">Hybrid</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm" type="button">On-site</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider font-semibold">Job Type</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-[#D4621A] text-[#18181B] font-label-sm text-label-sm font-semibold" type="button">Full-time</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm" type="button">Contract</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm" type="button">Advisory</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider font-semibold">Experience Level</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-[#D4621A] text-[#18181B] font-label-sm text-label-sm font-semibold" type="button">Senior &amp; Staff</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm" type="button">Principal</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm" type="button">Founding / Lead</button></div></div><div class="flex flex-col gap-2"><label class="font-label-sm text-label-sm text-[#71717A] uppercase tracking-wider font-semibold">Evidence Requirement</label><div class="flex flex-wrap gap-2"><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm" type="button">Direct Assessment</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm" type="button">Telemetry Benchmark</button><button class="px-3 py-1.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[#18181B] font-label-sm text-label-sm" type="button">Take-home Kernel</button></div></div></div><div class="p-4 border-t border-[#E4E4E7] flex items-center justify-between gap-3 bg-[#FFFFFF]"><button class="px-4 py-2.5 rounded-lg text-[#71717A] hover:text-[#18181B] font-label-md text-label-md transition-colors" id="reset-filters-btn" type="button">Reset filters</button><button class="flex-1 px-4 py-2.5 rounded-lg bg-[#D4621A] hover:bg-[#B94F0B] text-[#18181B] font-label-md text-label-md font-bold active:opacity-95 transition-colors flex items-center justify-center gap-1.5" id="apply-filters-btn" type="button">Apply filters</button></div></div></div>
+</body></html>
