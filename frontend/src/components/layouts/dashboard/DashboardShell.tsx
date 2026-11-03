@@ -18,6 +18,7 @@ export function DashboardShell({
   children,
 }: DashboardShellProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   // Allow related sub-roles (e.g. SUB_RECRUITER for RECRUITER, ADMIN for SYSTEM_ADMIN)
   const allowedRoles: UserRole[] =
@@ -35,7 +36,11 @@ export function DashboardShell({
         roleBadgeClassName={roleBadgeClassName}
         navGroups={navGroups}
         isOpen={isSidebarOpen}
+        isCollapsed={isSidebarCollapsed}
         onClose={() => setIsSidebarOpen(false)}
+        onToggleCollapse={() =>
+          setIsSidebarCollapsed((collapsed) => !collapsed)
+        }
         footerNote={footerNote}
         footerSecurityText={footerSecurityText}
       />
@@ -45,7 +50,7 @@ export function DashboardShell({
           roleTitle={roleTitle}
           onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)}
         />
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+        <main className="min-w-0 w-full flex-1 overflow-x-hidden overflow-y-auto p-4 sm:p-6 lg:p-8">
           {children}
         </main>
       </div>
