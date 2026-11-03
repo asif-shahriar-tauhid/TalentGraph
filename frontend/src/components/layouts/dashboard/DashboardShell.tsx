@@ -27,30 +27,34 @@ export function DashboardShell({
         ? ["SYSTEM_ADMIN", "ADMIN"]
         : [userRole as UserRole];
 
+  const shell = (
+    <div className="flex min-h-screen w-full bg-background">
+      <DashboardSidebar
+        roleTitle={roleTitle}
+        roleBadge={roleBadge}
+        roleBadgeClassName={roleBadgeClassName}
+        navGroups={navGroups}
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+        footerNote={footerNote}
+        footerSecurityText={footerSecurityText}
+      />
+
+      <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
+        <DashboardHeader
+          roleTitle={roleTitle}
+          onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)}
+        />
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+          {children}
+        </main>
+      </div>
+    </div>
+  );
+
   return (
     <RoleGuard allowedRoles={allowedRoles}>
-      <div className="flex min-h-screen w-full bg-background">
-        <DashboardSidebar
-          roleTitle={roleTitle}
-          roleBadge={roleBadge}
-          roleBadgeClassName={roleBadgeClassName}
-          navGroups={navGroups}
-          isOpen={isSidebarOpen}
-          onClose={() => setIsSidebarOpen(false)}
-          footerNote={footerNote}
-          footerSecurityText={footerSecurityText}
-        />
-
-        <div className="flex flex-1 flex-col overflow-hidden min-w-0">
-          <DashboardHeader
-            roleTitle={roleTitle}
-            onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)}
-          />
-          <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-            {children}
-          </main>
-        </div>
-      </div>
+      {shell}
     </RoleGuard>
   );
 }
