@@ -22,6 +22,10 @@ export interface IGithubAuthPayload {
   role?: Role;
 }
 
+export interface IConnectGithubPayload {
+  code: string;
+}
+
 export interface IForgotPasswordPayload {
   email: string;
 }

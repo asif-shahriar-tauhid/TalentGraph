@@ -12,6 +12,7 @@ import { AppError } from "../../utils/AppError";
 import { jwtUtils } from "../../utils/jwt";
 import type {
   IChangePasswordPayload,
+  IConnectGithubPayload,
   IForgotPasswordPayload,
   IGithubAuthPayload,
   ILoginUserPayload,
@@ -94,6 +95,18 @@ const verifyEmail = async (payload: IVerifyEmailPayload) => {
       role: pendingData.role,
       emailVerified: true,
       authProvider: "CREDENTIAL",
+      ...(pendingData.role === "CANDIDATE"
+        ? {
+            candidateProfile: {
+              create: {
+                name: pendingData.name,
+              },
+            },
+          }
+        : {}),
+    },
+    include: {
+      candidateProfile: true,
     },
   });
 
@@ -174,30 +187,68 @@ const loginUser = async (payload: ILoginUserPayload) => {
 const githubAuthCallback = async (payload: IGithubAuthPayload) => {
   const ghAccessToken = await githubAuth.getGithubAccessToken(payload.code);
   const ghProfile = await githubAuth.getGithubUserProfile(ghAccessToken);
+  const githubUrl = `https://github.com/${ghProfile.login}`;
 
   let user = await prisma.user.findFirst({
     where: {
       OR: [{ githubId: ghProfile.id }, { email: ghProfile.email }],
     },
+    include: {
+      candidateProfile: true,
+    },
   });
 
   if (user) {
-    user = await prisma.user.update({
-      where: { id: user.id },
-      data: {
-        githubId: user.githubId || ghProfile.id,
-        githubToken: ghAccessToken,
-        imageUrl: user.imageUrl || ghProfile.avatarUrl,
-      },
-    });
-
     if (user.status === "BLOCKED") {
       throw new AppError(httpStatus.FORBIDDEN, "Your account has been blocked.");
     }
     if (user.isDeleted || user.status === "DELETED") {
       throw new AppError(httpStatus.FORBIDDEN, "Account no longer exists.");
     }
+    if (user.githubId && user.githubId !== ghProfile.id) {
+      throw new AppError(
+        httpStatus.CONFLICT,
+        "This email is already linked to a different GitHub account.",
+      );
+    }
+
+    const existingLinks =
+      user.candidateProfile?.links &&
+      typeof user.candidateProfile.links === "object" &&
+      !Array.isArray(user.candidateProfile.links)
+        ? (user.candidateProfile.links as Record<string, unknown>)
+        : {};
+
+    user = await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        githubId: user.githubId || ghProfile.id,
+        githubToken: ghAccessToken,
+        imageUrl: user.imageUrl || ghProfile.avatarUrl,
+        emailVerified: true,
+        ...(user.role === "CANDIDATE"
+          ? {
+              candidateProfile: {
+                upsert: {
+                  create: {
+                    name: user.name || ghProfile.name,
+                    links: { github: githubUrl },
+                  },
+                  update: {
+                    links: { ...existingLinks, github: githubUrl },
+                  },
+                },
+              },
+            }
+          : {}),
+      },
+      include: {
+        candidateProfile: true,
+      },
+    });
   } else {
+    const targetRole = payload.role || "CANDIDATE";
+
     user = await prisma.user.create({
       data: {
         name: ghProfile.name,
@@ -207,7 +258,20 @@ const githubAuthCallback = async (payload: IGithubAuthPayload) => {
         imageUrl: ghProfile.avatarUrl,
         authProvider: "GITHUB",
         emailVerified: true,
-        role: payload.role || "CANDIDATE",
+        role: targetRole,
+        ...(targetRole === "CANDIDATE"
+          ? {
+              candidateProfile: {
+                create: {
+                  name: ghProfile.name,
+                  links: { github: githubUrl },
+                },
+              },
+            }
+          : {}),
+      },
+      include: {
+        candidateProfile: true,
       },
     });
   }
@@ -231,7 +295,117 @@ const githubAuthCallback = async (payload: IGithubAuthPayload) => {
   );
 
   const { password: _, githubToken: _gh, ...userData } = user;
-  return { user: userData, accessToken, refreshToken };
+  return {
+    user: { ...userData, isGithubConnected: true },
+    accessToken,
+    refreshToken,
+  };
+};
+
+const connectGithubAccount = async (
+  requestUser: IRequestUser,
+  payload: IConnectGithubPayload,
+) => {
+  const ghAccessToken = await githubAuth.getGithubAccessToken(payload.code);
+  const ghProfile = await githubAuth.getGithubUserProfile(ghAccessToken);
+  const githubUrl = `https://github.com/${ghProfile.login}`;
+
+  const conflictingUser = await prisma.user.findFirst({
+    where: {
+      githubId: ghProfile.id,
+      NOT: { id: requestUser.userId },
+    },
+  });
+
+  if (conflictingUser) {
+    throw new AppError(
+      httpStatus.CONFLICT,
+      "This GitHub account is already connected to another TalentGraph user.",
+    );
+  }
+
+  const currentUser = await prisma.user.findUnique({
+    where: { id: requestUser.userId },
+    include: { candidateProfile: true },
+  });
+
+  if (!currentUser || currentUser.isDeleted || currentUser.status === "DELETED") {
+    throw new AppError(httpStatus.NOT_FOUND, "User account not found.");
+  }
+
+  const existingLinks =
+    currentUser.candidateProfile?.links &&
+    typeof currentUser.candidateProfile.links === "object" &&
+    !Array.isArray(currentUser.candidateProfile.links)
+      ? (currentUser.candidateProfile.links as Record<string, unknown>)
+      : {};
+
+  const updatedUser = await prisma.user.update({
+    where: { id: currentUser.id },
+    data: {
+      githubId: ghProfile.id,
+      githubToken: ghAccessToken,
+      imageUrl: currentUser.imageUrl || ghProfile.avatarUrl,
+      ...(currentUser.role === "CANDIDATE"
+        ? {
+            candidateProfile: {
+              upsert: {
+                create: {
+                  name: currentUser.name || ghProfile.name,
+                  links: { github: githubUrl },
+                },
+                update: {
+                  links: { ...existingLinks, github: githubUrl },
+                },
+              },
+            },
+          }
+        : {}),
+    },
+    include: {
+      candidateProfile: true,
+    },
+  });
+
+  const { password: _, githubToken: _gh, ...userData } = updatedUser;
+  return {
+    ...userData,
+    isGithubConnected: true,
+  };
+};
+
+const disconnectGithubAccount = async (requestUser: IRequestUser) => {
+  const currentUser = await prisma.user.findUnique({
+    where: { id: requestUser.userId },
+  });
+
+  if (!currentUser || currentUser.isDeleted) {
+    throw new AppError(httpStatus.NOT_FOUND, "User account not found.");
+  }
+
+  if (!currentUser.githubId && !currentUser.githubToken) {
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      "No GitHub account is currently connected.",
+    );
+  }
+
+  const updatedUser = await prisma.user.update({
+    where: { id: currentUser.id },
+    data: {
+      githubToken: null,
+      ...(currentUser.password ? { githubId: null } : {}),
+    },
+    include: {
+      candidateProfile: true,
+    },
+  });
+
+  const { password: _, githubToken: _gh, ...userData } = updatedUser;
+  return {
+    ...userData,
+    isGithubConnected: false,
+  };
 };
 
 const refreshToken = async (token: string) => {
@@ -343,6 +517,14 @@ const changePassword = async (requestUser: IRequestUser, payload: IChangePasswor
 const getMe = async (requestUser: IRequestUser) => {
   const user = await prisma.user.findUnique({
     where: { id: requestUser.userId },
+    include: {
+      candidateProfile: true,
+      recruiterProfile: {
+        include: {
+          company: true,
+        },
+      },
+    },
   });
 
   if (!user) {
@@ -350,7 +532,10 @@ const getMe = async (requestUser: IRequestUser) => {
   }
 
   const { password: _, githubToken: _gh, ...userData } = user;
-  return userData;
+  return {
+    ...userData,
+    isGithubConnected: Boolean(user.githubId && user.githubToken),
+  };
 };
 
 export const AuthService = {
@@ -358,6 +543,8 @@ export const AuthService = {
   verifyEmail,
   loginUser,
   githubAuthCallback,
+  connectGithubAccount,
+  disconnectGithubAccount,
   refreshToken,
   forgotPassword,
   resetPassword,
