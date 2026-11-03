@@ -26,10 +26,25 @@ router.post(
 
 router.get("/github/url", AuthController.getGithubAuthUrl);
 
+router.get("/github/callback", AuthController.githubAuthRedirectCallback);
+
 router.post(
   "/github",
   validateRequest(AuthValidation.GithubAuthZodSchema),
   AuthController.githubAuthCallback,
+);
+
+router.post(
+  "/github/connect",
+  auth("CANDIDATE"),
+  validateRequest(AuthValidation.ConnectGithubZodSchema),
+  AuthController.connectGithubAccount,
+);
+
+router.delete(
+  "/github/disconnect",
+  auth("CANDIDATE"),
+  AuthController.disconnectGithubAccount,
 );
 
 router.post("/refresh-token", AuthController.refreshToken);
