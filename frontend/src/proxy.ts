@@ -16,7 +16,6 @@ const AUTH_PAGES = [
 const ROLE_PREFIX_MAP: Array<{ prefix: string; roles: string[] }> = [
   { prefix: "/candidate", roles: ["CANDIDATE"] },
   { prefix: "/recruiter", roles: ["RECRUITER", "SUB_RECRUITER"] },
-  { prefix: "/admin", roles: ["SYSTEM_ADMIN", "ADMIN"] },
 ];
 
 export function proxy(request: NextRequest) {

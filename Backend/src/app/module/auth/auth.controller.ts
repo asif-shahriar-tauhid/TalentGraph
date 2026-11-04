@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 import httpStatus from "http-status";
+import config from "../../config";
 import { githubAuth } from "../../lib/githubAuth";
 import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
@@ -88,6 +89,105 @@ const githubAuthCallback = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const githubAuthRedirectCallback = catchAsync(async (req: Request, res: Response) => {
+  const code = req.query.code as string | undefined;
+  const state = req.query.state as string | undefined;
+  const error = req.query.error as string | undefined;
+
+  const isMobileCodeFlow = state === "mobile_code";
+  const isMobileTokenFlow =
+    state === "mobile" || Boolean(state?.startsWith("talentgraph://"));
+
+  if (error || !code) {
+    const errorMsg = encodeURIComponent(error || "github_authorization_cancelled");
+    if (isMobileCodeFlow || isMobileTokenFlow) {
+      res.redirect(`${config.mobile_callback_url}?error=${errorMsg}`);
+      return;
+    }
+    res.redirect(`${config.frontend_url}/login?error=${errorMsg}`);
+    return;
+  }
+
+  // Option A for Flutter: pass the raw OAuth code back to the mobile app via deep link
+  // so Flutter can call POST /api/v1/auth/github itself.
+  if (isMobileCodeFlow) {
+    res.redirect(
+      `${config.mobile_callback_url}?code=${encodeURIComponent(code)}`,
+    );
+    return;
+  }
+
+  try {
+    const result = await AuthService.githubAuthCallback({ code });
+    setAuthCookies(res, result.accessToken, result.refreshToken);
+
+    // Option B for Flutter: backend exchanges the code and sends tokens via deep link.
+    if (isMobileTokenFlow) {
+      const params = new URLSearchParams({
+        accessToken: result.accessToken,
+        refreshToken: result.refreshToken,
+        role: result.user.role,
+      });
+      res.redirect(`${config.mobile_callback_url}?${params.toString()}`);
+      return;
+    }
+
+    const roleDashboard =
+      result.user.role === "SYSTEM_ADMIN"
+        ? "/admin"
+        : result.user.role === "RECRUITER" || result.user.role === "SUB_RECRUITER"
+          ? "/recruiter"
+          : "/candidate";
+
+    const isSafeStatePath =
+      state &&
+      state.startsWith("/") &&
+      !state.startsWith("//") &&
+      !state.startsWith("/login") &&
+      !state.startsWith("/register");
+
+    const targetPath = isSafeStatePath ? state : roleDashboard;
+    res.redirect(`${config.frontend_url}${targetPath}`);
+  } catch (err: unknown) {
+    const message =
+      err instanceof Error ? err.message : "github_authentication_failed";
+    if (isMobileTokenFlow) {
+      res.redirect(
+        `${config.mobile_callback_url}?error=${encodeURIComponent(message)}`,
+      );
+      return;
+    }
+    res.redirect(
+      `${config.frontend_url}/login?error=${encodeURIComponent(message)}`,
+    );
+  }
+});
+
+const connectGithubAccount = catchAsync(async (req: Request, res: Response) => {
+  const result = await AuthService.connectGithubAccount(
+    req.user as unknown as IRequestUser,
+    req.body,
+  );
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "GitHub account connected successfully.",
+    data: result,
+  });
+});
+
+const disconnectGithubAccount = catchAsync(async (req: Request, res: Response) => {
+  const result = await AuthService.disconnectGithubAccount(
+    req.user as unknown as IRequestUser,
+  );
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "GitHub account disconnected successfully.",
+    data: result,
+  });
+});
+
 const refreshToken = catchAsync(async (req: Request, res: Response) => {
   const token = req.cookies?.refreshToken || req.body?.refreshToken;
   const result = await AuthService.refreshToken(token);
@@ -156,6 +256,9 @@ export const AuthController = {
   loginUser,
   getGithubAuthUrl,
   githubAuthCallback,
+  githubAuthRedirectCallback,
+  connectGithubAccount,
+  disconnectGithubAccount,
   refreshToken,
   forgotPassword,
   resetPassword,

@@ -34,6 +34,7 @@ export const getGithubAccessToken = async (code: string): Promise<string> => {
       client_id: config.github_client_id,
       client_secret: config.github_client_secret,
       code,
+      redirect_uri: config.github_callback_url,
     }),
   });
 
