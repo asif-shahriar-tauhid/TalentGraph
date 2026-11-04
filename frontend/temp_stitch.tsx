@@ -1,700 +1,601 @@
-<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<!DOCTYPE html><html class="dark" lang="en" style="width: 1280px; height: 1021px; overflow: hidden; position: relative;"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Company Verification Queue | TalentGraph Admin</title>
-<!-- Material Symbols Outlined font -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<!-- Inter font -->
+<title>TalentGraph — Ground Truth Role-Based Registration</title>
+<!-- Google Fonts: Inter -->
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 with Forms & Container Plugins -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
-          colors: {
-            "surface-elevated-dark": "#19191C",
-            "surface-variant": "#353437",
-            "brand-hover-light": "#B94F0B",
-            "primary-container": "#e56f27",
-            "inverse-on-surface": "#313032",
-            "surface-container": "#201f21",
-            "text-secondary-dark": "#A1A1AA",
-            "tertiary-container": "#2797e2",
-            "error-container": "#93000a",
-            "on-primary": "#552000",
-            "on-tertiary-fixed": "#001d32",
-            "tertiary-fixed-dim": "#95ccff",
-            "brand-hover-dark": "#E47735",
-            "surface": "#131315",
-            "on-surface": "#e5e1e4",
-            "background": "#131315",
-            "surface-canvas-dark": "#0D0D0F",
-            "surface-elevated-light": "#FFFFFF",
-            "inverse-primary": "#9f4200",
-            "secondary": "#c7c5d0",
-            "surface-container-highest": "#353437",
-            "primary-fixed-dim": "#ffb691",
-            "on-error": "#690005",
-            "tertiary": "#95ccff",
-            "outline-variant": "#574238",
-            "status-error-dark": "#E5484D",
-            "secondary-container": "#46464f",
-            "on-tertiary-fixed-variant": "#004a75",
-            "error": "#ffb4ab",
-            "status-success-light": "#15803D",
-            "inverse-surface": "#e5e1e4",
-            "status-warning-dark": "#F59E0B",
-            "border-subtle-dark": "#3F3F46",
-            "text-secondary-light": "#71717A",
-            "surface-container-low": "#1b1b1d",
-            "on-error-container": "#ffdad6",
+          "colors": {
             "border-subtle-light": "#E4E4E7",
-            "status-warning-light": "#B45309",
-            "surface-tint": "#ffb691",
-            "status-error-light": "#DC2626",
-            "on-tertiary-container": "#002c48",
+            "surface-canvas-dark": "#0D0D0F",
+            "outline": "#a68b7f",
+            "surface-alternate-light": "#F8FAFC",
+            "on-background": "#e5e1e4",
+            "on-secondary-fixed-variant": "#46464f",
+            "primary-fixed": "#ffdbcb",
+            "outline-variant": "#574238",
+            "primary-container": "#e56f27",
+            "secondary-fixed-dim": "#c7c5d0",
+            "surface-container-highest": "#353437",
+            "status-warning-dark": "#F59E0B",
+            "surface-elevated-dark": "#19191C",
+            "tertiary-fixed": "#cee5ff",
+            "inverse-on-surface": "#313032",
+            "surface-container-low": "#1b1b1d",
+            "tertiary": "#95ccff",
+            "surface-elevated-light": "#FFFFFF",
+            "surface-container-high": "#2a2a2c",
+            "inverse-surface": "#e5e1e4",
+            "status-success-light": "#15803D",
+            "on-tertiary-fixed": "#001d32",
+            "surface-canvas-light": "#FFFFFF",
+            "text-primary-light": "#18181B",
+            "inverse-primary": "#9f4200",
+            "primary": "#ffb691",
+            "on-surface": "#e5e1e4",
+            "surface-selected-light": "#FFF1E8",
+            "error": "#ffb4ab",
             "surface-bright": "#39393b",
+            "tertiary-fixed-dim": "#95ccff",
+            "surface-variant": "#353437",
+            "secondary-container": "#46464f",
+            "on-error-container": "#ffdad6",
+            "surface": "#131315",
+            "on-surface-variant": "#dec0b3",
+            "on-primary-fixed": "#341100",
+            "text-secondary-dark": "#A1A1AA",
+            "border-subtle-dark": "#3F3F46",
+            "primary-fixed-dim": "#ffb691",
+            "on-secondary-container": "#b5b4be",
+            "brand-hover-dark": "#E47735",
             "surface-selected-dark": "#252528",
-            "surface-dim": "#131315",
-            "secondary-fixed": "#e3e1ec",
-            "on-tertiary": "#003353",
+            "surface-container-lowest": "#0e0e10",
+            "tertiary-container": "#2797e2",
+            "on-primary-fixed-variant": "#793100",
+            "status-warning-light": "#B45309",
             "on-secondary-fixed": "#1a1b23",
             "on-primary-container": "#4b1b00",
-            "on-surface-variant": "#dec0b3",
-            "primary-fixed": "#ffdbcb",
-            "status-success-dark": "#22C55E",
-            "surface-canvas-light": "#FFFFFF",
-            "outline": "#a68b7f",
-            "cta-text": "#18181B",
-            "tertiary-fixed": "#cee5ff",
-            "text-primary-light": "#18181B",
-            "primary": "#ffb691",
-            "surface-alternate-light": "#F8FAFC",
+            "surface-container": "#201f21",
             "text-primary-dark": "#F5F5F5",
-            "on-secondary-fixed-variant": "#46464f",
-            "surface-container-high": "#2a2a2c",
+            "error-container": "#93000a",
+            "secondary": "#c7c5d0",
+            "cta-text": "#18181B",
+            "brand-hover-light": "#B94F0B",
+            "secondary-fixed": "#e3e1ec",
             "on-secondary": "#2f3038",
-            "on-primary-fixed": "#341100",
-            "secondary-fixed-dim": "#c7c5d0",
-            "on-background": "#e5e1e4",
-            "surface-container-lowest": "#0e0e10",
-            "on-secondary-container": "#b5b4be",
-            "on-primary-fixed-variant": "#793100",
-            "surface-selected-light": "#FFF1E8",
-            /* Direct Admin Spec Color Extensions */
-            "admin-bg": "#0E0E11",
-            "admin-sidebar": "#121215",
-            "admin-sidebar-border": "#222226",
-            "admin-card": "#151518",
-            "admin-card-border": "#25252A",
-            "admin-inset": "#17171B",
-            "admin-inset-border": "#27272C",
-            "admin-input": "#161619",
-            "admin-icon-tile": "#1F1F24",
-            "admin-icon-border": "#2B2B32",
-            "admin-hover": "#1A1A1E",
-            "admin-hover-btn": "#202024",
-            "admin-primary": "#D4621A",
-            "admin-primary-hover": "#BF5313",
-            "admin-logo": "#E56218",
-            "admin-divider": "#222227",
-            "admin-divider-footer": "#1C1C20",
-            "admin-divider-sb": "#232328",
-            "admin-badge-neutral-bg": "#2A2A2E",
-            "admin-badge-neutral-text": "#B3B3B3",
-            "admin-status-succ-bg": "#13281E",
-            "admin-status-succ-border": "#1A3D2C",
-            "admin-status-succ-text": "#4ADE80",
-            "admin-status-warn-bg": "#2C2114",
-            "admin-status-warn-border": "#44301B",
-            "admin-status-warn-text": "#E5933A",
-            "admin-status-dang-bg": "#2E181D",
-            "admin-status-dang-border": "#482026",
-            "admin-status-dang-text": "#F87171",
-            "admin-text-body": "#D4D4D8",
-            "admin-text-secondary": "#A1A1AA",
-            "admin-text-muted": "#71717A",
-            "admin-text-disabled": "#52525B"
+            "status-error-dark": "#E5484D",
+            "surface-dim": "#131315",
+            "background": "#131315",
+            "on-tertiary": "#003353",
+            "on-tertiary-fixed-variant": "#004a75",
+            "on-error": "#690005",
+            "status-error-light": "#DC2626",
+            "on-tertiary-container": "#002c48",
+            "on-primary": "#552000",
+            "status-success-dark": "#22C55E",
+            "text-secondary-light": "#71717A",
+            "surface-tint": "#ffb691"
           },
-          fontFamily: {
-            "sans": ["Inter", "sans-serif"],
-            "mono": ["JetBrains Mono", "monospace"],
-            "headline-md": ["Inter"],
-            "title-sm": ["Inter"],
-            "body-lg": ["Inter"],
-            "headline-lg": ["Inter"],
-            "display-lg": ["Inter"],
-            "code-provenance": ["Inter"],
-            "label-sm": ["Inter"],
-            "display-lg-mobile": ["Inter"],
-            "body-sm": ["Inter"],
-            "label-md": ["Inter"],
-            "headline-lg-mobile": ["Inter"],
-            "body-md": ["Inter"]
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
           },
-          fontSize: {
-            "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }],
-            "title-sm": ["16px", { lineHeight: "24px", fontWeight: "600" }],
-            "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
-            "headline-lg": ["28px", { lineHeight: "36px", letterSpacing: "-0.015em", fontWeight: "600" }],
-            "display-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }],
-            "code-provenance": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "500" }],
-            "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.02em", fontWeight: "500" }],
-            "display-lg-mobile": ["30px", { lineHeight: "38px", letterSpacing: "-0.015em", fontWeight: "700" }],
-            "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }],
-            "label-md": ["13px", { lineHeight: "18px", fontWeight: "500" }],
-            "headline-lg-mobile": ["22px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }],
-            "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }]
+          "spacing": {
+            "space-lg": "1.5rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "gutter-desktop": "1.5rem",
+            "space-xl": "2rem",
+            "margin-desktop": "2rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"],
+            "display-lg-mobile": ["Inter", "sans-serif"],
+            "display-lg": ["Inter", "sans-serif"],
+            "headline-lg-mobile": ["Inter", "sans-serif"],
+            "title-sm": ["Inter", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"],
+            "code-provenance": ["JetBrains Mono", "monospace"],
+            "body-md": ["Inter", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"],
+            "label-sm": ["Inter", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-lg-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "title-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "code-provenance": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
           }
         }
       }
     }
   </script>
 <style>
+    /* Provenance grid backdrop & crisp typography */
     .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
-      vertical-align: middle;
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
       display: inline-block;
+      vertical-align: middle;
       line-height: 1;
     }
-    /* Technical Proofline Stem rules */
-    .proofline-stem-vertical {
+    .proofline-stem {
       position: relative;
     }
-    .proofline-stem-vertical::before {
+    .proofline-stem::before {
       content: '';
       position: absolute;
-      left: 15px;
-      top: 28px;
-      bottom: -12px;
+      left: 19px;
+      top: 36px;
+      bottom: -16px;
       width: 1.5px;
-      background-color: #27272C;
+      background-color: #3F3F46;
     }
-    .proofline-stem-vertical:last-child::before {
+    .dark .proofline-stem::before {
+      background-color: #3F3F46;
+    }
+    html:not(.dark) .proofline-stem::before {
+      background-color: #E4E4E7;
+    }
+    .proofline-stem:last-child::before {
       display: none;
     }
   </style>
 </head>
-<body class="bg-admin-bg text-admin-text-body font-sans antialiased min-h-screen flex selection:bg-admin-primary selection:text-white">
-<!-- ADMIN SIDEBAR (256px Fixed) -->
-<aside class="w-[256px] min-w-[256px] bg-admin-sidebar border-r border-admin-sidebar-border h-screen sticky top-0 flex flex-col justify-between z-40 select-none">
-<div class="flex flex-col">
-<!-- Sidebar Top: Brand & Monogram -->
-<div class="px-4 py-4 flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-admin-logo flex items-center justify-center text-white font-bold text-sm tracking-tight flex-shrink-0">
-          TG
-        </div>
-<div class="flex flex-col min-w-0">
-<div class="flex items-center gap-1.5">
-<span class="text-white text-[14px] font-semibold tracking-tight truncate">TalentGraph</span>
-<span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-admin-badge-neutral-bg text-admin-badge-neutral-text font-medium leading-none">ADMIN</span>
-</div>
-<span class="text-admin-text-muted text-[11px] leading-tight">Operational control</span>
-</div>
-</div>
-<!-- Inset Policy Banner -->
-
-<!-- Navigation Links Group -->
-<nav class="px-2 space-y-1">
-<a class="flex items-center justify-between px-3 py-2 rounded-[8px] text-[13px] text-admin-text-secondary hover:text-white hover:bg-admin-hover transition-colors duration-150" href="#operational-queue">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[18px] text-admin-text-disabled" data-icon="dashboard">dashboard</span>
-<span class="">Operational Queue</span>
-</div>
-</a>
-<!-- ACTIVE ITEM: Company Verification -->
-<a class="flex items-center justify-between px-3 py-2 rounded-[8px] text-[13px] font-medium bg-admin-primary text-white shadow-sm transition-colors duration-150" href="/admin/company-verification">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[18px] text-white" data-icon="domain_verification">domain_verification</span>
-<span class="">Company Verification</span>
-</div>
-<span class="font-mono text-[11px] bg-white/20 text-white font-semibold px-2 py-0.5 rounded-full">3</span>
-</a>
-<a class="flex items-center justify-between px-3 py-2 rounded-[8px] text-[13px] text-admin-text-secondary hover:text-white hover:bg-admin-hover transition-colors duration-150" href="#users">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[18px] text-admin-text-disabled" data-icon="group">group</span>
-<span class="">User Directory</span>
-</div>
-<span class="font-mono text-[11px] text-admin-text-muted">1,482</span>
-</a>
-<a class="flex items-center justify-between px-3 py-2 rounded-[8px] text-[13px] text-admin-text-secondary hover:text-white hover:bg-admin-hover transition-colors duration-150" href="#jobs-moderation">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[18px] text-admin-text-disabled" data-icon="work">work</span>
-<span class="">Jobs Moderation</span>
-</div>
-<span class="font-mono text-[11px] text-admin-text-muted">28</span>
-</a>
-<a class="flex items-center justify-between px-3 py-2 rounded-[8px] text-[13px] text-admin-text-secondary hover:text-white hover:bg-admin-hover transition-colors duration-150" href="#integrity-cases">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[18px] text-admin-text-disabled" data-icon="shield_with_heart">shield_with_heart</span>
-<span class="">Integrity Cases</span>
-</div>
-<span class="font-mono text-[11px] bg-admin-status-dang-bg text-admin-status-dang-text border border-admin-status-dang-border px-1.5 py-0.5 rounded">2 flagged</span>
-</a>
-<a class="flex items-center justify-between px-3 py-2 rounded-[8px] text-[13px] text-admin-text-secondary hover:text-white hover:bg-admin-hover transition-colors duration-150" href="#worker-telemetry">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[18px] text-admin-text-disabled" data-icon="monitoring">monitoring</span>
-<span class="">Worker Telemetry</span>
-</div>
-<span class="font-mono text-[11px] text-admin-status-succ-text font-medium">99.8%</span>
-</a>
-<a class="flex items-center justify-between px-3 py-2 rounded-[8px] text-[13px] text-admin-text-secondary hover:text-white hover:bg-admin-hover transition-colors duration-150" href="#subscriptions">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[18px] text-admin-text-disabled" data-icon="account_balance_wallet">account_balance_wallet</span>
-<span class="">BDT Subscriptions</span>
-</div>
-<span class="font-mono text-[11px] text-admin-text-body font-medium">৳34.5k</span>
-</a>
+<body class="bg-surface-canvas-light dark:bg-surface-canvas-dark text-text-primary-light dark:text-text-primary-dark transition-colors duration-200 antialiased min-h-screen flex flex-col font-body-md">
+<!-- TOP APP BAR -->
+<header class="sticky top-0 z-50 w-full bg-surface-canvas-light dark:bg-surface-canvas-dark border-b border-border-subtle-light dark:border-border-subtle-dark transition-colors">
+<div class="max-w-[1440px] mx-auto h-16 px-gutter md:px-gutter-desktop flex items-center justify-between">
+<!-- Left cluster: Dropdowns & Links -->
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex items-center gap-5 font-label-md text-label-md text-text-secondary-light dark:text-text-secondary-dark">
+<button class="flex items-center gap-1 hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors">
+            Industries <span class="text-[10px]">▾</span>
+</button>
+<button class="flex items-center gap-1 hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors">
+            Resources <span class="text-[10px]">▾</span>
+</button>
+<a class="hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors" href="#">Pricing</a>
+<a class="hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors" href="#">Methodology</a>
 </nav>
 </div>
-<!-- Sidebar Bottom: Admin Operator -->
-<div class="border-t border-admin-divider-sb p-3 bg-admin-sidebar">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2.5 min-w-0">
-<div class="w-8 h-8 rounded-full bg-[#27272B] border border-[#3A3A40] flex items-center justify-center text-xs font-semibold text-white flex-shrink-0">
-            TC
-          </div>
-<div class="flex flex-col min-w-0">
-<span class="text-white text-[13px] font-semibold leading-tight truncate">Tanvir Chowdhury</span>
-<span class="text-admin-text-muted text-[10px] font-mono leading-tight truncate">Platform Admin #01</span>
-</div>
-</div>
-<button aria-label="Sign out" class="p-1.5 text-admin-text-disabled hover:text-white hover:bg-admin-hover rounded transition-colors duration-150 flex-shrink-0" type="button">
-<span class="material-symbols-outlined text-[18px]" data-icon="logout">logout</span>
+<!-- Center Brand Identity -->
+<a class="flex items-center gap-2" href="#">
+<span class="font-headline-md text-headline-md tracking-tight font-bold text-text-primary-light dark:text-text-primary-dark">TalentGraph</span>
+</a>
+<!-- Right cluster: Nav Actions & Theme Switcher -->
+<div class="flex items-center gap-4">
+<a class="hidden sm:inline-block font-label-md text-label-md text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors" href="#">About</a>
+<a class="font-label-md text-label-md text-text-primary-light dark:text-text-primary-dark hover:text-primary-container dark:hover:text-primary transition-colors font-medium" href="/login">Sign in</a>
+<!-- Theme Toggle -->
+<button aria-label="Toggle Theme" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border-subtle-light dark:border-border-subtle-dark bg-surface-elevated-light dark:bg-surface-elevated-dark text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors" id="themeToggleBtn" title="Toggle Theme" type="button">
+<span class="material-symbols-outlined text-[18px]" id="themeIcon">dark_mode</span>
+<span class="hidden sm:inline text-label-sm font-label-sm" id="themeText">Dark</span>
 </button>
+<a class="px-3.5 py-2 rounded-lg bg-primary-container hover:bg-brand-hover-dark text-cta-text font-label-md text-label-md font-semibold transition-colors duration-150 shadow-none" href="#register-core">
+          Get Started
+        </a>
+</div>
+</div>
+</header>
+<!-- SIMULATION STATE CONTROL (PLAYBOOK B3) -->
+<aside aria-label="Protocol Simulation Controls" class="w-full bg-[#141416] border-b border-border-subtle-dark text-text-primary-dark py-2 px-gutter md:px-gutter-desktop">
+<div class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-3 text-label-sm font-label-sm">
+<div class="flex items-center gap-2">
+<span class="flex h-2 w-2 rounded-full bg-status-success-dark"></span>
+<span class="text-text-secondary-dark uppercase font-code-provenance text-code-provenance tracking-wider">Simulation State Control (Playbook B3)</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-highest text-text-secondary-dark font-code-provenance text-[10px]">ENV: STAGING</span>
+</div>
+<!-- State Pills -->
+<div class="flex items-center gap-1.5 overflow-x-auto py-0.5" id="simControls">
+<button class="sim-pill px-2.5 py-1 rounded border border-border-subtle-dark text-text-secondary-dark hover:text-text-primary-dark font-label-sm transition-colors" data-state="candidate" onclick="setSimState('candidate')" type="button">
+          Default (Candidate)
+        </button>
+<button class="sim-pill px-2.5 py-1 rounded border border-primary-container bg-surface-selected-dark text-primary-container font-label-sm transition-colors" data-state="recruiter" onclick="setSimState('recruiter')" type="button">
+          Recruiter Form
+        </button>
+<button class="sim-pill px-2.5 py-1 rounded border border-border-subtle-dark text-text-secondary-dark hover:text-text-primary-dark font-label-sm transition-colors" data-state="denied" onclick="setSimState('denied')" type="button">
+          OAuth Denied
+        </button>
+<button class="sim-pill px-2.5 py-1 rounded border border-border-subtle-dark text-text-secondary-dark hover:text-text-primary-dark font-label-sm transition-colors" data-state="sent" onclick="setSimState('sent')" type="button">
+          Email Verification Sent
+        </button>
+<button class="sim-pill px-2.5 py-1 rounded border border-border-subtle-dark text-text-secondary-dark hover:text-text-primary-dark font-label-sm transition-colors" data-state="loading" onclick="setSimState('loading')" type="button">
+          Loading
+        </button>
 </div>
 </div>
 </aside>
-<!-- MAIN VIEWPORT CONTAINER -->
-<div class="flex-1 flex flex-col min-w-0">
-<main class="flex-1 px-8 py-7 bg-admin-bg max-w-[1440px] w-full mx-auto">
-<!-- TOP HEADER & TOOLBAR -->
-<header class="flex flex-col gap-4 mb-6">
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-<!-- Title & Breadcrumbs -->
-<div class="flex flex-col gap-1.5">
-<div class="flex items-center gap-2.5">
-<span class="text-[11px] font-mono tracking-wider text-admin-text-muted font-medium">ADMIN / VERIFICATION QUEUE</span>
+<!-- MAIN REGISTRATION CANVAS -->
+<main class="flex-1 w-full max-w-[1440px] mx-auto px-gutter md:px-gutter-desktop py-space-xl" id="register-core">
+<!-- HERO / INTAKE HEADER -->
+<div class="mb-10 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border-subtle-light dark:border-border-subtle-dark pb-8">
+<div>
+<div class="flex flex-wrap items-center justify-center md:justify-start gap-2.5 mb-3">
+
 
 </div>
-<h1 class="text-white font-headline-lg text-headline-lg tracking-tight">Company Verification Queue</h1>
-
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-text-primary-light dark:text-text-primary-dark tracking-tight">
+          Build Your Verifiable SkillGraph
+        </h1>
+<p class="mt-2 text-text-secondary-light dark:text-text-secondary-dark font-body-lg text-body-lg max-w-2xl">
+          Authenticate once with your primary GitHub profile. No passwords required, zero noise.
+        </p>
 </div>
-<!-- Actions & Search Right Cluster -->
-<div class="flex items-center flex-wrap gap-2"><button aria-label="Search" title="Search" class="w-8 h-8 bg-admin-input hover:bg-admin-hover-btn border border-admin-inset-border rounded-[8px] flex items-center justify-center text-admin-text-secondary hover:text-white transition-colors flex-shrink-0" type="button"><span class="material-symbols-outlined text-[18px]" data-icon="search">search</span></button><button aria-label="Export Audit Log" title="Export Audit Log" class="w-8 h-8 bg-admin-input hover:bg-admin-hover-btn border border-admin-inset-border rounded-[8px] flex items-center justify-center text-admin-text-secondary hover:text-white transition-colors flex-shrink-0" type="button"><span class="material-symbols-outlined text-[18px]" data-icon="file_download">file_download</span></button><button aria-label="Toggle dark mode" title="Toggle dark mode" class="w-8 h-8 bg-admin-input hover:bg-admin-hover-btn border border-admin-inset-border rounded-[8px] flex items-center justify-center text-admin-text-secondary hover:text-white transition-colors flex-shrink-0" type="button"><span class="material-symbols-outlined text-[18px]" data-icon="dark_mode">dark_mode</span></button></div>
-</div>
-<!-- Filter Sub-bar & Live Engine Status -->
-
-</header>
-<!-- 4-COLUMN KPI METRIC CARDS -->
-<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-<!-- Metric 1: Pending Dual-Check -->
-<div class="bg-admin-card border border-admin-card-border rounded-[12px] p-4 flex flex-col justify-between">
-<div class="flex items-start justify-between">
-<div class="flex flex-col">
-<span class="text-admin-text-secondary text-[12px] font-medium">Pending Dual-Check</span>
-<div class="flex items-baseline gap-2 mt-1">
-<span class="text-white font-mono text-[28px] font-semibold leading-tight">3</span>
-<span class="text-admin-text-muted text-[12px]">companies</span>
+<!-- Pricing / Entitlement banner -->
+<div class="self-center md:self-auto px-4 py-2.5 rounded-lg border border-border-subtle-light dark:border-border-subtle-dark bg-surface-elevated-light dark:bg-surface-elevated-dark font-label-md text-label-md text-text-secondary-light dark:text-text-secondary-dark">
+<span class="text-status-success-dark font-semibold">Candidate Free: ৳0</span>
+<span class="mx-2 text-border-subtle-dark">|</span>
+<span class="">Recruiter Starter from <span class="text-text-primary-light dark:text-text-primary-dark font-medium">৳2,000/mo</span></span>
 </div>
 </div>
-<div class="w-9 h-9 rounded-[8px] bg-admin-icon-tile border border-admin-icon-border flex items-center justify-center text-admin-status-warn-text">
-<span class="material-symbols-outlined text-[20px]" data-icon="hourglass_top">hourglass_top</span>
-</div>
-</div>
-<div class="mt-4 pt-3 border-t border-admin-divider flex items-center justify-between">
-<span class="text-[11px] text-admin-text-muted">Avg triage SLA 4.2h remaining</span>
-<span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-admin-status-warn-bg text-admin-status-warn-text border border-admin-status-warn-border">Active SLA</span>
-</div>
-</div>
-<!-- Metric 2: Legitimacy Approved -->
-<div class="bg-admin-card border border-admin-card-border rounded-[12px] p-4 flex flex-col justify-between">
-<div class="flex items-start justify-between">
-<div class="flex flex-col">
-<span class="text-admin-text-secondary text-[12px] font-medium">Legitimacy Approved</span>
-<div class="flex items-baseline gap-2 mt-1">
-<span class="text-white font-mono text-[28px] font-semibold leading-tight">2 / 3</span>
-<span class="text-admin-text-muted text-[12px]">in queue</span>
-</div>
-</div>
-<div class="w-9 h-9 rounded-[8px] bg-admin-icon-tile border border-admin-icon-border flex items-center justify-center text-admin-status-succ-text">
-<span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
-</div>
-</div>
-<div class="mt-4 pt-3 border-t border-admin-divider flex items-center justify-between">
-<span class="text-[11px] text-admin-text-muted">RJSC &amp; Trade License</span>
-<span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-admin-status-succ-bg text-admin-status-succ-text border border-admin-status-succ-border">Verified by registry</span>
-</div>
-</div>
-<!-- Metric 3: Affiliation Blocked -->
-<div class="bg-admin-card border border-admin-card-border rounded-[12px] p-4 flex flex-col justify-between">
-<div class="flex items-start justify-between">
-<div class="flex flex-col">
-<span class="text-admin-text-secondary text-[12px] font-medium">Affiliation Blocked</span>
-<div class="flex items-baseline gap-2 mt-1">
-<span class="text-white font-mono text-[28px] font-semibold leading-tight">1</span>
-<span class="text-admin-text-muted text-[12px]">dossier held</span>
-</div>
-</div>
-<div class="w-9 h-9 rounded-[8px] bg-admin-icon-tile border border-admin-icon-border flex items-center justify-center text-admin-status-warn-text">
-<span class="material-symbols-outlined text-[20px]" data-icon="shield">shield</span>
-</div>
-</div>
-<div class="mt-4 pt-3 border-t border-admin-divider flex items-center justify-between">
-<span class="text-[11px] text-admin-text-muted">Corporate authority</span>
-<span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-admin-status-warn-bg text-admin-status-warn-text border border-admin-status-warn-border">Awaiting deed / auth letter</span>
-</div>
-</div>
-<!-- Metric 4: Startup Alternative Path -->
-<div class="bg-admin-card border border-admin-card-border rounded-[12px] p-4 flex flex-col justify-between">
-<div class="flex items-start justify-between">
-<div class="flex flex-col">
-<span class="text-admin-text-secondary text-[12px] font-medium">Startup Alternative Path</span>
-<div class="flex items-baseline gap-2 mt-1">
-<span class="text-white font-mono text-[28px] font-semibold leading-tight">1</span>
-<span class="text-admin-text-muted text-[12px]">manual review</span>
-</div>
-</div>
-<div class="w-9 h-9 rounded-[8px] bg-admin-icon-tile border border-admin-icon-border flex items-center justify-center text-admin-text-secondary">
-<span class="material-symbols-outlined text-[20px]" data-icon="hub">hub</span>
-</div>
-</div>
-<div class="mt-4 pt-3 border-t border-admin-divider flex items-center justify-between">
-<span class="text-[11px] text-admin-text-muted">Generic domain policy</span>
-<span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-admin-badge-neutral-bg text-admin-badge-neutral-text border border-[#3A3A40]">Sec 10 compliant</span>
-</div>
-</div>
-</section>
-<!-- MAIN WORKSPACE: 8/4 SPLIT -->
-<section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-<!-- LEFT COLUMN (8 Columns): Pending Triage Dossiers -->
-<div class="lg:col-span-8 space-y-4">
-<div class="flex items-center justify-between px-1">
-<div class="flex items-center gap-2">
-<h2 class="text-white font-title-sm text-title-sm">Pending Triage Dossiers (3)</h2>
-<span class="w-1.5 h-1.5 rounded-full bg-admin-primary"></span>
-</div>
-<span class="font-mono text-[11px] text-admin-text-muted tracking-wider">SLA: SORTED BY ARRIVAL</span>
-</div>
-<!-- DOSSIER CARD 1: FOCUSED ACTIVE DOSSIER -->
-<div class="bg-admin-card border-2 border-admin-primary rounded-[12px] p-5 shadow-lg relative overflow-hidden">
-<!-- Active Indicator Flag -->
-<div class="absolute top-0 right-0 bg-admin-primary text-white text-[10px] font-mono font-bold px-3 py-0.5 rounded-bl">
-              SELECTED FOR AUDIT
-            </div>
-<!-- Header Info -->
-<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
+<!-- SIMULATION ALERT BANNERS (Conditionally Shown) -->
+<div class="mb-8 p-4 rounded-lg bg-status-error-dark/10 border border-status-error-dark text-text-primary-dark flex items-start gap-3 hidden" id="simAlertDenied">
+<span class="material-symbols-outlined text-status-error-dark text-[22px]">error</span>
 <div>
-<div class="flex items-center gap-2.5 flex-wrap">
-<h3 class="text-white text-[18px] font-semibold tracking-tight">Therap (BD) Ltd.</h3>
-<span class="font-mono text-[11px] px-2 py-0.5 rounded bg-admin-inset text-admin-text-secondary border border-admin-inset-border flex items-center gap-1">
-<span class="material-symbols-outlined text-[13px]" data-icon="language">language</span>
-                    therapservices.net
-                  </span>
-<span class="text-[11px] px-2 py-0.5 rounded bg-[#1C2029] text-[#70A8FF] border border-[#273B5E] font-medium">
-                    Recruiter Starter (৳2,000/mo webhook confirmed)
-                  </span>
-</div>
-<div class="flex items-center gap-2 mt-1.5 text-[12px] text-admin-text-secondary">
-<span class="text-white font-medium">Farhan Ahmed</span>
-<span class="">(Lead Tech Recruiter)</span>
-<span class="text-admin-text-disabled">•</span>
-<span class="font-mono text-admin-text-muted">Today, 11:20 AM (Asia/Dhaka)</span>
+<h4 class="font-title-sm text-title-sm text-status-error-dark">GitHub OAuth Authorization Denied (Err: 403_SCOPE_REFUSED)</h4>
+<p class="font-body-sm text-body-sm text-text-secondary-dark mt-0.5">
+          User declined read-only identity scope. TalentGraph cannot generate AST verified profiles without verified public handle tokens. Please retry authentication.
+        </p>
 </div>
 </div>
-</div>
-<!-- PROOFLINE DUAL-CHECK VISUAL PIPELINE -->
-<div class="space-y-3 bg-admin-inset border border-admin-inset-border rounded-[8px] p-4 mb-4">
-<!-- Check 1: Enterprise Legitimacy -->
-<div class="proofline-stem-vertical flex items-start gap-3">
-<div class="w-7 h-7 rounded-full bg-admin-status-succ-bg border border-admin-status-succ-border flex items-center justify-center text-admin-status-succ-text flex-shrink-0 z-10">
-<span class="material-symbols-outlined text-[16px]" data-icon="check">check</span>
-</div>
-<div class="flex-1 min-w-0">
-<div class="flex items-center justify-between gap-2 flex-wrap mb-1">
-<span class="text-white text-[13px] font-semibold">Check 1: Enterprise Legitimacy</span>
-<span class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-admin-status-succ-bg text-admin-status-succ-text border border-admin-status-succ-border font-medium">
-                      PASSED REGISTRY
-                    </span>
-</div>
-<div class="flex flex-wrap gap-2 text-[11px]">
-<span class="font-mono px-2 py-0.5 rounded bg-admin-card border border-admin-card-border text-admin-text-body flex items-center gap-1">
-<span class="material-symbols-outlined text-[13px] text-admin-status-succ-text" data-icon="verified">verified</span>
-                      Trade License 2026 (#TR-88219)
-                    </span>
-<span class="font-mono px-2 py-0.5 rounded bg-admin-card border border-admin-card-border text-admin-text-body flex items-center gap-1">
-<span class="material-symbols-outlined text-[13px] text-admin-status-succ-text" data-icon="corporate_fare">corporate_fare</span>
-                      RJSC Incorporation CERTIFIED
-                    </span>
-</div>
-</div>
-</div>
-<!-- Check 2: Recruiter Authority & Affiliation -->
-<div class="proofline-stem-vertical flex items-start gap-3">
-<div class="w-7 h-7 rounded-full bg-admin-status-warn-bg border border-admin-status-warn-border flex items-center justify-center text-admin-status-warn-text flex-shrink-0 z-10">
-<span class="material-symbols-outlined text-[16px]" data-icon="hourglass_empty">hourglass_empty</span>
-</div>
-<div class="flex-1 min-w-0">
-<div class="flex items-center justify-between gap-2 flex-wrap mb-1">
-<span class="text-white text-[13px] font-semibold">Check 2: Recruiter Authority &amp; Affiliation</span>
-<span class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-admin-status-warn-bg text-admin-status-warn-text border border-admin-status-warn-border font-medium">
-                      AUTHORIZATION PENDING
-                    </span>
-</div>
-<div class="flex flex-wrap gap-2 text-[11px]">
-<span class="font-mono px-2 py-0.5 rounded bg-admin-card border border-admin-card-border text-admin-text-body flex items-center gap-1">
-<span class="material-symbols-outlined text-[13px] text-admin-status-succ-text" data-icon="mark_email_read">mark_email_read</span>
-                      Corporate Email Auth CONFIRMED (farhan@therapservices.net)
-                    </span>
-<span class="font-mono px-2 py-0.5 rounded bg-admin-card border border-admin-status-warn-border text-admin-status-warn-text flex items-center gap-1">
-<span class="material-symbols-outlined text-[13px]" data-icon="pending">pending</span>
-                      Authorization Letter: Pending Admin Sign-Off
-                    </span>
-</div>
-</div>
-</div>
-<!-- BullMQ DNS TXT Proofline Chip -->
-<div class="pt-2 border-t border-admin-divider flex items-center justify-between text-[11px] text-admin-text-muted">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[14px] text-admin-status-succ-text" data-icon="terminal">terminal</span>
-<span class="font-mono">BullMQ DNS TXT Proofline verified: <code class="text-admin-text-secondary">_talentgraph-challenge=77f201d4a8</code></span>
-</div>
-<span class="font-mono text-admin-status-succ-text">Direct Match</span>
-</div>
-</div>
-<!-- Triage Actions -->
-<div class="flex items-center justify-end gap-2.5 pt-1">
-<button class="px-3.5 py-2 rounded-[8px] bg-admin-input hover:bg-admin-hover-btn border border-admin-inset-border text-admin-text-body text-[13px] font-medium transition-colors" type="button">
-                Request Evidence
-              </button>
-<button class="px-3.5 py-2 rounded-[8px] bg-admin-input hover:bg-admin-hover-btn border border-admin-inset-border text-admin-text-body text-[13px] font-medium transition-colors" type="button">
-                Inspect Documents
-              </button>
-<button class="px-4 py-2 rounded-[8px] bg-admin-primary hover:bg-admin-primary-hover text-white text-[13px] font-semibold transition-colors flex items-center gap-1.5 shadow-sm" type="button">
-<span class="material-symbols-outlined text-[16px]" data-icon="lock_open">lock_open</span>
-<span class="">Approve Both &amp; Unlock</span>
-</button>
-</div>
-</div>
-<!-- DOSSIER CARD 2 -->
-<div class="bg-admin-card border border-admin-card-border rounded-[12px] p-5 transition-colors hover:border-[#333338]">
-<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
+<div class="mb-8 p-4 rounded-lg bg-status-success-dark/10 border border-status-success-dark text-text-primary-dark flex items-start gap-3 hidden" id="simAlertSent">
+<span class="material-symbols-outlined text-status-success-dark text-[22px]">mark_email_read</span>
 <div>
-<div class="flex items-center gap-2.5 flex-wrap">
-<h3 class="text-white text-[16px] font-semibold tracking-tight">TigerIT Bangladesh Ltd.</h3>
-<span class="font-mono text-[11px] px-2 py-0.5 rounded bg-admin-inset text-admin-text-secondary border border-admin-inset-border">
-                    tigerit.com
-                  </span>
-<span class="text-[11px] px-2 py-0.5 rounded bg-[#1C2029] text-[#70A8FF] border border-[#273B5E] font-medium">
-                    Recruiter Growth (৳5,000/mo webhook confirmed)
-                  </span>
-</div>
-<div class="flex items-center gap-2 mt-1 text-[12px] text-admin-text-secondary">
-<span class="text-white font-medium">Sadia Rahman</span>
-<span class="">(VP Engineering &amp; Talent)</span>
-<span class="text-admin-text-disabled">•</span>
-<span class="font-mono text-admin-text-muted">Yesterday, 4:45 PM</span>
+<h4 class="font-title-sm text-title-sm text-status-success-dark">Verification Dispatch Broadcasted</h4>
+<p class="font-body-sm text-body-sm text-text-secondary-dark mt-0.5">
+          Confirmation handshake link dispatched to <strong class="text-text-primary-dark">engineering-lead@company.com</strong>. Valid for 15 minutes under Proofline Intake Spec.
+        </p>
 </div>
 </div>
+<!-- WORKSPACE 2-COLUMN GRID -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- LEFT COLUMN: REGISTRATION WORKSPACE (Cols 7) -->
+<section aria-label="Registration Forms" class="lg:col-span-7 rounded-xl border border-border-subtle-light dark:border-border-subtle-dark bg-surface-elevated-light dark:bg-surface-elevated-dark p-6 md:p-8">
+<!-- ROLE PICKER TABS -->
+<div class="flex border-b border-border-subtle-light dark:border-border-subtle-dark mb-6">
+<button class="flex-1 pb-3 text-center font-label-md text-label-md font-medium border-b-2 border-transparent text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors" id="tabCandidateBtn" onclick="switchRole('candidate')" type="button">
+            I'm a Candidate (Developer)
+          </button>
+<button class="flex-1 pb-3 text-center font-label-md text-label-md font-semibold border-b-2 border-primary-container text-text-primary-light dark:text-text-primary-dark transition-colors" id="tabRecruiterBtn" onclick="switchRole('recruiter')" type="button">
+            I'm a Technical Recruiter / Employer
+          </button>
 </div>
-<!-- Checks Overview Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-[12px]">
-<div class="p-2.5 rounded-[8px] bg-admin-inset border border-admin-card-border flex items-center justify-between">
-<span class="text-admin-text-secondary">Check 1: Enterprise Legitimacy</span>
-<span class="font-mono text-[11px] px-2 py-0.5 rounded bg-admin-status-warn-bg text-admin-status-warn-text border border-admin-status-warn-border">
-                  RJSC PENDING
-                </span>
+<!-- CANDIDATE VIEW -->
+<div class="space-y-6 hidden" id="candidateFormPanel">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-selected-light dark:bg-surface-selected-dark border border-primary-container text-primary-container font-code-provenance text-code-provenance">
+<span class="material-symbols-outlined text-[16px]">verified</span> Evidence-First Portfolio
+            </span>
+<span class="text-text-secondary-light dark:text-text-secondary-dark text-label-sm font-label-sm">No resume upload needed</span>
 </div>
-<div class="p-2.5 rounded-[8px] bg-admin-inset border border-admin-card-border flex items-center justify-between">
-<span class="text-admin-text-secondary">Check 2: Recruiter Authority</span>
-<span class="font-mono text-[11px] px-2 py-0.5 rounded bg-admin-status-succ-bg text-admin-status-succ-text border border-admin-status-succ-border">
-                  CLEAR
-                </span>
+<!-- OAuth Action -->
+<div class="space-y-3">
+<button class="w-full flex items-center justify-center gap-3 py-3.5 px-4 rounded-lg bg-[#24292F] hover:bg-[#1a1e22] text-white font-headline-md text-[15px] font-semibold transition-colors duration-150 border border-[#30363D]" id="githubAuthBtn" onclick="triggerGithubMock()" type="button">
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+        </svg>
+        <span class="">Continue with GitHub OAuth</span></button>
+<p class="text-center text-text-secondary-light dark:text-text-secondary-dark font-body-sm text-body-sm">
+              We sync author identities, semantic pull-request history, and commit line distributions.
+            </p>
 </div>
-</div>
-<!-- Actions -->
-<div class="flex items-center justify-between pt-1">
-<span class="text-[11px] font-mono text-admin-text-muted">Missing certified RJSC Form XII filing copy</span>
-<div class="flex items-center gap-2">
-<button class="px-3 py-1.5 rounded-[8px] bg-admin-input hover:bg-admin-hover-btn border border-admin-inset-border text-admin-text-body text-[12px] font-medium transition-colors" type="button">
-                  Request More Info
-                </button>
-<button class="px-3.5 py-1.5 rounded-[8px] bg-admin-input hover:bg-admin-hover-btn border border-admin-inset-border text-white text-[12px] font-medium transition-colors" type="button">
-                  Review Artifacts
-                </button>
-</div>
-</div>
-</div>
-<!-- DOSSIER CARD 3: STARTUP EXCEPTION PATH -->
-<div class="bg-admin-card border border-admin-card-border rounded-[12px] p-5 transition-colors hover:border-[#333338]">
-<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
+<!-- Read-Only Safety Guarantee Box -->
+<div class="rounded-lg p-4 bg-surface-alternate-light dark:bg-surface-canvas-dark border border-border-subtle-light dark:border-border-subtle-dark flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container text-[20px] mt-0.5">shield</span>
 <div>
-<div class="flex items-center gap-2.5 flex-wrap">
-<h3 class="text-white text-[16px] font-semibold tracking-tight">NeuralByte Labs</h3>
-<span class="font-mono text-[11px] px-2 py-0.5 rounded bg-admin-inset text-admin-status-warn-text border border-admin-status-warn-border flex items-center gap-1">
-<span class="material-symbols-outlined text-[13px]" data-icon="warning">warning</span>
-                    neuralbyte.io (founder@gmail.com)
-                  </span>
-<span class="text-[11px] px-2 py-0.5 rounded bg-[#2A2A2E] text-admin-badge-neutral-text border border-[#3A3A40] font-mono font-medium">
-                    Sec 10 Startup Exception Packet
-                  </span>
-</div>
-<div class="flex items-center gap-2 mt-1 text-[12px] text-admin-text-secondary">
-<span class="text-white font-medium">Tanvir Kabir</span>
-<span class="">(Co-founder)</span>
-<span class="text-admin-text-disabled">•</span>
-<span class="font-mono text-admin-text-muted">Today, 09:10 AM</span>
+<h4 class="font-title-sm text-title-sm text-text-primary-light dark:text-text-primary-dark">Read-Only Safety Guarantee</h4>
+<p class="mt-1 font-body-sm text-body-sm text-text-secondary-light dark:text-text-secondary-dark">
+                Authentication is strictly read-only for public identity tokens. We never request private SSH keys or execute push operations.
+              </p>
 </div>
 </div>
+<!-- Consent Agreement -->
+<div class="pt-2">
+<label class="flex items-start gap-3 cursor-pointer select-none">
+<input checked="" class="mt-1 h-4 w-4 rounded border-border-subtle-dark text-primary-container focus:ring-primary-container focus:ring-offset-0 bg-surface-canvas-dark" type="checkbox">
+<span class="font-body-sm text-body-sm text-text-secondary-light dark:text-text-secondary-dark">
+                I agree to the <a class="text-text-primary-light dark:text-text-primary-dark underline hover:text-primary-container" href="#">Terms of Service</a> and <a class="text-text-primary-light dark:text-text-primary-dark underline hover:text-primary-container" href="#">Privacy Policy</a>. I understand that GitHub OAuth grants basic profile access, while repository analysis consent (3 syncs/month limit) is configured explicitly per selected repo.
+              </span>
+</label>
 </div>
-<!-- Checks breakdown -->
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 text-[12px]">
-<div class="p-2.5 rounded-[8px] bg-admin-inset border border-admin-card-border flex items-center justify-between">
-<span class="text-admin-text-secondary">Check 1: Legitimacy</span>
-<span class="font-mono text-[11px] px-2 py-0.5 rounded bg-admin-status-warn-bg text-admin-status-warn-text border border-admin-status-warn-border">
-                  STARTUP DEED PROVIDED
-                </span>
+<!-- Spec Compliance Box -->
+<div class="p-4 rounded-lg border border-border-subtle-light dark:border-border-subtle-dark bg-surface-container-low dark:bg-surface-container-lowest font-code-provenance text-code-provenance">
+<div class="flex items-center justify-between text-text-secondary-light dark:text-text-secondary-dark mb-1">
+<span class="font-semibold text-text-primary-light dark:text-text-primary-dark">GROUND TRUTH INTAKE SPEC v1.3 COMPLIANT</span>
+<span class="text-status-success-dark">PASS</span>
 </div>
-<div class="p-2.5 rounded-[8px] bg-admin-inset border border-admin-card-border flex items-center justify-between">
-<span class="text-admin-text-secondary">Check 2: Recruiter Authority</span>
-<span class="font-mono text-[11px] px-2 py-0.5 rounded bg-admin-badge-neutral-bg text-admin-badge-neutral-text border border-[#3A3A40]">
-                  GENERIC DOMAIN EXCEPTION
-                </span>
-</div>
-</div>
-<!-- Action -->
-<div class="flex items-center justify-between pt-1">
-<span class="text-[11px] text-admin-text-muted">Requires 2-admin dual sign-off under Sec 10.4 Startup Exemption policy</span>
-<button class="px-3.5 py-1.5 rounded-[8px] bg-admin-input hover:bg-admin-hover-btn border border-admin-inset-border text-white text-[12px] font-medium transition-colors" type="button">
-                Triage Startup Packet
-              </button>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-[11px] leading-relaxed">
+              Zero black-box ranking, zero CV extrapolation without AST commit confirmation. All evidence ties back to reproducible SHA keys.
+            </p>
 </div>
 </div>
+<!-- RECRUITER VIEW (Form) -->
+<div class="space-y-5" id="recruiterFormPanel">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-text-secondary-dark border border-border-subtle-dark font-code-provenance text-code-provenance">
+<span class="material-symbols-outlined text-[16px]">corporate_fare</span> Employer Onboarding
+            </span>
+<span class="text-text-secondary-light dark:text-text-secondary-dark text-label-sm font-label-sm">Requires Business Email</span>
 </div>
-<!-- RIGHT COLUMN (4 Columns): DUAL AUDIT INSPECTOR -->
-<div class="lg:col-span-4 sticky top-6">
-<div class="bg-admin-card border border-admin-card-border rounded-[12px] p-5 shadow-md flex flex-col gap-5">
-<!-- Inspector Header -->
-<div class="flex items-start justify-between border-b border-admin-divider pb-3">
+<form class="space-y-4" id="recruiterForm" onsubmit="event.preventDefault(); triggerRecruiterSubmit();">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <div>
-<span class="text-[11px] font-mono tracking-wider text-admin-primary font-semibold">DUAL AUDIT INSPECTOR</span>
-<h2 class="text-white text-[15px] font-semibold mt-0.5">#TR-89214: Therap (BD) Ltd.</h2>
+<label class="block font-label-md text-label-md text-text-secondary-light dark:text-text-secondary-dark mb-1.5">Full Name</label>
+<input class="w-full h-10 px-3 rounded-lg border border-border-subtle-light dark:border-border-subtle-dark bg-surface-canvas-light dark:bg-surface-canvas-dark text-text-primary-light dark:text-text-primary-dark font-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-colors" placeholder="Dr. Sarah Connor" required="" type="text">
 </div>
-<span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-admin-status-warn-bg text-admin-status-warn-text border border-admin-status-warn-border font-medium">
-                1 of 2 Approved
+<div>
+<label class="block font-label-md text-label-md text-text-secondary-light dark:text-text-secondary-dark mb-1.5">Work Email</label>
+<input class="w-full h-10 px-3 rounded-lg border border-border-subtle-light dark:border-border-subtle-dark bg-surface-canvas-light dark:bg-surface-canvas-dark text-text-primary-light dark:text-text-primary-dark font-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-colors" placeholder="name@company.com" required="" type="email">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-label-md text-text-secondary-light dark:text-text-secondary-dark mb-1.5">Password</label>
+<input class="w-full h-10 px-3 rounded-lg border border-border-subtle-light dark:border-border-subtle-dark bg-surface-canvas-light dark:bg-surface-canvas-dark text-text-primary-light dark:text-text-primary-dark font-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-colors" placeholder="••••••••••••" required="" type="password">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-text-secondary-light dark:text-text-secondary-dark mb-1.5">Confirm Password</label>
+<input class="w-full h-10 px-3 rounded-lg border border-border-subtle-light dark:border-border-subtle-dark bg-surface-canvas-light dark:bg-surface-canvas-dark text-text-primary-light dark:text-text-primary-dark font-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-colors" placeholder="••••••••••••" required="" type="password">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-label-md text-text-secondary-light dark:text-text-secondary-dark mb-1.5">Company Name</label>
+<input class="w-full h-10 px-3 rounded-lg border border-border-subtle-light dark:border-border-subtle-dark bg-surface-canvas-light dark:bg-surface-canvas-dark text-text-primary-light dark:text-text-primary-dark font-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-colors" placeholder="Acme Systems Corp" required="" type="text">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-text-secondary-light dark:text-text-secondary-dark mb-1.5">Official Website</label>
+<input class="w-full h-10 px-3 rounded-lg border border-border-subtle-light dark:border-border-subtle-dark bg-surface-canvas-light dark:bg-surface-canvas-dark text-text-primary-light dark:text-text-primary-dark font-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-colors" placeholder="https://acmesystems.io" required="" type="url">
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-text-secondary-light dark:text-text-secondary-dark mb-1.5">Recruiter Title / Role</label>
+<input class="w-full h-10 px-3 rounded-lg border border-border-subtle-light dark:border-border-subtle-dark bg-surface-canvas-light dark:bg-surface-canvas-dark text-text-primary-light dark:text-text-primary-dark font-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-colors" placeholder="VP of Talent &amp; Engineering Systems" required="" type="text">
+</div>
+<!-- Mandatory Policy Note -->
+<div class="p-3.5 rounded-lg bg-surface-alternate-light dark:bg-surface-canvas-dark border border-border-subtle-light dark:border-border-subtle-dark text-text-secondary-light dark:text-text-secondary-dark font-body-sm text-body-sm flex gap-2.5">
+<span class="material-symbols-outlined text-status-warning-dark text-[18px] shrink-0">info</span>
+<span class="">
+<strong>Mandatory policy note:</strong> Creating an account does not automatically verify your company or authorize job publishing. Company legitimacy and recruiter affiliation must be verified prior to posting jobs.
               </span>
 </div>
-<!-- Submitted Verification Artifacts -->
-<div class="space-y-2.5">
-<div class="flex items-center justify-between">
-<span class="text-[12px] font-medium text-white">Submitted Verification Artifacts</span>
-<span class="text-[11px] font-mono text-admin-text-muted">3 files</span>
-</div>
-<!-- Artifact Item 1 -->
-<div class="p-2.5 rounded-[8px] bg-admin-inset border border-admin-inset-border flex items-center justify-between text-[12px]">
-<div class="flex items-center gap-2.5 min-w-0">
-<div class="w-7 h-7 rounded bg-admin-icon-tile border border-admin-icon-border flex items-center justify-center text-admin-status-succ-text flex-shrink-0">
-<span class="material-symbols-outlined text-[16px]" data-icon="description">description</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="text-white text-[12px] font-medium truncate">trade_license_dhaka_north_2026.pdf</span>
-<span class="font-mono text-[10px] text-admin-text-muted">2.1 MB • SHA-256 Hash Verified</span>
-</div>
-</div>
-<button aria-label="Inspect Trade License PDF" class="p-1 text-admin-text-secondary hover:text-white hover:bg-admin-hover rounded transition-colors flex-shrink-0" type="button">
-<span class="material-symbols-outlined text-[16px]" data-icon="visibility">visibility</span>
+<button class="w-full py-3 px-4 rounded-lg bg-primary-container hover:bg-brand-hover-dark text-cta-text font-label-md text-label-md font-semibold transition-colors duration-150 flex items-center justify-center gap-2" type="submit">
+<span class="">Continue to Company Verification</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
 </button>
-</div>
-<!-- Artifact Item 2 -->
-<div class="p-2.5 rounded-[8px] bg-admin-inset border border-admin-inset-border flex items-center justify-between text-[12px]">
-<div class="flex items-center gap-2.5 min-w-0">
-<div class="w-7 h-7 rounded bg-admin-icon-tile border border-admin-icon-border flex items-center justify-center text-admin-status-succ-text flex-shrink-0">
-<span class="material-symbols-outlined text-[16px]" data-icon="verified_user">verified_user</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="text-white text-[12px] font-medium truncate">rjsc_incorporation_certificate_c4482.pdf</span>
-<span class="font-mono text-[10px] text-admin-text-muted">3.4 MB • RJSC API Direct Match</span>
-</div>
-</div>
-<button aria-label="Inspect RJSC Certificate PDF" class="p-1 text-admin-text-secondary hover:text-white hover:bg-admin-hover rounded transition-colors flex-shrink-0" type="button">
-<span class="material-symbols-outlined text-[16px]" data-icon="visibility">visibility</span>
-</button>
-</div>
-<!-- Artifact Item 3 -->
-<div class="p-2.5 rounded-[8px] bg-admin-inset border border-admin-status-warn-border flex items-center justify-between text-[12px]">
-<div class="flex items-center gap-2.5 min-w-0">
-<div class="w-7 h-7 rounded bg-admin-status-warn-bg border border-admin-status-warn-border flex items-center justify-center text-admin-status-warn-text flex-shrink-0">
-<span class="material-symbols-outlined text-[16px]" data-icon="history_edu">history_edu</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="text-white text-[12px] font-medium truncate">board_authorization_farhan_ahmed.pdf</span>
-<span class="font-mono text-[10px] text-admin-status-warn-text">1.2 MB • Pending Sign-Off</span>
-</div>
-</div>
-<button aria-label="Inspect Authorization PDF" class="p-1 text-admin-text-secondary hover:text-white hover:bg-admin-hover rounded transition-colors flex-shrink-0" type="button">
-<span class="material-symbols-outlined text-[16px]" data-icon="visibility">visibility</span>
-</button>
-</div>
-</div>
-<!-- Mandatory Dual-Check Signoff Controls -->
-<div class="space-y-3 pt-2 border-t border-admin-divider">
-<span class="text-[12px] font-medium text-white block">Mandatory Dual-Check Signoff</span>
-<!-- Item 1 (Checked) -->
-<label class="flex items-start gap-2.5 p-2.5 rounded-[8px] bg-admin-inset border border-admin-inset-border cursor-pointer hover:bg-admin-hover transition-colors">
-<input checked="" class="mt-0.5 rounded border-admin-inset-border bg-admin-input text-admin-primary focus:ring-0 focus:ring-offset-0 h-4 w-4" type="checkbox">
-<div class="flex flex-col">
-<span class="text-white text-[12px] font-medium leading-tight">1. Enterprise Legal Entity Verified</span>
-<span class="text-admin-text-muted text-[11px] mt-0.5">RJSC &amp; Trade License matched with certified government records.</span>
-</div>
-</label>
-<!-- Item 2 (Unchecked) -->
-<label class="flex items-start gap-2.5 p-2.5 rounded-[8px] bg-admin-inset border border-admin-status-warn-border cursor-pointer hover:bg-admin-hover transition-colors">
-<input class="mt-0.5 rounded border-admin-inset-border bg-admin-input text-admin-primary focus:ring-0 focus:ring-offset-0 h-4 w-4" type="checkbox">
-<div class="flex flex-col">
-<span class="text-white text-[12px] font-medium leading-tight">2. Recruiter Affiliation Legally Established</span>
-<span class="text-admin-text-muted text-[11px] mt-0.5">Confirmed corporate domain DNS handshake OR certified company letter.</span>
-</div>
-</label>
-</div>
-<!-- Audit Trail Rationale -->
-<div class="space-y-1.5 pt-1">
-<label class="text-[12px] font-medium text-white flex items-center justify-between" for="audit-rationale">
-<span class="">Audit Trail Rationale</span>
-<span class="text-[10px] text-admin-text-muted font-mono">Mandatory under ISO-27001</span>
-</label>
-<textarea class="w-full text-[12px] bg-admin-input text-admin-text-body placeholder-admin-text-muted border border-admin-inset-border rounded-[8px] p-2.5 focus:outline-none focus:border-admin-primary resize-none transition-colors" id="audit-rationale" placeholder="Enter justification for manual signoff or evidence request..." rows="3"></textarea>
-</div>
-<!-- Dual Action Bar -->
-<div class="grid grid-cols-2 gap-2 pt-2 border-t border-admin-divider">
-<button class="py-2.5 px-3 bg-admin-input hover:bg-admin-hover-btn border border-admin-inset-border text-admin-text-body rounded-[8px] text-[12px] font-medium transition-colors" type="button">
-                Request Clarification
-              </button>
-<button class="py-2.5 px-3 bg-admin-primary hover:bg-admin-primary-hover text-white rounded-[8px] text-[12px] font-semibold transition-colors shadow-sm text-center" type="button">
-                Commit Verification Decision
-              </button>
-</div>
-</div>
+</form>
 </div>
 </section>
-</main>
-<!-- ADMIN FOOTER -->
-<footer class="border-t border-admin-divider-footer bg-admin-sidebar py-3 px-8 text-[11px] text-admin-text-muted flex flex-col sm:flex-row items-center justify-between gap-2 max-w-[1440px] w-full mx-auto">
+<!-- RIGHT COLUMN: THE PROOFLINE ENGINE (Cols 5) -->
+<section aria-label="Proofline Engine Lineage" class="lg:col-span-5 rounded-xl border border-border-subtle-light dark:border-border-subtle-dark bg-surface-elevated-light dark:bg-surface-elevated-dark p-6 md:p-8 flex flex-col justify-between">
+<div>
+<!-- Panel Header -->
+<div class="flex items-center justify-between pb-4 border-b border-border-subtle-light dark:border-border-subtle-dark mb-5">
+<div>
 <div class="flex items-center gap-2">
-<span class="w-1.5 h-1.5 rounded-full bg-admin-status-succ-text"></span>
-<span class="">TalentGraph governance shell • All actions are audited with cryptographic SHA-256 integrity</span>
+<h3 class="font-headline-md text-headline-md text-text-primary-light dark:text-text-primary-dark">The Proofline Engine</h3>
+
 </div>
-<div class="flex items-center gap-1.5 hover:text-admin-text-secondary transition-colors cursor-pointer">
-<span class="material-symbols-outlined text-[14px]" data-icon="lock">lock</span>
-<span class="">Need help? Contact platform security</span>
+<p class="font-body-sm text-body-sm text-text-secondary-light dark:text-text-secondary-dark mt-1">
+                Every candidate capability is anchored by traceable provenance markers. We convert ambiguous resumes into mathematically verifiable proof.
+              </p>
 </div>
-</footer>
+<span class="hidden sm:inline-flex px-2 py-1 rounded bg-primary-container/10 border border-primary-container/30 text-primary-container font-code-provenance text-[11px] font-semibold uppercase">
+              Deterministic Lineage
+            </span>
 </div>
+<!-- PROOFLINE CONNECTOR STEPS -->
+<div class="space-y-6 pt-2">
+<!-- Step 1 -->
+<div class="proofline-stem flex items-start gap-3.5">
+<div class="z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-surface-canvas-light dark:bg-surface-canvas-dark border border-border-subtle-light dark:border-border-subtle-dark text-primary-container">
+<span class="material-symbols-outlined text-[18px]">account_tree</span>
+</div>
+<div class="flex-1 pb-1">
+<div class="flex items-center justify-between">
+<h4 class="font-title-sm text-title-sm text-text-primary-light dark:text-text-primary-dark">1. Connect CV &amp; Repos (OAuth / PDF)</h4>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary-light dark:text-text-secondary-dark mt-0.5">
+                  Candidate authenticates repository identities.
+                </p>
+<div class="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-canvas-light dark:bg-surface-canvas-dark border border-border-subtle-light dark:border-border-subtle-dark text-text-secondary-light dark:text-text-secondary-dark font-code-provenance text-[11px]">
+<span class="material-symbols-outlined text-[14px]">code</span>
+<span class="">github.com/profile @ commit-hash</span>
+</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="proofline-stem flex items-start gap-3.5">
+<div class="z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-surface-canvas-light dark:bg-surface-canvas-dark border border-border-subtle-light dark:border-border-subtle-dark text-status-success-dark">
+<span class="material-symbols-outlined text-[18px]">memory</span>
+</div>
+<div class="flex-1 pb-1">
+<div class="flex items-center justify-between">
+<h4 class="font-title-sm text-title-sm text-text-primary-light dark:text-text-primary-dark">2. Grounded Static AST Analysis (Active AST)</h4>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary-light dark:text-text-secondary-dark mt-0.5">
+                  Abstract Syntax Tree decomposition computes cyclomatic complexity, ownership ratios, and code hygiene.
+                </p>
+<div class="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-status-success-dark/10 border border-status-success-dark/30 text-status-success-dark font-code-provenance text-[11px]">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span class="">AST verified: 84.2% Author Dominance</span>
+</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="proofline-stem flex items-start gap-3.5">
+<div class="z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-surface-canvas-light dark:bg-surface-canvas-dark border border-border-subtle-light dark:border-border-subtle-dark text-status-warning-dark">
+<span class="material-symbols-outlined text-[18px]">speed</span>
+</div>
+<div class="flex-1 pb-1">
+<div class="flex items-center justify-between">
+<h4 class="font-title-sm text-title-sm text-text-primary-light dark:text-text-primary-dark">3. Timed Mobile Assessment (Verified)</h4>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary-light dark:text-text-secondary-dark mt-0.5">
+                  Rapid, unskewed technical benchmarks validate practical instincts without synthetic AI assistance.
+                </p>
+<div class="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-canvas-light dark:bg-surface-canvas-dark border border-border-subtle-light dark:border-border-subtle-dark text-text-secondary-light dark:text-text-secondary-dark font-code-provenance text-[11px]">
+<span class="material-symbols-outlined text-[14px]">analytics</span>
+<span class="">Benchmark: 94th Pctl Distributed Systems</span>
+</div>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="proofline-stem flex items-start gap-3.5">
+<div class="z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-surface-canvas-light dark:bg-surface-canvas-dark border border-border-subtle-light dark:border-border-subtle-dark text-primary-container">
+<span class="material-symbols-outlined text-[18px]">handshake</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-title-sm text-title-sm text-text-primary-light dark:text-text-primary-dark">4. Deterministic Match (Decision)</h4>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary-light dark:text-text-secondary-dark mt-0.5">
+                  High-confidence engineering hiring where candidates skip generic screenings directly to team syncs.
+                </p>
+<div class="mt-2 inline-block px-3 py-1.5 rounded-lg border border-primary-container bg-surface-selected-light dark:bg-surface-selected-dark text-primary-container font-code-provenance text-[11px] font-medium">
+                  Proofline Complete: Zero Unsubstantiated Claims
+                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Footer Security Note -->
+<div class="mt-8 pt-4 border-t border-border-subtle-light dark:border-border-subtle-dark grid grid-cols-1 sm:grid-cols-2 gap-3 text-text-secondary-light dark:text-text-secondary-dark font-code-provenance text-code-provenance">
 
 
+</div>
+</section>
+</div>
+</main>
+<!-- MONUMENTAL ARCHITECTURAL FOOTER -->
+
+<!-- INTERACTIVITY & DUAL THEME CONTROLLER -->
+<script>
+    // 1. Theme Controller (Dark default, pure dark/light swap)
+    const htmlElem = document.documentElement;
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+
+    function updateThemeUI(isDark) {
+      if (isDark) {
+        htmlElem.classList.add('dark');
+        themeIcon.textContent = 'dark_mode';
+        if (themeText) themeText.textContent = 'Dark';
+      } else {
+        htmlElem.classList.remove('dark');
+        themeIcon.textContent = 'light_mode';
+        if (themeText) themeText.textContent = 'Light';
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = htmlElem.classList.contains('dark');
+      updateThemeUI(!isDark);
+    });
+
+    // 2. Role Selector Switcher
+    const candidateTab = document.getElementById('tabCandidateBtn');
+    const recruiterTab = document.getElementById('tabRecruiterBtn');
+    const candidatePanel = document.getElementById('candidateFormPanel');
+    const recruiterPanel = document.getElementById('recruiterFormPanel');
+
+    function switchRole(role) {
+      if (role === 'candidate') {
+        candidateTab.className = "flex-1 pb-3 text-center font-label-md text-label-md font-semibold border-b-2 border-primary-container text-text-primary-light dark:text-text-primary-dark transition-colors";
+        recruiterTab.className = "flex-1 pb-3 text-center font-label-md text-label-md font-medium border-b-2 border-transparent text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors";
+        candidatePanel.classList.remove('hidden');
+        recruiterPanel.classList.add('hidden');
+      } else {
+        recruiterTab.className = "flex-1 pb-3 text-center font-label-md text-label-md font-semibold border-b-2 border-primary-container text-text-primary-light dark:text-text-primary-dark transition-colors";
+        candidateTab.className = "flex-1 pb-3 text-center font-label-md text-label-md font-medium border-b-2 border-transparent text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors";
+        recruiterPanel.classList.remove('hidden');
+        candidatePanel.classList.add('hidden');
+      }
+    }
+
+    // 3. Simulation State Control
+    const alertDenied = document.getElementById('simAlertDenied');
+    const alertSent = document.getElementById('simAlertSent');
+    const githubAuthBtn = document.getElementById('githubAuthBtn');
+
+    function setSimState(state) {
+      // update pill highlight
+      const pills = document.querySelectorAll('.sim-pill');
+      pills.forEach(pill => {
+        if (pill.getAttribute('data-state') === state) {
+          pill.className = "sim-pill px-2.5 py-1 rounded border border-primary-container bg-surface-selected-dark text-primary-container font-label-sm transition-colors";
+        } else {
+          pill.className = "sim-pill px-2.5 py-1 rounded border border-border-subtle-dark text-text-secondary-dark hover:text-text-primary-dark font-label-sm transition-colors";
+        }
+      });
+
+      // Hide conditional alerts
+      alertDenied.classList.add('hidden');
+      alertSent.classList.add('hidden');
+      githubAuthBtn.innerHTML = `
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+        </svg>
+        <span>Continue with GitHub OAuth</span>`;
+
+      if (state === 'candidate') {
+        switchRole('candidate');
+      } else if (state === 'recruiter') {
+        switchRole('recruiter');
+      } else if (state === 'denied') {
+        switchRole('candidate');
+        alertDenied.classList.remove('hidden');
+      } else if (state === 'sent') {
+        switchRole('recruiter');
+        alertSent.classList.remove('hidden');
+      } else if (state === 'loading') {
+        switchRole('candidate');
+        githubAuthBtn.innerHTML = `
+          <span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span>
+          <span>Handshaking with GitHub Identity Vault...</span>`;
+      }
+    }
+
+    function triggerGithubMock() {
+      setSimState('loading');
+      setTimeout(() => {
+        alertSent.classList.remove('hidden');
+        alertSent.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 1000);
+    }
+
+    function triggerRecruiterSubmit() {
+      setSimState('sent');
+      alertSent.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
 
 
-</body></html>
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>
