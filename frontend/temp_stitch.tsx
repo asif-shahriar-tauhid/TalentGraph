@@ -1,12 +1,12 @@
 <!DOCTYPE html><html class="dark" lang="en" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>TalentGraph Admin - Worker Telemetry &amp; System Monitoring</title>
-<!-- Material Symbols Outlined -->
+<title>Subscriptions &amp; Payments • TalentGraph Admin</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
-<!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
     tailwind.config = {
@@ -14,150 +14,117 @@
       theme: {
         extend: {
           colors: {
-            "on-primary": "#552000",
-            "surface-selected-dark": "#252528",
-            "on-surface": "#e5e1e4",
-            "text-secondary-dark": "#A1A1AA",
-            "secondary": "#c7c5d0",
-            "on-error-container": "#ffdad6",
-            "cta-text": "#18181B",
-            "inverse-on-surface": "#313032",
-            "primary-container": "#e56f27",
-            "surface-container-low": "#1b1b1d",
-            "tertiary": "#95ccff",
-            "status-error-dark": "#E5484D",
-            "on-secondary-fixed": "#1a1b23",
-            "on-secondary": "#2f3038",
-            "status-error-light": "#DC2626",
-            "surface-container-highest": "#353437",
-            "secondary-container": "#46464f",
-            "on-background": "#e5e1e4",
-            "primary": "#ffb691",
-            "on-tertiary-fixed": "#001d32",
-            "error-container": "#93000a",
-            "error": "#ffb4ab",
-            "status-warning-dark": "#F59E0B",
-            "tertiary-fixed": "#cee5ff",
-            "on-primary-fixed-variant": "#793100",
-            "border-subtle-dark": "#3F3F46",
-            "primary-fixed": "#ffdbcb",
-            "surface-canvas-light": "#FFFFFF",
-            "on-tertiary-container": "#002c48",
-            "status-success-light": "#15803D",
-            "surface-alternate-light": "#F8FAFC",
-            "on-tertiary-fixed-variant": "#004a75",
-            "surface-tint": "#ffb691",
-            "status-success-dark": "#22C55E",
-            "on-primary-container": "#4b1b00",
-            "surface-elevated-dark": "#19191C",
-            "surface-bright": "#39393b",
-            "text-primary-light": "#18181B",
-            "on-tertiary": "#003353",
-            "surface-container-lowest": "#0e0e10",
-            "surface-container-high": "#2a2a2c",
-            "surface-container": "#201f21",
             "on-secondary-container": "#b5b4be",
-            "secondary-fixed": "#e3e1ec",
-            "surface-dim": "#131315",
-            "brand-hover-light": "#B94F0B",
-            "primary-fixed-dim": "#ffb691",
-            "text-primary-dark": "#F5F5F5",
-            "surface-selected-light": "#FFF1E8",
-            "secondary-fixed-dim": "#c7c5d0",
-            "on-error": "#690005",
-            "on-primary-fixed": "#341100",
-            "text-secondary-light": "#71717A",
-            "surface": "#131315",
-            "outline-variant": "#574238",
-            "tertiary-container": "#2797e2",
-            "inverse-primary": "#9f4200",
+            "secondary-container": "#46464f",
+            "surface-container": "#201f21",
             "on-surface-variant": "#dec0b3",
-            "brand-hover-dark": "#E47735",
-            "outline": "#a68b7f",
-            "background": "#131315",
-            "surface-elevated-light": "#FFFFFF",
-            "tertiary-fixed-dim": "#95ccff",
-            "status-warning-light": "#B45309",
-            "on-secondary-fixed-variant": "#46464f",
-            "inverse-surface": "#e5e1e4",
-            "border-subtle-light": "#E4E4E7",
-            "surface-variant": "#353437",
+            "surface": "#131315",
+            "primary": "#ffb691",
+            "surface-alternate-light": "#F8FAFC",
+            "surface-selected-light": "#FFF1E8",
+            "primary-fixed-dim": "#ffb691",
+            "on-secondary-fixed": "#1a1b23",
+            "inverse-on-surface": "#313032",
+            "on-error-container": "#ffdad6",
+            "surface-bright": "#39393b",
+            "border-subtle-dark": "#3F3F46",
+            "status-error-light": "#DC2626",
+            "secondary-fixed": "#e3e1ec",
+            "brand-hover-light": "#B94F0B",
             "surface-canvas-dark": "#0D0D0F",
-            /* Strict dashboard tokens */
-            "admin-bg": "#0E0E11",
-            "admin-sidebar": "#121215",
-            "admin-sidebar-border": "#222226",
-            "admin-card": "#151518",
-            "admin-card-border": "#25252A",
-            "admin-card-inset": "#17171B",
-            "admin-card-inset-border": "#27272C",
-            "admin-input": "#161619",
-            "admin-input-border": "#27272C",
-            "admin-tile": "#1F1F24",
-            "admin-tile-border": "#2B2B32",
-            "admin-track": "#1C1C20",
-            "admin-track-border": "#2C2C32",
-            "admin-hover": "#1A1A1E",
-            "admin-btn-hover": "#202024",
-            "admin-divider": "#222227",
-            "admin-footer-divider": "#1C1C20",
-            "admin-brand": "#D4621A",
-            "admin-brand-hover": "#BF5313",
-            "admin-brand-circle": "#E56218",
-            "status-succ-text": "#4ADE80",
-            "status-succ-bg": "#13281E",
-            "status-succ-border": "#1A3D2C",
-            "status-warn-text": "#E5933A",
-            "status-warn-bg": "#2C2114",
-            "status-warn-border": "#44301B",
-            "status-dang-text": "#F87171",
-            "status-dang-bg": "#2E181D",
-            "status-dang-border": "#482026"
-          },
-          borderRadius: {
-            DEFAULT: "0.25rem",
-            lg: "0.5rem",
-            xl: "0.75rem",
-            full: "9999px"
-          },
-          spacing: {
-            "margin": "1rem",
-            "space-sm": "0.5rem",
-            "space-xs": "0.25rem",
-            "gutter-desktop": "1.5rem",
-            "space-xl": "2rem",
-            "space-md": "1rem",
-            "margin-desktop": "2rem",
-            "gutter": "1rem",
-            "space-lg": "1.5rem"
+            "surface-tint": "#ffb691",
+            "surface-container-low": "#1b1b1d",
+            "tertiary-container": "#2797e2",
+            "text-primary-light": "#18181B",
+            "on-tertiary-container": "#002c48",
+            "text-secondary-dark": "#A1A1AA",
+            "tertiary-fixed-dim": "#95ccff",
+            "status-success-light": "#15803D",
+            "status-warning-dark": "#F59E0B",
+            "on-error": "#690005",
+            "surface-container-high": "#2a2a2c",
+            "secondary-fixed-dim": "#c7c5d0",
+            "status-success-dark": "#22C55E",
+            "outline-variant": "#574238",
+            "on-secondary-fixed-variant": "#46464f",
+            "surface-variant": "#353437",
+            "on-secondary": "#2f3038",
+            "on-background": "#e5e1e4",
+            "brand-hover-dark": "#E47735",
+            "tertiary": "#95ccff",
+            "on-primary": "#552000",
+            "error": "#ffb4ab",
+            "error-container": "#93000a",
+            "on-primary-fixed": "#341100",
+            "surface-canvas-light": "#FFFFFF",
+            "on-primary-container": "#4b1b00",
+            "on-surface": "#e5e1e4",
+            "tertiary-fixed": "#cee5ff",
+            "on-tertiary-fixed-variant": "#004a75",
+            "on-tertiary-fixed": "#001d32",
+            "surface-selected-dark": "#252528",
+            "inverse-primary": "#9f4200",
+            "surface-container-lowest": "#0e0e10",
+            "background": "#131315",
+            "border-subtle-light": "#E4E4E7",
+            "status-error-dark": "#E5484D",
+            "surface-elevated-dark": "#19191C",
+            "on-primary-fixed-variant": "#793100",
+            "secondary": "#c7c5d0",
+            "inverse-surface": "#e5e1e4",
+            "status-warning-light": "#B45309",
+            "primary-fixed": "#ffdbcb",
+            "surface-container-highest": "#353437",
+            "cta-text": "#18181B",
+            "text-secondary-light": "#71717A",
+            "on-tertiary": "#003353",
+            "surface-elevated-light": "#FFFFFF",
+            "primary-container": "#e56f27",
+            "text-primary-dark": "#F5F5F5",
+            "outline": "#a68b7f",
+            "surface-dim": "#131315",
+            /* Operational Palette tokens */
+            "tg-bg": "#0E0E11",
+            "tg-sidebar": "#121215",
+            "tg-sidebar-border": "#222226",
+            "tg-panel": "#151518",
+            "tg-panel-border": "#25252A",
+            "tg-inset": "#17171B",
+            "tg-inset-border": "#27272C",
+            "tg-input": "#161619",
+            "tg-tile": "#1F1F24",
+            "tg-tile-border": "#2B2B32",
+            "tg-accent": "#D4621A",
+            "tg-accent-hover": "#BF5313",
+            "tg-brand": "#E56218"
           },
           fontFamily: {
-            "code-provenance": ["Inter", "monospace"],
             "display-lg-mobile": ["Inter"],
-            "display-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "title-sm": ["Inter"],
+            "code-provenance": ["JetBrains Mono", "monospace"],
             "body-sm": ["Inter"],
             "headline-lg": ["Inter"],
-            "title-sm": ["Inter"],
-            "label-sm": ["Inter"],
-            "headline-lg-mobile": ["Inter"],
-            "headline-md": ["Inter"],
-            "label-md": ["Inter"],
             "body-md": ["Inter"],
-            "body-lg": ["Inter"]
+            "display-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-lg-mobile": ["Inter"]
           },
           fontSize: {
-            "code-provenance": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "500" }],
             "display-lg-mobile": ["30px", { lineHeight: "38px", letterSpacing: "-0.015em", fontWeight: "700" }],
-            "display-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.02em", fontWeight: "500" }],
+            "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+            "title-sm": ["16px", { lineHeight: "24px", fontWeight: "600" }],
+            "code-provenance": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "500" }],
             "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }],
             "headline-lg": ["28px", { lineHeight: "36px", letterSpacing: "-0.015em", fontWeight: "600" }],
-            "title-sm": ["16px", { lineHeight: "24px", fontWeight: "600" }],
-            "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.02em", fontWeight: "500" }],
-            "headline-lg-mobile": ["22px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }],
-            "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }],
-            "label-md": ["13px", { lineHeight: "18px", fontWeight: "500" }],
             "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
-            "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }]
+            "display-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "label-md": ["13px", { lineHeight: "18px", fontWeight: "500" }],
+            "headline-lg-mobile": ["22px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }]
           }
         }
       }
@@ -166,638 +133,665 @@
 <style>
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 18px;
       line-height: 1;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       vertical-align: middle;
     }
-    @keyframes subtle-pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
     }
-    .pulse-dot {
-      animation: subtle-pulse 2.4s ease-in-out infinite;
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #121215;
     }
-    /* Technical scrollbars */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #0E0E11;
-    }
-    ::-webkit-scrollbar-thumb {
+    .custom-scroll::-webkit-scrollbar-thumb {
       background: #27272C;
-      border-radius: 3px;
+      border-radius: 4px;
     }
-    ::-webkit-scrollbar-thumb:hover {
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
       background: #3F3F46;
     }
   </style>
 </head>
-<body class="bg-[#0E0E11] text-[#D4D4D8] font-body-md text-body-md antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-white">
-<!-- MASTER SHELL WRAPPER -->
-<div class="flex-1 flex w-full">
-<!-- 1. PERSISTENT ADMIN SIDEBAR (Strict 256px wide, SCREEN_2 / 4 / 5 identical specs) -->
-<aside class="w-[256px] shrink-0 bg-[#121215] border-r border-[#222226] flex flex-col justify-between h-screen sticky top-0 z-40 select-none">
-<div class="p-space-md flex flex-col gap-space-md">
-<!-- Monogram & Brand Header -->
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-[#E56218] flex items-center justify-center text-white font-bold text-base shrink-0 shadow-sm">
-            TG
-          </div>
+<body class="bg-[#0E0E11] text-[#D4D4D8] font-body-md text-body-md antialiased min-h-screen flex selection:bg-[#D4621A] selection:text-white">
+<!-- ==================== FIXED OPERATIONAL SIDEBAR (256px) ==================== -->
+<aside class="w-[256px] min-w-[256px] h-screen fixed inset-y-0 left-0 bg-[#121215] border-r border-[#222226] flex flex-col justify-between z-40 select-none">
+<!-- Top Identity & Navigation Area -->
+<div class="flex flex-col overflow-y-auto custom-scroll">
+<!-- Monogram & Identity Header -->
+<div class="p-4 pb-3 flex items-center gap-3 border-b border-[#1E1E22]">
+<div class="w-10 h-10 rounded-full bg-[#E56218] flex items-center justify-center text-white font-bold text-[15px] tracking-tight shrink-0 shadow-inner">
+          TG
+        </div>
 <div class="flex flex-col min-w-0">
-<div class="flex items-center gap-1.5">
-<span class="text-white text-[14px] font-semibold tracking-tight">TalentGraph</span>
-<span class="text-[10px] font-medium tracking-wider bg-[#222227] text-[#A1A1AA] px-1.5 py-0.5 rounded border border-[#2B2B32] uppercase">ADMIN</span>
+<div class="flex items-center gap-2">
+<span class="text-white font-title-sm text-title-sm tracking-tight truncate">TalentGraph</span>
+<span class="text-[10px] uppercase font-mono font-semibold px-1.5 py-0.5 rounded bg-[#2A2A2E] text-[#B3B3B3] border border-[#3A3A40] tracking-wider leading-none">ADMIN</span>
 </div>
-<span class="text-[11px] text-[#71717A] tracking-tight">Operational control</span>
+<span class="text-[11px] text-[#71717A] tracking-normal truncate">Operational control</span>
 </div>
 </div>
-<!-- Governance Policy Inset Banner -->
-
-<!-- Navigation Cluster -->
-<nav class="flex flex-col gap-1 mt-1">
-<!-- 1. Operational Queue -->
-<a class="flex items-center justify-between px-3 py-2 rounded-[8px] text-[13px] text-[#D4D4D8] hover:bg-[#1A1A1E] transition-colors group" href="#">
+<!-- Inset Policy Banner -->
+<div class="p-3">
+<div class="bg-[#17171B] border border-[#27272C] rounded-lg p-2.5 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4ADE80] opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-[#4ADE80]"></span>
+</span>
+<span class="text-label-sm font-label-sm text-[#A1A1AA]">Governance policy</span>
+</div>
+<span class="text-[10px] font-medium font-code-provenance px-2 py-0.5 rounded bg-[#13281E] text-[#4ADE80] border border-[#1A3D2C]">
+            Enforced
+          </span>
+</div>
+</div>
+<!-- Operational Nav Items -->
+<nav class="px-2 py-1 space-y-1">
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-[#A1A1AA] hover:text-white hover:bg-[#18181D] transition-colors group" href="#operational-queue">
 <div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[16px] text-[#A1A1AA] group-hover:text-white" data-icon="grid_view">grid_view</span>
-<span class="">Operational Queue</span>
+<span class="material-symbols-outlined text-[#71717A] group-hover:text-[#D4D4D8]">dashboard</span>
+<span class="text-body-md font-body-md font-medium">Operational Queue</span>
 </div>
 </a>
-<!-- 2. Company Verification -->
-<a class="flex items-center justify-between px-3 py-2 rounded-[8px] text-[13px] text-[#D4D4D8] hover:bg-[#1A1A1E] transition-colors group" href="#">
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-[#A1A1AA] hover:text-white hover:bg-[#18181D] transition-colors group" href="#company-verification">
 <div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[16px] text-[#A1A1AA] group-hover:text-white" data-icon="verified_user">verified_user</span>
-<span class="">Company Verification</span>
+<span class="material-symbols-outlined text-[#71717A] group-hover:text-[#D4D4D8]">verified_user</span>
+<span class="text-body-md font-body-md font-medium">Company Verification</span>
 </div>
-<span class="text-[11px] font-mono text-[#71717A] bg-[#17171B] px-1.5 py-0.5 rounded border border-[#27272C]">3</span>
+<span class="text-[11px] font-mono px-1.5 py-0.5 rounded bg-[#1E1E23] text-[#A1A1AA] border border-[#2B2B32]">3</span>
 </a>
-<!-- 3. User Directory -->
-<a class="flex items-center justify-between px-3 py-2 rounded-[8px] text-[13px] text-[#D4D4D8] hover:bg-[#1A1A1E] transition-colors group" href="#">
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-[#A1A1AA] hover:text-white hover:bg-[#18181D] transition-colors group" href="#user-directory">
 <div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[16px] text-[#A1A1AA] group-hover:text-white" data-icon="group">group</span>
-<span class="">User Directory</span>
+<span class="material-symbols-outlined text-[#71717A] group-hover:text-[#D4D4D8]">group</span>
+<span class="text-body-md font-body-md font-medium">User Directory</span>
 </div>
-<span class="text-[11px] font-mono text-[#71717A]">1,482</span>
+<span class="text-[11px] font-mono px-1.5 py-0.5 rounded bg-[#1E1E23] text-[#A1A1AA] border border-[#2B2B32]">1,482</span>
 </a>
-<!-- 4. Jobs Moderation -->
-<a class="flex items-center justify-between px-3 py-2 rounded-[8px] text-[13px] text-[#D4D4D8] hover:bg-[#1A1A1E] transition-colors group" href="#">
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-[#A1A1AA] hover:text-white hover:bg-[#18181D] transition-colors group" href="#jobs-moderation">
 <div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[16px] text-[#A1A1AA] group-hover:text-white" data-icon="work">work</span>
-<span class="">Jobs Moderation</span>
+<span class="material-symbols-outlined text-[#71717A] group-hover:text-[#D4D4D8]">work</span>
+<span class="text-body-md font-body-md font-medium">Jobs Moderation</span>
 </div>
-<span class="text-[11px] font-mono text-[#71717A]">28</span>
+<span class="text-[11px] font-mono px-1.5 py-0.5 rounded bg-[#1E1E23] text-[#A1A1AA] border border-[#2B2B32]">28</span>
 </a>
-<!-- 5. Integrity Cases -->
-<a class="flex items-center justify-between px-3 py-2 rounded-[8px] text-[13px] text-[#D4D4D8] hover:bg-[#1A1A1E] transition-colors group" href="#">
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-[#A1A1AA] hover:text-white hover:bg-[#18181D] transition-colors group" href="#integrity-cases">
 <div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[16px] text-[#A1A1AA] group-hover:text-white" data-icon="warning">warning</span>
-<span class="">Integrity Cases</span>
+<span class="material-symbols-outlined text-[#F87171]">gavel</span>
+<span class="text-body-md font-body-md font-medium">Integrity Cases</span>
 </div>
-<span class="text-[11px] text-[#F87171] font-mono bg-[#2E181D] border border-[#482026] px-1.5 py-0.5 rounded">2 flagged</span>
+<span class="text-[11px] font-mono font-medium px-1.5 py-0.5 rounded bg-[#2E181D] text-[#F87171] border border-[#482026]">2 flagged</span>
 </a>
-<!-- 6. Worker Telemetry (ACTIVE) -->
-<a class="flex items-center justify-between px-3 py-2 rounded-[8px] text-[13px] font-medium bg-[#D4621A] text-white shadow-sm transition-colors" href="#">
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-[#A1A1AA] hover:text-white hover:bg-[#18181D] transition-colors group" href="#worker-telemetry">
 <div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[16px] text-white" data-icon="query_stats">query_stats</span>
-<span class="">Worker Telemetry</span>
+<span class="material-symbols-outlined text-[#71717A] group-hover:text-[#D4D4D8]">monitor_heart</span>
+<span class="text-body-md font-body-md font-medium">Worker Telemetry</span>
 </div>
-<span class="text-[11px] font-mono text-white/90">99.8%</span>
+<span class="text-[11px] font-mono px-1.5 py-0.5 rounded bg-[#1E1E23] text-[#A1A1AA] border border-[#2B2B32]">99.8%</span>
 </a>
-<!-- 7. BDT Subscriptions -->
-<a class="flex items-center justify-between px-3 py-2 rounded-[8px] text-[13px] text-[#D4D4D8] hover:bg-[#1A1A1E] transition-colors group" href="#">
+<!-- ACTIVE NAV: BDT Subscriptions -->
+<a class="flex items-center justify-between px-3 py-2 rounded-md bg-[#D4621A] text-white shadow-sm font-semibold transition-all" href="/admin/subscriptions-payments">
 <div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[16px] text-[#A1A1AA] group-hover:text-white" data-icon="payments">payments</span>
-<span class="">BDT Subscriptions</span>
+<span class="material-symbols-outlined text-white">payments</span>
+<span class="text-body-md font-body-md">BDT Subscriptions</span>
 </div>
-<span class="text-[11px] font-mono text-[#71717A]">৳34.5k</span>
+<span class="text-[11px] font-code-provenance px-2 py-0.5 rounded bg-[#BF5313] text-white border border-[#E47735] font-semibold">
+            ৳34.5k
+          </span>
 </a>
 </nav>
 </div>
-<!-- Bottom Admin User Identity Section -->
-<div class="p-space-md border-t border-[#232328]">
+<!-- Bottom Operator Identity Profile & Signout -->
+<div class="border-t border-[#232328] p-3 bg-[#121215]">
 <div class="flex items-center justify-between">
 <div class="flex items-center gap-2.5 min-w-0">
-<div class="w-8 h-8 rounded-full bg-[#27272B] border border-[#3A3A40] flex items-center justify-center text-xs font-semibold text-white shrink-0">
-              TC
-            </div>
+<div class="w-8 h-8 rounded-full bg-[#1F1F24] border border-[#2B2B32] flex items-center justify-center text-[#D4621A] font-semibold text-xs shrink-0">
+            TC
+          </div>
 <div class="flex flex-col min-w-0">
-<span class="text-[13px] font-semibold text-white truncate">Tanvir Chowdhury</span>
-<span class="text-[10px] text-[#71717A] tracking-tight">Platform Admin #01</span>
+<span class="text-white text-body-sm font-body-sm font-medium truncate">Tanvir Chowdhury</span>
+<span class="text-[11px] text-[#71717A] font-mono truncate">Platform Admin #01</span>
 </div>
 </div>
-<button class="w-7 h-7 rounded-[6px] hover:bg-[#1A1A1E] text-[#71717A] hover:text-white flex items-center justify-center transition-colors" title="Sign out session">
-<span class="material-symbols-outlined text-[16px]" data-icon="logout">logout</span>
+<button aria-label="Sign out" class="w-7 h-7 rounded flex items-center justify-center text-[#71717A] hover:text-white hover:bg-[#1A1A20] transition-colors" title="Sign out" type="button">
+<span class="material-symbols-outlined text-[17px]">logout</span>
 </button>
 </div>
 </div>
 </aside>
-<!-- 2. MAIN OPERATIONAL CANVAS (Dense, high-clarity 12-column grid system) -->
-<main class="flex-1 flex flex-col min-w-0 bg-[#0E0E11] px-gutter-desktop py-space-md overflow-x-hidden">
-<!-- PAGE HEADER -->
-<div class="flex flex-col md:flex-row md:items-center justify-between pb-space-md border-b border-[#222227] gap-space-sm mb-space-md">
+<!-- ==================== MAIN CONTENT WRAPPER (Offset 256px) ==================== -->
+<main class="ml-[256px] flex-1 min-w-0 flex flex-col bg-[#0E0E11]">
+<!-- TOP HEADER -->
+<header class="sticky top-0 z-30 bg-[#0E0E11]/95 backdrop-blur-sm border-b border-[#222226] px-8 py-4 flex items-center justify-between">
 <div class="flex flex-col gap-0.5">
-<div class="flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-wider text-[#71717A]">
+<div class="flex items-center gap-1.5 text-code-provenance font-code-provenance text-[#71717A] uppercase">
 <span class="">ADMIN</span>
-<span class="">/</span>
-<span class="text-[#D4621A] font-semibold">WORKER TELEMETRY</span>
-<span class="inline-block w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></span>
+<span class="text-[#3F3F46]">/</span>
+<span class="text-[#D4621A] font-semibold">SUBSCRIPTIONS &amp; PAYMENTS</span>
+<span class="text-[#4ADE80] font-bold">●</span>
 </div>
-<h1 class="text-headline-lg font-headline-lg text-white tracking-tight">Worker Telemetry &amp; Background Ingestion</h1>
+<h1 class="text-headline-md font-headline-md text-white tracking-tight">
+          Subscriptions &amp; Payment Webhooks
+        </h1>
 
 </div>
-<!-- Right Quick Action Cluster -->
+<!-- Header Operational Controls -->
 <div class="flex items-center gap-2">
-<!-- 32px square buttons as specified -->
-<button class="w-8 h-8 rounded-[8px] bg-[#161619] border border-[#27272C] hover:bg-[#202024] hover:border-[#3F3F46] flex items-center justify-center text-[#A1A1AA] hover:text-white transition-all" title="Search Telemetry Buffer">
-<span class="material-symbols-outlined text-[16px]" data-icon="search">search</span>
+<button aria-label="Search records" class="w-8 h-8 rounded-lg bg-[#161619] border border-[#27272C] flex items-center justify-center text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] transition-colors" title="Search records" type="button">
+<span class="material-symbols-outlined">search</span>
 </button>
-<button class="w-8 h-8 rounded-[8px] bg-[#161619] border border-[#27272C] hover:bg-[#202024] hover:border-[#3F3F46] flex items-center justify-center text-[#A1A1AA] hover:text-white transition-all" title="Export Ingestion Metrics (.jsonl)">
-<span class="material-symbols-outlined text-[16px]" data-icon="download">download</span>
+<button aria-label="Export audit report" class="w-8 h-8 rounded-lg bg-[#161619] border border-[#27272C] flex items-center justify-center text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] transition-colors" title="Export report" type="button">
+<span class="material-symbols-outlined">download</span>
 </button>
-<button class="w-8 h-8 rounded-[8px] bg-[#161619] border border-[#27272C] hover:bg-[#202024] hover:border-[#3F3F46] flex items-center justify-center text-[#A1A1AA] hover:text-white transition-all" title="Toggle Surface Luminescence">
-<span class="material-symbols-outlined text-[16px]" data-icon="dark_mode">dark_mode</span>
+<button aria-label="Toggle visual theme" class="w-8 h-8 rounded-lg bg-[#161619] border border-[#27272C] flex items-center justify-center text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] transition-colors" title="Toggle theme" type="button">
+<span class="material-symbols-outlined">dark_mode</span>
 </button>
 </div>
+</header>
+<!-- WORKSPACE CANVAS CONTAINER -->
+<div class="px-8 py-6 space-y-6 max-w-[1440px] w-full">
+<!-- 4-COLUMN KPI METRIC CARDS -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Metric 1: Monthly Verified Revenue -->
+<div class="bg-[#151518] border border-[#25252A] rounded-xl p-4 flex flex-col justify-between transition-colors hover:border-[#3F3F46]">
+<div class="flex items-center justify-between pb-2">
+<span class="text-label-md font-label-md text-[#A1A1AA]">Monthly Verified Revenue</span>
+<span class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#13281E] text-[#4ADE80] border border-[#1A3D2C] font-medium">
+              Settled 100%
+            </span>
 </div>
-<!-- 4-COLUMN KPI ROW -->
-<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-md">
-<!-- KPI 1: Active BullMQ Workers -->
-<div class="bg-[#151518] border border-[#25252A] rounded-[12px] p-space-md flex flex-col justify-between">
-<div class="flex items-start justify-between">
-<span class="text-body-sm text-[#A1A1AA] font-medium">Active BullMQ Workers</span>
-<div class="w-7 h-7 rounded-[8px] bg-[#1F1F24] border border-[#2B2B32] flex items-center justify-center text-[#D4621A]">
-<span class="material-symbols-outlined text-[16px]" data-icon="memory">memory</span>
+<div class="mt-1">
+<span class="text-headline-lg font-headline-lg text-white font-bold tracking-tight">৳34,500</span>
 </div>
-</div>
-<div class="my-2 flex items-baseline gap-2">
-<span class="text-[28px] font-bold text-white tracking-tight leading-none font-headline-lg">18</span>
-<span class="text-[11px] font-medium px-2 py-0.5 rounded-[4px] bg-[#13281E] border border-[#1A3D2C] text-[#4ADE80]">Healthy</span>
-</div>
-<div class="text-[11px] text-[#71717A] flex items-center gap-1 font-mono">
-<span class="">Across 4 worker clusters</span>
-</div>
-</div>
-<!-- KPI 2: Task Ingestion Throughput -->
-<div class="bg-[#151518] border border-[#25252A] rounded-[12px] p-space-md flex flex-col justify-between">
-<div class="flex items-start justify-between">
-<span class="text-body-sm text-[#A1A1AA] font-medium">Task Ingestion Throughput</span>
-<div class="w-7 h-7 rounded-[8px] bg-[#1F1F24] border border-[#2B2B32] flex items-center justify-center text-[#D4621A]">
-<span class="material-symbols-outlined text-[16px]" data-icon="speed">speed</span>
+<div class="mt-2.5 pt-2 border-t border-[#1F1F24] flex items-center gap-1.5 text-body-sm font-body-sm text-[#71717A]">
+<span class="material-symbols-outlined text-[15px] text-[#4ADE80]">verified</span>
+<span class="">30D Webhook settled</span>
 </div>
 </div>
-<div class="my-2 flex items-baseline gap-2">
-<span class="text-[28px] font-bold text-white tracking-tight leading-none font-headline-lg">1,248<span class="text-[18px] text-[#A1A1AA] font-normal">/m</span></span>
-<span class="text-[11px] font-medium px-2 py-0.5 rounded-[4px] bg-[#2A2A2E] text-[#B3B3B3]">+14.2% Peak</span>
+<!-- Metric 2: Active Paid Entitlements -->
+<div class="bg-[#151518] border border-[#25252A] rounded-xl p-4 flex flex-col justify-between transition-colors hover:border-[#3F3F46]">
+<div class="flex items-center justify-between pb-2">
+<span class="text-label-md font-label-md text-[#A1A1AA]">Active Paid Entitlements</span>
+<span class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#2A2A2E] text-[#B3B3B3] border border-[#3A3A40] font-medium">
+              Active
+            </span>
 </div>
-<div class="text-[11px] text-[#71717A] truncate font-mono">
-            GitHub sync, CV parser, AST
-          </div>
+<div class="mt-1">
+<span class="text-headline-lg font-headline-lg text-white font-bold tracking-tight">17</span>
 </div>
-<!-- KPI 3: Median Job Latency (P50) -->
-<div class="bg-[#151518] border border-[#25252A] rounded-[12px] p-space-md flex flex-col justify-between">
-<div class="flex items-start justify-between">
-<span class="text-body-sm text-[#A1A1AA] font-medium">Median Job Latency (P50)</span>
-<div class="w-7 h-7 rounded-[8px] bg-[#1F1F24] border border-[#2B2B32] flex items-center justify-center text-[#D4621A]">
-<span class="material-symbols-outlined text-[16px]" data-icon="timer">timer</span>
-</div>
-</div>
-<div class="my-2 flex items-baseline gap-2">
-<span class="text-[28px] font-bold text-white tracking-tight leading-none font-headline-lg">420<span class="text-[16px] text-[#A1A1AA] font-normal">ms</span></span>
-<span class="text-[11px] font-medium px-2 py-0.5 rounded-[4px] bg-[#13281E] border border-[#1A3D2C] text-[#4ADE80]">Within SLA</span>
-</div>
-<div class="text-[11px] text-[#71717A] font-mono">
-            P95 at 840ms • P99 at 1.4s
-          </div>
-</div>
-<!-- KPI 4: Dead-Letter / Retriable Queue -->
-<div class="bg-[#151518] border border-[#25252A] rounded-[12px] p-space-md flex flex-col justify-between">
-<div class="flex items-start justify-between">
-<span class="text-body-sm text-[#A1A1AA] font-medium">Dead-Letter / Retriable Queue</span>
-<div class="w-7 h-7 rounded-[8px] bg-[#1F1F24] border border-[#2B2B32] flex items-center justify-center text-[#E5933A]">
-<span class="material-symbols-outlined text-[16px]" data-icon="sync_problem">sync_problem</span>
+<div class="mt-2.5 pt-2 border-t border-[#1F1F24] flex items-center gap-1.5 text-body-sm font-body-sm text-[#71717A]">
+<span class="material-symbols-outlined text-[15px] text-[#D4621A]">view_agenda</span>
+<span class="truncate">11 Starter • 4 Growth • 2 Per-Job</span>
 </div>
 </div>
-<div class="my-2 flex items-baseline gap-2">
-<span class="text-[28px] font-bold text-white tracking-tight leading-none font-headline-lg">1</span>
-<span class="text-[11px] font-medium px-2 py-0.5 rounded-[4px] bg-[#2C2114] border border-[#44301B] text-[#E5933A]">1 Retriable</span>
+<!-- Metric 3: Webhook Reconciliations -->
+<div class="bg-[#151518] border border-[#25252A] rounded-xl p-4 flex flex-col justify-between transition-colors hover:border-[#3F3F46]">
+<div class="flex items-center justify-between pb-2">
+<span class="text-label-md font-label-md text-[#A1A1AA]">Webhook Reconciliations</span>
+<span class="text-[11px] font-mono px-2 py-0.5 rounded bg-[#13281E] text-[#4ADE80] border border-[#1A3D2C] font-medium">
+              Signed
+            </span>
 </div>
-<div class="text-[11px] text-[#71717A] font-mono">
-            Idempotent backoff (Asia/Dhaka)
-          </div>
+<div class="mt-1">
+<span class="text-headline-lg font-headline-lg text-white font-bold tracking-tight">148</span>
+</div>
+<div class="mt-2.5 pt-2 border-t border-[#1F1F24] flex items-center gap-1.5 text-body-sm font-body-sm text-[#71717A]">
+<span class="material-symbols-outlined text-[15px] text-[#4ADE80]">key</span>
+<span class="truncate font-mono text-[11px]">Idempotent SHA-256 signatures</span>
+</div>
+</div>
+<!-- Metric 4: Payment Webhook Exceptions -->
+<div class="bg-[#151518] border border-[#25252A] rounded-xl p-4 flex flex-col justify-between transition-colors hover:border-[#3F3F46]">
+<div class="flex items-center justify-between pb-2">
+<span class="text-label-md font-label-md text-[#A1A1AA]">Webhook Exceptions</span>
+
+</div>
+<div class="mt-1">
+<span class="text-headline-lg font-headline-lg text-[#F87171] font-bold tracking-tight">1</span>
+</div>
+<div class="mt-2.5 pt-2 border-t border-[#1F1F24] flex items-center gap-1.5 text-body-sm font-body-sm text-[#71717A]">
+<span class="material-symbols-outlined text-[15px] text-[#E5933A]">sync_problem</span>
+<span class="truncate">bKash Merchant IPN 504 timeout</span>
+</div>
 </div>
 </section>
-<!-- 5. FULL-WIDTH WORKER QUEUE & INGESTION STATUS TABLE -->
-<section class="bg-[#151518] border border-[#25252A] rounded-[12px] flex flex-col mb-space-md overflow-hidden">
-<!-- Table Control Header with Segmented Filter Tabs -->
-<div class="p-space-md border-b border-[#222227] flex flex-col lg:flex-row lg:items-center justify-between gap-3">
-<div class="flex items-center gap-2 overflow-x-auto pb-1 lg:pb-0 scrollbar-none">
-<button class="px-3 py-1.5 text-[12px] font-medium rounded-[8px] bg-[#D4621A] text-white whitespace-nowrap shadow-sm">
-              All Queues (6)
-            </button>
-<button class="px-3 py-1.5 text-[12px] font-medium rounded-[8px] bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:bg-[#202024] whitespace-nowrap transition-colors">
-              AST Code Analysis (2)
-            </button>
-<button class="px-3 py-1.5 text-[12px] font-medium rounded-[8px] bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:bg-[#202024] whitespace-nowrap transition-colors">
-              CV Parsing &amp; OCR (1)
-            </button>
-<button class="px-3 py-1.5 text-[12px] font-medium rounded-[8px] bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:bg-[#202024] whitespace-nowrap transition-colors">
-              GitHub Sync Daemon (1)
-            </button>
-<button class="px-3 py-1.5 text-[12px] font-medium rounded-[8px] bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:bg-[#202024] whitespace-nowrap transition-colors">
-              Assessment Telemetry (1)
-            </button>
-<button class="px-3 py-1.5 text-[12px] font-medium rounded-[8px] bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:bg-[#202024] whitespace-nowrap transition-colors">
-              Dead-Letter Queue (1)
-            </button>
+<!-- AUDIT & RECONCILIATION DOSSIER DOCK (3-Column Technical Layout) -->
+<section class="bg-[#151518] border border-[#25252A] rounded-xl p-5 shadow-sm">
+<div class="flex items-center justify-between pb-4 border-b border-[#25252A]">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-[#1F1F24] border border-[#2B2B32] flex items-center justify-center text-[#D4621A]">
+<span class="material-symbols-outlined text-[14px]">fact_check</span>
 </div>
-<!-- Secondary Filter & Auto-refresh indicator -->
-<div class="flex items-center gap-3 text-xs text-[#71717A] self-end lg:self-auto">
-<span class="flex items-center gap-1 font-mono">
-<span class="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></span>
-              Live socket: 250ms polling
+<h2 class="text-title-sm font-title-sm text-white">Active Audit &amp; Webhook Reconciliation Dossier</h2>
+<span class="font-mono text-label-sm font-label-sm text-[#A1A1AA] bg-[#17171B] border border-[#27272C] px-2 py-0.5 rounded">
+              Ref: #TX-BDT-8891
             </span>
-<div class="h-3 w-[1px] bg-[#222227]"></div>
-<button class="text-[#D4621A] hover:text-brand-hover-dark flex items-center gap-1 text-[12px] font-medium">
-<span class="material-symbols-outlined text-[14px]" data-icon="refresh">refresh</span>
-              Sync redis cluster
-            </button>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-body-sm font-body-sm text-[#71717A]">Lock state:</span>
+<span class="text-[11px] font-mono font-medium px-2 py-0.5 rounded bg-[#13281E] text-[#4ADE80] border border-[#1A3D2C]">
+              Idempotent Acquired
+            </span>
 </div>
 </div>
-<!-- Structured Data Table -->
-<div class="w-full overflow-x-auto">
-<table class="w-full text-left text-[13px] border-collapse">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mt-4">
+<!-- Col 1: Selected Transaction Dossier (4 cols) -->
+<div class="lg:col-span-4 bg-[#17171B] border border-[#27272C] rounded-lg p-4 flex flex-col justify-between">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-[#71717A]">Target Subscriber</span>
+<span class="text-xs font-mono text-[#D4621A]">TigerIT Bangladesh Ltd.</span>
+</div>
+<div class="p-2.5 rounded bg-[#121215] border border-[#222226] space-y-1.5 font-mono text-xs">
+<div class="flex justify-between text-[#A1A1AA]">
+<span class="">Gateway Ref:</span>
+<span class="text-white">BKASH-IPN-994102</span>
+</div>
+<div class="flex justify-between text-[#A1A1AA]">
+<span class="">Verification:</span>
+<span class="text-[#4ADE80]">HMAC-SHA256 MATCH</span>
+</div>
+<div class="flex justify-between text-[#A1A1AA]">
+<span class="">IPN Nonce:</span>
+<span class="text-[#A1A1AA] truncate max-w-[150px]">9f8a32b04c81...</span>
+</div>
+</div>
+<!-- Proofline Connector Motif -->
+<div class="relative pl-4 space-y-2 border-l border-[#3F3F46] my-2 text-xs">
+<div class="relative">
+<span class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-[#4ADE80]"></span>
+<span class="text-[#D4D4D8] font-medium">Claim Pill:</span>
+<span class="text-[#A1A1AA]"> Recruiter Growth Tier</span>
+</div>
+<div class="relative">
+<span class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-[#D4621A]"></span>
+<span class="text-[#D4D4D8] font-medium">Stem Provenance:</span>
+<span class="text-[#A1A1AA]"> IPN Hook @ 2025-05-18 14:22:04</span>
+</div>
+</div>
+<div class="p-2.5 rounded bg-[#151518] border border-[#27272C] text-[11px] text-[#A1A1AA] leading-relaxed">
+<span class="text-[#D4621A] font-semibold">Section 2 &amp; 14 Policy Guarantee:</span>
+                Payment Authenticity Mandate: Redirect URLs never prove payment. Subscriptions are activated exclusively via cryptographic webhook confirmation with idempotent replay protection.
+              </div>
+</div>
+<div class="mt-3 pt-2 border-t border-[#222226] flex items-center justify-between text-body-sm font-body-sm text-[#71717A]">
+<span class="">Audit state: Ground Truth</span>
+<span class="material-symbols-outlined text-[#4ADE80] text-[16px]">lock</span>
+</div>
+</div>
+<!-- Col 2: Entitlement Allocation Matrix (4 cols) -->
+<div class="lg:col-span-4 bg-[#17171B] border border-[#27272C] rounded-lg p-4 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-2 border-b border-[#222226]">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-[#71717A]">Entitlement Allocation Matrix</span>
+<span class="text-xs font-mono text-[#4ADE80]">Allocated 30D</span>
+</div>
+<div class="space-y-2.5 mt-3 text-xs">
+<div class="flex items-center justify-between p-2 rounded bg-[#121215] border border-[#222226]">
+<span class="text-[#A1A1AA]">Active Job Postings Quota</span>
+<span class="font-mono text-white font-semibold">2 Active Jobs Allowed</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-[#121215] border border-[#222226]">
+<span class="text-[#A1A1AA]">Code Assessment Access</span>
+<span class="font-mono text-[#4ADE80]">Unlimited Verified</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-[#121215] border border-[#222226]">
+<span class="text-[#A1A1AA]">Company Credential Badge</span>
+<span class="font-mono text-white">Tier-1 Bangladesh Gov-Reg</span>
+</div>
+</div>
+<!-- Telemetry / Event Log Inset -->
+<div class="mt-3">
+<span class="text-[11px] font-mono text-[#71717A] uppercase">BullMQ Webhook Event Log:</span>
+<div class="mt-1 p-2 rounded bg-[#121215] border border-[#222226] font-mono text-[10px] text-[#A1A1AA] space-y-1">
+<div class="text-[#4ADE80]">[JOB:queue-ipn-bkash:ok] 200 OK (latency: 18ms)</div>
+<div class="">[AUTH:hmac] SHA-256 integrity match verified</div>
+<div class="">[SYNC:redis] Entitlement flag synced to TigerIT #ORG-481</div>
+</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-[#222226] flex items-center justify-between text-body-sm font-body-sm text-[#71717A]">
+<span class="">Next Renewal Date: 2025-06-18</span>
+<span class="font-mono text-xs text-[#A1A1AA]">Auto-Debit Active</span>
+</div>
+</div>
+<!-- Col 3: Forensic Entitlement Operations (4 cols) -->
+<div class="lg:col-span-4 bg-[#17171B] border border-[#27272C] rounded-lg p-4 flex flex-col justify-between">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-[#71717A]">Forensic Operations</span>
+<span class="text-[10px] font-mono text-[#E5933A] bg-[#2C2114] px-1.5 py-0.5 rounded border border-[#44301B]">ISO-27001 AUDIT</span>
+</div>
+<div class="space-y-1">
+<label class="text-label-sm font-label-sm text-[#A1A1AA]" for="audit-justification">Mandatory Audit Justification Log</label>
+<textarea class="w-full text-xs font-mono bg-[#161619] border border-[#27272C] rounded-md text-white p-2.5 focus:border-[#D4621A] focus:ring-1 focus:ring-[#D4621A] outline-none placeholder-[#71717A]" id="audit-justification" placeholder="Input administrative justification for entitlement mutation..." rows="3"></textarea>
+<span class="text-[10px] text-[#71717A]">Required for manual override, refund or IPN redelivery.</span>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-1">
+<button class="px-2.5 py-1.5 rounded-md bg-[#161619] border border-[#27272C] text-[#D4D4D8] hover:text-white hover:border-[#3F3F46] text-xs font-medium transition-colors flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[14px]">forward_to_inbox</span>
+                  Resend IPN Webhook
+                </button>
+<button class="px-2.5 py-1.5 rounded-md bg-[#2E181D] border border-[#482026] text-[#F87171] hover:bg-[#3D1E25] text-xs font-medium transition-colors flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[14px]">cancel</span>
+                  Cancel Entitlement
+                </button>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-[#222226]">
+<button class="w-full py-2.5 px-3 rounded-lg bg-[#D4621A] hover:bg-[#BF5313] text-white text-xs font-semibold tracking-wide transition-colors flex items-center justify-center gap-2 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">task_alt</span>
+                Commit Entitlement &amp; Reconcile Webhook
+              </button>
+</div>
+</div>
+</div>
+</section>
+<!-- FULL-WIDTH TRANSACTION & WEBHOOK AUDIT TABLE -->
+<section class="bg-[#151518] border border-[#25252A] rounded-xl overflow-hidden shadow-sm">
+<!-- Filter Tabs & Actions Bar -->
+<div class="border-b border-[#25252A] p-4 flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+<!-- Segmented Filter Tabs -->
+<div class="flex items-center gap-1 overflow-x-auto custom-scroll pb-1 xl:pb-0">
+<button class="px-3 py-1.5 rounded-md bg-[#D4621A] text-white text-xs font-medium flex items-center gap-1.5 shrink-0 shadow-sm" type="button">
+<span class="">All Transactions</span>
+<span class="font-mono bg-[#BF5313] px-1.5 py-0.2 rounded text-[10px]">24</span>
+</button>
+<button class="px-3 py-1.5 rounded-md bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] text-xs font-medium flex items-center gap-1.5 shrink-0 transition-colors" type="button">
+<span class="">Recruiter Starter (৳2,000)</span>
+<span class="font-mono text-[#D4D4D8] bg-[#1F1F24] px-1.5 py-0.2 rounded text-[10px]">11</span>
+</button>
+<button class="px-3 py-1.5 rounded-md bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] text-xs font-medium flex items-center gap-1.5 shrink-0 transition-colors" type="button">
+<span class="">Recruiter Growth (৳5,000)</span>
+<span class="font-mono text-[#D4D4D8] bg-[#1F1F24] px-1.5 py-0.2 rounded text-[10px]">4</span>
+</button>
+<button class="px-3 py-1.5 rounded-md bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] text-xs font-medium flex items-center gap-1.5 shrink-0 transition-colors" type="button">
+<span class="">Pay Per Job (৳2,500)</span>
+<span class="font-mono text-[#D4D4D8] bg-[#1F1F24] px-1.5 py-0.2 rounded text-[10px]">2</span>
+</button>
+<button class="px-3 py-1.5 rounded-md bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] text-xs font-medium flex items-center gap-1.5 shrink-0 transition-colors" type="button">
+<span class="">Candidate Premium (৳299)</span>
+<span class="font-mono text-[#D4D4D8] bg-[#1F1F24] px-1.5 py-0.2 rounded text-[10px]">6</span>
+</button>
+<button class="px-3 py-1.5 rounded-md bg-[#161619] border border-[#27272C] text-[#E5933A] hover:text-white hover:border-[#44301B] text-xs font-medium flex items-center gap-1.5 shrink-0 transition-colors" type="button">
+<span class="">Pending / Retriable</span>
+<span class="font-mono text-[#E5933A] bg-[#2C2114] px-1.5 py-0.2 rounded text-[10px]">1</span>
+</button>
+</div>
+<!-- Gateway Selector & Refresh -->
+<div class="flex items-center gap-2.5 shrink-0">
+<div class="relative">
+<select class="bg-[#161619] border border-[#27272C] rounded-lg text-xs text-[#D4D4D8] px-3 py-1.5 pr-8 focus:border-[#D4621A] focus:ring-0 outline-none cursor-pointer">
+<option>All Gateways (bKash, Nagad, SSLCommerz)</option>
+<option>bKash Merchant IPN</option>
+<option>Nagad Gateway Webhook</option>
+<option>SSLCommerz Settlement</option>
+</select>
+</div>
+<button class="px-2.5 py-1.5 rounded-lg bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] transition-colors flex items-center gap-1 text-xs" title="Refresh records" type="button">
+<span class="material-symbols-outlined text-[15px]">refresh</span>
+<span class="">Sync</span>
+</button>
+</div>
+</div>
+<!-- Operational Tabular View -->
+<div class="overflow-x-auto custom-scroll">
+<table class="w-full text-left border-collapse">
 <thead>
-<tr class="border-b border-[#222227] text-[#71717A] text-[11px] font-medium tracking-wider uppercase font-mono bg-[#121215]/50">
-<th class="py-3 px-space-md">QUEUE NAME &amp; CLUSTER</th>
-<th class="py-3 px-4">JOB TYPE &amp; PIPELINE</th>
-<th class="py-3 px-4">ACTIVE / CONCURRENCY</th>
-<th class="py-3 px-4">LATENCY / P95</th>
-<th class="py-3 px-4">RECOVERY / RETRIES</th>
-<th class="py-3 px-4">HEALTH &amp; STATUS</th>
-<th class="py-3 px-space-md text-right">ACTIONS</th>
+<tr class="border-b border-[#25252A] bg-[#121215]/80 text-[11px] font-mono uppercase tracking-wider text-[#71717A]">
+<th class="py-3 px-4 font-medium">TRANSACTION ID &amp; ATTEMPT</th>
+<th class="py-3 px-4 font-medium">SUBSCRIBER &amp; ENTITY</th>
+<th class="py-3 px-4 font-medium">PLAN &amp; CADENCE</th>
+<th class="py-3 px-4 font-medium text-right">BDT AMOUNT</th>
+<th class="py-3 px-4 font-medium">WEBHOOK SIGNATURE &amp; TIMESTAMP</th>
+<th class="py-3 px-4 font-medium text-center">ENTITLEMENT STATE</th>
+<th class="py-3 px-4 font-medium text-right">ACTIONS</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-[#222227] font-body-md">
-<!-- Row 1: Selected / Highlighted Active AST Queue -->
-<tr class="bg-[#1A1A1E] hover:bg-[#202024] transition-colors border-l-2 border-l-[#D4621A]">
-<td class="py-3.5 px-space-md">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[#D4621A] text-[18px]" data-icon="terminal">terminal</span>
-<div class="flex flex-col">
-<span class="text-white font-mono text-[12px] font-semibold">ast-syntax-analyzer-v2</span>
-<span class="text-[#71717A] text-[11px] font-mono">Cluster: worker-bd-01 (Isolated AST sandbox)</span>
+<tbody class="divide-y divide-[#222226] text-xs">
+<!-- Row 1: Sadia Rahman (TigerIT) - Selected -->
+<tr class="bg-[#252528] hover:bg-[#2A2A2E] transition-colors">
+<td class="py-3.5 px-4 font-mono">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#4ADE80]"></span>
+<span class="text-white font-semibold">TX-BDT-8891</span>
 </div>
-</div>
-</td>
-<td class="py-3.5 px-4 text-[#D4D4D8]">
-<div class="flex flex-col">
-<span class="font-medium text-white">AST Tree Extraction</span>
-<span class="text-[11px] text-[#A1A1AA]">TypeScript, Go, Python Parser</span>
-</div>
-</td>
-<td class="py-3.5 px-4 font-mono text-[#D4D4D8]">
-<span class="text-white font-semibold">8 Active</span> <span class="text-[#71717A]">/ 16 Concurrency</span>
-</td>
-<td class="py-3.5 px-4 font-mono text-white">
-                  380ms <span class="text-[#71717A] text-[11px]">(P95: 790ms)</span>
-</td>
-<td class="py-3.5 px-4 font-mono text-[#4ADE80]">
-                  0 Retries <span class="text-[#71717A] text-[11px]">(0 Drops)</span>
+<span class="text-[10px] text-[#71717A] ml-4 font-mono">Attempt 1/1 • bKash</span>
 </td>
 <td class="py-3.5 px-4">
-<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] bg-[#13281E] border border-[#1A3D2C] text-[#4ADE80] text-[11px] font-mono font-medium">
-<span class="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></span> Operational
-                  </span>
-</td>
-<td class="py-3.5 px-space-md text-right">
-<div class="inline-flex items-center gap-1">
-<button class="px-2.5 py-1 text-[11px] font-medium rounded-[6px] bg-[#D4621A] text-white hover:bg-brand-hover-dark transition-colors">
-                      Inspect
-                    </button>
-<button class="w-6 h-6 rounded flex items-center justify-center text-[#71717A] hover:text-white" title="Pause worker">
-<span class="material-symbols-outlined text-[15px]" data-icon="pause">pause</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 2: CV PDF Structured OCR -->
-<tr class="hover:bg-[#1A1A1E] transition-colors">
-<td class="py-3.5 px-space-md">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[#A1A1AA] text-[18px]" data-icon="document_scanner">document_scanner</span>
-<div class="flex flex-col">
-<span class="text-white font-mono text-[12px]">cv-pdf-structured-ocr</span>
-<span class="text-[#71717A] text-[11px] font-mono">Cluster: worker-bd-02 (Tesseract v5 node)</span>
-</div>
-</div>
-</td>
-<td class="py-3.5 px-4 text-[#D4D4D8]">
-<div class="flex flex-col">
-<span class="font-medium text-white">Semantic Entity Normalization</span>
-<span class="text-[11px] text-[#A1A1AA]">Line-by-line citation mapper</span>
-</div>
-</td>
-<td class="py-3.5 px-4 font-mono text-[#D4D4D8]">
-<span class="text-white font-semibold">4 Active</span> <span class="text-[#71717A]">/ 8 Concurrency</span>
-</td>
-<td class="py-3.5 px-4 font-mono text-white">
-                  1.2s <span class="text-[#71717A] text-[11px]">(P95: 2.1s)</span>
-</td>
-<td class="py-3.5 px-4 font-mono text-[#4ADE80]">
-                  0 Retries <span class="text-[#71717A] text-[11px]">(0 Drops)</span>
+<div class="font-medium text-white">Sadia Rahman</div>
+<div class="text-[11px] text-[#A1A1AA] truncate">TigerIT Bangladesh Ltd.</div>
 </td>
 <td class="py-3.5 px-4">
-<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] bg-[#13281E] border border-[#1A3D2C] text-[#4ADE80] text-[11px] font-mono font-medium">
-<span class="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></span> Healthy
-                  </span>
+<span class="font-medium text-[#D4D4D8]">Recruiter Growth</span>
+<div class="text-[11px] text-[#71717A]">Monthly recurring (30D)</div>
 </td>
-<td class="py-3.5 px-space-md text-right">
-<div class="inline-flex items-center gap-1">
-<button class="px-2.5 py-1 text-[11px] font-medium rounded-[6px] bg-[#161619] border border-[#27272C] text-[#D4D4D8] hover:text-white hover:bg-[#202024] transition-colors">
-                      Inspect
-                    </button>
-<button class="w-6 h-6 rounded flex items-center justify-center text-[#71717A] hover:text-white" title="Worker options">
-<span class="material-symbols-outlined text-[15px]" data-icon="more_horiz">more_horiz</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 3: GitHub Repo Sync Quota -->
-<tr class="hover:bg-[#1A1A1E] transition-colors">
-<td class="py-3.5 px-space-md">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[#A1A1AA] text-[18px]" data-icon="sync">sync</span>
-<div class="flex flex-col">
-<span class="text-white font-mono text-[12px]">github-repo-sync-quota</span>
-<span class="text-[#71717A] text-[11px] font-mono">Cluster: worker-bd-01 (GraphQL App Auth)</span>
-</div>
-</div>
-</td>
-<td class="py-3.5 px-4 text-[#D4D4D8]">
-<div class="flex flex-col">
-<span class="font-medium text-white">Incremental Git Tree Delta</span>
-<span class="text-[11px] text-[#A1A1AA]">SHA-256 commit tree verification</span>
-</div>
-</td>
-<td class="py-3.5 px-4 font-mono text-[#D4D4D8]">
-<span class="text-white font-semibold">3 Active</span> <span class="text-[#71717A]">/ 10 Concurrency</span>
-</td>
-<td class="py-3.5 px-4 font-mono text-white">
-                  640ms <span class="text-[#71717A] text-[11px]">(P95: 1.1s)</span>
-</td>
-<td class="py-3.5 px-4 font-mono text-[#E5933A]">
-                  1 Safe Retry <span class="text-[#71717A] text-[11px]">(Backoff 30s)</span>
-</td>
-<td class="py-3.5 px-4">
-<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] bg-[#2C2114] border border-[#44301B] text-[#E5933A] text-[11px] font-mono font-medium">
-<span class="w-1.5 h-1.5 rounded-full bg-[#E5933A]"></span> Retrying
-                  </span>
-</td>
-<td class="py-3.5 px-space-md text-right">
-<div class="inline-flex items-center gap-1">
-<button class="px-2.5 py-1 text-[11px] font-medium rounded-[6px] bg-[#161619] border border-[#27272C] text-[#D4D4D8] hover:text-white hover:bg-[#202024] transition-colors">
-                      Inspect
-                    </button>
-<button class="w-6 h-6 rounded flex items-center justify-center text-[#71717A] hover:text-white" title="Worker options">
-<span class="material-symbols-outlined text-[15px]" data-icon="more_horiz">more_horiz</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 4: Assessment Telemetry -->
-<tr class="hover:bg-[#1A1A1E] transition-colors">
-<td class="py-3.5 px-space-md">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[#A1A1AA] text-[18px]" data-icon="network_check">network_check</span>
-<div class="flex flex-col">
-<span class="text-white font-mono text-[12px]">bullmq-assessment-telemetry</span>
-<span class="text-[#71717A] text-[11px] font-mono">Cluster: worker-bd-03 (High-throughput socket)</span>
-</div>
-</div>
-</td>
-<td class="py-3.5 px-4 text-[#D4D4D8]">
-<div class="flex flex-col">
-<span class="font-medium text-white">5-Snapshot Telemetry Packets</span>
-<span class="text-[11px] text-[#A1A1AA]">Browser focus loss &amp; paste detection</span>
-</div>
-</td>
-<td class="py-3.5 px-4 font-mono text-[#D4D4D8]">
-<span class="text-white font-semibold">2 Active</span> <span class="text-[#71717A]">/ 32 Concurrency</span>
-</td>
-<td class="py-3.5 px-4 font-mono text-white">
-                  95ms <span class="text-[#71717A] text-[11px]">(P95: 140ms)</span>
-</td>
-<td class="py-3.5 px-4 font-mono text-[#4ADE80]">
-                  0 Retries <span class="text-[#71717A] text-[11px]">(0 Drops)</span>
-</td>
-<td class="py-3.5 px-4">
-<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] bg-[#13281E] border border-[#1A3D2C] text-[#4ADE80] text-[11px] font-mono font-medium">
-<span class="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></span> Operational
-                  </span>
-</td>
-<td class="py-3.5 px-space-md text-right">
-<div class="inline-flex items-center gap-1">
-<button class="px-2.5 py-1 text-[11px] font-medium rounded-[6px] bg-[#161619] border border-[#27272C] text-[#D4D4D8] hover:text-white hover:bg-[#202024] transition-colors">
-                      Inspect
-                    </button>
-<button class="w-6 h-6 rounded flex items-center justify-center text-[#71717A] hover:text-white" title="Worker options">
-<span class="material-symbols-outlined text-[15px]" data-icon="more_horiz">more_horiz</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 5: Dead-Letter Queue (DLQ) -->
-<tr class="hover:bg-[#1A1A1E] transition-colors">
-<td class="py-3.5 px-space-md">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[#F87171] text-[18px]" data-icon="report">report</span>
-<div class="flex flex-col">
-<span class="text-white font-mono text-[12px]">dead-letter-dlq-retries</span>
-<span class="text-[#71717A] text-[11px] font-mono">Cluster: worker-bd-04 (Isolation quarantine)</span>
-</div>
-</div>
-</td>
-<td class="py-3.5 px-4 text-[#D4D4D8]">
-<div class="flex flex-col">
-<span class="font-medium text-white">Failed Webhook Relay</span>
-<span class="text-[11px] text-[#A1A1AA]">bKash Merchant IPN 504 Timeout</span>
-</div>
-</td>
-<td class="py-3.5 px-4 font-mono text-[#D4D4D8]">
-<span class="text-white font-semibold">1 Active</span> <span class="text-[#71717A]">/ 4 Concurrency</span>
-</td>
-<td class="py-3.5 px-4 font-mono text-white">
-                  2.4s <span class="text-[#71717A] text-[11px]">(P95: 5.0s)</span>
-</td>
-<td class="py-3.5 px-4 font-mono text-[#F87171]">
-                  Max 3 (Attempt #2)
+<td class="py-3.5 px-4 text-right font-mono text-white font-semibold">
+                  ৳5,000
                 </td>
 <td class="py-3.5 px-4">
-<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[4px] bg-[#2E181D] border border-[#482026] text-[#F87171] text-[11px] font-mono font-medium">
-<span class="w-1.5 h-1.5 rounded-full bg-[#F87171]"></span> DLQ Alert
+<div class="flex items-center gap-1.5 font-mono text-[11px] text-[#4ADE80]">
+<span class="material-symbols-outlined text-[13px]">verified</span>
+<span class="">HMAC-SHA256 Valid</span>
+</div>
+<div class="text-[10px] text-[#71717A] font-mono">2 min ago (14:22:04 BDT)</div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#13281E] text-[#4ADE80] border border-[#1A3D2C] font-mono text-[11px] font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></span>
+                    Active Entitlement
                   </span>
 </td>
-<td class="py-3.5 px-space-md text-right">
-<div class="inline-flex items-center gap-1">
-<button class="px-2.5 py-1 text-[11px] font-medium rounded-[6px] bg-[#161619] border border-[#27272C] text-[#F87171] hover:bg-[#2E181D] transition-colors">
-                      DLQ Inspect
-                    </button>
-<button class="w-6 h-6 rounded flex items-center justify-center text-[#71717A] hover:text-white" title="Worker options">
-<span class="material-symbols-outlined text-[15px]" data-icon="more_horiz">more_horiz</span>
-</button>
+<td class="py-3.5 px-4 text-right space-x-1">
+<button class="px-2 py-1 rounded bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] text-[11px] font-medium transition-colors" type="button">
+                    Inspect
+                  </button>
+<button class="px-2 py-1 rounded bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] text-[11px] font-medium transition-colors" type="button">
+                    Receipt
+                  </button>
+</td>
+</tr>
+<!-- Row 2: Nabila Zahan (Brain Station 23) -->
+<tr class="hover:bg-[#1A1A1E] transition-colors">
+<td class="py-3.5 px-4 font-mono">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#4ADE80]"></span>
+<span class="text-white font-semibold">TX-BDT-8884</span>
 </div>
+<span class="text-[10px] text-[#71717A] ml-4 font-mono">Attempt 1/1 • Nagad</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-white">Nabila Zahan</div>
+<div class="text-[11px] text-[#A1A1AA] truncate">Brain Station 23</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-medium text-[#D4D4D8]">Recruiter Starter</span>
+<div class="text-[11px] text-[#71717A]">Monthly recurring (30D)</div>
+</td>
+<td class="py-3.5 px-4 text-right font-mono text-white font-semibold">
+                  ৳2,000
+                </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5 font-mono text-[11px] text-[#4ADE80]">
+<span class="material-symbols-outlined text-[13px]">verified</span>
+<span class="">HMAC-SHA256 Valid</span>
+</div>
+<div class="text-[10px] text-[#71717A] font-mono">18 min ago (14:06:12 BDT)</div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#13281E] text-[#4ADE80] border border-[#1A3D2C] font-mono text-[11px] font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></span>
+                    Active Entitlement
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right space-x-1">
+<button class="px-2 py-1 rounded bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] text-[11px] font-medium transition-colors" type="button">
+                    Inspect
+                  </button>
+<button class="px-2 py-1 rounded bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] text-[11px] font-medium transition-colors" type="button">
+                    Receipt
+                  </button>
+</td>
+</tr>
+<!-- Row 3: Farhan Ahmed (Therap) -->
+<tr class="hover:bg-[#1A1A1E] transition-colors">
+<td class="py-3.5 px-4 font-mono">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#4ADE80]"></span>
+<span class="text-white font-semibold">TX-BDT-8879</span>
+</div>
+<span class="text-[10px] text-[#71717A] ml-4 font-mono">Attempt 1/1 • bKash</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-white">Farhan Ahmed</div>
+<div class="text-[11px] text-[#A1A1AA] truncate">Therap (BD) Ltd.</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-medium text-[#D4D4D8]">Pay Per Job</span>
+<div class="text-[11px] text-[#71717A]">2-Month Slot Limit</div>
+</td>
+<td class="py-3.5 px-4 text-right font-mono text-white font-semibold">
+                  ৳2,500
+                </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5 font-mono text-[11px] text-[#4ADE80]">
+<span class="material-symbols-outlined text-[13px]">verified</span>
+<span class="">HMAC-SHA256 Valid</span>
+</div>
+<div class="text-[10px] text-[#71717A] font-mono">1h ago (13:24:50 BDT)</div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#13281E] text-[#4ADE80] border border-[#1A3D2C] font-mono text-[11px] font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></span>
+                    Active Entitlement
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right space-x-1">
+<button class="px-2 py-1 rounded bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] text-[11px] font-medium transition-colors" type="button">
+                    Inspect
+                  </button>
+<button class="px-2 py-1 rounded bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] text-[11px] font-medium transition-colors" type="button">
+                    Receipt
+                  </button>
+</td>
+</tr>
+<!-- Row 4: Shakil Mahmud (Candidate Premium) -->
+<tr class="hover:bg-[#1A1A1E] transition-colors">
+<td class="py-3.5 px-4 font-mono">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#4ADE80]"></span>
+<span class="text-white font-semibold">TX-BDT-8862</span>
+</div>
+<span class="text-[10px] text-[#71717A] ml-4 font-mono">Attempt 1/1 • SSLCommerz</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-white">Shakil Mahmud</div>
+<div class="text-[11px] text-[#A1A1AA] font-mono">@shakil-crawler</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-medium text-[#D4D4D8]">Candidate Premium</span>
+<div class="text-[11px] text-[#71717A]">Monthly recurring (30D)</div>
+</td>
+<td class="py-3.5 px-4 text-right font-mono text-white font-semibold">
+                  ৳299
+                </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5 font-mono text-[11px] text-[#4ADE80]">
+<span class="material-symbols-outlined text-[13px]">verified</span>
+<span class="">HMAC-SHA256 Valid</span>
+</div>
+<div class="text-[10px] text-[#71717A] font-mono">3h ago (11:15:33 BDT)</div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#13281E] text-[#4ADE80] border border-[#1A3D2C] font-mono text-[11px] font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></span>
+                    Active Entitlement
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right space-x-1">
+<button class="px-2 py-1 rounded bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] text-[11px] font-medium transition-colors" type="button">
+                    Inspect
+                  </button>
+<button class="px-2 py-1 rounded bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white hover:border-[#3F3F46] text-[11px] font-medium transition-colors" type="button">
+                    Receipt
+                  </button>
+</td>
+</tr>
+<!-- Row 5: Apex Global Tech - Timeout Warning -->
+<tr class="bg-[#1A1617] hover:bg-[#201B1C] transition-colors">
+<td class="py-3.5 px-4 font-mono">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#E5933A]"></span>
+<span class="text-white font-semibold">TX-BDT-8850</span>
+</div>
+<span class="text-[10px] text-[#E5933A] ml-4 font-mono">Attempt 2/3 • bKash IPN</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="font-medium text-white">Apex Global Tech</div>
+<div class="text-[11px] text-[#A1A1AA] truncate">Junior Full Stack Opening</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-medium text-[#D4D4D8]">Recruiter Starter</span>
+<div class="text-[11px] text-[#71717A]">Monthly recurring (30D)</div>
+</td>
+<td class="py-3.5 px-4 text-right font-mono text-white font-semibold">
+                  ৳2,000
+                </td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5 font-mono text-[11px] text-[#E5933A]">
+<span class="material-symbols-outlined text-[13px]">warning</span>
+<span class="">Webhook Timeout (Retrying 2/3)</span>
+</div>
+<div class="text-[10px] text-[#71717A] font-mono">Gateway responded HTTP 504</div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#2C2114] text-[#E5933A] border border-[#44301B] font-mono text-[11px] font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-[#E5933A]"></span>
+                    Pending Re-verification
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 rounded bg-[#2C2114] border border-[#44301B] text-[#E5933A] hover:bg-[#382B1C] text-[11px] font-medium transition-colors inline-flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[12px]">replay</span>
+                    Re-check Webhook
+                  </button>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<!-- Table Pagination & Footer Micro-status -->
-<div class="py-2.5 px-space-md border-t border-[#222227] bg-[#121215]/30 flex items-center justify-between text-[11px] text-[#71717A] font-mono">
-<span class="">Showing 5 of 5 configured BullMQ ingestion queues</span>
+<!-- Table Pagination / Status Bar -->
+<div class="border-t border-[#25252A] p-3 bg-[#121215] flex flex-col sm:flex-row items-center justify-between text-body-sm font-body-sm text-[#71717A] gap-2">
 <div class="flex items-center gap-2">
-<span class="">Shard: Asia-Dhaka-Primary</span>
-<div class="h-2.5 w-[1px] bg-[#27272C]"></div>
-<span class="text-[#4ADE80]">Telemetry sync nominal</span>
+<span class="font-mono text-xs text-[#A1A1AA]">Showing 5 of 24 recorded transactions</span>
+<span class="text-[#3F3F46]">•</span>
+<span class="text-[11px] text-[#4ADE80]">Real-time BullMQ connection active</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 rounded bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white disabled:opacity-40 text-xs font-mono" disabled="" type="button">Prev</button>
+<span class="px-2 text-xs font-mono text-white">1</span>
+<button class="px-2.5 py-1 rounded bg-[#161619] border border-[#27272C] text-[#A1A1AA] hover:text-white text-xs font-mono" type="button">Next</button>
 </div>
 </div>
 </section>
-<!-- 6. FULL-WIDTH LIVE WORKER CONTEXT & AUDIT DOCK (Directly below table, 3-column dock layout) -->
-<section class="grid grid-cols-1 lg:grid-cols-3 gap-space-md mb-space-md">
-<!-- Column 1: Selected Queue Dossier & Engine Specs -->
-<div class="bg-[#151518] border border-[#25252A] rounded-[12px] p-space-md flex flex-col justify-between">
-<div class="flex flex-col gap-3">
-<div class="flex items-center justify-between border-b border-[#222227] pb-2.5">
+</div>
+<!-- OPERATIONAL GOVERNANCE FOOTER -->
+<footer class="mt-auto border-t border-[#1C1C20] py-4 px-8 bg-[#0E0E11] flex flex-col md:flex-row justify-between items-center text-[11px] text-[#71717A] gap-2">
 <div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[#D4621A] text-[18px]" data-icon="data_object">data_object</span>
-<h3 class="text-title-sm font-title-sm text-white">Target Queue Dossier</h3>
-</div>
-<span class="text-[11px] font-mono text-[#4ADE80] bg-[#13281E] border border-[#1A3D2C] px-1.5 py-0.5 rounded">Active Focus</span>
-</div>
-<!-- Specs list -->
-<div class="flex flex-col gap-2">
-<div class="flex items-center justify-between text-[12px]">
-<span class="text-[#71717A]">Queue Ref</span>
-<span class="font-mono text-white text-[11px] bg-[#17171B] border border-[#27272C] px-1.5 py-0.5 rounded">#Q-AST-8841: ast-syntax-analyzer-v2</span>
-</div>
-<div class="flex items-center justify-between text-[12px]">
-<span class="text-[#71717A]">Execution Stack</span>
-<span class="font-mono text-[#D4D4D8] text-[11px]">Node.js v20 LTS • BullMQ v5.8 • Redis 7.2</span>
-</div>
-<div class="flex items-center justify-between text-[12px]">
-<span class="text-[#71717A]">Memory Footprint</span>
-<span class="font-mono text-[#4ADE80] text-[11px]">412 MB / 1024 MB (40.2%)</span>
-</div>
-</div>
-<!-- Ingestion Rule Guarantee Inset Callout -->
-<div class="bg-[#17171B] border border-[#27272C] rounded-[8px] p-2.5 mt-1">
-<div class="flex items-center gap-1.5 text-[11px] font-semibold text-[#D4621A] mb-1">
-<span class="material-symbols-outlined text-[14px]" data-icon="security">security</span>
-<span class="">Ingestion Rule Guarantee (Section 11 &amp; 14)</span>
-</div>
-<p class="text-[11px] text-[#A1A1AA] leading-relaxed">
-                Least-Privilege AST analysis. Raw repository code is strictly forbidden from running in worker memory; isolated syntax-tree extraction only with SHA-256 fingerprinting.
-              </p>
-</div>
-</div>
-<!-- Proofline Provenance Stem Indicator -->
-<div class="pt-3 border-t border-[#222227] flex items-center justify-between text-[11px] font-mono text-[#71717A] mt-3">
-<span class="flex items-center gap-1">
-<span class="material-symbols-outlined text-[13px] text-[#D4621A]" data-icon="verified">verified</span>
-              Citations Verified
-            </span>
-<span class="">Policy Spec v1.3</span>
-</div>
-</div>
-<!-- Column 2: Real-Time Performance & Queue Telemetry -->
-<div class="bg-[#151518] border border-[#25252A] rounded-[12px] p-space-md flex flex-col justify-between">
-<div>
-<div class="flex items-center justify-between border-b border-[#222227] pb-2.5 mb-3">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[#D4621A] text-[18px]" data-icon="insights">insights</span>
-<h3 class="text-title-sm font-title-sm text-white">Live Telemetry &amp; Spikes</h3>
-</div>
-<span class="text-[11px] font-mono text-[#71717A]">Last 6 Hours</span>
-</div>
-<!-- Mini bar chart representing hourly throughput spikes -->
-<div class="bg-[#121215] border border-[#25252A] rounded-[8px] p-3 mb-3 flex flex-col justify-end"><div class="flex items-end justify-between h-20 gap-2 border-b border-[#222227] pb-1.5"><div class="flex flex-col items-center flex-1 h-full justify-end group"><div class="w-5 bg-[#D4621A]/70 hover:bg-[#D4621A] transition-colors rounded-t-[2px]" style="height: 36px;"></div></div><div class="flex flex-col items-center flex-1 h-full justify-end group"><div class="w-5 bg-[#D4621A]/70 hover:bg-[#D4621A] transition-colors rounded-t-[2px]" style="height: 52px;"></div></div><div class="flex flex-col items-center flex-1 h-full justify-end group"><div class="w-5 bg-[#E56218] hover:bg-brand-hover-dark transition-colors rounded-t-[2px] shadow-sm" style="height: 72px;"></div></div><div class="flex flex-col items-center flex-1 h-full justify-end group"><div class="w-5 bg-[#D4621A]/85 hover:bg-[#D4621A] transition-colors rounded-t-[2px]" style="height: 48px;"></div></div><div class="flex flex-col items-center flex-1 h-full justify-end group"><div class="w-5 bg-[#D4621A]/60 hover:bg-[#D4621A] transition-colors rounded-t-[2px]" style="height: 32px;"></div></div><div class="flex flex-col items-center flex-1 h-full justify-end group"><div class="w-5 bg-[#D4621A] hover:bg-brand-hover-dark transition-colors rounded-t-[2px]" style="height: 60px;"></div></div></div><div class="flex items-center justify-between gap-2 pt-1.5 text-[10px] font-mono"><div class="flex-1 text-center text-[#71717A]">10:00</div><div class="flex-1 text-center text-[#71717A]">11:00</div><div class="flex-1 text-center text-[#D4621A] font-semibold">12:00</div><div class="flex-1 text-center text-[#71717A]">13:00</div><div class="flex-1 text-center text-[#71717A]">14:00</div><div class="flex-1 text-center text-[#71717A]">Now</div></div></div>
-<!-- Metric Trio -->
-<div class="grid grid-cols-3 gap-2 py-2 border-y border-[#222227] text-center mb-3">
-<div>
-<span class="text-[10px] text-[#71717A] uppercase font-mono block">Active Jobs</span>
-<span class="text-[16px] font-bold text-white font-mono">18</span>
+<span class="w-1.5 h-1.5 rounded-full bg-[#D4621A]"></span>
+<span class="">TalentGraph governance shell</span>
+<span class="text-[#3F3F46]">•</span>
+<span class="">All financial reconciliations are audited with cryptographic SHA-256 integrity</span>
 </div>
 <div>
-<span class="text-[10px] text-[#71717A] uppercase font-mono block">Median Latency</span>
-<span class="text-[16px] font-bold text-white font-mono">420ms</span>
-</div>
-<div>
-<span class="text-[10px] text-[#71717A] uppercase font-mono block">Retriable</span>
-<span class="text-[16px] font-bold text-[#E5933A] font-mono">1 Job</span>
-</div>
-</div>
-<!-- Worker Event Log snippet -->
-<div class="font-mono text-[10.5px] bg-[#121215] border border-[#25252A] rounded-[6px] p-2 flex flex-col gap-1 text-[#A1A1AA] overflow-hidden">
-<div class="truncate text-[#4ADE80]">
-                &gt; [BullMQ:job_completed] AST #9914 in 384ms
-              </div>
-<div class="truncate text-[#D4D4D8]">
-                &gt; [BullMQ:quota_check] GitHub sync candidate #4912 within limit
-              </div>
-</div>
-</div>
-</div>
-<!-- Column 3: Forensic Queue Operations & Manual Retry Trigger -->
-<div class="bg-[#151518] border border-[#25252A] rounded-[12px] p-space-md flex flex-col justify-between">
-<div class="flex flex-col gap-2.5">
-<div class="flex items-center justify-between border-b border-[#222227] pb-2.5">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[#D4621A] text-[18px]" data-icon="admin_panel_settings">admin_panel_settings</span>
-<h3 class="text-title-sm font-title-sm text-white">Forensic Operations &amp; Retry</h3>
-</div>
-<span class="text-[11px] font-mono text-[#A1A1AA]">ISO-27001 Audited</span>
-</div>
-<!-- Mandatory Audit Justification textarea -->
-<div class="flex flex-col gap-1">
-<label class="text-[11px] font-medium text-[#D4D4D8] flex items-center justify-between">
-<span class="">Audit Justification Note</span>
-<span class="text-[#71717A] text-[10px]">Required for execution</span>
-</label>
-<textarea class="w-full bg-[#161619] border border-[#27272C] focus:border-[#D4621A] focus:ring-1 focus:ring-[#D4621A] rounded-[8px] text-[12px] text-white placeholder-[#71717A] p-2.5 outline-none resize-none font-body-sm transition-all" placeholder="Enter justification for worker queue pause, rate-limit adjustment, or manual DLQ retry (required under ISO-27001 audit)..." rows="3"></textarea>
-</div>
-<!-- Secondary Actions -->
-<div class="grid grid-cols-2 gap-2 mt-1">
-<button class="px-3 py-2 text-[12px] font-medium rounded-[8px] bg-[#161619] border border-[#27272C] text-[#D4D4D8] hover:text-white hover:bg-[#202024] flex items-center justify-center gap-1.5 transition-colors">
-<span class="material-symbols-outlined text-[14px]" data-icon="pause_circle">pause_circle</span>
-                Pause Queue
-              </button>
-<button class="px-3 py-2 text-[12px] font-medium rounded-[8px] bg-[#161619] border border-[#27272C] text-[#D4D4D8] hover:text-white hover:bg-[#202024] flex items-center justify-center gap-1.5 transition-colors">
-<span class="material-symbols-outlined text-[14px]" data-icon="cleaning_services">cleaning_services</span>
-                Flush DLQ Cache
-              </button>
-</div>
-</div>
-<!-- Solid Primary Button: Commit Telemetry Action -->
-<div class="pt-3 border-t border-[#222227] mt-3">
-<button class="w-full py-2.5 px-3 rounded-[8px] bg-[#D4621A] hover:bg-brand-hover-dark text-white font-medium text-[13px] flex items-center justify-center gap-2 shadow-sm transition-colors">
-<span class="material-symbols-outlined text-[16px]" data-icon="replay">replay</span>
-              Commit Telemetry Action &amp; Retry Safe Job
-            </button>
-</div>
-</div>
-</section>
-<!-- 7. FOOTER (Strict Design Spec Tokens) -->
-<footer class="mt-auto pt-3 border-t border-[#1C1C20] flex flex-col md:flex-row items-center justify-between text-[11px] text-[#71717A] gap-2 select-none">
-<div class="flex items-center gap-2">
-<span class="">• TalentGraph governance shell • All worker telemetry actions are audited with cryptographic SHA-256 integrity</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="">Need cluster diagnostic support? Contact platform DevOps</span>
-<span class="material-symbols-outlined text-[14px] text-[#A1A1AA]" data-icon="vpn_key">vpn_key</span>
+<span class="">Need payment gateway diagnostic support?</span>
+<a class="text-[#D4621A] hover:underline ml-1 font-medium" href="#contact-billing">Contact platform billing ops</a>
 </div>
 </footer>
 </main>
-</div>
 
 
 </body></html>
