@@ -2,6 +2,6 @@
   "extends": "./tsconfig.json",
   "include": [
     "next-env.d.ts",
-    "src/app/(dashboard)/admin/integrity-cases/page.tsx"
+    "src/app/(dashboard)/admin/worker-telemetry/page.tsx"
   ]
 }
