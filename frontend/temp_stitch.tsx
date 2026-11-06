@@ -1,10 +1,11 @@
-<!DOCTYPE html><html class="dark" lang="en" style="width: 1280px; height: 993px; overflow: hidden; position: relative;"><head>
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>TalentGraph — Access Ground Truth | Role-Aware Login</title>
+<title>TalentGraph Admin - User Directory &amp; Account Governance</title>
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -13,74 +14,74 @@
       theme: {
         extend: {
           colors: {
-            "border-subtle-light": "#E4E4E7",
-            "status-warning-light": "#B45309",
-            "text-primary-light": "#18181B",
-            "outline": "#a68b7f",
-            "inverse-primary": "#9f4200",
-            "on-tertiary-fixed": "#001d32",
-            "inverse-surface": "#e5e1e4",
-            "on-secondary-fixed-variant": "#46464f",
-            "background": "#131315",
-            "surface-canvas-dark": "#0D0D0F",
-            "surface-elevated-dark": "#19191C",
-            "surface-container-low": "#1b1b1d",
-            "surface-container-highest": "#353437",
-            "status-success-light": "#15803D",
-            "secondary-container": "#46464f",
-            "surface-alternate-light": "#F8FAFC",
-            "surface-bright": "#39393b",
-            "surface-container": "#201f21",
-            "secondary-fixed-dim": "#c7c5d0",
-            "brand-hover-light": "#B94F0B",
-            "on-background": "#e5e1e4",
-            "border-subtle-dark": "#3F3F46",
-            "tertiary-fixed": "#cee5ff",
             "on-primary-container": "#4b1b00",
-            "tertiary-container": "#2797e2",
-            "on-secondary-fixed": "#1a1b23",
-            "surface-container-high": "#2a2a2c",
-            "surface-dim": "#131315",
-            "outline-variant": "#574238",
-            "on-surface-variant": "#dec0b3",
-            "on-error-container": "#ffdad6",
-            "surface-variant": "#353437",
-            "on-tertiary-container": "#002c48",
-            "text-secondary-dark": "#A1A1AA",
-            "status-error-light": "#DC2626",
-            "surface-elevated-light": "#FFFFFF",
-            "secondary-fixed": "#e3e1ec",
-            "surface-tint": "#ffb691",
-            "surface-selected-light": "#FFF1E8",
-            "inverse-on-surface": "#313032",
-            "error": "#ffb4ab",
-            "on-primary": "#552000",
-            "text-primary-dark": "#F5F5F5",
-            "on-secondary-container": "#b5b4be",
-            "on-tertiary-fixed-variant": "#004a75",
-            "on-surface": "#e5e1e4",
-            "primary-container": "#e56f27",
-            "primary-fixed-dim": "#ffb691",
-            "surface": "#131315",
-            "text-secondary-light": "#71717A",
-            "on-error": "#690005",
-            "status-warning-dark": "#F59E0B",
-            "on-primary-fixed": "#341100",
             "primary-fixed": "#ffdbcb",
-            "on-secondary": "#2f3038",
-            "tertiary-fixed-dim": "#95ccff",
-            "brand-hover-dark": "#E47735",
-            "surface-container-lowest": "#0e0e10",
-            "tertiary": "#95ccff",
-            "secondary": "#c7c5d0",
-            "error-container": "#93000a",
-            "surface-canvas-light": "#FFFFFF",
-            "cta-text": "#18181B",
+            "outline": "#a68b7f",
+            "on-primary": "#552000",
+            "status-success-light": "#15803D",
+            "text-secondary-dark": "#A1A1AA",
             "on-tertiary": "#003353",
-            "surface-selected-dark": "#252528",
-            "primary": "#ffb691",
-            "status-error-dark": "#E5484D",
+            "background": "#131315",
+            "tertiary-container": "#2797e2",
+            "surface-container-highest": "#353437",
+            "surface-container": "#201f21",
+            "text-secondary-light": "#71717A",
+            "surface-tint": "#ffb691",
+            "error-container": "#93000a",
+            "surface": "#131315",
+            "border-subtle-dark": "#3F3F46",
+            "surface-dim": "#131315",
             "status-success-dark": "#22C55E",
+            "surface-container-low": "#1b1b1d",
+            "surface-bright": "#39393b",
+            "secondary-fixed-dim": "#c7c5d0",
+            "on-tertiary-fixed-variant": "#004a75",
+            "surface-alternate-light": "#F8FAFC",
+            "surface-selected-light": "#FFF1E8",
+            "tertiary-fixed-dim": "#95ccff",
+            "surface-selected-dark": "#252528",
+            "secondary": "#c7c5d0",
+            "secondary-container": "#46464f",
+            "status-error-dark": "#E5484D",
+            "tertiary": "#95ccff",
+            "secondary-fixed": "#e3e1ec",
+            "on-secondary-fixed": "#1a1b23",
+            "inverse-primary": "#9f4200",
+            "on-background": "#e5e1e4",
+            "error": "#ffb4ab",
+            "surface-container-lowest": "#0e0e10",
+            "surface-elevated-dark": "#19191C",
+            "on-tertiary-container": "#002c48",
+            "surface-canvas-light": "#FFFFFF",
+            "on-surface-variant": "#dec0b3",
+            "text-primary-light": "#18181B",
+            "status-warning-dark": "#F59E0B",
+            "on-error": "#690005",
+            "text-primary-dark": "#F5F5F5",
+            "surface-variant": "#353437",
+            "on-tertiary-fixed": "#001d32",
+            "primary-container": "#e56f27",
+            "cta-text": "#18181B",
+            "status-error-light": "#DC2626",
+            "on-secondary-fixed-variant": "#46464f",
+            "brand-hover-dark": "#E47735",
+            "on-surface": "#e5e1e4",
+            "primary": "#ffb691",
+            "on-secondary": "#2f3038",
+            "inverse-on-surface": "#313032",
+            "status-warning-light": "#B45309",
+            "surface-elevated-light": "#FFFFFF",
+            "surface-canvas-dark": "#0D0D0F",
+            "on-secondary-container": "#b5b4be",
+            "inverse-surface": "#e5e1e4",
+            "border-subtle-light": "#E4E4E7",
+            "brand-hover-light": "#B94F0B",
+            "on-primary-fixed": "#341100",
+            "tertiary-fixed": "#cee5ff",
+            "surface-container-high": "#2a2a2c",
+            "outline-variant": "#574238",
+            "on-error-container": "#ffdad6",
+            "primary-fixed-dim": "#ffb691",
             "on-primary-fixed-variant": "#793100"
           },
           borderRadius: {
@@ -90,449 +91,656 @@
             full: "9999px"
           },
           spacing: {
-            "space-xs": "0.25rem",
-            "space-sm": "0.5rem",
-            "space-md": "1rem",
-            "space-lg": "1.5rem",
             "space-xl": "2rem",
+            "space-md": "1rem",
             "gutter": "1rem",
+            "margin-desktop": "2rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
             "gutter-desktop": "1.5rem",
             "margin": "1rem",
-            "margin-desktop": "2rem"
+            "space-lg": "1.5rem"
           },
           fontFamily: {
-            "headline-lg-mobile": ["Inter", "sans-serif"],
+            "body-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "display-lg": ["Inter"],
             "code-provenance": ["JetBrains Mono", "monospace"],
-            "display-lg": ["Inter", "sans-serif"],
-            "label-sm": ["Inter", "sans-serif"],
-            "title-sm": ["Inter", "sans-serif"],
-            "headline-lg": ["Inter", "sans-serif"],
-            "body-sm": ["Inter", "sans-serif"],
-            "body-lg": ["Inter", "sans-serif"],
-            "body-md": ["Inter", "sans-serif"],
-            "display-lg-mobile": ["Inter", "sans-serif"],
-            "headline-md": ["Inter", "sans-serif"],
-            "label-md": ["Inter", "sans-serif"]
+            "headline-lg-mobile": ["Inter"],
+            "headline-lg": ["Inter"],
+            "title-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "display-lg-mobile": ["Inter"]
           },
           fontSize: {
-            "headline-lg-mobile": ["22px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }],
-            "code-provenance": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "500" }],
-            "display-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }],
-            "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.02em", fontWeight: "500" }],
-            "title-sm": ["16px", { lineHeight: "24px", fontWeight: "600" }],
-            "headline-lg": ["28px", { lineHeight: "36px", letterSpacing: "-0.015em", fontWeight: "600" }],
             "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }],
             "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
-            "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
-            "display-lg-mobile": ["30px", { lineHeight: "38px", letterSpacing: "-0.015em", fontWeight: "700" }],
             "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }],
-            "label-md": ["13px", { lineHeight: "18px", fontWeight: "500" }]
+            "display-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "code-provenance": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "500" }],
+            "headline-lg-mobile": ["22px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "headline-lg": ["28px", { lineHeight: "36px", letterSpacing: "-0.015em", fontWeight: "600" }],
+            "title-sm": ["16px", { lineHeight: "24px", fontWeight: "600" }],
+            "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+            "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.02em", fontWeight: "500" }],
+            "label-md": ["13px", { lineHeight: "18px", fontWeight: "500" }],
+            "display-lg-mobile": ["30px", { lineHeight: "38px", letterSpacing: "-0.015em", fontWeight: "700" }]
           }
         }
       }
-    };
+    }
   </script>
 <style>
     .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 18px;
+      line-height: 1;
       display: inline-block;
       vertical-align: middle;
-      line-height: 1;
     }
-    .proofline-node {
-      position: relative;
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
     }
-    .proofline-node::after {
-      content: '';
-      position: absolute;
-      left: 11px;
-      top: 24px;
-      bottom: -16px;
-      width: 1.5px;
-      background-color: #3F3F46;
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #0E0E11;
     }
-    .proofline-node:last-child::after {
-      display: none;
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #25252A;
+      border-radius: 4px;
     }
-    .monumental-text {
-      font-size: clamp(3rem, 13vw, 11rem);
-      line-height: 0.85;
-      letter-spacing: -0.04em;
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #3F3F46;
     }
   </style>
 </head>
-<body class="bg-[#FAFAFA] dark:bg-surface-canvas-dark text-text-primary-light dark:text-text-primary-dark transition-colors duration-200 antialiased min-h-screen flex flex-col font-body-md text-body-md selection:bg-primary-container selection:text-cta-text">
-<!-- ========================================================================= -->
-<!-- REPLICATED EXACT LANDING PAGE HEADER (SCREEN_5) WITH SIGN UP / REGISTER SWAP -->
-<!-- ========================================================================= -->
-<header class="sticky top-0 z-50 w-full bg-surface-canvas-light dark:bg-surface-canvas-dark border-b border-border-subtle-light dark:border-border-subtle-dark transition-colors">
-<div class="max-w-[1440px] mx-auto h-16 px-gutter md:px-gutter-desktop flex items-center justify-between">
-<!-- Left: Navigation Links & Dropdowns -->
-<nav class="hidden lg:flex items-center space-x-6 text-label-md font-label-md">
-<div class="relative group cursor-pointer">
-<button aria-expanded="false" class="flex items-center gap-1 text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors" type="button">
-<span class="">Industries</span>
-<span class="text-[10px] transform group-hover:rotate-180 transition-transform">▾</span>
-</button>
-<div class="absolute top-full left-0 mt-2 w-48 bg-surface-elevated-light dark:bg-surface-elevated-dark border border-border-subtle-light dark:border-border-subtle-dark rounded-lg p-2 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-<a class="block px-3 py-2 text-body-sm font-body-sm text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-selected-light dark:hover:bg-surface-selected-dark hover:text-text-primary-light dark:hover:text-text-primary-dark rounded" href="#">High-Frequency Fintech</a>
-<a class="block px-3 py-2 text-body-sm font-body-sm text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-selected-light dark:hover:bg-surface-selected-dark hover:text-text-primary-light dark:hover:text-text-primary-dark rounded" href="#">Distributed Infrastructure</a>
-<a class="block px-3 py-2 text-body-sm font-body-sm text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-selected-light dark:hover:bg-surface-selected-dark hover:text-text-primary-light dark:hover:text-text-primary-dark rounded" href="#">Machine Learning Systems</a>
+<body class="bg-[#0E0E11] text-[#D4D4D8] font-body-md text-body-md min-h-screen flex selection:bg-[#D4621A] selection:text-white">
+<!-- ==================== SIDEBAR RAIL (256px Fixed) ==================== -->
+<aside class="w-64 min-w-[256px] max-w-[256px] bg-[#121215] border-r border-[#222226] flex flex-col justify-between h-screen sticky top-0 p-4 select-none z-40">
+<div class="flex flex-col gap-4">
+<!-- Top Brand Anchor -->
+<div class="flex items-center gap-3 px-1 pt-1">
+<div class="w-10 h-10 rounded-full bg-[#E56218] flex items-center justify-center font-headline-md text-headline-md text-white font-bold tracking-tight shadow-sm">
+          TG
+        </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-sm font-semibold text-white tracking-tight leading-none">TalentGraph</span>
+<span class="text-[10px] font-medium tracking-wider bg-[#2A2A2E] text-[#B3B3B3] px-1.5 py-0.5 rounded leading-none">ADMIN</span>
+</div>
+<span class="font-label-sm text-[11px] text-[#71717A] mt-1 leading-none">Operational control</span>
 </div>
 </div>
-<div class="relative group cursor-pointer">
-<button aria-expanded="false" class="flex items-center gap-1 text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors" type="button">
-<span class="">Resources</span>
-<span class="text-[10px] transform group-hover:rotate-180 transition-transform">▾</span>
-</button>
-<div class="absolute top-full left-0 mt-2 w-52 bg-surface-elevated-light dark:bg-surface-elevated-dark border border-border-subtle-light dark:border-border-subtle-dark rounded-lg p-2 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-<a class="block px-3 py-2 text-body-sm font-body-sm text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-selected-light dark:hover:bg-surface-selected-dark hover:text-text-primary-light dark:hover:text-text-primary-dark rounded" href="#">AST Proofline Whitepaper</a>
-<a class="block px-3 py-2 text-body-sm font-body-sm text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-selected-light dark:hover:bg-surface-selected-dark hover:text-text-primary-light dark:hover:text-text-primary-dark rounded" href="#">Benchmark Suite v2.4</a>
-<a class="block px-3 py-2 text-body-sm font-body-sm text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-selected-light dark:hover:bg-surface-selected-dark hover:text-text-primary-light dark:hover:text-text-primary-dark rounded" href="#">Recruiter Compliance Guide</a>
+<!-- Governance Policy Inset Banner -->
+
+<!-- Primary Navigation Links -->
+<nav class="flex flex-col gap-1 mt-1">
+<!-- Operational Queue -->
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-[#A1A1AA] hover:bg-[#1A1A1E] hover:text-[#F5F5F5] transition-colors duration-150" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">grid_view</span>
+<span class="font-label-md text-label-md font-medium">Operational Queue</span>
 </div>
-</div>
-<a class="text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors" href="#">Pricing</a>
-<a class="text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors" href="#">Methodology</a>
-</nav>
-<!-- Center: TalentGraph Brand Wordmark (Clean typography, no dot) -->
-<div class="flex items-center">
-<a class="text-headline-md font-headline-md tracking-tight text-text-primary-light dark:text-text-primary-dark flex items-center font-bold" href="#">
-          TalentGraph
-        </a>
-</div>
-<!-- Right: About, Register / Sign up Link (swapped from Sign In), Theme Toggle, and Primary CTA -->
-<div class="flex items-center space-x-4 md:space-x-5">
-<a class="hidden sm:inline-block text-label-md font-label-md text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors" href="#">
-          About
-        </a>
-<!-- Replaced "Sign in" with explicit "Register / Sign up" link -->
-<a class="text-label-md font-label-md text-primary-container dark:text-primary font-medium hover:underline transition-colors flex items-center gap-1" href="/register">
-<span class="">Sign up</span>
-<span class="hidden sm:inline">/ Register</span>
 </a>
-<!-- Theme Toggle Button -->
-<button aria-label="Toggle theme" class="w-8 h-8 rounded-lg flex items-center justify-center text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark border border-border-subtle-light dark:border-border-subtle-dark bg-white dark:bg-surface-elevated-dark shadow-xs transition-colors" id="theme-toggle-btn">
-<span class="material-symbols-outlined text-[18px] dark:hidden" data-icon="dark_mode">dark_mode</span>
-<span class="material-symbols-outlined text-[18px] hidden dark:inline" data-icon="light_mode">light_mode</span>
-</button>
-<a class="bg-primary-container hover:bg-brand-hover-dark text-white font-title-sm text-body-sm px-4 py-2 rounded-lg font-semibold transition-all shadow-sm" href="#auth-card">
-          Get Started
-        </a>
+<!-- Company Verification -->
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-[#A1A1AA] hover:bg-[#1A1A1E] hover:text-[#F5F5F5] transition-colors duration-150" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-md text-label-md font-medium">Company Verification</span>
 </div>
+<span class="font-code-provenance text-xs text-[#71717A]">3</span>
+</a>
+<!-- User Directory (ACTIVE ITEM) -->
+<a class="flex items-center justify-between px-3 py-2 rounded-lg bg-[#D4621A] text-white shadow-sm font-medium" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span class="font-label-md text-label-md font-medium text-white">User Directory</span>
+</div>
+<span class="font-code-provenance text-xs font-semibold bg-white/20 px-1.5 py-0.5 rounded text-white">1,482</span>
+</a>
+<!-- Jobs Moderation -->
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-[#A1A1AA] hover:bg-[#1A1A1E] hover:text-[#F5F5F5] transition-colors duration-150" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">business_center</span>
+<span class="font-label-md text-label-md font-medium">Jobs Moderation</span>
+</div>
+<span class="font-code-provenance text-xs text-[#71717A]">28</span>
+</a>
+<!-- Integrity Cases -->
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-[#A1A1AA] hover:bg-[#1A1A1E] hover:text-[#F5F5F5] transition-colors duration-150" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span class="font-label-md text-label-md font-medium">Integrity Cases</span>
+</div>
+<span class="font-code-provenance text-[11px] text-[#F87171] bg-[#2E181D] border border-[#482026] px-1.5 py-0.5 rounded">2 flagged</span>
+</a>
+<!-- Worker Telemetry -->
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-[#A1A1AA] hover:bg-[#1A1A1E] hover:text-[#F5F5F5] transition-colors duration-150" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+<span class="font-label-md text-label-md font-medium">Worker Telemetry</span>
+</div>
+<span class="font-code-provenance text-[11px] text-[#4ADE80] bg-[#13281E] border border-[#1A3D2C] px-1.5 py-0.5 rounded">99.8%</span>
+</a>
+<!-- BDT Subscriptions -->
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-[#A1A1AA] hover:bg-[#1A1A1E] hover:text-[#F5F5F5] transition-colors duration-150" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+<span class="font-label-md text-label-md font-medium">BDT Subscriptions</span>
+</div>
+<span class="font-code-provenance text-xs text-[#71717A]">৳34.5k</span>
+</a>
+</nav>
+</div>
+<!-- Sidebar Bottom Admin Profile -->
+<div class="border-t border-[#232328] pt-3 flex items-center justify-between">
+<div class="flex items-center gap-2.5 overflow-hidden">
+<div class="w-8 h-8 rounded-full bg-[#202024] border border-[#2B2B32] text-xs font-semibold text-[#F5F5F5] flex items-center justify-center shrink-0">
+          TC
+        </div>
+<div class="flex flex-col truncate">
+<span class="text-xs font-medium text-white truncate">Tanvir Chowdhury</span>
+<span class="text-[10px] text-[#71717A] truncate font-code-provenance">Platform Admin #01</span>
+</div>
+</div>
+<button class="p-1.5 text-[#71717A] hover:text-white hover:bg-[#1A1A1E] rounded-md transition-colors" title="Sign out">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+</button>
+</div>
+</aside>
+<!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+<main class="flex-1 flex flex-col min-w-0 bg-[#0E0E11] overflow-y-auto custom-scroll">
+<!-- Top Header Bar -->
+<header class="px-8 py-5 border-b border-[#222227] flex flex-col md:flex-row md:items-center justify-between gap-4 sticky top-0 bg-[#0E0E11]/95 backdrop-blur-sm z-30">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-code-provenance text-[11px] uppercase tracking-wider text-[#71717A]">ADMIN</span>
+<span class="text-[11px] text-[#3F3F46]">/</span>
+<span class="font-code-provenance text-[11px] uppercase tracking-wider text-[#D4621A] font-semibold">USER DIRECTORY</span>
+</div>
+<h1 class="font-headline-lg text-2xl font-bold text-white tracking-tight">User Directory &amp; Account Governance</h1>
+
+</div>
+<!-- Action Cluster -->
+<div class="flex items-center gap-2 shrink-0">
+<button class="w-8 h-8 rounded-lg bg-[#161619] border border-[#27272C] flex items-center justify-center text-[#A1A1AA] hover:text-white hover:bg-[#202024] transition-colors" title="Quick Search">
+<span class="material-symbols-outlined text-[16px]">search</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-[#161619] border border-[#27272C] flex items-center justify-center text-[#A1A1AA] hover:text-white hover:bg-[#202024] transition-colors" title="Export Audit Log">
+<span class="material-symbols-outlined text-[16px]">download</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-[#161619] border border-[#27272C] flex items-center justify-center text-[#A1A1AA] hover:text-white hover:bg-[#202024] transition-colors" title="Toggle Theme">
+<span class="material-symbols-outlined text-[16px]">dark_mode</span>
+</button>
 </div>
 </header>
-<!-- ========================================================================= -->
-<!-- MAIN AUTH WORKSPACE -->
-<!-- ========================================================================= -->
-<main class="flex-1 w-full max-w-[1440px] mx-auto px-gutter md:px-gutter-desktop py-8 md:py-12 flex flex-col items-center justify-center">
-<!-- SIMULATION STATE SWITCHER BAR -->
-<section class="w-full max-w-xl mb-6 bg-white dark:bg-surface-elevated-dark border border-border-subtle-light dark:border-border-subtle-dark rounded-xl p-2 shadow-xs transition-colors">
-<div class="flex items-center justify-between px-2 pb-2 mb-2 border-b border-border-subtle-light dark:border-border-subtle-dark">
-<div class="flex items-center gap-1.5 text-label-sm font-label-sm text-text-secondary-light dark:text-text-secondary-dark">
-<span class="material-symbols-outlined text-[15px] text-primary-container dark:text-primary" data-icon="terminal">terminal</span>
-<span class="">Simulation State Control (Playbook B2)</span>
+<div class="p-8 flex flex-col gap-6 max-w-[1600px] w-full mx-auto">
+<!-- ==================== 4-COLUMN KPI ROW ==================== -->
+<section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+<!-- KPI 1 -->
+<div class="bg-[#151518] border border-[#25252A] rounded-xl p-4 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-xs text-[#A1A1AA]">Total Accounts</span>
+<div class="w-7 h-7 rounded-lg bg-[#1F1F24] border border-[#2B2B32] flex items-center justify-center text-[#A1A1AA]">
+<span class="material-symbols-outlined text-[15px]">group</span>
 </div>
+</div>
+<div class="font-code-provenance text-2xl font-bold text-white tracking-tight">1,482</div>
+</div>
+<div class="pt-3 mt-3 border-t border-[#222227] flex items-center justify-between text-[11px]">
+<span class="text-[#71717A] font-body-sm">1,328 Candidates • 154 Recruiters</span>
 
 </div>
-<div class="grid grid-cols-2 sm:grid-cols-5 gap-1 text-center font-code-provenance text-[11px]">
-<button class="sim-btn py-1.5 px-2 rounded font-medium bg-primary-container text-white transition-colors" data-state="default" onclick="setSimState('default')" type="button">
-          Default
-        </button>
-<button class="sim-btn py-1.5 px-2 rounded font-medium text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-selected-light dark:hover:bg-surface-selected-dark transition-colors" data-state="oauth_cancelled" onclick="setSimState('oauth_cancelled')" type="button">
-          OAuth Cancel
-        </button>
-<button class="sim-btn py-1.5 px-2 rounded font-medium text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-selected-light dark:hover:bg-surface-selected-dark transition-colors" data-state="invalid_recruiter" onclick="setSimState('invalid_recruiter')" type="button">
-          Invalid Workspace
-        </button>
-<button class="sim-btn py-1.5 px-2 rounded font-medium text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-selected-light dark:hover:bg-surface-selected-dark transition-colors" data-state="unverified_email" onclick="setSimState('unverified_email')" type="button">
-          Unverified Email
-        </button>
-<button class="sim-btn py-1.5 px-2 rounded font-medium text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-selected-light dark:hover:bg-surface-selected-dark transition-colors" data-state="loading_state" onclick="setSimState('loading_state')" type="button">
-          Loading
-        </button>
+</div>
+<!-- KPI 2 -->
+<div class="bg-[#151518] border border-[#25252A] rounded-xl p-4 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-xs text-[#A1A1AA]">GitHub OAuth Verified</span>
+<div class="w-7 h-7 rounded-lg bg-[#1F1F24] border border-[#2B2B32] flex items-center justify-center text-[#4ADE80]">
+<span class="material-symbols-outlined text-[15px]">verified</span>
+</div>
+</div>
+<div class="font-code-provenance text-2xl font-bold text-white tracking-tight">1,328</div>
+</div>
+<div class="pt-3 mt-3 border-t border-[#222227] flex items-center justify-between text-[11px]">
+<span class="text-[#71717A] font-body-sm">100% Candidate Auth via GitHub</span>
+
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-[#151518] border border-[#25252A] rounded-xl p-4 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-xs text-[#A1A1AA]">Enterprise Recruiters</span>
+<div class="w-7 h-7 rounded-lg bg-[#1F1F24] border border-[#2B2B32] flex items-center justify-center text-[#A1A1AA]">
+<span class="material-symbols-outlined text-[15px]">domain</span>
+</div>
+</div>
+<div class="font-code-provenance text-2xl font-bold text-white tracking-tight">154</div>
+</div>
+<div class="pt-3 mt-3 border-t border-[#222227] flex items-center justify-between text-[11px]">
+<span class="text-[#71717A] font-body-sm">48 Verified • 3 Pending Dual-Check</span>
+
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-[#151518] border border-[#25252A] rounded-xl p-4 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-xs text-[#A1A1AA]">Flagged &amp; Restricted</span>
+<div class="w-7 h-7 rounded-lg bg-[#1F1F24] border border-[#2B2B32] flex items-center justify-center text-[#E5933A]">
+<span class="material-symbols-outlined text-[15px]">shield_with_heart</span>
+</div>
+</div>
+<div class="font-code-provenance text-2xl font-bold text-white tracking-tight">4</div>
+</div>
+<div class="pt-3 mt-3 border-t border-[#222227] flex items-center justify-between text-[11px]">
+<span class="text-[#71717A] font-body-sm">2 Under Integrity Audit • 2 Rate-Limited</span>
+
+</div>
 </div>
 </section>
-<!-- LIVE STATE NOTIFICATION BANNER -->
-<div class="w-full max-w-xl mb-4 hidden" id="simAlertContainer"></div>
-<!-- MAIN LOGIN CARD -->
-<div class="w-full max-w-xl bg-white dark:bg-surface-elevated-dark border border-border-subtle-light dark:border-border-subtle-dark rounded-2xl shadow-sm dark:shadow-xl overflow-hidden transition-all" id="auth-card">
-<!-- Top Tactical Proofline Rail -->
-<div class="h-1 w-full bg-gradient-to-r from-border-subtle-light dark:from-border-subtle-dark via-primary-container to-border-subtle-light dark:to-border-subtle-dark"></div>
-<div class="p-6 md:p-8 flex flex-col">
-<!-- Header & Identity -->
-<div class="mb-6">
-<div class="flex items-center justify-between mb-2">
-
-
+<!-- ==================== MAIN SPLIT SECTION ==================== -->
+<section class="flex flex-col gap-6">
+<!-- TABLE VIEW (Full Width) -->
+<div class="w-full flex flex-col gap-4">
+<!-- Filters & Segmented Controls Bar -->
+<div class="bg-[#151518] border border-[#25252A] rounded-xl p-3 flex flex-wrap items-center justify-between gap-3">
+<!-- Tabs -->
+<div class="flex items-center bg-[#101013] border border-[#222227] p-1 rounded-lg gap-1">
+<button class="px-2.5 py-1 text-xs font-medium rounded-md bg-[#25252A] text-white">
+                All Accounts <span class="text-[#71717A] font-code-provenance text-[11px] ml-1">1,482</span>
+</button>
+<button class="px-2.5 py-1 text-xs font-medium rounded-md text-[#A1A1AA] hover:text-white transition-colors">
+                Candidates (GitHub) <span class="text-[#71717A] font-code-provenance text-[11px] ml-1">1,328</span>
+</button>
+<button class="px-2.5 py-1 text-xs font-medium rounded-md text-[#A1A1AA] hover:text-white transition-colors">
+                Recruiters <span class="text-[#71717A] font-code-provenance text-[11px] ml-1">154</span>
+</button>
 </div>
-<h1 class="text-headline-lg font-headline-lg text-text-primary-light dark:text-text-primary-dark tracking-tight font-bold">
-            Access Ground Truth
-          </h1>
-<p class="text-body-md font-body-md text-text-secondary-light dark:text-text-secondary-dark mt-1">
-            Evidence-substantiated engineering profiles &amp; hiring intelligence.
-          </p>
-</div>
-<!-- Trust Notice Card: Server-Enforced Role Separation -->
-
-<!-- ========================================================================= -->
-<!-- SECTION 1: CANDIDATE SIGN IN (TOP ROLE PATH) -->
-<!-- ========================================================================= -->
-<div class="relative bg-surface-alternate-light dark:bg-surface-canvas-dark p-5 rounded-xl border border-border-subtle-light dark:border-border-subtle-dark mb-6 transition-colors">
-<div class="flex items-center justify-between mb-3">
+<!-- Filters cluster -->
 <div class="flex items-center gap-2">
-<span class="text-label-md font-label-md font-semibold text-text-primary-light dark:text-text-primary-dark uppercase tracking-wide">Candidate Access</span>
-<span class="font-code-provenance text-[11px] text-text-secondary-light dark:text-text-secondary-dark">(Developer / Engineer)</span>
-</div>
-
-</div>
-<!-- Primary GitHub Auth Action Button -->
-<button class="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-lg bg-white hover:bg-gray-100 text-[#18181B] dark:bg-[#24292F] dark:hover:bg-[#1B1F23] dark:text-white font-medium text-body-md transition-all shadow-xs active:scale-[0.99] border border-border-subtle-light dark:border-border-subtle-dark focus:ring-2 focus:ring-primary-container focus:outline-none" id="githubAuthBtn" type="button">
-<!-- GitHub Octocat SVG -->
-<svg aria-hidden="true" class="w-5 h-5 fill-current text-[#18181B] dark:text-white" viewBox="0 0 24 24">
-<path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path>
-</svg>
-<span class="font-semibold text-text-primary-light dark:text-white" id="githubBtnText">Continue with GitHub</span>
-</button>
-<!-- Candidate Explanatory Microcopy & Proofline Provenance -->
-<div class="mt-3.5 space-y-2">
-<div class="flex items-start gap-2 text-body-sm font-body-sm text-text-secondary-light dark:text-text-secondary-dark">
-<span class="material-symbols-outlined text-[16px] text-status-success-light dark:text-status-success-dark shrink-0 mt-0.5" data-icon="lock_open_right">lock_open_right</span>
-<span class="">Candidates authenticate strictly via GitHub OAuth. Read-only least-privilege repository consent.</span>
-</div>
-<div class="flex items-center justify-between text-body-sm font-body-sm text-text-secondary-light dark:text-text-secondary-dark pt-1 border-t border-border-subtle-light dark:border-border-subtle-dark">
-
-
-</div>
-</div>
-</div>
-<!-- DIVIDER WITH MINIMAL LINEAR PROOFLINE -->
-<div class="relative flex items-center justify-center my-2 mb-6">
-<div aria-hidden="true" class="absolute inset-0 flex items-center">
-<div class="w-full border-t border-border-subtle-light dark:border-border-subtle-dark"></div>
-</div>
-<div class="relative px-3 bg-white dark:bg-surface-elevated-dark text-label-sm font-label-sm font-code-provenance text-text-secondary-light dark:text-text-secondary-dark uppercase tracking-wider transition-colors">
-            or recruiter workspace login
-          </div>
-</div>
-<!-- ========================================================================= -->
-<!-- SECTION 2: RECRUITER WORKSPACE SIGN IN -->
-<!-- ========================================================================= -->
-<form class="space-y-4" id="recruiterForm" onsubmit="handleRecruiterSubmit(event)">
-<!-- Workspace Email Input -->
-<div>
-<div class="flex items-center justify-between mb-1.5">
-<label class="block text-label-md font-label-md text-text-primary-light dark:text-text-primary-dark font-medium" for="workspaceEmail">
-                Workspace Email
-              </label>
-
-</div>
-<div class="relative">
-<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-secondary-light dark:text-text-secondary-dark">
-<span class="material-symbols-outlined text-[18px]" data-icon="business">business</span>
-</div>
-<input class="w-full h-10 pl-10 pr-3 bg-white dark:bg-surface-canvas-dark text-text-primary-light dark:text-text-primary-dark border border-border-subtle-light dark:border-border-subtle-dark rounded-lg text-body-md font-body-md placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent transition-all dark:border-status-error-dark" id="workspaceEmail" name="email" placeholder="name@company.com" required="" type="email">
-</div>
-<p class="mt-1.5 text-body-sm font-body-sm text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1" id="emailHelperText"><span class="material-symbols-outlined text-[14px]">info</span><span class="">Company domain required for verified team workspaces. Personal webmails rejected.</span></p>
-</div>
-<!-- Password Input -->
-<div>
-<div class="flex items-center justify-between mb-1.5">
-<label class="block text-label-md font-label-md text-text-primary-light dark:text-text-primary-dark font-medium" for="workspacePassword">
-                Password
-              </label>
-<a class="text-label-sm font-label-sm text-primary-container dark:text-primary hover:underline transition-colors font-medium" href="#">
-                Forgot password?
-              </a>
-</div>
-<div class="relative">
-<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-secondary-light dark:text-text-secondary-dark">
-<span class="material-symbols-outlined text-[18px]" data-icon="key">key</span>
-</div>
-<input class="w-full h-10 pl-10 pr-10 bg-white dark:bg-surface-canvas-dark text-text-primary-light dark:text-text-primary-dark border border-border-subtle-light dark:border-border-subtle-dark rounded-lg text-body-md font-body-md placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent transition-all" id="workspacePassword" name="password" placeholder="••••••••••••" required="" type="password">
-<button aria-label="Toggle password visibility" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-colors" onclick="togglePasswordVisibility()" type="button">
-<span class="material-symbols-outlined text-[18px]" data-icon="visibility" id="pwIcon">visibility</span>
+<select class="bg-[#161619] border border-[#27272C] text-xs text-[#D4D4D8] rounded-lg px-2.5 py-1.5 h-8 focus:outline-none focus:border-[#D4621A]">
+<option>All States</option>
+<option>Pending</option>
+<option>OAuth Verified</option>
+<option>Suspended</option>
+</select>
+<select class="bg-[#161619] border border-[#27272C] text-xs text-[#D4D4D8] rounded-lg px-2.5 py-1.5 h-8 focus:outline-none focus:border-[#D4621A]">
+<option>All Entities</option>
+<option>Therap (BD)</option>
+<option>TigerIT</option>
+<option>Brain Station 23</option>
+</select>
+<button class="w-8 h-8 rounded-lg bg-[#161619] border border-[#27272C] flex items-center justify-center text-[#71717A] hover:text-white transition-colors" title="Reset Filters">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
 </button>
 </div>
 </div>
-<!-- Primary CTA: Recruiter Sign In -->
-<div class="pt-2">
-<button class="w-full h-11 bg-primary-container hover:bg-brand-hover-dark text-white font-title-sm text-body-md rounded-lg font-semibold flex items-center justify-center gap-2 transition-all shadow-md active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-container" id="submitRecruiterBtn" type="submit">
-<span class="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full hidden" id="recruiterBtnSpinner"></span>
-<span class="" id="recruiterBtnLabel">Sign In as Recruiter</span>
-<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward" id="recruiterBtnArrow">arrow_forward</span>
+<!-- Table Container -->
+<div class="bg-[#151518] border border-[#25252A] rounded-xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs border-collapse">
+<thead>
+<tr class="border-b border-[#222227] bg-[#121215] text-[#71717A] font-label-sm uppercase tracking-wider text-[11px]">
+<th class="py-3 px-3 w-10 text-center">
+<input class="rounded bg-[#161619] border-[#27272C] text-[#D4621A] focus:ring-0 focus:ring-offset-0" type="checkbox">
+</th>
+<th class="py-3 px-3 font-semibold">User Identity</th>
+<th class="py-3 px-3 font-semibold">Role &amp; Auth</th>
+<th class="py-3 px-3 font-semibold">Affiliation / Repos</th>
+<th class="py-3 px-3 font-semibold">Governance Status</th>
+<th class="py-3 px-3 font-semibold text-right">Last Active</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#222227] font-body-sm text-[12px]">
+<!-- ROW 1 (SELECTED / INSPECTED) -->
+<tr class="bg-[#1B1B1F] border-l-4 border-l-[#D4621A] transition-colors cursor-pointer">
+<td class="py-3.5 px-3 text-center">
+<input checked="" class="rounded bg-[#161619] border-[#27272C] text-[#D4621A] focus:ring-0 focus:ring-offset-0" type="checkbox">
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-[#E56218]/20 text-[#E56218] border border-[#E56218]/40 flex items-center justify-center font-bold text-xs">
+                          FA
+                        </div>
+<div class="flex flex-col">
+<span class="font-medium text-white">Farhan Ahmed</span>
+<span class="text-[#71717A] font-code-provenance text-[11px]">farhan@therapservices.net</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#2A2A2E] text-[#B3B3B3]">
+<span class="material-symbols-outlined text-[13px]">domain</span> Recruiter
+                      </span>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="text-[#D4D4D8]">Therap (BD) Ltd.</span>
+<span class="text-[#71717A] font-code-provenance text-[10px]">Org ID: #TH-902</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#2C2114] text-[#E5933A] border border-[#44301B]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#E5933A]"></span> Pending Affiliation
+                      </span>
+</td>
+<td class="py-3.5 px-3 text-right font-code-provenance text-[#71717A]">14 min ago</td>
+</tr>
+<!-- ROW 2 -->
+<tr class="hover:bg-[#1A1A1E] transition-colors cursor-pointer">
+<td class="py-3.5 px-3 text-center">
+<input class="rounded bg-[#161619] border-[#27272C] text-[#D4621A] focus:ring-0 focus:ring-offset-0" type="checkbox">
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-[#1F1F24] border border-[#2B2B32] text-[#A1A1AA] flex items-center justify-center font-bold text-xs">
+                          AR
+                        </div>
+<div class="flex flex-col">
+<span class="font-medium text-white">Arif Rahman</span>
+<span class="text-[#71717A] font-code-provenance text-[11px]">@arif-dev</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#1F2937] text-[#9CA3AF]">
+<span class="material-symbols-outlined text-[13px]">code</span> Candidate (GH)
+                      </span>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-1.5 text-[#A1A1AA]">
+<span class="font-code-provenance text-[11px]">3 Repos</span>
+<span class="text-[#3F3F46]">•</span>
+<span class="text-[#71717A] text-[11px]">14 verified PRs</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#13281E] text-[#4ADE80] border border-[#1A3D2C]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></span> OAuth Verified
+                      </span>
+</td>
+<td class="py-3.5 px-3 text-right font-code-provenance text-[#71717A]">Today 11:20 AM</td>
+</tr>
+<!-- ROW 3 -->
+<tr class="hover:bg-[#1A1A1E] transition-colors cursor-pointer">
+<td class="py-3.5 px-3 text-center">
+<input class="rounded bg-[#161619] border-[#27272C] text-[#D4621A] focus:ring-0 focus:ring-offset-0" type="checkbox">
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-[#1F1F24] border border-[#2B2B32] text-[#A1A1AA] flex items-center justify-center font-bold text-xs">
+                          SR
+                        </div>
+<div class="flex flex-col">
+<span class="font-medium text-white">Sadia Rahman</span>
+<span class="text-[#71717A] font-code-provenance text-[11px]">sadia@tigerit.com</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#2A2A2E] text-[#B3B3B3]">
+<span class="material-symbols-outlined text-[13px]">domain</span> Recruiter
+                      </span>
+</td>
+<td class="py-3.5 px-3">
+<span class="text-[#D4D4D8]">TigerIT Bangladesh Talent Lead</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#13281E] text-[#4ADE80] border border-[#1A3D2C]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></span> Dual-Check Approved
+                      </span>
+</td>
+<td class="py-3.5 px-3 text-right font-code-provenance text-[#71717A]">Yesterday</td>
+</tr>
+<!-- ROW 4 -->
+<tr class="hover:bg-[#1A1A1E] transition-colors cursor-pointer">
+<td class="py-3.5 px-3 text-center">
+<input class="rounded bg-[#161619] border-[#27272C] text-[#D4621A] focus:ring-0 focus:ring-offset-0" type="checkbox">
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-[#1F1F24] border border-[#2B2B32] text-[#A1A1AA] flex items-center justify-center font-bold text-xs">
+                          TH
+                        </div>
+<div class="flex flex-col">
+<span class="font-medium text-white">Tanvir Hasan</span>
+<span class="text-[#71717A] font-code-provenance text-[11px]">@tanvir-ml</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#1F2937] text-[#9CA3AF]">
+<span class="material-symbols-outlined text-[13px]">code</span> Candidate (GH)
+                      </span>
+</td>
+<td class="py-3.5 px-3">
+<span class="text-[#A1A1AA] font-code-provenance text-[11px]">5 Repos • PyTorch / FastAPI</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#2A2A2E] text-[#B3B3B3]">
+                        Sync Quota: 2/3 Used
+                      </span>
+</td>
+<td class="py-3.5 px-3 text-right font-code-provenance text-[#71717A]">19 Oct 2026</td>
+</tr>
+<!-- ROW 5 -->
+<tr class="hover:bg-[#1A1A1E] transition-colors cursor-pointer">
+<td class="py-3.5 px-3 text-center">
+<input class="rounded bg-[#161619] border-[#27272C] text-[#D4621A] focus:ring-0 focus:ring-offset-0" type="checkbox">
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-[#2E181D] border border-[#482026] text-[#F87171] flex items-center justify-center font-bold text-xs">
+                          SM
+                        </div>
+<div class="flex flex-col">
+<span class="font-medium text-white">Shakil Mahmud</span>
+<span class="text-[#71717A] font-code-provenance text-[11px]">@shakil-crawler</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#1F2937] text-[#9CA3AF]">
+<span class="material-symbols-outlined text-[13px]">code</span> Candidate (GH)
+                      </span>
+</td>
+<td class="py-3.5 px-3">
+<span class="text-[#F87171] font-code-provenance text-[11px]">Fork Sync Bot • Spoofer Flag</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#2E181D] text-[#F87171] border border-[#482026]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#F87171]"></span> Suspended (Audit)
+                      </span>
+</td>
+<td class="py-3.5 px-3 text-right font-code-provenance text-[#71717A]">3 days ago</td>
+</tr>
+<!-- ROW 6 -->
+<tr class="hover:bg-[#1A1A1E] transition-colors cursor-pointer">
+<td class="py-3.5 px-3 text-center">
+<input class="rounded bg-[#161619] border-[#27272C] text-[#D4621A] focus:ring-0 focus:ring-offset-0" type="checkbox">
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-full bg-[#1F1F24] border border-[#2B2B32] text-[#A1A1AA] flex items-center justify-center font-bold text-xs">
+                          NZ
+                        </div>
+<div class="flex flex-col">
+<span class="font-medium text-white">Nabila Zahan</span>
+<span class="text-[#71717A] font-code-provenance text-[11px]">nabila@brainstation23.com</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#2A2A2E] text-[#B3B3B3]">
+<span class="material-symbols-outlined text-[13px]">domain</span> Recruiter
+                      </span>
+</td>
+<td class="py-3.5 px-3">
+<span class="text-[#D4D4D8]">Brain Station 23 Sr. Tech Recruiter</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-[#13281E] text-[#4ADE80] border border-[#1A3D2C]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4ADE80]"></span> Dual-Check Approved
+                      </span>
+</td>
+<td class="py-3.5 px-3 text-right font-code-provenance text-[#71717A]">4 days ago</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Pagination -->
+<div class="border-t border-[#222227] px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#71717A]">
+<div class="flex items-center gap-2">
+<span class="">Rows per page:</span>
+<select class="bg-[#161619] border border-[#27272C] text-[#D4D4D8] rounded px-1.5 py-0.5 text-xs focus:outline-none">
+<option>25</option>
+<option>50</option>
+<option>100</option>
+</select>
+<span class="ml-2 font-code-provenance">Showing 1-25 of 1,482</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-code-provenance">Page 1 of 60</span>
+<div class="flex items-center gap-1">
+<button class="px-2 py-1 bg-[#161619] border border-[#27272C] rounded text-[#71717A] cursor-not-allowed">Previous</button>
+<button class="px-2 py-1 bg-[#161619] border border-[#27272C] rounded text-white hover:bg-[#202024]">Next</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- INSPECTOR PANEL (Relocated Below Table, Full Width Grid Layout) -->
+<div class="w-full bg-[#151518] border border-[#25252A] rounded-xl p-5 flex flex-col gap-5">
+<!-- Inspector Header Tag -->
+<div class="flex items-center justify-between border-b border-[#222227] pb-3">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#D4621A]"></span>
+<span class="font-code-provenance text-[11px] font-semibold text-[#D4621A] tracking-wider uppercase">INSPECTOR #TG-USR-89214 LIVE CONTEXT</span>
+</div>
+<button class="text-[#71717A] hover:text-white" title="Close / Minimize">
+<span class="material-symbols-outlined text-[16px]">close</span>
 </button>
 </div>
-</form>
-<!-- Bottom Link: Register Navigation -->
-<div class="mt-6 pt-5 border-t border-border-subtle-light dark:border-border-subtle-dark text-center">
-<p class="text-body-sm font-body-sm text-text-secondary-light dark:text-text-secondary-dark">
-            Don't have an account? 
-            <a class="text-primary-container dark:text-primary font-semibold hover:underline transition-colors ml-1 inline-flex items-center gap-0.5" href="/register">
-<span class="">Create an account / Register</span>
-<span class="material-symbols-outlined text-[14px]" data-icon="arrow_outward">arrow_outward</span>
+<!-- Multi-column Body -->
+<div class="flex flex-col gap-6 w-full divide-y divide-[#222227]">
+<!-- Section 1: User Identity, Profile Overview, and Role Boundaries & Permissions -->
+<div class="flex flex-col gap-4">
+<!-- Target Profile Header -->
+<div class="flex items-start gap-3 bg-[#17171B] border border-[#27272C] p-3.5 rounded-lg">
+<div class="w-10 h-10 rounded-full bg-[#E56218] text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-sm">
+              FA
+            </div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1">
+<span class="text-sm font-semibold text-white truncate">Farhan Ahmed</span>
+<span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[10px] font-medium bg-[#13281E] text-[#4ADE80] border border-[#1A3D2C]">
+<span class="material-symbols-outlined text-[10px]">check_circle</span> Verified
+                </span>
+</div>
+<span class="text-xs text-[#71717A] font-code-provenance truncate">farhan@therapservices.net</span>
+<div class="mt-2 pt-2 border-t border-[#232328] flex items-center justify-between text-[11px]">
+<span class="text-[#A1A1AA]">Role: <span class="text-white font-medium">Enterprise Recruiter</span></span>
+<a class="text-[#D4621A] hover:underline flex items-center gap-0.5 font-medium" href="#">
+                  Therap (BD) Ltd. <span class="material-symbols-outlined text-[12px]">open_in_new</span>
 </a>
+</div>
+</div>
+</div>
+<!-- Section: Role Boundaries & Permissions -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] font-semibold text-[#71717A] uppercase tracking-wider">ROLE BOUNDARIES &amp; PERMISSIONS</span>
+<span class="text-[10px] font-code-provenance text-[#4ADE80]">SEC-ISOLATION: PASS</span>
+</div>
+<div class="bg-[#121215] border border-[#222227] rounded-lg p-3 flex flex-col gap-2.5 text-xs">
+<div class="flex items-center justify-between">
+<span class="text-[#71717A]">Candidate Privileges:</span>
+<span class="font-code-provenance text-[#D4D4D8]">NONE (Strict isolation)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[#71717A]">Job Publishing:</span>
+<span class="font-code-provenance text-[#E5933A] bg-[#2C2114] px-1 rounded">Blocked (Signoff pending)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[#71717A]">Subscription Plan:</span>
+<span class="font-code-provenance text-[#4ADE80]">Starter (৳2k/mo) • Webhook OK</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[#71717A]">Audit Trail Logged:</span>
+<span class="font-code-provenance text-[#A1A1AA]">42 Events</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Section 2: Security & Account State Controls & Privacy Safeguards -->
+<div class="pt-6 flex flex-col gap-4">
+<div class="flex flex-col gap-2">
+<span class="font-label-sm text-[11px] font-semibold text-[#71717A] uppercase tracking-wider">SECURITY &amp; ACCOUNT STATE</span>
+<div class="flex flex-col gap-2">
+<label class="text-[11px] text-[#A1A1AA]">Modify Account State:</label>
+<select class="bg-[#161619] border border-[#27272C] text-xs text-white rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-[#D4621A] w-full">
+<option>Active (Standard Session)</option>
+<option>Pending Corporate Signoff (Current)</option>
+<option>Suspend Account &amp; Revoke Tokens</option>
+<option>Force Multi-Factor Re-authentication</option>
+</select>
+<div class="grid grid-cols-2 gap-2 mt-1">
+<button class="bg-[#161619] border border-[#27272C] hover:bg-[#202024] text-xs text-[#D4D4D8] rounded-lg py-1.5 px-2 flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[14px]">key_off</span>
+<span class="">Revoke Sessions</span>
+</button>
+<button class="bg-[#161619] border border-[#27272C] hover:bg-[#202024] text-xs text-[#D4D4D8] rounded-lg py-1.5 px-2 flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[14px]">folder_shared</span>
+<span class="">User Dossier</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Privacy Safeguards Inset Callout -->
+<div class="bg-[#17171B] border border-[#27272C] rounded-lg p-2.5 flex items-start gap-2 text-[11px] leading-relaxed text-[#71717A]">
+<span class="material-symbols-outlined text-[16px] text-[#A1A1AA] shrink-0 mt-0.5">security</span>
+<p class="">
+<strong class="text-[#D4D4D8] font-medium">Section 14 Privacy Safeguards:</strong> Raw candidate CVs, source tokens, and camera assessment snapshots are strictly restricted from general directory inspection.
 </p>
 </div>
 </div>
-<!-- Card Footer Proofline Status Node -->
 
+<!-- Section 3: Audit Rationale (Mandatory) & Commit Action -->
+<div class="pt-6 flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] font-semibold text-[#71717A] uppercase tracking-wider">AUDIT RATIONALE (MANDATORY)</span>
+<span class="text-[10px] text-[#E5933A] font-code-provenance">*Required</span>
 </div>
+<textarea class="w-full bg-[#161619] border border-[#27272C] rounded-lg text-xs p-2.5 text-white placeholder-[#71717A] focus:outline-none focus:border-[#D4621A] resize-none" placeholder="Enter justification for manual override, unblocking, or privilege modification..." rows="3"></textarea>
+<button class="w-full bg-[#D4621A] hover:bg-[#E47735] text-[#18181B] font-semibold text-xs py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="">Log Admin Action &amp; Commit</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- ==================== FOOTER ==================== -->
+<footer class="mt-auto border-t border-[#1C1C20] px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-[#71717A]">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-[#71717A]"></span>
+<span class="">TalentGraph governance shell • All actions are audited with cryptographic SHA-256 integrity</span>
+</div>
+<div class="flex items-center gap-1.5 text-[#A1A1AA] hover:text-white cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+<span class="">Need help? Contact platform security</span>
+</div>
+</footer>
 </main>
-<!-- ========================================================================= -->
-<!-- EXACT MONUMENTAL ARCHITECTURAL FOOTER (FROM SCREEN_5) -->
-<!-- High-impact brand orange (#e56218 / #D4621A) with capsule bar & giant type -->
-<!-- ========================================================================= -->
-<!-- ========================================================================= -->
-<!-- JAVASCRIPT: THEME TOGGLE, SIMULATION STATES & MICRO-INTERACTIONS -->
-<!-- ========================================================================= -->
-<script>
-    // Robust Theme Toggle Logic with localStorage persistence
-    const themeBtn = document.getElementById('theme-toggle-btn');
-
-    function updateThemeIcon(isDark) {
-      // Icon visibility is driven by Tailwind's dark:hidden and dark:inline classes on html.dark
-    }
-
-    function toggleTheme() {
-      document.documentElement.classList.toggle('dark');
-      const isDark = document.documentElement.classList.contains('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      updateThemeIcon(isDark);
-    }
-
-    if (themeBtn) {
-      themeBtn.addEventListener('click', toggleTheme);
-    }
-
-    // Initialize Theme on Load (Defaults to dark if not set)
-    (function initTheme() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'light') {
-        document.documentElement.classList.remove('dark');
-      } else if (savedTheme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        // Fallback default: dark mode
-        document.documentElement.classList.add('dark');
-      }
-    })();
-
-    // Password Visibility Toggle
-    function togglePasswordVisibility() {
-      const pwInput = document.getElementById('workspacePassword');
-      const pwIcon = document.getElementById('pwIcon');
-      if (pwInput.type === 'password') {
-        pwInput.type = 'text';
-        pwIcon.textContent = 'visibility_off';
-      } else {
-        pwInput.type = 'password';
-        pwIcon.textContent = 'visibility';
-      }
-    }
-
-    // Interactive Simulation State Controller (Playbook B2)
-    function setSimState(state) {
-      // Update Button visual highlights
-      document.querySelectorAll('.sim-btn').forEach(btn => {
-        if (btn.getAttribute('data-state') === state) {
-          btn.className = 'sim-btn py-1.5 px-2 rounded font-medium bg-primary-container text-white transition-colors';
-        } else {
-          btn.className = 'sim-btn py-1.5 px-2 rounded font-medium text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-selected-light dark:hover:bg-surface-selected-dark transition-colors';
-        }
-      });
-
-      const alertContainer = document.getElementById('simAlertContainer');
-      const submitBtn = document.getElementById('submitRecruiterBtn');
-      const btnLabel = document.getElementById('recruiterBtnLabel');
-      const btnSpinner = document.getElementById('recruiterBtnSpinner');
-      const btnArrow = document.getElementById('recruiterBtnArrow');
-      const emailInput = document.getElementById('workspaceEmail');
-      const emailHelper = document.getElementById('emailHelperText');
-
-      // Reset Defaults
-      alertContainer.classList.add('hidden');
-      alertContainer.innerHTML = '';
-      btnSpinner.classList.add('hidden');
-      btnArrow.classList.remove('hidden');
-      btnLabel.textContent = 'Sign In as Recruiter';
-      submitBtn.disabled = false;
-      emailInput.classList.remove('border-status-error-dark', 'focus:ring-status-error-dark', 'border-status-error-light');
-      emailHelper.className = 'mt-1.5 text-body-sm font-body-sm text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1';
-      emailHelper.innerHTML = `<span class="material-symbols-outlined text-[14px]">info</span><span>Company domain required for verified team workspaces. Personal webmails rejected.</span>`;
-
-      switch (state) {
-        case 'oauth_cancelled':
-          alertContainer.classList.remove('hidden');
-          alertContainer.innerHTML = `
-            <div class="p-3.5 bg-amber-50 dark:bg-status-warning-dark/15 border border-amber-300 dark:border-status-warning-dark/40 rounded-xl flex items-start gap-3 transition-colors">
-              <span class="material-symbols-outlined text-amber-700 dark:text-status-warning-dark text-[20px] shrink-0 mt-0.5" data-icon="warning">warning</span>
-              <div class="text-body-sm font-body-sm">
-                <p class="font-semibold text-amber-900 dark:text-status-warning-dark">GitHub OAuth Cancelled by User</p>
-                <p class="text-amber-800 dark:text-text-secondary-dark mt-0.5">Authentication handshake terminated. No permissions or tokens were stored. You can retry anytime.</p>
-              </div>
-            </div>`;
-          break;
-
-        case 'invalid_recruiter':
-          alertContainer.classList.remove('hidden');
-          alertContainer.innerHTML = `
-            <div class="p-3.5 bg-red-50 dark:bg-status-error-dark/15 border border-red-300 dark:border-status-error-dark/40 rounded-xl flex items-start gap-3 transition-colors">
-              <span class="material-symbols-outlined text-status-error-light dark:text-status-error-dark text-[20px] shrink-0 mt-0.5" data-icon="error">error</span>
-              <div class="text-body-sm font-body-sm">
-                <p class="font-semibold text-red-900 dark:text-status-error-dark">Workspace Authentication Failed</p>
-                <p class="text-red-800 dark:text-text-secondary-dark mt-0.5">Domain record was not found or password does not match recruiter credentials for this AST workspace.</p>
-              </div>
-            </div>`;
-          emailInput.classList.add('border-status-error-light', 'dark:border-status-error-dark');
-          break;
-
-        case 'unverified_email':
-          alertContainer.classList.remove('hidden');
-          alertContainer.innerHTML = `
-            <div class="p-3.5 bg-amber-50 dark:bg-amber-500/15 border border-amber-300 dark:border-amber-500/40 rounded-xl flex items-start gap-3 transition-colors">
-              <span class="material-symbols-outlined text-amber-700 dark:text-status-warning-dark text-[20px] shrink-0 mt-0.5" data-icon="mark_email_unread">mark_email_unread</span>
-              <div class="text-body-sm font-body-sm">
-                <p class="font-semibold text-amber-900 dark:text-status-warning-dark">Domain Verification Pending</p>
-                <p class="text-amber-800 dark:text-text-secondary-dark mt-0.5">Please confirm your institutional SSO magic link sent to your workspace inbox before accessing candidate Prooflines.</p>
-              </div>
-            </div>`;
-          emailHelper.className = 'mt-1.5 text-body-sm font-body-sm text-status-warning-light dark:text-status-warning-dark flex items-center gap-1';
-          emailHelper.innerHTML = `<span class="material-symbols-outlined text-[14px]">pending</span><span>Verification link sent. Awaiting DNS confirmation.</span>`;
-          break;
-
-        case 'loading_state':
-          btnSpinner.classList.remove('hidden');
-          btnArrow.classList.add('hidden');
-          btnLabel.textContent = 'Verifying Credentials...';
-          submitBtn.disabled = true;
-          break;
-
-        case 'default':
-        default:
-          break;
-      }
-    }
-
-    // Handle Mock Recruiter Submit
-    function handleRecruiterSubmit(e) {
-      e.preventDefault();
-      setSimState('loading_state');
-      setTimeout(() => {
-        setSimState('invalid_recruiter');
-      }, 1200);
-    }
-
-    // GitHub Button Mock Click
-    document.getElementById('githubAuthBtn').addEventListener('click', () => {
-      const btnText = document.getElementById('githubBtnText');
-      const originalText = btnText.textContent;
-      btnText.textContent = 'Connecting to GitHub...';
-      setTimeout(() => {
-        btnText.textContent = originalText;
-        setSimState('oauth_cancelled');
-      }, 1000);
-    });
-  </script>
 
 
-<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>
+</body></html>
