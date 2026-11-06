@@ -4,35 +4,46 @@ import {
   ArrowRight,
   Building2,
   CheckCircle2,
+  CircleDot,
   Code2,
   Eye,
   EyeOff,
   GitBranch,
   Globe,
+  Info,
   KeyRound,
   LockKeyhole,
   Mail,
-  Moon,
   ShieldCheck,
-  Sun,
   UserRound,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { getGithubAuthUrl } from "@/api/auth.api";
+import { Navbar } from "@/components/Navbar";
 import { gooeyToast } from "@/components/ui/goey-toaster";
 import { useRegister } from "@/hooks/auth.hooks";
-import { useTheme } from "@/providers/themeProvider";
 import { RegisterZodSchema } from "@/validation";
 
 type SignupRole = "CANDIDATE" | "RECRUITER";
+const simulationStates = [
+  "Default (Candidate)",
+  "Recruiter Form",
+  "OAuth Denied",
+  "Email Verification Sent",
+  "Loading",
+] as const;
+
+type SimulationState = (typeof simulationStates)[number];
 
 export default function SignupPage() {
   const router = useRouter();
-  const { resolvedTheme, toggleTheme } = useTheme();
   const { mutate: register, isPending: isRegistering } = useRegister();
-  const [role, setRole] = useState<SignupRole>("CANDIDATE");
+  const [role, setRole] = useState<SignupRole>("RECRUITER");
+  const [simulationState, setSimulationState] =
+    useState<SimulationState>("Recruiter Form");
+  const [simulationMessage, setSimulationMessage] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,10 +59,25 @@ export default function SignupPage() {
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   const isPending = isRegistering || isGithubLoading;
+  const isSimulatedLoading = simulationState === "Loading";
   const inputClassName =
     "h-11 w-full rounded-lg border border-[#E4E4E7] bg-white pl-10 pr-3 text-sm text-[#18181B] placeholder:text-[#71717A] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-[#D4621A] dark:border-[#3F3F46] dark:bg-[#0D0D0F] dark:text-[#F5F5F5] dark:placeholder:text-[#A1A1AA]";
   const iconClassName =
     "pointer-events-none absolute left-3.5 top-1/2 size-[18px] -translate-y-1/2 text-[#71717A] dark:text-[#A1A1AA]";
+
+  const selectSimulationState = (state: SimulationState) => {
+    setSimulationState(state);
+    setRole(state === "Default (Candidate)" || state === "OAuth Denied"
+      ? "CANDIDATE"
+      : "RECRUITER");
+    setSimulationMessage(
+      state === "OAuth Denied"
+        ? "Simulation only: GitHub authorization was denied."
+        : state === "Email Verification Sent"
+          ? "Simulation only: this preview represents the email verification sent state."
+          : "",
+    );
+  };
 
   const validateRegistration = () => {
     const result = RegisterZodSchema.safeParse({
@@ -84,6 +110,11 @@ export default function SignupPage() {
   };
 
   const handleGithubSignup = async () => {
+    if (simulationState === "OAuth Denied") {
+      setSimulationMessage("Simulation only: GitHub authorization was denied.");
+      return;
+    }
+
     if (!acceptedTerms) {
       setConsentError("Please agree to the Terms of Service and Privacy Policy.");
       return;
@@ -117,6 +148,13 @@ export default function SignupPage() {
 
   const handleRecruiterSignup = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (isSimulatedLoading) return;
+    if (simulationState === "Email Verification Sent") {
+      setSimulationMessage(
+        "Simulation only: this preview represents the email verification sent state.",
+      );
+      return;
+    }
     if (!acceptedTerms) {
       setConsentError("Please agree to the Terms of Service and Privacy Policy.");
       return;
@@ -143,65 +181,54 @@ export default function SignupPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-white text-[#18181B] antialiased selection:bg-[#D4621A]/30 dark:bg-[#0D0D0F] dark:text-[#F5F5F5]">
-      <header className="sticky top-0 z-20 w-full border-b border-[#E4E4E7] bg-white/90 backdrop-blur-md dark:border-[#3F3F46] dark:bg-[#0D0D0F]/90">
-        <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link
-            aria-label="TalentGraph home"
-            className="rounded text-lg font-bold tracking-tight focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E47735]"
-            href="/"
-          >
-            TalentGraph
-          </Link>
+      <Navbar />
 
-          <nav
-            aria-label="Main navigation"
-            className="hidden items-center gap-6 text-sm text-[#71717A] md:flex dark:text-[#A1A1AA]"
-          >
-            <Link className="transition-colors hover:text-[#D4621A]" href="/#roles">
-              For teams
-            </Link>
-            <Link
-              className="transition-colors hover:text-[#D4621A]"
-              href="/#evidence"
-            >
-              Methodology
-            </Link>
-            <Link
-              className="transition-colors hover:text-[#D4621A]"
-              href="/pricing"
-            >
-              Pricing
-            </Link>
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <Link
-              className="text-sm font-medium text-[#71717A] transition-colors hover:text-[#D4621A] dark:text-[#A1A1AA]"
-              href="/login"
-            >
-              Sign in
-            </Link>
-            <button
-              aria-label={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} theme`}
-              className="flex size-9 items-center justify-center rounded-lg border border-[#E4E4E7] bg-white text-[#71717A] transition-colors hover:text-[#D4621A] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] dark:border-[#3F3F46] dark:bg-[#19191C] dark:text-[#A1A1AA]"
-              onClick={toggleTheme}
-              type="button"
-            >
-              {resolvedTheme === "dark" ? (
-                <Sun aria-hidden="true" className="size-4" />
-              ) : (
-                <Moon aria-hidden="true" className="size-4" />
-              )}
-            </button>
-            <Link
-              className="hidden rounded-lg bg-[#D4621A] px-4 py-2 text-sm font-semibold text-[#18181B] transition-colors hover:bg-[#E47735] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] sm:inline-flex"
-              href="#register-core"
-            >
-              Get started
-            </Link>
-          </div>
+      <section
+        aria-label="Simulation State Control (Playbook B3)"
+        className="mx-auto mt-4 flex w-full max-w-[1440px] flex-col gap-3 px-3 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8"
+      >
+        <div className="flex min-w-0 flex-wrap items-center gap-2">
+          <span className="inline-flex items-center gap-2 text-[10px] font-semibold tracking-wide text-zinc-300 sm:text-xs">
+            <CircleDot aria-hidden="true" className="size-4 text-emerald-400" />
+            SIMULATION STATE CONTROL (PLAYBOOK B3)
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-[10px] font-semibold text-emerald-300 sm:text-xs">
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-emerald-400" />
+            ENV: STAGING
+          </span>
         </div>
-      </header>
+        <div
+          aria-label="Simulation states"
+          className="flex min-w-0 flex-wrap gap-1.5 sm:gap-2"
+        >
+          {simulationStates.map((state) => {
+            const isSelected = simulationState === state;
+            return (
+              <button
+                aria-pressed={isSelected}
+                className={`min-h-8 rounded-full border px-2.5 py-1 text-[10px] font-medium leading-tight transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] sm:px-3 sm:text-xs ${
+                  isSelected
+                    ? "border-[#D4621A] bg-[#D4621A] text-white"
+                    : "border-zinc-700 bg-[#19191C] text-zinc-300 hover:border-zinc-500 hover:text-white"
+                }`}
+                key={state}
+                onClick={() => selectSimulationState(state)}
+                type="button"
+              >
+                {state}
+              </button>
+            );
+          })}
+        </div>
+      </section>
+      {simulationMessage && (
+        <p
+          aria-live="polite"
+          className="mx-3 mt-3 rounded-lg border border-orange-500/30 bg-orange-500/10 px-3 py-2 text-xs text-orange-200 sm:mx-6 lg:mx-auto lg:w-full lg:max-w-[1376px]"
+        >
+          {simulationMessage}
+        </p>
+      )}
 
       <main
         className="mx-auto w-full max-w-[1440px] flex-1 px-4 py-8 sm:px-6 md:py-12 lg:px-8"
@@ -212,22 +239,19 @@ export default function SignupPage() {
             <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-[#D4621A]">
               Create your account
             </p>
-            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-              Build your verifiable SkillGraph
+            <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl lg:text-4xl">
+              Build Your Verifiable SkillGraph
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#71717A] sm:text-base dark:text-[#A1A1AA]">
-              Candidates connect with GitHub. Recruiters create a workspace
-              account and verify their email before company review.
+              Authenticate once with your primary GitHub profile. No passwords
+              required, zero noise.
             </p>
           </div>
-          <Link
-            className="inline-flex w-fit items-center gap-2 text-sm font-medium text-[#71717A] transition-colors hover:text-[#D4621A] dark:text-[#A1A1AA]"
-            href="/login"
-          >
-            Already have an account?
-            <span className="font-semibold text-[#D4621A]">Sign in</span>
-            <ArrowRight aria-hidden="true" className="size-4" />
-          </Link>
+          <div className="w-fit max-w-full rounded-xl border border-zinc-800 bg-[#121215] px-3 py-2.5 text-xs font-medium leading-relaxed text-zinc-200 sm:px-4 sm:text-sm">
+            Candidate Free: ৳0
+            <span className="mx-1.5 text-zinc-500">|</span>
+            Recruiter Starter from ৳2,000/mo
+          </div>
         </div>
 
         <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12 lg:gap-8">
@@ -253,8 +277,7 @@ export default function SignupPage() {
                 role="tab"
                 type="button"
               >
-                I’m a candidate
-                <span className="hidden sm:inline"> (developer)</span>
+                I&apos;m a Candidate (Developer)
               </button>
               <button
                 aria-controls="recruiter-panel"
@@ -269,8 +292,7 @@ export default function SignupPage() {
                 role="tab"
                 type="button"
               >
-                I’m a recruiter
-                <span className="hidden sm:inline"> / employer</span>
+                I&apos;m a Technical Recruiter / Employer
               </button>
             </div>
 
@@ -294,7 +316,7 @@ export default function SignupPage() {
                 <div className="space-y-3">
                   <button
                     className="flex min-h-12 w-full items-center justify-center gap-3 rounded-lg border border-[#30363D] bg-[#24292F] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1B1F23] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] disabled:cursor-not-allowed disabled:opacity-60"
-                    disabled={isPending}
+                    disabled={isPending || isSimulatedLoading}
                     onClick={handleGithubSignup}
                     type="button"
                   >
@@ -306,10 +328,10 @@ export default function SignupPage() {
                     ) : (
                       <GitBranch aria-hidden="true" className="size-5" />
                     )}
-                    {isGithubLoading
+                    {isGithubLoading || isSimulatedLoading
                       ? "Connecting to GitHub…"
                       : "Continue with GitHub"}
-                    {!isGithubLoading && (
+                    {!isGithubLoading && !isSimulatedLoading && (
                       <ArrowRight aria-hidden="true" className="size-4" />
                     )}
                   </button>
@@ -355,22 +377,23 @@ export default function SignupPage() {
                 role="tabpanel"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="inline-flex items-center gap-2 rounded-md border border-[#3F3F46] bg-[#F4F4F5] px-2.5 py-1.5 text-xs font-medium text-[#18181B] dark:bg-[#252528] dark:text-[#F5F5F5]">
+                    <span className="inline-flex items-center gap-2 rounded-md border border-[#D4621A]/30 bg-[#D4621A]/10 px-2.5 py-1.5 text-xs font-medium text-[#9A4514] dark:text-[#F0A374]">
                     <Building2 aria-hidden="true" className="size-4" />
-                    Employer onboarding
+                      Employer Onboarding
                   </span>
                   <span className="text-xs text-[#71717A] dark:text-[#A1A1AA]">
-                    Email verification required
+                      Requires Business Email
                   </span>
                 </div>
 
                 <form className="space-y-4" onSubmit={handleRecruiterSignup}>
-                  <div>
-                    <label
-                      className="mb-1.5 block text-sm font-medium"
-                      htmlFor="signup-name"
-                    >
-                      Full name
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                      <div className="min-w-0">
+                      <label
+                        className="mb-1.5 block text-sm font-medium"
+                        htmlFor="signup-name"
+                      >
+                        Full Name
                     </label>
                     <div className="relative">
                       <UserRound aria-hidden="true" className={iconClassName} />
@@ -385,7 +408,7 @@ export default function SignupPage() {
                           setName(event.target.value);
                           setNameError("");
                         }}
-                        placeholder="Your full name"
+                        placeholder="Dr. Sarah Connor"
                         required
                         value={name}
                       />
@@ -400,12 +423,12 @@ export default function SignupPage() {
                     )}
                   </div>
 
-                  <div>
+                  <div className="min-w-0">
                     <label
                       className="mb-1.5 block text-sm font-medium"
                       htmlFor="signup-email"
                     >
-                      Work email
+                      Work Email
                     </label>
                     <div className="relative">
                       <Mail aria-hidden="true" className={iconClassName} />
@@ -436,14 +459,14 @@ export default function SignupPage() {
                       </p>
                     ) : (
                       <p className="mt-1.5 text-xs leading-relaxed text-[#71717A] dark:text-[#A1A1AA]">
-                        Use the email address where you can receive a
-                        verification code.
+                        Company domain required for verified team workspaces.
                       </p>
                     )}
                   </div>
+                  </div>
 
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <div>
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <div className="min-w-0">
                       <label
                         className="mb-1.5 block text-sm font-medium"
                         htmlFor="signup-password"
@@ -501,12 +524,12 @@ export default function SignupPage() {
                       )}
                     </div>
 
-                    <div>
+                    <div className="min-w-0">
                       <label
                         className="mb-1.5 block text-sm font-medium"
                         htmlFor="signup-confirm-password"
                       >
-                        Confirm password
+                        Confirm Password
                       </label>
                       <div className="relative">
                         <LockKeyhole
@@ -562,13 +585,13 @@ export default function SignupPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <div>
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <div className="min-w-0">
                       <label
                         className="mb-1.5 block text-sm font-medium"
                         htmlFor="signup-company"
                       >
-                        Company name
+                        Company Name
                       </label>
                       <div className="relative">
                         <Building2 aria-hidden="true" className={iconClassName} />
@@ -583,12 +606,12 @@ export default function SignupPage() {
                       </div>
                     </div>
 
-                    <div>
+                    <div className="min-w-0">
                       <label
                         className="mb-1.5 block text-sm font-medium"
                         htmlFor="signup-website"
                       >
-                        Official website
+                        Official Website
                       </label>
                       <div className="relative">
                         <Globe aria-hidden="true" className={iconClassName} />
@@ -604,41 +627,64 @@ export default function SignupPage() {
                     </div>
                   </div>
 
+                  <div>
+                    <label
+                      className="mb-1.5 block text-sm font-medium"
+                      htmlFor="signup-recruiter-title"
+                    >
+                      Recruiter Title / Role
+                    </label>
+                    <div className="relative">
+                      <UserRound aria-hidden="true" className={iconClassName} />
+                      <input
+                        autoComplete="organization-title"
+                        className={inputClassName}
+                        id="signup-recruiter-title"
+                        name="recruiterTitle"
+                        placeholder="VP of Talent & Engineering Systems"
+                        type="text"
+                      />
+                    </div>
+                  </div>
+
                   <p className="text-xs leading-relaxed text-[#71717A] dark:text-[#A1A1AA]">
-                    These company details are for the signup interface only and
-                    are not submitted by the current registration API.
+                    Company name, website, and recruiter title are collected for
+                    the interface but are not submitted by the current
+                    registration API.
                   </p>
 
-                  <div className="rounded-lg border border-[#3F3F46] bg-[#F8FAFC] p-3.5 text-xs leading-relaxed text-[#71717A] dark:bg-[#0D0D0F] dark:text-[#A1A1AA]">
+                  <div className="rounded-lg border border-[#3F3F46] bg-[#121215] p-3.5 text-xs leading-relaxed text-zinc-300">
                     <div className="flex items-start gap-2.5">
-                      <Building2
+                      <Info
                         aria-hidden="true"
-                        className="mt-0.5 size-4 shrink-0 text-[#F59E0B]"
+                        className="mt-0.5 size-4 shrink-0 text-[#D4621A]"
                       />
                       <p>
-                        Creating an account does not verify your company or
-                        authorize job posting. Company legitimacy and recruiter
-                        affiliation must be reviewed before roles can be posted.
+                        Mandatory policy note: Creating an account does not
+                        automatically verify your company or authorize job
+                        publishing. Company legitimacy and recruiter
+                        affiliation must be verified prior to posting jobs.
                       </p>
                     </div>
                   </div>
 
                   <button
-                    className="flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-[#D4621A] px-4 py-3 text-sm font-semibold text-[#18181B] transition-colors hover:bg-[#E47735] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] disabled:cursor-not-allowed disabled:opacity-60"
-                    disabled={isPending}
+                    className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#D4621A] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#b85215] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] disabled:cursor-not-allowed disabled:opacity-60"
+                    disabled={isPending || isSimulatedLoading}
                     type="submit"
                   >
-                    {isRegistering ? (
+                    {isRegistering || isSimulatedLoading ? (
                       <span
                         aria-hidden="true"
                         className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent"
                       />
-                    ) : (
+                    ) : null}
+                    {isRegistering || isSimulatedLoading
+                      ? "Creating account…"
+                      : "Continue to Company Verification"}
+                    {!isRegistering && !isSimulatedLoading && (
                       <ArrowRight aria-hidden="true" className="size-4" />
                     )}
-                    {isRegistering
-                      ? "Creating account…"
-                      : "Continue to email verification"}
                   </button>
                 </form>
               </div>
@@ -693,75 +739,96 @@ export default function SignupPage() {
 
           <aside
             aria-label="How TalentGraph grounds evidence"
-            className="rounded-xl border border-[#E4E4E7] bg-white p-5 sm:p-7 lg:col-span-5 dark:border-[#3F3F46] dark:bg-[#19191C]"
+            className="min-w-0 rounded-xl border border-[#E4E4E7] bg-white p-5 sm:p-7 lg:col-span-5 dark:border-[#3F3F46] dark:bg-[#19191C]"
           >
             <div className="mb-5 border-b border-[#E4E4E7] pb-4 dark:border-[#3F3F46]">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <h2 className="text-lg font-semibold">The Proofline Engine</h2>
                 <span className="rounded border border-[#D4621A]/30 bg-[#D4621A]/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#9A4514] dark:text-[#F0A374]">
-                  Evidence lineage
+                  Deterministic Lineage
                 </span>
               </div>
               <p className="mt-2 text-xs leading-relaxed text-[#71717A] dark:text-[#A1A1AA]">
-                A clear path from a skill claim to supporting evidence and
-                human review.
+                Every candidate capability is anchored by traceable provenance
+                markers from connected sources to human review.
+              </p>
+              <p className="mt-2 text-[10px] leading-relaxed text-[#71717A] dark:text-[#A1A1AA]">
+                Example markers only. Values below are illustrative and are not
+                live candidate analysis results.
               </p>
             </div>
 
-            <ol className="space-y-5">
-              <li className="flex gap-3.5">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-[#E4E4E7] bg-[#F8FAFC] text-[#D4621A] dark:border-[#3F3F46] dark:bg-[#0D0D0F]">
+            <ol className="relative space-y-5 before:absolute before:bottom-4 before:left-[17px] before:top-4 before:border-l before:border-zinc-700">
+              <li className="relative flex min-w-0 gap-3.5">
+                <span className="relative z-10 flex size-9 shrink-0 items-center justify-center rounded-full border border-orange-500/40 bg-[#19191C] text-[#D4621A]">
                   <GitBranch aria-hidden="true" className="size-[18px]" />
+                  <span className="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-[#D4621A] text-[9px] font-bold text-white">1</span>
                 </span>
-                <div className="min-w-0 pb-1">
-                  <h3 className="text-sm font-semibold">
-                    1. Connect a CV and selected repositories
+                <div className="min-w-0 flex-1 pb-1">
+                  <h3 className="text-xs font-semibold sm:text-sm">
+                    1. Connect CV &amp; Repos (OAuth / PDF)
                   </h3>
                   <p className="mt-1 text-xs leading-relaxed text-[#71717A] dark:text-[#A1A1AA]">
-                    Candidates choose which repository evidence to connect.
+                    Connect a candidate-provided CV and explicitly selected
+                    repositories.
                   </p>
+                  <span className="mt-2 inline-flex max-w-full break-all rounded-md border border-zinc-700 bg-[#0D0D0F] px-2 py-1 font-mono text-[10px] text-zinc-300">
+                    &lt;&gt; github.com/profile @ commit-hash
+                  </span>
                 </div>
               </li>
-              <li className="flex gap-3.5">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-[#E4E4E7] bg-[#F8FAFC] text-[#22C55E] dark:border-[#3F3F46] dark:bg-[#0D0D0F]">
+              <li className="relative flex min-w-0 gap-3.5">
+                <span className="relative z-10 flex size-9 shrink-0 items-center justify-center rounded-full border border-emerald-500/40 bg-[#19191C] text-emerald-400">
                   <Code2 aria-hidden="true" className="size-[18px]" />
+                  <span className="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-emerald-600 text-[9px] font-bold text-white">2</span>
                 </span>
-                <div className="min-w-0 pb-1">
-                  <h3 className="text-sm font-semibold">
-                    2. Ground analysis in code evidence
+                <div className="min-w-0 flex-1 pb-1">
+                  <h3 className="text-xs font-semibold sm:text-sm">
+                    2. Grounded Static AST Analysis (Active AST)
                   </h3>
                   <p className="mt-1 text-xs leading-relaxed text-[#71717A] dark:text-[#A1A1AA]">
-                    Analysis links skills to inspectable source and repository
+                    Static analysis connects skill signals to inspectable source
                     context.
                   </p>
+                  <span className="mt-2 inline-flex max-w-full break-words rounded-md border border-emerald-700/50 bg-emerald-950/30 px-2 py-1 text-[10px] font-medium text-emerald-300">
+                    ✓ AST verified: 84.2% Author Dominance
+                  </span>
                 </div>
               </li>
-              <li className="flex gap-3.5">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-[#E4E4E7] bg-[#F8FAFC] text-[#F59E0B] dark:border-[#3F3F46] dark:bg-[#0D0D0F]">
+              <li className="relative flex min-w-0 gap-3.5">
+                <span className="relative z-10 flex size-9 shrink-0 items-center justify-center rounded-full border border-amber-500/40 bg-[#19191C] text-amber-400">
                   <ShieldCheck aria-hidden="true" className="size-[18px]" />
+                  <span className="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-amber-600 text-[9px] font-bold text-white">3</span>
                 </span>
-                <div className="min-w-0 pb-1">
-                  <h3 className="text-sm font-semibold">
-                    3. Add technical assessment evidence
+                <div className="min-w-0 flex-1 pb-1">
+                  <h3 className="text-xs font-semibold sm:text-sm">
+                    3. Timed Mobile Assessment (Verified)
                   </h3>
                   <p className="mt-1 text-xs leading-relaxed text-[#71717A] dark:text-[#A1A1AA]">
-                    Assessments provide another source for understanding
-                    demonstrated skills.
+                    A separate timed assessment contributes another reviewable
+                    evidence source.
                   </p>
+                  <span className="mt-2 inline-flex max-w-full break-words rounded-md border border-amber-700/50 bg-amber-950/30 px-2 py-1 text-[10px] font-medium text-amber-300">
+                    📊 Benchmark: 94th Pctl Distributed Systems
+                  </span>
                 </div>
               </li>
-              <li className="flex gap-3.5">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-[#D4621A]/30 bg-[#D4621A]/10 text-[#D4621A]">
+              <li className="relative flex min-w-0 gap-3.5">
+                <span className="relative z-10 flex size-9 shrink-0 items-center justify-center rounded-full border border-[#D4621A]/40 bg-[#19191C] text-[#D4621A]">
                   <CheckCircle2 aria-hidden="true" className="size-[18px]" />
+                  <span className="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-[#D4621A] text-[9px] font-bold text-white">4</span>
                 </span>
-                <div className="min-w-0">
-                  <h3 className="text-sm font-semibold">
-                    4. Explain the job match
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-xs font-semibold sm:text-sm">
+                    4. Deterministic Match (Decision)
                   </h3>
                   <p className="mt-1 text-xs leading-relaxed text-[#71717A] dark:text-[#A1A1AA]">
-                    Recruiters can review evidence and criteria; people make
-                    hiring decisions.
+                    Hiring teams review supporting evidence and make the final
+                    decision.
                   </p>
+                  <span className="mt-2 inline-flex max-w-full break-words rounded-md border border-[#D4621A]/40 bg-[#D4621A]/10 px-2 py-1 text-[10px] font-medium text-[#F0A374]">
+                    Proofline Complete: Zero Unsubstantiated Claims
+                  </span>
                 </div>
               </li>
             </ol>

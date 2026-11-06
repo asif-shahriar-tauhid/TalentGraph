@@ -2,29 +2,37 @@
 
 import {
   ArrowRight,
+  ArrowUpRight,
   Building2,
   Eye,
   EyeOff,
-  GitBranch,
-  Info,
   KeyRound,
   LockKeyhole,
-  Moon,
-  Sun,
+  SlidersHorizontal,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { getGithubAuthUrl } from "@/api/auth.api";
+import { GithubIcon } from "@/asset/svg/GithubIcon";
+import { Navbar } from "@/components/Navbar";
 import { gooeyToast } from "@/components/ui/goey-toaster";
 import { useLogin } from "@/hooks/auth.hooks";
 import { resolvePostAuthUrl } from "@/lib/authUtils";
-import { useTheme } from "@/providers/themeProvider";
 import { LoginZodSchema } from "@/validation";
+
+const simulationStates = [
+  "Default",
+  "OAuth Cancel",
+  "Invalid Workspace",
+  "Unverified Email",
+  "Loading",
+] as const;
+
+type SimulationState = (typeof simulationStates)[number];
 
 export default function LoginPage() {
   const router = useRouter();
-  const { resolvedTheme, toggleTheme } = useTheme();
   const { mutate: login, isPending: isLoginPending } = useLogin();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,15 +40,31 @@ export default function LoginPage() {
   const [isGithubLoading, setIsGithubLoading] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [simulationState, setSimulationState] =
+    useState<SimulationState>("Default");
+  const [simulationMessage, setSimulationMessage] = useState("");
 
   const isPending = isLoginPending || isGithubLoading;
+  const isSimulatedLoading = simulationState === "Loading";
 
   const getRedirectUrl = () => {
     if (typeof window === "undefined") return undefined;
     return new URLSearchParams(window.location.search).get("redirect") ?? undefined;
   };
 
+  const selectSimulationState = (state: SimulationState) => {
+    setSimulationState(state);
+    setEmailError("");
+    setPasswordError("");
+    setSimulationMessage("");
+  };
+
   const handleGithubLogin = async () => {
+    if (simulationState === "OAuth Cancel") {
+      setSimulationMessage("Simulation: GitHub authorization was canceled.");
+      return;
+    }
+
     try {
       setIsGithubLoading(true);
       const response = await getGithubAuthUrl(getRedirectUrl());
@@ -49,7 +73,6 @@ export default function LoginPage() {
         gooeyToast.error("Could not start GitHub sign in", {
           description: "The authorization service did not return a sign-in URL.",
         });
-        setIsGithubLoading(false);
         return;
       }
 
@@ -63,16 +86,30 @@ export default function LoginPage() {
           ? error.message
           : "Please try again.";
       gooeyToast.error("GitHub sign-in failed", { description: message });
+    } finally {
       setIsGithubLoading(false);
     }
   };
 
   const handleRecruiterSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const result = LoginZodSchema.safeParse({ email: email.trim(), password });
-
     setEmailError("");
     setPasswordError("");
+    setSimulationMessage("");
+
+    if (isSimulatedLoading) return;
+    if (simulationState === "Invalid Workspace") {
+      setEmailError("This email is not a valid company workspace.");
+      return;
+    }
+    if (simulationState === "Unverified Email") {
+      setSimulationMessage(
+        "Simulation: verify your email before accessing this workspace.",
+      );
+      return;
+    }
+
+    const result = LoginZodSchema.safeParse({ email: email.trim(), password });
     if (!result.success) {
       for (const issue of result.error.issues) {
         if (issue.path[0] === "email") setEmailError(issue.message);
@@ -98,154 +135,144 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-white text-[#18181B] antialiased selection:bg-[#D4621A]/30 dark:bg-[#0D0D0F] dark:text-[#F5F5F5]">
-      <header className="sticky top-0 z-20 w-full border-b border-[#E4E4E7] bg-white/90 backdrop-blur-md dark:border-[#3F3F46] dark:bg-[#0D0D0F]/90">
-        <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link
-            aria-label="TalentGraph home"
-            className="rounded text-lg font-bold tracking-tight focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E47735]"
-            href="/"
+    <div className="flex min-h-screen flex-col justify-between bg-[#0D0D0F] px-3 py-4 text-zinc-100 antialiased selection:bg-[#D4621A]/30 sm:px-6">
+      <Navbar variant="dark" />
+
+      <main className="flex flex-1 items-center justify-center py-6 sm:py-10">
+        <div className="w-full max-w-lg min-w-0">
+          <section
+            aria-labelledby="simulation-title"
+            className="mx-auto mb-6 w-full max-w-lg rounded-xl border border-zinc-800 bg-[#121215] p-3"
           >
-            TalentGraph
-          </Link>
+            <div className="mb-3 flex min-w-0 items-center gap-2">
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-orange-500/30 bg-orange-500/10 text-orange-300">
+                <SlidersHorizontal aria-hidden="true" className="size-4" />
+              </span>
+              <h2
+                className="min-w-0 text-xs font-semibold text-zinc-100 sm:text-sm"
+                id="simulation-title"
+              >
+                Simulation State Control (Playbook B2)
+              </h2>
+            </div>
+            <div
+              aria-label="Simulation states"
+              className="grid grid-cols-2 gap-1.5 sm:grid-cols-3 md:grid-cols-5"
+            >
+              {simulationStates.map((state) => {
+                const isSelected = simulationState === state;
+                return (
+                  <button
+                    aria-pressed={isSelected}
+                    className={`min-w-0 rounded-full border px-2 py-1.5 text-[10px] font-medium leading-tight transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 sm:text-xs ${
+                      isSelected
+                        ? "border-[#D4621A] bg-[#D4621A] text-white shadow"
+                        : "border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-600 hover:bg-zinc-800 hover:text-zinc-100"
+                    }`}
+                    key={state}
+                    onClick={() => selectSimulationState(state)}
+                    type="button"
+                  >
+                    {state}
+                  </button>
+                );
+              })}
+            </div>
+          </section>
 
-          <nav
-            aria-label="Main navigation"
-            className="hidden items-center gap-6 text-sm text-[#71717A] md:flex dark:text-[#A1A1AA]"
+          <section
+            aria-labelledby="login-title"
+            className="mx-auto w-full max-w-lg min-w-0 rounded-2xl border border-zinc-800 bg-[#121215]/90 p-6 shadow-2xl sm:p-8"
+            id="auth-card"
           >
-            <Link className="transition-colors hover:text-[#D4621A]" href="/#roles">
-              For teams
-            </Link>
-            <Link className="transition-colors hover:text-[#D4621A]" href="/#evidence">
-              Methodology
-            </Link>
-            <Link className="transition-colors hover:text-[#D4621A]" href="/pricing">
-              Pricing
-            </Link>
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <Link
-              className="hidden text-sm font-medium text-[#71717A] transition-colors hover:text-[#D4621A] sm:inline dark:text-[#A1A1AA]"
-              href="/register"
-            >
-              Sign up
-            </Link>
-            <button
-              aria-label={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} theme`}
-              className="flex size-9 items-center justify-center rounded-lg border border-[#E4E4E7] bg-white text-[#71717A] transition-colors hover:text-[#D4621A] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] dark:border-[#3F3F46] dark:bg-[#19191C] dark:text-[#A1A1AA]"
-              onClick={toggleTheme}
-              type="button"
-            >
-              {resolvedTheme === "dark" ? (
-                <Sun aria-hidden="true" className="size-4" />
-              ) : (
-                <Moon aria-hidden="true" className="size-4" />
-              )}
-            </button>
-            <Link
-              className="hidden rounded-lg bg-[#D4621A] px-4 py-2 text-sm font-semibold text-[#18181B] transition-colors hover:bg-[#E47735] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] sm:inline-flex"
-              href="#auth-card"
-            >
-              Get started
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      <main className="flex flex-1 items-center justify-center px-4 py-8 sm:px-6 md:py-12">
-        <section
-          aria-labelledby="login-title"
-          className="w-full max-w-xl overflow-hidden rounded-2xl border border-[#E4E4E7] bg-white shadow-sm dark:border-[#3F3F46] dark:bg-[#19191C] dark:shadow-xl"
-          id="auth-card"
-        >
-          <div className="h-1 w-full bg-gradient-to-r from-[#3F3F46] via-[#D4621A] to-[#3F3F46]" />
-          <div className="p-6 sm:p-8">
-            <div className="mb-6">
+            <div className="mb-6 min-w-0">
               <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-[#D4621A]">
                 TalentGraph access
               </p>
               <h1
-                className="text-2xl font-bold tracking-tight sm:text-3xl"
+                className="text-2xl font-bold tracking-tight text-white sm:text-3xl"
                 id="login-title"
               >
                 Access Ground Truth
               </h1>
-              <p className="mt-2 text-sm leading-relaxed text-[#71717A] dark:text-[#A1A1AA]">
-                Evidence-substantiated engineering profiles and hiring
+              <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                Evidence-substantiated engineering profiles &amp; hiring
                 intelligence.
               </p>
             </div>
 
             <section
               aria-labelledby="candidate-access-title"
-              className="rounded-xl border border-[#E4E4E7] bg-[#F8FAFC] p-5 dark:border-[#3F3F46] dark:bg-[#0D0D0F]"
+              className="rounded-xl border border-zinc-800 bg-[#0D0D0F] p-4 sm:p-5"
             >
-              <div className="mb-4 flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                <h2
-                  className="text-sm font-semibold uppercase tracking-wide"
-                  id="candidate-access-title"
-                >
-                  Candidate access
-                </h2>
-                <span className="text-xs text-[#71717A] dark:text-[#A1A1AA]">
-                  Developer / Engineer
-                </span>
-              </div>
+              <h2
+                className="mb-4 text-xs font-semibold uppercase tracking-wide text-zinc-200 sm:text-sm"
+                id="candidate-access-title"
+              >
+                CANDIDATE ACCESS (Developer / Engineer)
+              </h2>
               <button
-                className="flex min-h-12 w-full items-center justify-center gap-3 rounded-lg border border-[#E4E4E7] bg-white px-4 py-3 text-sm font-semibold transition-colors hover:bg-[#F4F4F5] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] disabled:cursor-not-allowed disabled:opacity-60 dark:border-[#3F3F46] dark:bg-[#24292F] dark:text-white dark:hover:bg-[#1B1F23]"
-                disabled={isPending}
+                className="flex min-h-12 w-full min-w-0 items-center justify-center gap-2 rounded-lg border border-zinc-700 bg-[#19191C] px-3 py-3 text-sm font-semibold text-zinc-100 transition-colors hover:bg-zinc-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 disabled:cursor-not-allowed disabled:opacity-60 sm:gap-3 sm:px-4"
+                disabled={isPending || isSimulatedLoading}
                 onClick={handleGithubLogin}
                 type="button"
               >
                 {isGithubLoading ? (
                   <span
                     aria-hidden="true"
-                    className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent"
+                    className="size-4 shrink-0 animate-spin rounded-full border-2 border-current border-t-transparent"
                   />
                 ) : (
-                  <GitBranch aria-hidden="true" className="size-5" />
+                  <GithubIcon aria-hidden="true" className="size-4 shrink-0" />
                 )}
-                <span>
+                <span className="truncate">
                   {isGithubLoading ? "Connecting to GitHub…" : "Continue with GitHub"}
                 </span>
-                {!isGithubLoading && (
-                  <ArrowRight aria-hidden="true" className="size-4" />
-                )}
               </button>
 
-              <p className="mt-3 flex items-start gap-2 text-xs leading-relaxed text-[#71717A] dark:text-[#A1A1AA]">
+              <p className="mt-3 flex items-start gap-2 rounded-lg border border-emerald-900/50 bg-emerald-950/30 p-2.5 text-xs leading-relaxed text-emerald-400">
                 <LockKeyhole
                   aria-hidden="true"
-                  className="mt-0.5 size-4 shrink-0 text-[#22C55E]"
+                  className="mt-0.5 size-4 shrink-0"
                 />
-                Candidates authenticate via GitHub OAuth and explicitly grant
-                repository access.
+                <span>
+                  Candidates authenticate strictly via GitHub OAuth. Read-only
+                  least-privilege repository consent.
+                </span>
               </p>
             </section>
+
+            {simulationMessage && (
+              <p
+                aria-live="polite"
+                className="mt-4 rounded-lg border border-orange-500/30 bg-orange-500/10 p-2.5 text-xs leading-relaxed text-orange-200"
+              >
+                {simulationMessage}
+              </p>
+            )}
 
             <div className="relative my-6 flex items-center justify-center">
               <div
                 aria-hidden="true"
-                className="absolute inset-x-0 border-t border-[#E4E4E7] dark:border-[#3F3F46]"
+                className="absolute inset-x-0 border-t border-zinc-800"
               />
-              <span className="relative bg-white px-3 text-[11px] font-medium uppercase tracking-wider text-[#71717A] dark:bg-[#19191C] dark:text-[#A1A1AA]">
-                Recruiter workspace login
+              <span className="relative max-w-[90%] bg-[#121215] px-3 text-center text-[10px] font-medium uppercase tracking-wider text-zinc-400 sm:text-[11px]">
+                OR RECRUITER WORKSPACE LOGIN
               </span>
             </div>
 
             <form className="space-y-4" onSubmit={handleRecruiterSubmit}>
-              <div>
+              <div className="min-w-0">
                 <label
-                  className="mb-1.5 block text-sm font-medium"
+                  className="mb-1.5 block text-sm font-medium text-zinc-200"
                   htmlFor="workspaceEmail"
                 >
-                  Workspace email
+                  Workspace Email
                 </label>
                 <div className="relative">
                   <Building2
                     aria-hidden="true"
-                    className="pointer-events-none absolute left-3.5 top-1/2 size-[18px] -translate-y-1/2 text-[#71717A] dark:text-[#A1A1AA]"
+                    className="pointer-events-none absolute left-3.5 top-1/2 size-[18px] -translate-y-1/2 text-zinc-500"
                   />
                   <input
                     aria-describedby={
@@ -253,7 +280,7 @@ export default function LoginPage() {
                     }
                     aria-invalid={Boolean(emailError)}
                     autoComplete="username"
-                    className="h-11 w-full rounded-lg border border-[#E4E4E7] bg-white pl-10 pr-3 text-sm text-[#18181B] placeholder:text-[#71717A] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-[#D4621A] dark:border-[#3F3F46] dark:bg-[#0D0D0F] dark:text-[#F5F5F5] dark:placeholder:text-[#A1A1AA]"
+                    className="h-11 w-full min-w-0 rounded-lg border border-zinc-700 bg-[#0D0D0F] pl-10 pr-3 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#D4621A] focus:outline-none focus:ring-1 focus:ring-[#D4621A]"
                     id="workspaceEmail"
                     name="email"
                     onChange={(event) => {
@@ -268,32 +295,32 @@ export default function LoginPage() {
                 </div>
                 {emailError ? (
                   <p
-                    className="mt-1.5 text-xs text-[#DC2626] dark:text-[#E5484D]"
+                    className="mt-1.5 text-xs text-red-400"
                     id="workspaceEmailError"
                   >
                     {emailError}
                   </p>
                 ) : (
                   <p
-                    className="mt-1.5 flex items-center gap-1.5 text-xs leading-relaxed text-[#71717A] dark:text-[#A1A1AA]"
+                    className="mt-1.5 text-xs leading-relaxed text-zinc-500"
                     id="emailHelperText"
                   >
-                    <Info aria-hidden="true" className="size-3.5 shrink-0" />
-                    Use the email associated with your recruiter account.
+                    Company domain required for verified team workspaces.
+                    Personal webmails rejected.
                   </p>
                 )}
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <div className="mb-1.5 flex items-center justify-between gap-3">
                   <label
-                    className="block text-sm font-medium"
+                    className="block text-sm font-medium text-zinc-200"
                     htmlFor="workspacePassword"
                   >
                     Password
                   </label>
                   <Link
-                    className="text-xs font-medium text-[#D4621A] transition-colors hover:text-[#E47735] hover:underline"
+                    className="shrink-0 text-xs font-medium text-orange-400 transition-colors hover:text-orange-300 hover:underline"
                     href="/forgot-password"
                   >
                     Forgot password?
@@ -302,7 +329,7 @@ export default function LoginPage() {
                 <div className="relative">
                   <KeyRound
                     aria-hidden="true"
-                    className="pointer-events-none absolute left-3.5 top-1/2 size-[18px] -translate-y-1/2 text-[#71717A] dark:text-[#A1A1AA]"
+                    className="pointer-events-none absolute left-3.5 top-1/2 size-[18px] -translate-y-1/2 text-zinc-500"
                   />
                   <input
                     aria-describedby={
@@ -310,21 +337,21 @@ export default function LoginPage() {
                     }
                     aria-invalid={Boolean(passwordError)}
                     autoComplete="current-password"
-                    className="h-11 w-full rounded-lg border border-[#E4E4E7] bg-white pl-10 pr-11 text-sm text-[#18181B] placeholder:text-[#71717A] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-[#D4621A] dark:border-[#3F3F46] dark:bg-[#0D0D0F] dark:text-[#F5F5F5] dark:placeholder:text-[#A1A1AA]"
+                    className="h-11 w-full min-w-0 rounded-lg border border-zinc-700 bg-[#0D0D0F] pl-10 pr-11 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-[#D4621A] focus:outline-none focus:ring-1 focus:ring-[#D4621A]"
                     id="workspacePassword"
                     name="password"
                     onChange={(event) => {
                       setPassword(event.target.value);
                       setPasswordError("");
                     }}
-                    placeholder="Enter your password"
+                    placeholder="••••••••"
                     required
                     type={showPassword ? "text" : "password"}
                     value={password}
                   />
                   <button
                     aria-label={showPassword ? "Hide password" : "Show password"}
-                    className="absolute inset-y-0 right-0 flex items-center px-3.5 text-[#71717A] transition-colors hover:text-[#18181B] focus-visible:outline-2 focus-visible:outline-[#E47735] dark:text-[#A1A1AA] dark:hover:text-[#F5F5F5]"
+                    className="absolute inset-y-0 right-0 flex items-center px-3.5 text-zinc-500 transition-colors hover:text-zinc-100 focus-visible:outline-2 focus-visible:outline-orange-400"
                     onClick={() => setShowPassword((visible) => !visible)}
                     type="button"
                   >
@@ -337,7 +364,7 @@ export default function LoginPage() {
                 </div>
                 {passwordError && (
                   <p
-                    className="mt-1.5 text-xs text-[#DC2626] dark:text-[#E5484D]"
+                    className="mt-1.5 text-xs text-red-400"
                     id="workspacePasswordError"
                   >
                     {passwordError}
@@ -346,42 +373,42 @@ export default function LoginPage() {
               </div>
 
               <button
-                className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-[#D4621A] px-4 py-2.5 text-sm font-semibold text-[#18181B] shadow-sm transition-colors hover:bg-[#E47735] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] disabled:cursor-not-allowed disabled:opacity-60"
-                disabled={isPending}
+                className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#D4621A] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#b85215] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 disabled:cursor-not-allowed disabled:opacity-60"
+                disabled={isPending || isSimulatedLoading}
                 type="submit"
               >
-                {isLoginPending ? (
+                {isLoginPending || isSimulatedLoading ? (
                   <span
                     aria-hidden="true"
                     className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent"
                   />
-                ) : (
-                  <KeyRound aria-hidden="true" className="size-4" />
-                )}
-                {isLoginPending ? "Signing in…" : "Sign in as recruiter"}
-                {!isLoginPending && (
+                ) : null}
+                {isLoginPending || isSimulatedLoading
+                  ? "Signing in…"
+                  : "Sign In as Recruiter"}
+                {!isLoginPending && !isSimulatedLoading && (
                   <ArrowRight aria-hidden="true" className="size-4" />
                 )}
               </button>
             </form>
 
-            <div className="mt-6 border-t border-[#E4E4E7] pt-5 text-center dark:border-[#3F3F46]">
-              <p className="text-sm text-[#71717A] dark:text-[#A1A1AA]">
-                Don’t have an account?{" "}
+            <div className="mt-6 border-t border-zinc-800 pt-5 text-center">
+              <p className="text-xs leading-relaxed text-zinc-400 sm:text-sm">
+                Don&apos;t have an account?{" "}
                 <Link
-                  className="inline-flex items-center gap-1 font-semibold text-[#D4621A] transition-colors hover:text-[#E47735] hover:underline"
+                  className="inline-flex items-center gap-1 font-semibold text-orange-400 transition-colors hover:text-orange-300 hover:underline"
                   href="/register"
                 >
-                  Create an account
-                  <ArrowRight aria-hidden="true" className="size-3.5" />
+                  Create an account / Register
+                  <ArrowUpRight aria-hidden="true" className="size-3.5" />
                 </Link>
               </p>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </main>
 
-      <footer className="border-t border-[#E4E4E7] px-4 py-4 text-center text-xs text-[#71717A] dark:border-[#3F3F46] dark:text-[#A1A1AA]">
+      <footer className="w-full border-t border-zinc-800 pt-4 text-center text-xs text-zinc-500">
         Evidence-based technical recruitment · TalentGraph
       </footer>
     </div>
