@@ -14,6 +14,7 @@ export function DashboardShell({
   roleBadgeClassName,
   alwaysVisibleSidebar = false,
   companyStatus,
+  companyStatusVerified,
   footerNote,
   footerSecurityText,
   navGroups,
@@ -37,6 +38,7 @@ export function DashboardShell({
         roleBadge={roleBadge}
         roleBadgeClassName={roleBadgeClassName}
         companyStatus={companyStatus}
+        companyStatusVerified={companyStatusVerified}
         alwaysVisible={alwaysVisibleSidebar}
         navGroups={navGroups}
         isOpen={alwaysVisibleSidebar ? true : isSidebarOpen}

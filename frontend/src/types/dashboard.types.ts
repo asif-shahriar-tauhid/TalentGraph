@@ -36,6 +36,7 @@ export interface DashboardShellProps {
   roleBadgeClassName?: string;
   alwaysVisibleSidebar?: boolean;
   companyStatus?: string;
+  companyStatusVerified?: boolean;
   footerNote?: string;
   footerSecurityText?: string;
   navGroups: NavGroup[];

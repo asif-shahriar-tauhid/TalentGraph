@@ -21,7 +21,8 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
       roleBadge="Preview"
       roleBadgeClassName="border-primary/30 bg-primary/10 text-primary"
       alwaysVisibleSidebar
-      companyStatus="TigerIT Bangladesh"
+      companyStatus="Company setup"
+      companyStatusVerified={false}
       footerNote="Recruiter dashboard preview"
       footerSecurityText="Company and dashboard information is illustrative. Hiring decisions remain human-owned."
       navGroups={[
@@ -39,7 +40,9 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
               label: "Company Profile",
               href: "/recruiter/company",
               icon: Building2,
-              isActive: (path) => path.startsWith("/recruiter/company"),
+              isActive: (path) =>
+                path === "/recruiter/company" ||
+                path.startsWith("/recruiter/company/"),
             },
             {
               label: "Job Management",

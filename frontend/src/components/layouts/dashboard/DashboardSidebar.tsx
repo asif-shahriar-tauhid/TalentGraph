@@ -15,6 +15,7 @@ interface DashboardSidebarProps {
   roleBadge: string;
   roleBadgeClassName?: string;
   companyStatus?: string;
+  companyStatusVerified?: boolean;
   alwaysVisible?: boolean;
   navGroups: NavGroup[];
   isOpen?: boolean;
@@ -30,6 +31,7 @@ export function DashboardSidebar({
   roleBadge,
   roleBadgeClassName,
   companyStatus,
+  companyStatusVerified = false,
   alwaysVisible = false,
   navGroups,
   isOpen,
@@ -150,12 +152,22 @@ export function DashboardSidebar({
                 alwaysVisible && "justify-center lg:justify-start",
                 collapsed && "lg:justify-center",
               )}
-              title={`${companyStatus} — Verified`}
-              aria-label={`${companyStatus} — Verified`}
+              title={`${companyStatus} — ${companyStatusVerified ? "Verified" : "Pending verification"}`}
+              aria-label={`${companyStatus} — ${companyStatusVerified ? "Verified" : "Pending verification"}`}
             >
               <span className="relative flex size-2 shrink-0" aria-hidden="true">
-                <span className="absolute inline-flex size-full rounded-full bg-emerald-500 opacity-40" />
-                <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+                <span
+                  className={cn(
+                    "absolute inline-flex size-full rounded-full opacity-40",
+                    companyStatusVerified ? "bg-emerald-500" : "bg-amber-500",
+                  )}
+                />
+                <span
+                  className={cn(
+                    "relative inline-flex size-2 rounded-full",
+                    companyStatusVerified ? "bg-emerald-500" : "bg-amber-500",
+                  )}
+                />
               </span>
               <span
                 className={cn(
@@ -168,12 +180,15 @@ export function DashboardSidebar({
               </span>
               <span
                 className={cn(
-                  "ml-auto text-[10px] font-medium text-emerald-700 dark:text-emerald-400",
+                  "ml-auto text-[10px] font-medium",
+                  companyStatusVerified
+                    ? "text-emerald-700 dark:text-emerald-400"
+                    : "text-amber-700 dark:text-amber-400",
                   alwaysVisible && "hidden lg:block",
                   collapsed && "hidden",
                 )}
               >
-                Verified
+                {companyStatusVerified ? "Verified" : "Pending"}
               </span>
             </div>
           </div>
