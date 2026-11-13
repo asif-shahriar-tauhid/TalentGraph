@@ -20,6 +20,7 @@ export interface NavItem {
   icon: ComponentType<{ className?: string }>;
   isActive?: (pathname: string) => boolean;
   badge?: string | number;
+  indicator?: boolean;
   description?: string;
 }
 
@@ -33,6 +34,8 @@ export interface DashboardShellProps {
   roleTitle: string;
   roleBadge: string;
   roleBadgeClassName?: string;
+  alwaysVisibleSidebar?: boolean;
+  companyStatus?: string;
   footerNote?: string;
   footerSecurityText?: string;
   navGroups: NavGroup[];

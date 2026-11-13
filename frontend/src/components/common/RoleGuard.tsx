@@ -2,7 +2,7 @@
 
 import { ArrowRight, LogOut, ShieldAlert, ShieldCheck } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Logo from "@/asset/svg/Logo";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
@@ -14,26 +14,29 @@ interface RoleGuardProps {
   allowedRoles: UserRole[];
   children: React.ReactNode;
   fallback?: React.ReactNode;
+  allowDevelopmentPreview?: boolean;
 }
 
 export function RoleGuard({
   allowedRoles,
   children,
   fallback,
+  allowDevelopmentPreview = false,
 }: RoleGuardProps) {
   const router = useRouter();
   const pathname = usePathname();
   const { user, role, isAuthenticated, isLoading, logout, logoutPending } =
     useAuth();
-  const [redirectScheduled, setRedirectScheduled] = useState(false);
 
   const hasRequiredRole = Boolean(role && allowedRoles.includes(role));
+  const isDevelopmentPreview =
+    allowDevelopmentPreview && process.env.NODE_ENV === "development";
 
   useEffect(() => {
+    if (isDevelopmentPreview) return;
     if (isLoading) return;
 
     if (!isAuthenticated || !user) {
-      setRedirectScheduled(true);
       const search =
         typeof window !== "undefined" ? window.location.search : "";
       const target = encodeURIComponent(`${pathname}${search}`);
@@ -42,7 +45,6 @@ export function RoleGuard({
     }
 
     if (!hasRequiredRole) {
-      setRedirectScheduled(true);
       if (role) {
         const targetPortal = getRoleDashboardUrl(role);
         const timer = setTimeout(() => {
@@ -59,7 +61,12 @@ export function RoleGuard({
     role,
     pathname,
     router,
+    isDevelopmentPreview,
   ]);
+
+  if (isDevelopmentPreview) {
+    return <>{children}</>;
+  }
 
   if (isLoading) {
     if (fallback) return <>{fallback}</>;
@@ -141,11 +148,9 @@ export function RoleGuard({
             </Button>
           </div>
 
-          {redirectScheduled && (
-            <p className="mt-4 text-[11px] text-muted-foreground animate-pulse">
-              Automatically redirecting to your portal...
-            </p>
-          )}
+          <p className="mt-4 text-[11px] text-muted-foreground animate-pulse">
+            Automatically redirecting to your portal...
+          </p>
         </div>
       </div>
     );

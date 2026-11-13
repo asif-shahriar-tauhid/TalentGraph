@@ -17,20 +17,23 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
   return (
     <DashboardShell
       userRole="RECRUITER"
-      roleTitle="Recruiter Desk"
-      roleBadge="Hiring Team"
+      roleTitle="Recruiter"
+      roleBadge="Preview"
       roleBadgeClassName="border-primary/30 bg-primary/10 text-primary"
-      footerNote="Verified Technical Hiring Portal"
-      footerSecurityText="Human-in-the-Loop Integrity Verification"
+      alwaysVisibleSidebar
+      companyStatus="TigerIT Bangladesh"
+      footerNote="Recruiter dashboard preview"
+      footerSecurityText="Company and dashboard information is illustrative. Hiring decisions remain human-owned."
       navGroups={[
         {
-          title: "Hiring Desk",
+          title: "Hiring desk",
           items: [
             {
-              label: "Overview",
-              href: "/recruiter",
+              label: "Dashboard",
+              href: "/recruiter/dashboard",
               icon: LayoutDashboard,
-              isActive: (path) => path === "/recruiter",
+              isActive: (path) =>
+                path === "/recruiter" || path === "/recruiter/dashboard",
             },
             {
               label: "Company Profile",
@@ -39,32 +42,36 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
               isActive: (path) => path.startsWith("/recruiter/company"),
             },
             {
-              label: "Job Openings",
+              label: "Job Management",
               href: "/recruiter/jobs",
               icon: Briefcase,
+              badge: "0",
               isActive: (path) => path.startsWith("/recruiter/jobs"),
             },
           ],
         },
         {
-          title: "Candidate Review",
+          title: "Candidate review",
           items: [
             {
-              label: "Applicants & Code",
+              label: "Applicants & Rankings",
               href: "/recruiter/applicants",
               icon: Users,
+              badge: "0",
               isActive: (path) => path.startsWith("/recruiter/applicants"),
             },
             {
               label: "Assessment Review",
               href: "/recruiter/assessments",
               icon: ShieldCheck,
+              badge: "0",
               isActive: (path) => path.startsWith("/recruiter/assessments"),
             },
             {
               label: "Hiring Pipeline",
               href: "/recruiter/pipeline",
               icon: GitBranch,
+              badge: "0",
               isActive: (path) => path.startsWith("/recruiter/pipeline"),
             },
           ],
@@ -79,7 +86,7 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
               isActive: (path) => path.startsWith("/recruiter/billing"),
             },
             {
-              label: "Settings",
+              label: "Recruiter Settings",
               href: "/recruiter/settings",
               icon: Settings,
               isActive: (path) => path.startsWith("/recruiter/settings"),

@@ -9,25 +9,29 @@ import { useAuth } from "@/providers/authProvider";
 interface DashboardHeaderProps {
   roleTitle?: string;
   onToggleSidebar?: () => void;
+  showMobileMenu?: boolean;
 }
 
 export function DashboardHeader({
   roleTitle,
   onToggleSidebar,
+  showMobileMenu = true,
 }: DashboardHeaderProps) {
   const { user, role, logout, logoutPending } = useAuth();
 
   return (
     <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-border/80 bg-background/85 px-4 sm:px-6 backdrop-blur-md">
       <div className="flex items-center gap-3">
-        <button
-          type="button"
-          onClick={onToggleSidebar}
-          className="flex size-9 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground hover:text-foreground lg:hidden cursor-pointer"
-          aria-label="Toggle navigation menu"
-        >
-          <Menu className="size-4" />
-        </button>
+        {showMobileMenu && (
+          <button
+            type="button"
+            onClick={onToggleSidebar}
+            className="flex size-9 cursor-pointer items-center justify-center rounded-xl border border-border bg-card text-muted-foreground hover:text-foreground lg:hidden"
+            aria-label="Toggle navigation menu"
+          >
+            <Menu className="size-4" />
+          </button>
+        )}
         {roleTitle && (
           <div className="hidden sm:flex items-center gap-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
