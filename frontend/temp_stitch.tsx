@@ -1,1 +1,1 @@
-// Migrated to src/app/(dashboard)/recruiter/company/page.tsx.
+// Migrated to src/app/(dashboard)/recruiter/jobs/page.tsx.

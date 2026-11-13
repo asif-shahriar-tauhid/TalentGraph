@@ -13,6 +13,7 @@ export function DashboardShell({
   roleBadge,
   roleBadgeClassName,
   alwaysVisibleSidebar = false,
+  allowDevelopmentPreview,
   companyStatus,
   companyStatusVerified,
   footerNote,
@@ -66,7 +67,9 @@ export function DashboardShell({
 
   return (
     <RoleGuard
-      allowDevelopmentPreview={userRole === "RECRUITER"}
+      allowDevelopmentPreview={
+        allowDevelopmentPreview ?? userRole === "RECRUITER"
+      }
       allowedRoles={allowedRoles}
     >
       {shell}

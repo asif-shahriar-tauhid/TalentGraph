@@ -1,6 +1,12 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, LogOut, X } from "lucide-react";
+import {
+  Building2,
+  ChevronLeft,
+  ChevronRight,
+  LogOut,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "@/asset/svg/Logo";
@@ -104,7 +110,8 @@ export function DashboardSidebar({
               aria-label="TalentGraph home"
               className={cn(
                 "flex items-center justify-center",
-                !collapsed && "lg:hidden",
+                "lg:hidden",
+                collapsed && "lg:flex",
               )}
               href="/"
               title="TalentGraph"
@@ -143,19 +150,68 @@ export function DashboardSidebar({
           </button>
         </div>
 
-        {/* Role Badge Strip */}
+        {alwaysVisible && (
+          <div
+            className="border-b border-border/60 bg-secondary/20 px-1 py-2"
+          >
+            <div className="flex justify-center">
+              <span className="shrink-0 whitespace-nowrap rounded border border-orange-500/20 bg-orange-500/10 px-1 py-0.5 text-center text-[9px] font-bold uppercase tracking-wider text-orange-400">
+                {roleBadge}
+              </span>
+            </div>
+          </div>
+        )}
+
+        {/* Workspace status */}
         {companyStatus ? (
-          <div className="border-b border-border/60 bg-secondary/40 p-2 lg:px-3">
+          <div
+            className={cn(
+              "border-b border-border/60 bg-secondary/40 p-2 lg:px-2",
+              alwaysVisible && "px-0",
+              collapsed && "lg:px-0",
+            )}
+          >
             <div
               className={cn(
-                "flex min-h-9 items-center gap-2 rounded-lg border border-border/70 bg-card px-2",
+                "relative flex min-h-9 items-center gap-2 rounded-lg border border-border/70 bg-card px-2",
                 alwaysVisible && "justify-center lg:justify-start",
                 collapsed && "lg:justify-center",
+                alwaysVisible && "px-1 lg:px-2",
+                collapsed && "lg:px-1",
               )}
               title={`${companyStatus} — ${companyStatusVerified ? "Verified" : "Pending verification"}`}
               aria-label={`${companyStatus} — ${companyStatusVerified ? "Verified" : "Pending verification"}`}
             >
-              <span className="relative flex size-2 shrink-0" aria-hidden="true">
+              {alwaysVisible && (
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "flex flex-col items-center gap-1 py-1",
+                    !collapsed && "lg:hidden",
+                  )}
+                >
+                  <span className="relative flex size-5 items-center justify-center">
+                    <Building2 className="size-4 text-muted-foreground" />
+                    <span
+                      className={cn(
+                        "absolute -right-0.5 -top-0.5 size-2 rounded-full border border-card",
+                        companyStatusVerified ? "bg-emerald-500" : "bg-amber-500",
+                      )}
+                    />
+                  </span>
+                  <span className="shrink-0 whitespace-nowrap text-center text-[8px] font-semibold uppercase tracking-wider text-zinc-200">
+                    WORKSPACE
+                  </span>
+                </span>
+              )}
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "relative flex size-2 shrink-0",
+                  alwaysVisible && "hidden lg:flex",
+                  collapsed && "lg:hidden",
+                )}
+              >
                 <span
                   className={cn(
                     "absolute inline-flex size-full rounded-full opacity-40",
@@ -173,7 +229,7 @@ export function DashboardSidebar({
                 className={cn(
                   "min-w-0 truncate text-[11px] font-medium text-foreground",
                   alwaysVisible && "hidden lg:block",
-                  collapsed && "hidden",
+                  collapsed && "lg:hidden",
                 )}
               >
                 {companyStatus}
@@ -185,7 +241,7 @@ export function DashboardSidebar({
                     ? "text-emerald-700 dark:text-emerald-400"
                     : "text-amber-700 dark:text-amber-400",
                   alwaysVisible && "hidden lg:block",
-                  collapsed && "hidden",
+                  collapsed && "lg:hidden",
                 )}
               >
                 {companyStatusVerified ? "Verified" : "Pending"}

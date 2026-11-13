@@ -18,10 +18,11 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
     <DashboardShell
       userRole="RECRUITER"
       roleTitle="Recruiter"
-      roleBadge="Preview"
+      roleBadge="RECRUITER"
       roleBadgeClassName="border-primary/30 bg-primary/10 text-primary"
       alwaysVisibleSidebar
-      companyStatus="Company setup"
+      allowDevelopmentPreview
+      companyStatus="Unassigned"
       companyStatusVerified={false}
       footerNote="Recruiter dashboard preview"
       footerSecurityText="Company and dashboard information is illustrative. Hiring decisions remain human-owned."
@@ -49,7 +50,9 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
               href: "/recruiter/jobs",
               icon: Briefcase,
               badge: "0",
-              isActive: (path) => path.startsWith("/recruiter/jobs"),
+              isActive: (path) =>
+                path === "/recruiter/jobs" ||
+                path.startsWith("/recruiter/jobs/"),
             },
           ],
         },

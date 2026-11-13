@@ -437,7 +437,7 @@ export default function RecruiterCompanyPage() {
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
           <div className="min-w-0">
             <div className="mb-1 flex flex-wrap items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-              <span>Recruiter</span>
+              <span>RECRUITER</span>
               <span aria-hidden="true">/</span>
               <span>Company Profile</span>
               <span className="text-[#F97316]">•</span>

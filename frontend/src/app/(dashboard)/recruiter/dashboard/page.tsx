@@ -235,7 +235,7 @@ export default function RecruiterDashboardPage() {
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
           <div className="min-w-0">
             <div className="mb-1 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-              <span>Recruiter</span>
+              <span>RECRUITER</span>
               <span aria-hidden="true">/</span>
               <span>Overview</span>
               <span className="ml-0.5 size-1.5 rounded-full bg-[#D4621A]" />
