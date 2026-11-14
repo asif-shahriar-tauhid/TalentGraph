@@ -12,6 +12,10 @@ export function DashboardShell({
   roleTitle,
   roleBadge,
   roleBadgeClassName,
+  alwaysVisibleSidebar = false,
+  allowDevelopmentPreview,
+  companyStatus,
+  companyStatusVerified,
   footerNote,
   footerSecurityText,
   navGroups,
@@ -34,8 +38,11 @@ export function DashboardShell({
         roleTitle={roleTitle}
         roleBadge={roleBadge}
         roleBadgeClassName={roleBadgeClassName}
+        companyStatus={companyStatus}
+        companyStatusVerified={companyStatusVerified}
+        alwaysVisible={alwaysVisibleSidebar}
         navGroups={navGroups}
-        isOpen={isSidebarOpen}
+        isOpen={alwaysVisibleSidebar ? true : isSidebarOpen}
         isCollapsed={isSidebarCollapsed}
         onClose={() => setIsSidebarOpen(false)}
         onToggleCollapse={() =>
@@ -45,12 +52,13 @@ export function DashboardShell({
         footerSecurityText={footerSecurityText}
       />
 
-      <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
+      <div className="flex min-w-0 flex-1 flex-col">
         <DashboardHeader
           roleTitle={roleTitle}
           onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)}
+          showMobileMenu={!alwaysVisibleSidebar}
         />
-        <main className="min-w-0 w-full flex-1 overflow-x-hidden overflow-y-auto p-4 sm:p-6 lg:p-8">
+        <main className="min-w-0 w-full flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
           {children}
         </main>
       </div>
@@ -58,7 +66,12 @@ export function DashboardShell({
   );
 
   return (
-    <RoleGuard allowedRoles={allowedRoles}>
+    <RoleGuard
+      allowDevelopmentPreview={
+        allowDevelopmentPreview ?? userRole === "RECRUITER"
+      }
+      allowedRoles={allowedRoles}
+    >
       {shell}
     </RoleGuard>
   );

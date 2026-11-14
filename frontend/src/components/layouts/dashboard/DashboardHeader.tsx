@@ -9,44 +9,46 @@ import { useAuth } from "@/providers/authProvider";
 interface DashboardHeaderProps {
   roleTitle?: string;
   onToggleSidebar?: () => void;
+  showMobileMenu?: boolean;
 }
 
 export function DashboardHeader({
   roleTitle,
   onToggleSidebar,
+  showMobileMenu = true,
 }: DashboardHeaderProps) {
   const { user, role, logout, logoutPending } = useAuth();
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-border/80 bg-background/85 px-4 sm:px-6 backdrop-blur-md">
-      <div className="flex items-center gap-3">
-        <button
-          type="button"
-          onClick={onToggleSidebar}
-          className="flex size-9 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground hover:text-foreground lg:hidden cursor-pointer"
-          aria-label="Toggle navigation menu"
-        >
-          <Menu className="size-4" />
-        </button>
+    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-border/80 bg-background/85 px-2 sm:px-6 backdrop-blur-md">
+      <div className="flex items-center gap-1.5 sm:gap-3">
+        {showMobileMenu && (
+          <button
+            type="button"
+            onClick={onToggleSidebar}
+            className="flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-border bg-card text-muted-foreground hover:text-foreground lg:hidden"
+            aria-label="Toggle navigation menu"
+          >
+            <Menu className="size-4" />
+          </button>
+        )}
         {roleTitle && (
-          <div className="hidden sm:flex items-center gap-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="flex shrink-0 items-center gap-1.5 text-xs font-medium sm:gap-2 sm:text-sm">
+            <span className="font-semibold uppercase tracking-wider text-muted-foreground">
               Workspace
             </span>
-            <span className="text-xs text-muted-foreground/60">•</span>
-            <span className="text-xs font-bold text-foreground">
-              {roleTitle}
-            </span>
+            <span className="text-muted-foreground/60">•</span>
+            <span className="font-bold text-foreground">{roleTitle}</span>
           </div>
         )}
       </div>
 
-      <div className="flex items-center gap-3">
-        <ThemeToggle />
+      <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
+        <ThemeToggle className="shrink-0" />
 
         <div className="h-4 w-px bg-border/80 mx-1 hidden sm:block" />
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex shrink-0 items-center gap-2.5">
           <UserAvatar
             name={user?.name}
             imageUrl={user?.imageUrl}
@@ -70,7 +72,7 @@ export function DashboardHeader({
           size="icon"
           onClick={() => logout()}
           disabled={logoutPending}
-          className="text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+          className="shrink-0 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
           title="Sign out"
         >
           <LogOut className="size-4" />
