@@ -1,11 +1,11 @@
 # Runs the TypeScript sources with tsx (same as `npm start`): tsc output uses
 # extensionless ESM imports, and EJS templates are read from src/app/templates.
-FROM node:24-alpine AS deps
+FROM node:26-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 
-FROM node:24-alpine
+FROM node:26-alpine
 ENV NODE_ENV=production PORT=5000
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
