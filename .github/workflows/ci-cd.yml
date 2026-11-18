@@ -1,0 +1,359 @@
+# TalentGraph CI/CD
+#
+# CI  (every PR + every push to main): only the parts of the monorepo that changed are checked.
+#   backend         -> install, Prisma client drift check, typecheck, build, prod-dep audit
+#   backend-db      -> real Postgres(pgvector)+Redis: apply migrations, schema/migration drift
+#                      check, boot the server and hit the health endpoint (seeds admin + skills)
+#   backend-docker  -> make sure the production image still builds
+#   frontend        -> install, route typegen + typecheck, lint, production build
+#   ci-ok           -> single required status check for branch protection
+#
+# CD  (push to main only, after CI is green):
+#   publish-backend-image -> ghcr.io/<owner>/talentgraph-backend:{sha,latest}
+#   deploy-backend        -> prisma migrate deploy (prod DB) -> deploy hook -> health check
+#   deploy-frontend       -> Vercel production deploy
+#   Every deploy step is skipped (not failed) until its secrets are configured.
+
+name: CI/CD
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # Never cancel a half-finished production deploy; do cancel stale PR/branch runs.
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: "24"
+
+jobs:
+  changes:
+    name: Detect changes
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            backend:
+              - 'Backend/**'
+              - '.github/workflows/ci-cd.yml'
+            frontend:
+              - 'frontend/**'
+              - '.github/workflows/ci-cd.yml'
+
+  # ───────────────────────────── Backend ─────────────────────────────
+  backend:
+    name: Backend · typecheck & build
+    needs: changes
+    if: needs.changes.outputs.backend == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Backend
+    env:
+      # prisma.config.ts requires DATABASE_URL even for `prisma generate`; no DB is contacted.
+      DATABASE_URL: postgresql://ci:ci@localhost:5432/ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: Backend/package-lock.json
+      - run: npm ci
+
+      - name: Prisma client is up to date with schema
+        run: |
+          npx prisma validate
+          npx prisma generate
+          if ! git diff --quiet -- src/generated; then
+            echo "::error::src/generated/prisma is stale. Run 'npx prisma generate' in Backend/ and commit the result."
+            git diff --stat -- src/generated
+            exit 1
+          fi
+
+      - run: npm run typecheck
+      - run: npm run build
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+  backend-db:
+    name: Backend · migrations & boot smoke test
+    needs: backend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Backend
+    services:
+      postgres:
+        image: pgvector/pgvector:pg17 # first migration runs CREATE EXTENSION vector
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: talentgraph_ci
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      NODE_ENV: test
+      PORT: 5000
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/talentgraph_ci?schema=public
+      REDIS_URL: redis://localhost:6379
+      JWT_ACCESS_SECRET: ci_access_secret_that_is_at_least_32_characters
+      JWT_REFRESH_SECRET: ci_refresh_secret_that_is_at_least_32_characters
+      SYSTEM_ADMIN_EMAIL: admin@ci.talentgraph.local
+      SYSTEM_ADMIN_PASSWORD: CiAdminPassword@123
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: Backend/package-lock.json
+      - run: npm ci
+
+      - name: Apply all migrations to a fresh database
+        run: npx prisma migrate deploy
+
+      - name: Schema matches migrations (no missing migration)
+        run: |
+          npx prisma migrate diff \
+            --from-config-datasource \
+            --to-schema prisma/schema \
+            --exit-code \
+          || { echo "::error::prisma/schema has changes with no migration. Run 'npx prisma migrate dev --name <change>' and commit it."; exit 1; }
+
+      - name: Boot server and hit health endpoint
+        run: |
+          npm start > server.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fsS http://localhost:5000/ > /dev/null; then
+              echo "Server is healthy after ${i}s"; break
+            fi
+            sleep 1
+          done
+          curl -fsS http://localhost:5000/ || { cat server.log; exit 1; }
+          # unknown routes must hit notFound, not crash
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:5000/api/v1/does-not-exist)" = "404"
+
+      - name: Seed ran (system admin + skill taxonomy exist)
+        run: |
+          psql "postgresql://postgres:postgres@localhost:5432/talentgraph_ci" -tAc \
+            "SELECT (SELECT count(*) FROM \"User\" WHERE role='SYSTEM_ADMIN') > 0 AND (SELECT count(*) FROM \"Skill\") > 0" \
+            | grep -q t || { echo "::error::Seeding did not run"; cat server.log; exit 1; }
+
+      - name: Server log
+        if: always()
+        run: cat server.log || true
+
+  backend-docker:
+    name: Backend · Docker image builds
+    needs: backend
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: Backend
+          push: false
+          cache-from: type=gha,scope=backend
+          cache-to: type=gha,scope=backend,mode=max
+
+  # ───────────────────────────── Frontend ─────────────────────────────
+  frontend:
+    name: Frontend · typecheck, lint & build
+    needs: changes
+    if: needs.changes.outputs.frontend == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    env:
+      NEXT_TELEMETRY_DISABLED: 1
+      NEXT_PUBLIC_API_BASE_URL: ${{ vars.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000/api/v1' }}
+      BACKEND_INTERNAL_URL: ${{ vars.BACKEND_INTERNAL_URL || 'http://localhost:5000/api/v1' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - uses: actions/cache@v4
+        with:
+          path: frontend/.next/cache
+          key: nextjs-${{ hashFiles('frontend/package-lock.json') }}-${{ hashFiles('frontend/src/**') }}
+          restore-keys: nextjs-${{ hashFiles('frontend/package-lock.json') }}-
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run build
+
+  # ───────────────────────────── Gate ─────────────────────────────
+  ci-ok:
+    name: CI passed
+    if: always()
+    needs: [changes, backend, backend-db, backend-docker, frontend]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if any required job failed or was cancelled
+        run: |
+          echo '${{ toJSON(needs) }}' | jq -e 'to_entries | all(.value.result == "success" or .value.result == "skipped")'
+
+  # ───────────────────────────── CD (main only) ─────────────────────────────
+  deploy-config:
+    name: Resolve deploy targets
+    needs: [changes, ci-ok]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.ci-ok.result == 'success'
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ needs.changes.outputs.backend }}
+      frontend: ${{ needs.changes.outputs.frontend }}
+      has_db: ${{ steps.s.outputs.has_db }}
+      has_hook: ${{ steps.s.outputs.has_hook }}
+      has_vercel: ${{ steps.s.outputs.has_vercel }}
+    steps:
+      - id: s
+        env:
+          DB: ${{ secrets.PRODUCTION_DATABASE_URL }}
+          HOOK: ${{ secrets.BACKEND_DEPLOY_HOOK_URL }}
+          VERCEL: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          echo "has_db=$([ -n "$DB" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "has_hook=$([ -n "$HOOK" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "has_vercel=$([ -n "$VERCEL" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+  publish-backend-image:
+    name: Publish backend image (GHCR)
+    needs: deploy-config
+    if: needs.deploy-config.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image: ${{ steps.meta.outputs.image }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: meta
+        run: echo "image=ghcr.io/$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')/talentgraph-backend" >> "$GITHUB_OUTPUT"
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: Backend
+          push: true
+          tags: |
+            ${{ steps.meta.outputs.image }}:${{ github.sha }}
+            ${{ steps.meta.outputs.image }}:latest
+          cache-from: type=gha,scope=backend
+          cache-to: type=gha,scope=backend,mode=max
+
+  deploy-backend:
+    name: Deploy backend
+    needs: [deploy-config, publish-backend-image]
+    if: needs.deploy-config.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    environment: production
+    concurrency:
+      group: deploy-backend-production
+      cancel-in-progress: false
+    defaults:
+      run:
+        working-directory: Backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        if: needs.deploy-config.outputs.has_db == 'true'
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: Backend/package-lock.json
+
+      # Migrations run BEFORE the new code goes live. Keep migrations backward compatible
+      # (expand -> deploy -> contract) so the old version keeps working during rollout.
+      - name: Apply production migrations
+        if: needs.deploy-config.outputs.has_db == 'true'
+        env:
+          DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
+        run: |
+          npm ci
+          npx prisma migrate deploy
+
+      - name: Trigger deploy (Render / Railway / Koyeb / Coolify hook)
+        if: needs.deploy-config.outputs.has_hook == 'true'
+        env:
+          HOOK: ${{ secrets.BACKEND_DEPLOY_HOOK_URL }}
+        run: curl -fsS -X POST "$HOOK"
+
+      - name: Wait for healthy backend
+        if: needs.deploy-config.outputs.has_hook == 'true' && vars.BACKEND_HEALTHCHECK_URL != ''
+        env:
+          URL: ${{ vars.BACKEND_HEALTHCHECK_URL }}
+        run: |
+          for i in $(seq 1 40); do
+            curl -fsS "$URL" > /dev/null && { echo "Backend healthy"; exit 0; }
+            sleep 15
+          done
+          echo "::error::Backend did not become healthy within 10 minutes"; exit 1
+
+      - name: Deploy skipped notice
+        if: needs.deploy-config.outputs.has_hook != 'true'
+        run: echo "::notice::BACKEND_DEPLOY_HOOK_URL not set — image published to GHCR, no deploy triggered."
+
+  deploy-frontend:
+    name: Deploy frontend (Vercel)
+    needs: deploy-config
+    if: needs.deploy-config.outputs.frontend == 'true' && needs.deploy-config.outputs.has_vercel == 'true'
+    runs-on: ubuntu-latest
+    environment: production-frontend
+    concurrency:
+      group: deploy-frontend-production
+      cancel-in-progress: false
+    defaults:
+      run:
+        working-directory: frontend
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      NEXT_TELEMETRY_DISABLED: 1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm i -g vercel@latest
+      - run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+      - run: vercel build --prod --token="$VERCEL_TOKEN"
+      - run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
