@@ -6,6 +6,8 @@ import config from "./app/config";
 import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
 import { notFound } from "./app/middleware/notFound";
 import { AuthRoutes } from "./app/module/auth/auth.route";
+import { CandidateProfileRoutes } from "./app/module/candidateProfile/candidateProfile.route";
+import { GithubRoutes } from "./app/module/github/github.route";
 import { UserRoutes } from "./app/module/user/user.route";
 
 const app: Application = express();
@@ -32,6 +34,8 @@ app.get("/", (_req, res) => {
 // Application Routes
 app.use("/api/v1/auth", AuthRoutes);
 app.use("/api/v1/users", UserRoutes);
+app.use("/api/v1/candidate", CandidateProfileRoutes);
+app.use("/api/v1/candidate/github", GithubRoutes);
 
 // Error Handling Middlewares
 app.use(globalErrorHandler);
