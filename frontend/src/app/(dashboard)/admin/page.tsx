@@ -101,7 +101,7 @@ export default function AdminDashboardPage() {
   const [range, setRange] = useState<ThroughputRange>("7D");
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const { logout, logoutPending } = useAuth();
+  const { user, logout, logoutPending } = useAuth();
   const { toggleTheme } = useTheme();
 
   const chartData = throughput[range];
@@ -132,13 +132,13 @@ export default function AdminDashboardPage() {
   };
 
   const sidebarNavigation = [
-    { label: "Operational Queue", href: "#operational-queue", icon: LayoutGrid, active: true },
-    { label: "Company Verification", href: "#verification", icon: ShieldCheck, badge: "3" },
-    { label: "User Directory", href: "#users", icon: Users, badge: "1,482" },
-    { label: "Jobs Moderation", href: "#moderation", icon: BriefcaseBusiness, badge: "28" },
-    { label: "Integrity Cases", href: "#integrity", icon: ShieldAlert, badge: "2 flagged", badgeClassName: "text-rose-400" },
-    { label: "Worker Telemetry", href: "#telemetry", icon: Zap, badge: "99.8%", badgeClassName: "text-emerald-400" },
-    { label: "BDT Subscriptions", href: "#subscriptions", icon: CreditCard, badge: "৳34.5k" },
+    { label: "Operational Queue", href: "/admin", icon: LayoutGrid, active: true },
+    { label: "Company Verification", href: "/admin/company-verification", icon: ShieldCheck, badge: "3" },
+    { label: "User Directory", href: "/admin/user-directory", icon: Users, badge: "Live" },
+    { label: "Jobs Moderation", href: "/admin/jobs-moderation", icon: BriefcaseBusiness, badge: "28" },
+    { label: "Integrity Cases", href: "/admin/integrity-cases", icon: ShieldAlert, badge: "2 flagged", badgeClassName: "text-rose-400" },
+    { label: "Worker Telemetry", href: "/admin/worker-telemetry", icon: Zap, badge: "99.8%", badgeClassName: "text-emerald-400" },
+    { label: "BDT Subscriptions", href: "/admin/bdt-subscriptions", icon: CreditCard, badge: "৳34.5k" },
   ];
 
   return (
@@ -208,14 +208,18 @@ export default function AdminDashboardPage() {
         <div className="flex items-center justify-between gap-2 border-t border-[#232328] pt-4">
           <div className="flex min-w-0 items-center gap-2.5 overflow-hidden max-md:justify-center">
             <div className="flex size-8 shrink-0 items-center justify-center rounded-full border border-[#3A3A40] bg-[#27272B] text-xs font-semibold text-zinc-300">
-              TC
+              {(user?.name || "System Admin")
+                .split(/\s+/)
+                .slice(0, 2)
+                .map((p) => p[0]?.toUpperCase())
+                .join("")}
             </div>
             <div className="truncate max-md:hidden">
               <div className="truncate text-[13px] font-semibold leading-tight text-white">
-                Tanvir Chowdhury
+                {user?.name || "System Admin"}
               </div>
               <div className="text-[10px] leading-tight text-[#71717A]">
-                Platform Admin #01
+                {user?.role || "SYSTEM_ADMIN"}
               </div>
             </div>
           </div>

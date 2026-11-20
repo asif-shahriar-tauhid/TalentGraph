@@ -16,6 +16,7 @@ const AUTH_PAGES = [
 const ROLE_PREFIX_MAP: Array<{ prefix: string; roles: string[] }> = [
   { prefix: "/candidate", roles: ["CANDIDATE"] },
   { prefix: "/recruiter", roles: ["RECRUITER", "SUB_RECRUITER"] },
+  { prefix: "/admin", roles: ["SYSTEM_ADMIN", "ADMIN"] },
 ];
 
 export function proxy(request: NextRequest) {
@@ -26,7 +27,11 @@ export function proxy(request: NextRequest) {
   if (
     process.env.NODE_ENV === "development" &&
     ["localhost", "127.0.0.1"].includes(request.nextUrl.hostname) &&
-    (pathname === "/recruiter" || pathname.startsWith("/recruiter/"))
+    !token &&
+    (pathname === "/recruiter" ||
+      pathname.startsWith("/recruiter/") ||
+      pathname === "/admin" ||
+      pathname.startsWith("/admin/"))
   ) {
     return NextResponse.next();
   }

@@ -27,6 +27,12 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useMemo, useState, type FormEvent } from "react";
+import {
+  useCreateSubRecruiter,
+  useGetMySubRecruiters,
+  useRemoveSubRecruiter,
+} from "@/hooks";
+import { useAuth } from "@/providers/authProvider";
 
 type AccreditationStatus =
   | "Unverified"
@@ -53,6 +59,7 @@ interface CompanyMember {
   title: string;
   role: MemberRole;
   status: MemberStatus;
+  isBackendSubRecruiter?: boolean;
 }
 
 interface CompanyAttachment {
@@ -200,7 +207,17 @@ function getInitials(name: string) {
 }
 
 export default function RecruiterCompanyPage() {
-  const [company, setCompany] =
+  const { user } = useAuth();
+  const hasLinkedCompany = Boolean(
+    user && user.role === "RECRUITER" && user.recruiterProfile?.companyId,
+  );
+  const { data: subRecruitersRes } = useGetMySubRecruiters(hasLinkedCompany);
+  const { mutate: createSubRecruiter, isPending: isCreatingSubRecruiter } =
+    useCreateSubRecruiter();
+  const { mutate: removeSubRecruiter, isPending: isRemovingSubRecruiter } =
+    useRemoveSubRecruiter();
+
+  const [localCompany, setCompany] =
     useState<CompanyProfileData>(INITIAL_COMPANY_DATA);
   const [search, setSearch] = useState("");
   const [saved, setSaved] = useState(false);
@@ -209,6 +226,54 @@ export default function RecruiterCompanyPage() {
   const [inviteMessage, setInviteMessage] = useState("");
   const [securityInfoOpen, setSecurityInfoOpen] = useState(false);
   const query = search.trim().toLowerCase();
+
+  const company = useMemo<CompanyProfileData>(() => {
+    const backendCompany = user?.recruiterProfile?.company;
+    if (!backendCompany) return localCompany;
+    const statusMap: Record<string, AccreditationStatus> = {
+      DRAFT: "Unverified",
+      PENDING: "Pending",
+      NEEDS_MORE_INFO: "Needs More Information",
+      VERIFIED: "Verified",
+      REJECTED: "Rejected",
+    };
+    return {
+      ...localCompany,
+      accreditationStatus:
+        statusMap[backendCompany.verificationStatus] ||
+        localCompany.accreditationStatus,
+      entity: {
+        ...localCompany.entity,
+        legalName:
+          localCompany.entity.legalName || backendCompany.name || "",
+        website:
+          localCompany.entity.website || backendCompany.website || "",
+        description:
+          localCompany.entity.description || backendCompany.description || "",
+      },
+    };
+  }, [localCompany, user?.recruiterProfile?.company]);
+
+  const combinedMembers = useMemo<CompanyMember[]>(() => {
+    const backendMembers: CompanyMember[] = (subRecruitersRes?.data ?? []).map(
+      (sub) => ({
+        id: sub.id,
+        name: sub.name,
+        email: sub.email,
+        title: "Sub-Recruiter",
+        role: "Job Post & Review",
+        status: sub.status === "ACTIVE" ? "Active" : "Pending",
+        isBackendSubRecruiter: true,
+      }),
+    );
+    const backendEmails = new Set(
+      backendMembers.map((m) => m.email.toLowerCase()),
+    );
+    const localMembers = company.members.filter(
+      (m) => !backendEmails.has(m.email.toLowerCase()),
+    );
+    return [...backendMembers, ...localMembers];
+  }, [subRecruitersRes?.data, company.members]);
 
   const visibleMetrics = useMemo(
     () =>
@@ -234,9 +299,12 @@ export default function RecruiterCompanyPage() {
         {
           id: "affiliations",
           title: "Recruiter Affiliations",
-          value: `${company.members.length} Members`,
+          value: `${combinedMembers.length} Members`,
           detail: "Company team",
-          badge: "Awaiting Affiliations",
+          badge:
+            combinedMembers.length > 0
+              ? "Active Affiliations"
+              : "Awaiting Affiliations",
           Icon: Users,
           tone: "neutral" as const,
         },
@@ -258,7 +326,7 @@ export default function RecruiterCompanyPage() {
           metric.badge,
         ),
       ),
-    [company, query],
+    [company, combinedMembers.length, query],
   );
 
   const visibleFields = profileFields.filter((field) =>
@@ -272,7 +340,7 @@ export default function RecruiterCompanyPage() {
       attachment.status,
     ),
   );
-  const visibleMembers = company.members.filter((member) =>
+  const visibleMembers = combinedMembers.filter((member) =>
     matchesFilter(query, member.name, member.email, member.title, member.role, member.status),
   );
   const visibleAuditEvents = company.auditEvents.filter((event) =>
@@ -362,12 +430,38 @@ export default function RecruiterCompanyPage() {
 
   const inviteRecruiter = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    const formEl = event.currentTarget;
+    const formData = new FormData(formEl);
     const name = String(formData.get("name") ?? "").trim();
     const email = String(formData.get("email") ?? "").trim();
     const title = String(formData.get("title") ?? "").trim();
-    const role = String(formData.get("role") ?? "Job Post & Review") as MemberRole;
+    const temporaryPassword = String(
+      formData.get("temporaryPassword") ?? "",
+    ).trim();
+    const role = String(
+      formData.get("role") ?? "Job Post & Review",
+    ) as MemberRole;
     if (!name || !email || !title) return;
+
+    if (hasLinkedCompany && temporaryPassword.length >= 8) {
+      createSubRecruiter(
+        {
+          name,
+          email,
+          temporaryPassword,
+        },
+        {
+          onSuccess: () => {
+            setInviteOpen(false);
+            setInviteMessage(
+              `Sub-recruiter account provisioned for ${email} under your company.`,
+            );
+            formEl.reset();
+          },
+        },
+      );
+      return;
+    }
 
     const member: CompanyMember = {
       id: `${Date.now()}-${email.toLowerCase()}`,
@@ -383,9 +477,11 @@ export default function RecruiterCompanyPage() {
     }));
     setInviteOpen(false);
     setInviteMessage(
-      "Recruiter added as pending. Affiliation review and invitation delivery require the connected backend.",
+      hasLinkedCompany
+        ? "Provide at least an 8-character temporary password to provision a live Sub-Recruiter account."
+        : "Recruiter staged locally. Link your company profile to provision live Sub-Recruiter accounts on the backend.",
     );
-    event.currentTarget.reset();
+    formEl.reset();
   };
 
   const renderField = (field: (typeof profileFields)[number]) => {
@@ -641,7 +737,16 @@ export default function RecruiterCompanyPage() {
 
                 <div className="space-y-3">
                   {visibleMembers.map((member) => (
-                    <MemberRow key={member.id} member={member} />
+                    <MemberRow
+                      key={member.id}
+                      member={member}
+                      onRemove={
+                        member.isBackendSubRecruiter
+                          ? () => removeSubRecruiter(member.id)
+                          : undefined
+                      }
+                      isRemoving={isRemovingSubRecruiter}
+                    />
                   ))}
                   {visibleMembers.length === 0 && (
                     <div className="rounded-lg border border-dashed border-border px-4 py-8 text-center">
@@ -650,7 +755,7 @@ export default function RecruiterCompanyPage() {
                         className="mx-auto size-5 text-muted-foreground"
                       />
                       <p className="mt-2 text-sm font-medium text-foreground">
-                        {company.members.length === 0
+                        {combinedMembers.length === 0
                           ? "No affiliated recruiters added yet"
                           : "No recruiters match this filter"}
                       </p>
@@ -841,6 +946,13 @@ export default function RecruiterCompanyPage() {
                 name="title"
                 placeholder="e.g., Technical Recruiter"
               />
+              <InviteField
+                id="invite-temp-password"
+                label="Temporary password (min 8 chars for sub-recruiter login)"
+                name="temporaryPassword"
+                placeholder="Min 8 characters"
+                type="password"
+              />
               <div>
                 <label
                   className="mb-1.5 block text-xs font-medium text-muted-foreground"
@@ -873,11 +985,14 @@ export default function RecruiterCompanyPage() {
                   Cancel
                 </button>
                 <button
-                  className="inline-flex min-h-9 items-center justify-center gap-2 rounded-lg bg-[#F97316] px-3.5 text-xs font-semibold text-[#18181B] hover:bg-[#EA580C] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="inline-flex min-h-9 items-center justify-center gap-2 rounded-lg bg-[#F97316] px-3.5 text-xs font-semibold text-[#18181B] hover:bg-[#EA580C] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50"
+                  disabled={isCreatingSubRecruiter}
                   type="submit"
                 >
                   <Mail aria-hidden="true" className="size-4" />
-                  Add pending recruiter
+                  {isCreatingSubRecruiter
+                    ? "Provisioning..."
+                    : "Invite sub-recruiter"}
                 </button>
               </div>
             </form>
@@ -1064,7 +1179,15 @@ function AttachmentRow({
   );
 }
 
-function MemberRow({ member }: { member: CompanyMember }) {
+function MemberRow({
+  member,
+  onRemove,
+  isRemoving,
+}: {
+  member: CompanyMember;
+  onRemove?: () => void;
+  isRemoving?: boolean;
+}) {
   const statusClass =
     member.status === "Active"
       ? "border-emerald-300 bg-emerald-50 text-emerald-800 dark:border-[#1A3D2C] dark:bg-[#13281E] dark:text-emerald-300"
@@ -1089,16 +1212,29 @@ function MemberRow({ member }: { member: CompanyMember }) {
           </p>
         </div>
       </div>
-      <span
-        className={`inline-flex w-fit shrink-0 items-center gap-1 rounded border px-2 py-0.5 font-mono text-[10px] ${statusClass}`}
-      >
-        {member.status === "Active" ? (
-          <BadgeCheck aria-hidden="true" className="size-3" />
-        ) : (
-          <Clock3 aria-hidden="true" className="size-3" />
+      <div className="flex items-center gap-2 shrink-0">
+        <span
+          className={`inline-flex w-fit shrink-0 items-center gap-1 rounded border px-2 py-0.5 font-mono text-[10px] ${statusClass}`}
+        >
+          {member.status === "Active" ? (
+            <BadgeCheck aria-hidden="true" className="size-3" />
+          ) : (
+            <Clock3 aria-hidden="true" className="size-3" />
+          )}
+          {member.status}
+        </span>
+        {onRemove && (
+          <button
+            type="button"
+            disabled={isRemoving}
+            onClick={onRemove}
+            aria-label={`Remove ${member.name}`}
+            className="rounded border border-border px-2 py-0.5 text-[10px] font-medium text-muted-foreground hover:border-destructive/40 hover:text-destructive disabled:opacity-50"
+          >
+            Remove
+          </button>
         )}
-        {member.status}
-      </span>
+      </div>
     </article>
   );
 }
@@ -1146,7 +1282,7 @@ function InviteField({
   label: string;
   name: string;
   placeholder?: string;
-  type?: "text" | "email";
+  type?: "text" | "email" | "password";
 }) {
   return (
     <div>

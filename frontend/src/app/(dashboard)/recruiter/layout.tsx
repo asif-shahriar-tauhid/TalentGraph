@@ -12,20 +12,29 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { DashboardShell } from "@/components/layouts/dashboard";
+import { useAuth } from "@/providers/authProvider";
 
 export default function RecruiterLayout({ children }: { children: ReactNode }) {
+  const { user } = useAuth();
+  const linkedCompany = user?.recruiterProfile?.company;
+  const companyStatus = linkedCompany?.name || "Unassigned";
+  const companyStatusVerified =
+    linkedCompany?.verificationStatus === "VERIFIED";
+  const roleBadge =
+    user?.role === "SUB_RECRUITER" ? "SUB-RECRUITER" : "RECRUITER";
+
   return (
     <DashboardShell
       userRole="RECRUITER"
       roleTitle="Recruiter"
-      roleBadge="RECRUITER"
+      roleBadge={roleBadge}
       roleBadgeClassName="border-primary/30 bg-primary/10 text-primary"
       alwaysVisibleSidebar
       allowDevelopmentPreview
-      companyStatus="Unassigned"
-      companyStatusVerified={false}
-      footerNote="Recruiter dashboard preview"
-      footerSecurityText="Company and dashboard information is illustrative. Hiring decisions remain human-owned."
+      companyStatus={companyStatus}
+      companyStatusVerified={companyStatusVerified}
+      footerNote="Recruiter workspace"
+      footerSecurityText="Hiring decisions remain human-owned."
       navGroups={[
         {
           title: "Hiring desk",

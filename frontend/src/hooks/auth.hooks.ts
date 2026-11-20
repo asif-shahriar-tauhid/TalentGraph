@@ -1,5 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
+  changePassword,
+  connectGithubAccount,
+  disconnectGithubAccount,
   forgotPassword,
   getMe,
   githubAuth,
@@ -12,6 +15,8 @@ import {
 import { gooeyToast } from "@/components/ui/goey-toaster";
 import { clearClientAuthCookie, syncClientAuthCookie } from "@/lib/authUtils";
 import type {
+  ChangePasswordPayload,
+  ConnectGithubPayload,
   GithubAuthPayload,
   LoginPayload,
   RegisterPayload,
@@ -122,6 +127,58 @@ export const useGithubAuth = () => {
   });
 };
 
+export const useConnectGithub = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload: ConnectGithubPayload) => connectGithubAccount(payload),
+    onSuccess: (response) => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+      queryClient.invalidateQueries({ queryKey: ["candidate-profile"] });
+      queryClient.invalidateQueries({ queryKey: ["github-repos"] });
+      gooeyToast.success("GitHub Connected", {
+        description:
+          response.message || "Your GitHub account was linked successfully.",
+      });
+    },
+    onError: (error: unknown) => {
+      const err = error as { data?: { message?: string }; message?: string };
+      gooeyToast.error("GitHub Link Failed", {
+        description:
+          err?.data?.message ||
+          err?.message ||
+          "Could not connect GitHub account.",
+      });
+    },
+  });
+};
+
+export const useDisconnectGithub = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: () => disconnectGithubAccount(),
+    onSuccess: (response) => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+      queryClient.invalidateQueries({ queryKey: ["candidate-profile"] });
+      queryClient.invalidateQueries({ queryKey: ["github-repos"] });
+      gooeyToast.success("GitHub Disconnected", {
+        description:
+          response.message || "Your GitHub token has been removed.",
+      });
+    },
+    onError: (error: unknown) => {
+      const err = error as { data?: { message?: string }; message?: string };
+      gooeyToast.error("Disconnect Failed", {
+        description:
+          err?.data?.message ||
+          err?.message ||
+          "Could not disconnect GitHub account.",
+      });
+    },
+  });
+};
+
 export const useLogout = () => {
   const queryClient = useQueryClient();
 
@@ -134,14 +191,14 @@ export const useLogout = () => {
         description: "You have been logged out securely.",
       });
       if (typeof window !== "undefined") {
-        window.location.href = "/login";
+        window.location.assign("/login");
       }
     },
     onError: () => {
       clearClientAuthCookie();
       queryClient.clear();
       if (typeof window !== "undefined") {
-        window.location.href = "/login";
+        window.location.assign("/login");
       }
     },
   });
@@ -174,7 +231,8 @@ export const useResetPassword = () => {
     onSuccess: (response) => {
       gooeyToast.success("Password Updated", {
         description:
-          response.message || "Your password was successfully reset. You may now log in.",
+          response.message ||
+          "Your password was successfully reset. You may now log in.",
       });
     },
     onError: (error: unknown) => {
@@ -184,6 +242,30 @@ export const useResetPassword = () => {
           err?.data?.message ||
           err?.message ||
           "Invalid code or password requirements not met.",
+      });
+    },
+  });
+};
+
+export const useChangePassword = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (payload: ChangePasswordPayload) => changePassword(payload),
+    onSuccess: (response) => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+      gooeyToast.success("Password Changed", {
+        description:
+          response.message || "Your account password has been updated.",
+      });
+    },
+    onError: (error: unknown) => {
+      const err = error as { data?: { message?: string }; message?: string };
+      gooeyToast.error("Password Update Failed", {
+        description:
+          err?.data?.message ||
+          err?.message ||
+          "Could not change password. Verify your current password.",
       });
     },
   });
