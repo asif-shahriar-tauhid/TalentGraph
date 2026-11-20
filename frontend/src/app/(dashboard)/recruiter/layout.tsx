@@ -61,7 +61,8 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
               badge: "0",
               isActive: (path) =>
                 path === "/recruiter/jobs" ||
-                path.startsWith("/recruiter/jobs/"),
+                (path.startsWith("/recruiter/jobs/") &&
+                  !path.endsWith("/applicants")),
             },
           ],
         },
@@ -73,7 +74,10 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
               href: "/recruiter/applicants",
               icon: Users,
               badge: "0",
-              isActive: (path) => path.startsWith("/recruiter/applicants"),
+              isActive: (path) =>
+                path === "/recruiter/applicants" ||
+                (path.startsWith("/recruiter/jobs/") &&
+                  path.endsWith("/applicants")),
             },
             {
               label: "Assessment Review",
