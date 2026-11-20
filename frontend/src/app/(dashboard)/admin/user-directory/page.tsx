@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   Activity,
   Building2,
@@ -14,32 +13,58 @@ import {
   FileSearch,
   LayoutDashboard,
   LogOut,
+  RefreshCw,
+  RotateCcw,
   Search,
   ShieldAlert,
   ShieldCheck,
   Sun,
-  Users,
+  Trash2,
   UserRoundSearch,
+  Users,
   X,
 } from "lucide-react";
+import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
-import type { User, UserRole } from "@/types/auth.types";
+import {
+  useGetAllUsers,
+  useGetUserById,
+  useRestoreUserByAdmin,
+  useSoftDeleteUserByAdmin,
+  useUpdateAssessmentBan,
+  useUpdateUserStatus,
+} from "@/hooks";
 import { useAuth } from "@/providers/authProvider";
 import { useTheme } from "@/providers/themeProvider";
+import type { User, UserRole } from "@/types/auth.types";
 
 type DirectoryTab = "all" | "candidates" | "recruiters";
 type AccountState = "all" | User["status"];
 
-const directoryUsers: User[] = [];
-
 const navigationItems = [
   { label: "Operational Queue", href: "/admin", icon: LayoutDashboard },
-  { label: "Company Verification", href: "/admin/company-verification", icon: Building2 },
+  {
+    label: "Company Verification",
+    href: "/admin/company-verification",
+    icon: Building2,
+  },
   { label: "User Directory", href: "/admin/user-directory", icon: Users },
-  { label: "Jobs Moderation", href: "/admin#moderation", icon: Code2 },
-  { label: "Integrity Cases", href: "/admin#integrity", icon: ShieldAlert },
-  { label: "Worker Telemetry", href: "/admin#telemetry", icon: Activity },
-  { label: "BDT Subscriptions", href: "/admin#subscriptions", icon: CircleHelp },
+  { label: "Jobs Moderation", href: "/admin/jobs-moderation", icon: Code2 },
+  {
+    label: "Integrity Cases",
+    href: "/admin/integrity-cases",
+    icon: ShieldAlert,
+  },
+  {
+    label: "Worker Telemetry",
+    href: "/admin/worker-telemetry",
+    icon: Activity,
+  },
+  {
+    label: "BDT Subscriptions",
+    href: "/admin/bdt-subscriptions",
+    icon: CircleHelp,
+  },
 ];
 
 function isRecruiter(role: UserRole) {
@@ -71,7 +96,7 @@ function getInitials(name: string) {
     .toUpperCase();
 }
 
-function formatDate(value?: string) {
+function formatDate(value?: string | null) {
   if (!value) return "Not recorded";
   const date = new Date(value);
   return Number.isNaN(date.getTime())
@@ -106,12 +131,46 @@ export default function UserDirectoryPage() {
   const [activeTab, setActiveTab] = useState<DirectoryTab>("all");
   const [accountState, setAccountState] = useState<AccountState>("all");
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+  const [banReason, setBanReason] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
+
   const { user, logout, logoutPending, isLoading: isAuthLoading } = useAuth();
   const { toggleTheme } = useTheme();
   const shellUser = user ?? { name: "Administrator", role: "ADMIN" as const };
   const isPreviewSession = !user;
+
+  const {
+    data: usersRes,
+    isLoading: isDirectoryLoading,
+    refetch: refetchDirectory,
+  } = useGetAllUsers(
+    { includeDeleted: "true", limit: 100 },
+    Boolean(user),
+  );
+
+  const directoryUsers = useMemo(() => usersRes?.data ?? [], [usersRes?.data]);
+
+  const { data: inspectedUserRes } = useGetUserById(
+    user && selectedUserId ? selectedUserId : null,
+  );
+
+  const selectedUser = useMemo(() => {
+    if (!selectedUserId) return null;
+    if (inspectedUserRes?.data && inspectedUserRes.data.id === selectedUserId) {
+      return inspectedUserRes.data;
+    }
+    return directoryUsers.find((u) => u.id === selectedUserId) ?? null;
+  }, [selectedUserId, inspectedUserRes?.data, directoryUsers]);
+
+  const { mutate: updateStatus, isPending: isStatusUpdating } =
+    useUpdateUserStatus();
+  const { mutate: updateBan, isPending: isBanUpdating } =
+    useUpdateAssessmentBan();
+  const { mutate: softDeleteUser, isPending: isSoftDeleting } =
+    useSoftDeleteUserByAdmin();
+  const { mutate: restoreUser, isPending: isRestoring } =
+    useRestoreUserByAdmin();
 
   const filteredUsers = useMemo(() => {
     const query = searchTerm.trim().toLowerCase();
@@ -131,7 +190,7 @@ export default function UserDirectoryPage() {
 
       return matchesTab && matchesState && matchesSearch;
     });
-  }, [activeTab, accountState, searchTerm]);
+  }, [directoryUsers, activeTab, accountState, searchTerm]);
 
   const totalAccounts = directoryUsers.length;
   const candidateCount = directoryUsers.filter(
@@ -144,7 +203,8 @@ export default function UserDirectoryPage() {
     (directoryUser) => directoryUser.authProvider === "GITHUB",
   ).length;
   const flaggedCount = directoryUsers.filter(
-    (directoryUser) => directoryUser.status === "BLOCKED",
+    (directoryUser) =>
+      directoryUser.status === "BLOCKED" || directoryUser.isAssessmentBanned,
   ).length;
 
   const exportDirectory = () => {
@@ -178,6 +238,49 @@ export default function UserDirectoryPage() {
     setAccountState("all");
     setSearchTerm("");
   };
+
+  const renderAffiliationCell = (directoryUser: User) => {
+    if (isRecruiter(directoryUser.role)) {
+      const company = directoryUser.recruiterProfile?.company;
+      if (company) {
+        return (
+          <div>
+            <span className="block text-[#D4D4D8] font-medium">
+              {company.name}
+            </span>
+            <span className="block font-mono text-[10px] text-[#71717A]">
+              {company.verificationStatus} · {company.subscriptionTier}
+            </span>
+          </div>
+        );
+      }
+      return <span className="text-[#71717A]">No company linked</span>;
+    }
+
+    if (directoryUser.role === "CANDIDATE") {
+      const cp = directoryUser.candidateProfile;
+      if (cp) {
+        return (
+          <div>
+            <span className="block text-[#D4D4D8] truncate max-w-[200px]">
+              {cp.headline || "Candidate profile"}
+            </span>
+            <span className="block font-mono text-[10px] text-[#71717A]">
+              Syncs: {cp.githubSyncCount}/3 · {cp.subscriptionTier}
+            </span>
+          </div>
+        );
+      }
+      return <span className="text-[#71717A]">Candidate</span>;
+    }
+
+    return <span className="text-[#71717A]">Platform Governance</span>;
+  };
+
+  const canModifySelected =
+    Boolean(selectedUser) &&
+    selectedUser?.role !== "SYSTEM_ADMIN" &&
+    selectedUser?.id !== user?.id;
 
   return (
     <div className="flex min-h-screen w-full overflow-x-hidden bg-[#0D0D0F] text-[#D4D4D8] selection:bg-[#D4621A] selection:text-white">
@@ -217,7 +320,9 @@ export default function UserDirectoryPage() {
               </span>
             </Link>
             <button
-              aria-label={isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+              aria-label={
+                isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
+              }
               className={`rounded-lg p-1.5 text-[#A1A1AA] hover:bg-[#1A1A1E] hover:text-white ${
                 isSidebarCollapsed ? "mx-auto" : ""
               }`}
@@ -233,7 +338,10 @@ export default function UserDirectoryPage() {
             </button>
           </div>
 
-          <nav aria-label="Admin navigation" className="min-h-0 space-y-1 overflow-y-auto">
+          <nav
+            aria-label="Admin navigation"
+            className="min-h-0 space-y-1 overflow-y-auto"
+          >
             {navigationItems.map(({ label, href, icon: Icon }) => {
               const isActive = label === "User Directory";
               return (
@@ -262,7 +370,11 @@ export default function UserDirectoryPage() {
           </nav>
         </div>
 
-        <div className={`border-t border-[#232328] pt-3 ${isSidebarCollapsed ? "text-center" : ""}`}>
+        <div
+          className={`border-t border-[#232328] pt-3 ${
+            isSidebarCollapsed ? "text-center" : ""
+          }`}
+        >
           <div
             className={`mb-3 flex items-center ${
               isSidebarCollapsed
@@ -294,7 +406,9 @@ export default function UserDirectoryPage() {
             )}
           </div>
           <button
-            aria-label={isPreviewSession ? "Sign out unavailable in preview" : "Sign out"}
+            aria-label={
+              isPreviewSession ? "Sign out unavailable in preview" : "Sign out"
+            }
             className={`flex w-full items-center justify-center gap-2 rounded-lg border border-[#27272C] py-2 text-xs text-[#A1A1AA] transition-colors hover:border-[#482026] hover:bg-[#2E181D] hover:text-[#F87171] disabled:opacity-50 ${
               isSidebarCollapsed ? "px-0" : "px-0 md:px-3"
             }`}
@@ -316,7 +430,9 @@ export default function UserDirectoryPage() {
               <div className="mb-1 flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-[#71717A]">
                 <span>Admin</span>
                 <span aria-hidden="true">/</span>
-                <span className="font-semibold text-[#D4621A]">User Directory</span>
+                <span className="font-semibold text-[#D4621A]">
+                  User Directory
+                </span>
               </div>
               <h1 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
                 User Directory &amp; Account Governance
@@ -324,6 +440,18 @@ export default function UserDirectoryPage() {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <button
+              aria-label="Refresh user directory"
+              className="flex size-9 items-center justify-center rounded-lg border border-[#27272C] bg-[#161619] text-[#A1A1AA] transition-colors hover:bg-[#202024] hover:text-white"
+              onClick={() => refetchDirectory()}
+              title="Refresh directory"
+              type="button"
+            >
+              <RefreshCw
+                aria-hidden="true"
+                className={`size-4 ${isDirectoryLoading ? "animate-spin" : ""}`}
+              />
+            </button>
             <button
               aria-label="Focus user search"
               className="flex size-9 items-center justify-center rounded-lg border border-[#27272C] bg-[#161619] text-[#A1A1AA] transition-colors hover:bg-[#202024] hover:text-white"
@@ -355,7 +483,10 @@ export default function UserDirectoryPage() {
         </header>
 
         <div className="mx-auto flex w-full max-w-[1600px] flex-1 flex-col gap-6 p-4 md:p-6">
-          <section aria-label="Account metrics" className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <section
+            aria-label="Account metrics"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
+          >
             {[
               {
                 label: "Total Accounts",
@@ -374,14 +505,14 @@ export default function UserDirectoryPage() {
               {
                 label: "Enterprise Recruiters",
                 value: recruiterCount,
-                detail: "Recruiter accounts",
+                detail: "Recruiter & Sub-recruiter accounts",
                 icon: Building2,
                 iconClass: "text-[#A1A1AA]",
               },
               {
-                label: "Flagged",
+                label: "Flagged / Restricted",
                 value: flaggedCount,
-                detail: "Blocked accounts",
+                detail: "Blocked or assessment-banned accounts",
                 icon: ShieldAlert,
                 iconClass: "text-[#E5933A]",
               },
@@ -417,8 +548,16 @@ export default function UserDirectoryPage() {
               >
                 {[
                   { id: "all", label: "All Accounts", count: totalAccounts },
-                  { id: "candidates", label: "Candidates", count: candidateCount },
-                  { id: "recruiters", label: "Recruiters", count: recruiterCount },
+                  {
+                    id: "candidates",
+                    label: "Candidates",
+                    count: candidateCount,
+                  },
+                  {
+                    id: "recruiters",
+                    label: "Recruiters",
+                    count: recruiterCount,
+                  },
                 ].map((tab) => (
                   <button
                     aria-selected={activeTab === tab.id}
@@ -492,9 +631,15 @@ export default function UserDirectoryPage() {
                     <tr className="border-b border-[#222227]">
                       <th className="px-4 py-3 font-semibold">User Identity</th>
                       <th className="px-4 py-3 font-semibold">Role &amp; Auth</th>
-                      <th className="px-4 py-3 font-semibold">Affiliation / Repos</th>
-                      <th className="px-4 py-3 font-semibold">Governance Status</th>
-                      <th className="px-4 py-3 text-right font-semibold">Last Active</th>
+                      <th className="px-4 py-3 font-semibold">
+                        Affiliation / Profile
+                      </th>
+                      <th className="px-4 py-3 font-semibold">
+                        Governance Status
+                      </th>
+                      <th className="px-4 py-3 text-right font-semibold">
+                        Last Active
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[#222227]">
@@ -505,19 +650,28 @@ export default function UserDirectoryPage() {
                             {directoryUsers.length === 0 ? (
                               <>
                                 <span className="mb-3 flex size-11 items-center justify-center rounded-full border border-[#2B2B32] bg-[#1F1F24] text-[#A1A1AA]">
-                                  <UserRoundSearch aria-hidden="true" className="size-5" />
+                                  <UserRoundSearch
+                                    aria-hidden="true"
+                                    className="size-5"
+                                  />
                                 </span>
                                 <h2 className="text-sm font-semibold text-white">
-                                  No accounts registered yet
+                                  {isDirectoryLoading
+                                    ? "Loading user directory..."
+                                    : "No accounts registered yet"}
                                 </h2>
                                 <p className="mt-1 text-xs leading-5 text-[#71717A]">
-                                  Newly onboarded candidates and recruiters will appear here.
+                                  Newly onboarded candidates and recruiters will
+                                  appear here.
                                 </p>
                               </>
                             ) : (
                               <>
                                 <span className="mb-3 flex size-11 items-center justify-center rounded-full border border-[#2B2B32] bg-[#1F1F24] text-[#A1A1AA]">
-                                  <FileSearch aria-hidden="true" className="size-5" />
+                                  <FileSearch
+                                    aria-hidden="true"
+                                    className="size-5"
+                                  />
                                 </span>
                                 <h2 className="text-sm font-semibold text-white">
                                   No accounts match these filters
@@ -547,11 +701,11 @@ export default function UserDirectoryPage() {
                               : ""
                           }`}
                           key={directoryUser.id}
-                          onClick={() => setSelectedUser(directoryUser)}
+                          onClick={() => setSelectedUserId(directoryUser.id)}
                           onKeyDown={(event) => {
                             if (event.key === "Enter" || event.key === " ") {
                               event.preventDefault();
-                              setSelectedUser(directoryUser);
+                              setSelectedUserId(directoryUser.id);
                             }
                           }}
                           tabIndex={0}
@@ -582,17 +736,28 @@ export default function UserDirectoryPage() {
                             </span>
                           </td>
                           <td className="px-4 py-3.5 text-[#71717A]">
-                            Not available
+                            {renderAffiliationCell(directoryUser)}
                           </td>
                           <td className="px-4 py-3.5">
-                            <span
-                              className={`inline-flex rounded border px-2 py-0.5 text-[10px] ${accountStateClass(directoryUser.status)}`}
-                            >
-                              {accountStateLabel(directoryUser.status)}
-                            </span>
+                            <div className="flex flex-wrap items-center gap-1.5">
+                              <span
+                                className={`inline-flex rounded border px-2 py-0.5 text-[10px] ${accountStateClass(
+                                  directoryUser.status,
+                                )}`}
+                              >
+                                {accountStateLabel(directoryUser.status)}
+                              </span>
+                              {directoryUser.isAssessmentBanned && (
+                                <span className="inline-flex rounded border border-[#482026] bg-[#2E181D] px-2 py-0.5 text-[10px] text-[#F87171]">
+                                  Assessment Banned
+                                </span>
+                              )}
+                            </div>
                           </td>
                           <td className="px-4 py-3.5 text-right font-mono text-[10px] text-[#71717A]">
-                            Not recorded
+                            {formatDate(
+                              directoryUser.updatedAt || directoryUser.createdAt,
+                            )}
                           </td>
                         </tr>
                       ))
@@ -606,7 +771,11 @@ export default function UserDirectoryPage() {
                     ? "Showing 0 of 0 accounts"
                     : `Showing ${filteredUsers.length} of ${totalAccounts} accounts`}
                 </span>
-                <span className="font-mono">Directory records only</span>
+                <span className="font-mono">
+                  {usersRes?.meta
+                    ? `Page ${usersRes.meta.page} of ${Math.max(1, usersRes.meta.totalPages)}`
+                    : "Directory records"}
+                </span>
               </div>
             </div>
           </section>
@@ -629,7 +798,7 @@ export default function UserDirectoryPage() {
                 <button
                   aria-label="Clear selected user"
                   className="rounded p-1 text-[#71717A] hover:bg-[#202024] hover:text-white"
-                  onClick={() => setSelectedUser(null)}
+                  onClick={() => setSelectedUserId(null)}
                   type="button"
                 >
                   <X aria-hidden="true" className="size-4" />
@@ -643,7 +812,8 @@ export default function UserDirectoryPage() {
                   <Search aria-hidden="true" className="size-4" />
                 </span>
                 <p className="max-w-lg text-sm text-[#A1A1AA]">
-                  Select a user row from the directory to inspect account governance and security status
+                  Select a user row from the directory to inspect account
+                  governance and security status
                 </p>
               </div>
             ) : (
@@ -691,6 +861,41 @@ export default function UserDirectoryPage() {
                           {formatDate(selectedUser.createdAt)}
                         </dd>
                       </div>
+                      {selectedUser.candidateProfile?._count && (
+                        <>
+                          <div className="flex justify-between gap-3">
+                            <dt className="text-[#71717A]">Verified Skills</dt>
+                            <dd className="text-right font-mono text-[#D4D4D8]">
+                              {selectedUser.candidateProfile._count.skills}
+                            </dd>
+                          </div>
+                          <div className="flex justify-between gap-3">
+                            <dt className="text-[#71717A]">GitHub Repos</dt>
+                            <dd className="text-right font-mono text-[#D4D4D8]">
+                              {selectedUser.candidateProfile._count.githubRepos}
+                            </dd>
+                          </div>
+                          <div className="flex justify-between gap-3">
+                            <dt className="text-[#71717A]">Applications</dt>
+                            <dd className="text-right font-mono text-[#D4D4D8]">
+                              {selectedUser.candidateProfile._count.applications}
+                            </dd>
+                          </div>
+                        </>
+                      )}
+                      {selectedUser.recruiterProfile?.company && (
+                        <div className="flex justify-between gap-3">
+                          <dt className="text-[#71717A]">Company</dt>
+                          <dd className="text-right text-[#D4D4D8]">
+                            {selectedUser.recruiterProfile.company.name} (
+                            {
+                              selectedUser.recruiterProfile.company
+                                .verificationStatus
+                            }
+                            )
+                          </dd>
+                        </div>
+                      )}
                     </dl>
                   </div>
                 </div>
@@ -702,44 +907,213 @@ export default function UserDirectoryPage() {
                     </h3>
                     <div className="grid gap-3 sm:grid-cols-3">
                       <div className="rounded-lg border border-[#222227] bg-[#17171B] p-3">
-                        <p className="text-[11px] text-[#71717A]">Account state</p>
+                        <p className="text-[11px] text-[#71717A]">
+                          Account state
+                        </p>
                         <span
-                          className={`mt-2 inline-flex rounded border px-2 py-0.5 text-[10px] ${accountStateClass(selectedUser.status)}`}
+                          className={`mt-2 inline-flex rounded border px-2 py-0.5 text-[10px] ${accountStateClass(
+                            selectedUser.status,
+                          )}`}
                         >
                           {accountStateLabel(selectedUser.status)}
                         </span>
                       </div>
                       <div className="rounded-lg border border-[#222227] bg-[#17171B] p-3">
-                        <p className="text-[11px] text-[#71717A]">Email verification</p>
+                        <p className="text-[11px] text-[#71717A]">
+                          Email verification
+                        </p>
                         <p className="mt-2 flex items-center gap-1.5 text-xs text-[#D4D4D8]">
                           {selectedUser.emailVerified ? (
-                            <CheckCircle2 aria-hidden="true" className="size-3.5 text-[#4ADE80]" />
+                            <CheckCircle2
+                              aria-hidden="true"
+                              className="size-3.5 text-[#4ADE80]"
+                            />
                           ) : (
-                            <ShieldAlert aria-hidden="true" className="size-3.5 text-[#E5933A]" />
+                            <ShieldAlert
+                              aria-hidden="true"
+                              className="size-3.5 text-[#E5933A]"
+                            />
                           )}
-                          {selectedUser.emailVerified ? "Verified" : "Not verified"}
+                          {selectedUser.emailVerified
+                            ? "Verified"
+                            : "Not verified"}
                         </p>
                       </div>
                       <div className="rounded-lg border border-[#222227] bg-[#17171B] p-3">
-                        <p className="text-[11px] text-[#71717A]">Created</p>
+                        <p className="text-[11px] text-[#71717A]">
+                          Assessment Standing
+                        </p>
                         <p className="mt-2 text-xs text-[#D4D4D8]">
-                          {formatDate(selectedUser.createdAt)}
+                          {selectedUser.isAssessmentBanned
+                            ? "Permanently Banned"
+                            : "Eligible"}
                         </p>
                       </div>
                     </div>
                   </div>
+
+                  {/* Governance Controls */}
+                  {canModifySelected && (
+                    <div className="rounded-lg border border-[#222227] bg-[#121215] p-3 space-y-4">
+                      <h3 className="text-[10px] font-semibold uppercase tracking-wider text-[#71717A]">
+                        Administrative Governance Controls
+                      </h3>
+
+                      <div className="flex flex-wrap items-center gap-2">
+                        {selectedUser.status !== "ACTIVE" &&
+                          selectedUser.status !== "DELETED" && (
+                            <button
+                              type="button"
+                              disabled={isStatusUpdating}
+                              onClick={() =>
+                                updateStatus({
+                                  id: selectedUser.id,
+                                  payload: { status: "ACTIVE" },
+                                })
+                              }
+                              className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-[#1A3D2C] bg-[#13281E] px-3 text-xs font-medium text-[#4ADE80] hover:bg-[#193528] disabled:opacity-50"
+                            >
+                              <CheckCircle2 className="size-3.5" />
+                              <span>Unblock Account</span>
+                            </button>
+                          )}
+
+                        {selectedUser.status === "ACTIVE" && (
+                          <button
+                            type="button"
+                            disabled={isStatusUpdating}
+                            onClick={() =>
+                              updateStatus({
+                                id: selectedUser.id,
+                                payload: { status: "BLOCKED" },
+                              })
+                            }
+                            className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-[#482026] bg-[#2E181D] px-3 text-xs font-medium text-[#F87171] hover:bg-[#3B1E25] disabled:opacity-50"
+                          >
+                            <ShieldAlert className="size-3.5" />
+                            <span>Block Account</span>
+                          </button>
+                        )}
+
+                        {selectedUser.status === "DELETED" ||
+                        selectedUser.isDeleted ? (
+                          <button
+                            type="button"
+                            disabled={isRestoring}
+                            onClick={() => restoreUser(selectedUser.id)}
+                            className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-[#1A3D2C] bg-[#13281E] px-3 text-xs font-medium text-[#4ADE80] hover:bg-[#193528] disabled:opacity-50"
+                          >
+                            <RotateCcw className="size-3.5" />
+                            <span>Restore Deleted Account</span>
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            disabled={isSoftDeleting}
+                            onClick={() => softDeleteUser(selectedUser.id)}
+                            className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-[#3A3A40] bg-[#202024] px-3 text-xs font-medium text-[#A1A1AA] hover:text-[#F87171] disabled:opacity-50"
+                          >
+                            <Trash2 className="size-3.5" />
+                            <span>Soft-Delete Account</span>
+                          </button>
+                        )}
+
+                        <select
+                          aria-label="Change user role"
+                          disabled={isStatusUpdating}
+                          value={
+                            selectedUser.role === "CANDIDATE" ||
+                            selectedUser.role === "RECRUITER" ||
+                            selectedUser.role === "SUB_RECRUITER"
+                              ? selectedUser.role
+                              : "CANDIDATE"
+                          }
+                          onChange={(e) =>
+                            updateStatus({
+                              id: selectedUser.id,
+                              payload: {
+                                role: e.target.value as
+                                  | "CANDIDATE"
+                                  | "RECRUITER"
+                                  | "SUB_RECRUITER",
+                              },
+                            })
+                          }
+                          className="h-8 rounded-lg border border-[#27272C] bg-[#161619] px-2.5 text-xs text-[#D4D4D8] outline-none focus:border-[#D4621A]"
+                        >
+                          <option value="CANDIDATE">Role: Candidate</option>
+                          <option value="RECRUITER">Role: Recruiter</option>
+                          <option value="SUB_RECRUITER">
+                            Role: Sub-Recruiter
+                          </option>
+                        </select>
+                      </div>
+
+                      {selectedUser.role === "CANDIDATE" && (
+                        <div className="border-t border-[#222227] pt-3 space-y-2">
+                          <label
+                            htmlFor="ban-audit-reason"
+                            className="block text-[11px] text-[#A1A1AA]"
+                          >
+                            Candidate Assessment Integrity Override (Mandatory
+                            Audit Reason)
+                          </label>
+                          <div className="flex flex-col sm:flex-row gap-2">
+                            <input
+                              id="ban-audit-reason"
+                              type="text"
+                              value={banReason}
+                              onChange={(e) => setBanReason(e.target.value)}
+                              placeholder="Enter audit reason (min 5 characters)..."
+                              className="h-8 flex-1 rounded-lg border border-[#27272C] bg-[#161619] px-3 text-xs text-white outline-none placeholder:text-[#71717A] focus:border-[#D4621A]"
+                            />
+                            <button
+                              type="button"
+                              disabled={
+                                isBanUpdating || banReason.trim().length < 5
+                              }
+                              onClick={() => {
+                                updateBan(
+                                  {
+                                    id: selectedUser.id,
+                                    payload: {
+                                      isAssessmentBanned:
+                                        !selectedUser.isAssessmentBanned,
+                                      reason: banReason.trim(),
+                                    },
+                                  },
+                                  {
+                                    onSuccess: () => setBanReason(""),
+                                  },
+                                );
+                              }}
+                              className="inline-flex h-8 shrink-0 items-center justify-center gap-1.5 rounded-lg bg-[#D4621A] px-3 text-xs font-semibold text-white hover:bg-[#E47735] disabled:opacity-50"
+                            >
+                              <span>
+                                {selectedUser.isAssessmentBanned
+                                  ? "Lift Assessment Ban"
+                                  : "Ban from Assessments"}
+                              </span>
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   <div className="flex items-start gap-2 rounded-lg border border-[#27272C] bg-[#17171B] p-3 text-[11px] leading-relaxed text-[#71717A]">
-                    <ShieldCheck aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-[#A1A1AA]" />
+                    <ShieldCheck
+                      aria-hidden="true"
+                      className="mt-0.5 size-4 shrink-0 text-[#A1A1AA]"
+                    />
                     <p>
                       <strong className="font-medium text-[#D4D4D8]">
                         Privacy safeguards:
                       </strong>{" "}
-                      Sensitive profile documents and authentication credentials are not exposed in the directory inspector.
+                      Sensitive profile documents and authentication credentials
+                      are never exposed in the directory inspector.
                     </p>
                   </div>
-                  <p className="text-[11px] text-[#71717A]">
-                    Affiliation, repository, last-active, and account action details are not available from the current directory data.
-                  </p>
                 </div>
               </div>
             )}

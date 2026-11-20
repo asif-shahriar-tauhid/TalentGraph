@@ -2,6 +2,8 @@ import apiClient from "@/lib/apiClient";
 import type {
   ApiResponse,
   AuthResponseData,
+  ChangePasswordPayload,
+  ConnectGithubPayload,
   GithubAuthPayload,
   LoginPayload,
   RegisterPayload,
@@ -49,9 +51,9 @@ export const logout = async (): Promise<ApiResponse<null>> => {
   });
 };
 
-export const refreshToken = async (token?: string): Promise<
-  ApiResponse<{ accessToken: string; refreshToken: string }>
-> => {
+export const refreshToken = async (
+  token?: string,
+): Promise<ApiResponse<{ accessToken: string; refreshToken: string }>> => {
   return apiClient("/auth/refresh-token", {
     method: "POST",
     body: token ? { refreshToken: token } : undefined,
@@ -76,6 +78,15 @@ export const resetPassword = async (
   });
 };
 
+export const changePassword = async (
+  payload: ChangePasswordPayload,
+): Promise<ApiResponse<null>> => {
+  return apiClient("/auth/change-password", {
+    method: "POST",
+    body: payload,
+  });
+};
+
 export const getGithubAuthUrl = async (
   state?: string,
 ): Promise<ApiResponse<{ url: string }>> => {
@@ -91,5 +102,20 @@ export const githubAuth = async (
   return apiClient("/auth/github", {
     method: "POST",
     body: payload,
+  });
+};
+
+export const connectGithubAccount = async (
+  payload: ConnectGithubPayload,
+): Promise<ApiResponse<User>> => {
+  return apiClient("/auth/github/connect", {
+    method: "POST",
+    body: payload,
+  });
+};
+
+export const disconnectGithubAccount = async (): Promise<ApiResponse<User>> => {
+  return apiClient("/auth/github/disconnect", {
+    method: "DELETE",
   });
 };

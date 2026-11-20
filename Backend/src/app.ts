@@ -12,9 +12,29 @@ import { UserRoutes } from "./app/module/user/user.route";
 
 const app: Application = express();
 
+const allowedOrigins = new Set(
+  [
+    ...config.frontend_url.split(",").map((url) => url.trim().replace(/\/+$/, "")),
+    ...(config.node_env !== "production"
+      ? ["http://localhost:3000", "http://127.0.0.1:3000"]
+      : []),
+  ].filter(Boolean),
+);
+
 app.use(
   cors({
-    origin: config.frontend_url,
+    origin: (origin, callback) => {
+      if (!origin) {
+        callback(null, true);
+        return;
+      }
+      const normalizedOrigin = origin.replace(/\/+$/, "");
+      if (allowedOrigins.has(normalizedOrigin)) {
+        callback(null, true);
+        return;
+      }
+      callback(new Error(`Origin ${origin} not allowed by CORS`));
+    },
     credentials: true,
   }),
 );

@@ -8,7 +8,6 @@ import {
   EyeOff,
   KeyRound,
   LockKeyhole,
-  SlidersHorizontal,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -21,16 +20,6 @@ import { useLogin } from "@/hooks/auth.hooks";
 import { resolvePostAuthUrl } from "@/lib/authUtils";
 import { LoginZodSchema } from "@/validation";
 
-const simulationStates = [
-  "Default",
-  "OAuth Cancel",
-  "Invalid Workspace",
-  "Unverified Email",
-  "Loading",
-] as const;
-
-type SimulationState = (typeof simulationStates)[number];
-
 export default function LoginPage() {
   const router = useRouter();
   const { mutate: login, isPending: isLoginPending } = useLogin();
@@ -40,31 +29,15 @@ export default function LoginPage() {
   const [isGithubLoading, setIsGithubLoading] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [simulationState, setSimulationState] =
-    useState<SimulationState>("Default");
-  const [simulationMessage, setSimulationMessage] = useState("");
 
   const isPending = isLoginPending || isGithubLoading;
-  const isSimulatedLoading = simulationState === "Loading";
 
   const getRedirectUrl = () => {
     if (typeof window === "undefined") return undefined;
     return new URLSearchParams(window.location.search).get("redirect") ?? undefined;
   };
 
-  const selectSimulationState = (state: SimulationState) => {
-    setSimulationState(state);
-    setEmailError("");
-    setPasswordError("");
-    setSimulationMessage("");
-  };
-
   const handleGithubLogin = async () => {
-    if (simulationState === "OAuth Cancel") {
-      setSimulationMessage("Simulation: GitHub authorization was canceled.");
-      return;
-    }
-
     try {
       setIsGithubLoading(true);
       const response = await getGithubAuthUrl(getRedirectUrl());
@@ -95,19 +68,6 @@ export default function LoginPage() {
     event.preventDefault();
     setEmailError("");
     setPasswordError("");
-    setSimulationMessage("");
-
-    if (isSimulatedLoading) return;
-    if (simulationState === "Invalid Workspace") {
-      setEmailError("This email is not a valid company workspace.");
-      return;
-    }
-    if (simulationState === "Unverified Email") {
-      setSimulationMessage(
-        "Simulation: verify your email before accessing this workspace.",
-      );
-      return;
-    }
 
     const result = LoginZodSchema.safeParse({ email: email.trim(), password });
     if (!result.success) {
@@ -141,46 +101,6 @@ export default function LoginPage() {
       <main className="flex flex-1 items-center justify-center py-6 sm:py-10">
         <div className="w-full max-w-lg min-w-0">
           <section
-            aria-labelledby="simulation-title"
-            className="mx-auto mb-6 w-full max-w-lg rounded-xl border border-zinc-800 bg-[#121215] p-3"
-          >
-            <div className="mb-3 flex min-w-0 items-center gap-2">
-              <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-orange-500/30 bg-orange-500/10 text-orange-300">
-                <SlidersHorizontal aria-hidden="true" className="size-4" />
-              </span>
-              <h2
-                className="min-w-0 text-xs font-semibold text-zinc-100 sm:text-sm"
-                id="simulation-title"
-              >
-                Simulation State Control (Playbook B2)
-              </h2>
-            </div>
-            <div
-              aria-label="Simulation states"
-              className="grid grid-cols-2 gap-1.5 sm:grid-cols-3 md:grid-cols-5"
-            >
-              {simulationStates.map((state) => {
-                const isSelected = simulationState === state;
-                return (
-                  <button
-                    aria-pressed={isSelected}
-                    className={`min-w-0 rounded-full border px-2 py-1.5 text-[10px] font-medium leading-tight transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 sm:text-xs ${
-                      isSelected
-                        ? "border-[#D4621A] bg-[#D4621A] text-white shadow"
-                        : "border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-600 hover:bg-zinc-800 hover:text-zinc-100"
-                    }`}
-                    key={state}
-                    onClick={() => selectSimulationState(state)}
-                    type="button"
-                  >
-                    {state}
-                  </button>
-                );
-              })}
-            </div>
-          </section>
-
-          <section
             aria-labelledby="login-title"
             className="mx-auto w-full max-w-lg min-w-0 rounded-2xl border border-zinc-800 bg-[#121215]/90 p-6 shadow-2xl sm:p-8"
             id="auth-card"
@@ -213,7 +133,7 @@ export default function LoginPage() {
               </h2>
               <button
                 className="flex min-h-12 w-full min-w-0 items-center justify-center gap-2 rounded-lg border border-zinc-700 bg-[#19191C] px-3 py-3 text-sm font-semibold text-zinc-100 transition-colors hover:bg-zinc-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 disabled:cursor-not-allowed disabled:opacity-60 sm:gap-3 sm:px-4"
-                disabled={isPending || isSimulatedLoading}
+                disabled={isPending}
                 onClick={handleGithubLogin}
                 type="button"
               >
@@ -241,15 +161,6 @@ export default function LoginPage() {
                 </span>
               </p>
             </section>
-
-            {simulationMessage && (
-              <p
-                aria-live="polite"
-                className="mt-4 rounded-lg border border-orange-500/30 bg-orange-500/10 p-2.5 text-xs leading-relaxed text-orange-200"
-              >
-                {simulationMessage}
-              </p>
-            )}
 
             <div className="relative my-6 flex items-center justify-center">
               <div
@@ -374,19 +285,17 @@ export default function LoginPage() {
 
               <button
                 className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#D4621A] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#b85215] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 disabled:cursor-not-allowed disabled:opacity-60"
-                disabled={isPending || isSimulatedLoading}
+                disabled={isPending}
                 type="submit"
               >
-                {isLoginPending || isSimulatedLoading ? (
+                {isLoginPending ? (
                   <span
                     aria-hidden="true"
                     className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent"
                   />
                 ) : null}
-                {isLoginPending || isSimulatedLoading
-                  ? "Signing in…"
-                  : "Sign In as Recruiter"}
-                {!isLoginPending && !isSimulatedLoading && (
+                {isLoginPending ? "Signing in…" : "Sign In as Recruiter"}
+                {!isLoginPending && (
                   <ArrowRight aria-hidden="true" className="size-4" />
                 )}
               </button>

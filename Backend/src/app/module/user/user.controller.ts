@@ -62,12 +62,12 @@ const deleteMyAccount = catchAsync(async (req: Request, res: Response) => {
   const result = await UserService.deleteMyAccount(userId, req.body);
 
   const clearCookieOptions = {
-    httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? ("none" as const) : ("lax" as const),
+    path: "/",
   };
-  res.clearCookie("accessToken", clearCookieOptions);
-  res.clearCookie("refreshToken", clearCookieOptions);
+  res.clearCookie("accessToken", { ...clearCookieOptions, httpOnly: false });
+  res.clearCookie("refreshToken", { ...clearCookieOptions, httpOnly: true });
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
