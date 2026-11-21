@@ -94,8 +94,10 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
               badge: "0 In Technical",
               isActive: (path) =>
                 path === "/recruiter/pipeline" ||
+                path.startsWith("/recruiter/pipeline/") ||
                 (path.startsWith("/recruiter/jobs/") &&
-                  path.endsWith("/pipeline")),
+                  (path.endsWith("/pipeline") ||
+                    path.includes("/pipeline/"))),
             },
           ],
         },

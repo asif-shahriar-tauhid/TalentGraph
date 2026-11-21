@@ -47,7 +47,8 @@ export function DashboardSidebar({
   footerNote,
   footerSecurityText,
 }: DashboardSidebarProps) {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "/";
+  const normalizedPathname = pathname.replace(/\/+$/, "") || "/";
   const { user, role, logout, logoutPending } = useAuth();
   const collapsed = isCollapsed;
   const userInitials =
@@ -73,8 +74,8 @@ export function DashboardSidebar({
           "z-50 flex h-screen shrink-0 flex-col border-r border-border/80 bg-card transition-[transform,width] duration-300",
           alwaysVisible
             ? cn(
-                "sticky top-0 w-[68px] overflow-x-hidden",
-                collapsed ? "lg:w-16" : "lg:w-64",
+                "sticky top-0 w-[68px] overflow-x-hidden lg:w-64",
+                collapsed && "lg:w-16",
               )
             : cn(
                 "fixed top-0 bottom-0 left-0 w-64 lg:static lg:translate-x-0",
@@ -298,13 +299,13 @@ export function DashboardSidebar({
               <div className={cn("space-y-1", alwaysVisible && "lg:space-y-1.5")}>
                 {group.items.map((item, itemIdx) => {
                   const candidateEvidenceRoute =
-                    pathname.includes("/candidates/");
+                    normalizedPathname.includes("/candidates/");
                   const isActive = candidateEvidenceRoute
                     ? item.label === "Applicants & Rankings"
                     : item.isActive
-                      ? item.isActive(pathname)
-                      : pathname === item.href ||
-                        pathname.startsWith(`${item.href}/`);
+                      ? item.isActive(normalizedPathname)
+                      : normalizedPathname === item.href ||
+                        normalizedPathname.startsWith(`${item.href}/`);
                   const Icon = item.icon;
 
                   return (
@@ -356,10 +357,9 @@ export function DashboardSidebar({
                           <span
                             className={cn(
                               "min-w-0",
-                              alwaysVisible &&
-                                "hidden lg:truncate",
-                              !collapsed && alwaysVisible && "lg:inline",
-                              !alwaysVisible && "truncate",
+                              alwaysVisible
+                                ? "hidden lg:inline lg:truncate"
+                                : "truncate",
                             )}
                           >
                             {item.label}
