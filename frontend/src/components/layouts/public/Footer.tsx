@@ -1,74 +1,68 @@
 import Link from "next/link";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="w-full overflow-hidden bg-[#D4621A] text-white">
-      <div className="mx-auto max-w-[1440px] px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-[1.4fr_1fr_0.8fr] lg:gap-12">
-          <div className="min-w-0">
-            <h2 className="text-3xl font-medium leading-tight tracking-tight sm:text-4xl">
-              Let&apos;s design what&apos;s next.
-            </h2>
-            <Link
-              className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-3 text-xs font-bold uppercase tracking-widest text-[#18181B] transition-colors hover:bg-white/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              href="mailto:team@talentgraph.io"
-            >
-              Contact us
-            </Link>
-          </div>
-
-          <nav
-            aria-label="Footer navigation"
-            className="grid grid-cols-2 content-start gap-x-6 gap-y-4 text-sm font-medium"
+    <footer className="w-full overflow-hidden bg-[#E85D04] pt-7 pb-0 text-white lg:pt-8">
+      <div className="mx-auto mb-4 grid max-w-[1440px] grid-cols-1 gap-8 px-4 sm:px-6 lg:mb-5 lg:grid-cols-[1.2fr_0.8fr_1fr] lg:gap-8 lg:px-8">
+        <div className="min-w-0">
+          <h2 className="font-serif text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
+            Let&apos;s design what&apos;s next.
+          </h2>
+          <Link
+            className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-bold uppercase tracking-wider text-black transition-colors hover:bg-white/85"
+            href="mailto:team@talentgraph.io"
           >
-            <Link
-              className="transition-colors hover:text-white/75 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              href="/#about"
-            >
-              About us
-            </Link>
-            <Link
-              className="transition-colors hover:text-white/75 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              href="/privacy"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              className="transition-colors hover:text-white/75 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              href="/terms"
-            >
-              Legal Notice
-            </Link>
-            <Link
-              className="inline-flex items-center gap-1 transition-colors hover:text-white/75 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              href="mailto:team@talentgraph.io"
-            >
-              Get in touch
-              <ArrowUpRight aria-hidden="true" className="size-3.5" />
-            </Link>
-          </nav>
+            Contact us
+          </Link>
+        </div>
 
-          <address className="flex min-w-0 flex-col gap-3 text-sm not-italic">
-            <p className="inline-flex items-center gap-2 font-semibold">
+        <nav
+          aria-label="Footer navigation"
+          className="flex min-w-0 flex-col items-start space-y-1.5 text-base font-bold"
+        >
+          <Link className="break-words transition-opacity hover:opacity-75" href="/#about">
+            About us
+          </Link>
+          <Link className="break-words transition-opacity hover:opacity-75" href="/privacy">
+            Privacy Policy
+          </Link>
+          <Link className="break-words transition-opacity hover:opacity-75" href="/terms">
+            Legal Notice
+          </Link>
+          <Link
+            className="break-words transition-opacity hover:opacity-75"
+            href="mailto:team@talentgraph.io"
+          >
+            Get in touch
+          </Link>
+        </nav>
+
+        <div className="grid min-w-0 grid-cols-1 gap-5 text-right sm:grid-cols-2 lg:justify-self-end">
+          <address className="flex min-w-0 flex-col space-y-1.5 text-sm not-italic">
+            <p className="inline-flex min-w-0 flex-wrap items-center justify-end gap-2 font-bold">
               <MapPin aria-hidden="true" className="size-4 shrink-0" />
               Dhaka, Bangladesh
             </p>
+            <p>+880 1700 000000</p>
+            <p>1212 Gulshan</p>
+          </address>
+          <address className="flex min-w-0 flex-col space-y-1.5 text-sm not-italic">
+            <p className="inline-flex min-w-0 flex-wrap items-center justify-end gap-2 font-bold">
+              <MapPin aria-hidden="true" className="size-4 shrink-0" />
+              Paris, France
+            </p>
+            <p>+33 0763858388</p>
+            <p>75008 Madeleine</p>
           </address>
         </div>
       </div>
 
       <div
         aria-hidden="true"
-        className="w-full overflow-hidden px-1 text-center text-5xl font-black uppercase leading-none tracking-tighter text-white sm:px-4 sm:text-8xl md:text-[120px]"
+        className="w-full select-none bg-gradient-to-b from-white to-zinc-200 bg-clip-text pt-1 text-center text-[11.5vw] font-black uppercase leading-[0.8] tracking-tighter text-transparent lg:text-[12vw]"
       >
         TALENTGRAPH
-      </div>
-
-      <div className="mt-6 border-t border-white/25 px-4 py-4 text-center text-xs text-white/85 sm:px-6 lg:px-8">
-        © {currentYear} TalentGraph. All rights reserved.
       </div>
     </footer>
   );

@@ -35,7 +35,7 @@ export function Navbar({ variant = "default" }: { variant?: "default" | "dark" }
         <div className="flex min-h-12 flex-wrap items-center justify-between gap-x-2 gap-y-1 lg:contents">
           <Link
             aria-label="TalentGraph home"
-            className={`shrink-0 rounded-lg py-1 text-[10px] font-semibold tracking-tight focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] sm:text-xs md:text-sm ${
+            className={`min-w-0 break-words rounded-lg py-1 text-[10px] font-semibold tracking-tight focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] sm:text-xs md:text-sm ${
               isDark
                 ? "text-zinc-100"
                 : "text-[#18181B] dark:text-[#F5F5F5]"
@@ -66,7 +66,7 @@ export function Navbar({ variant = "default" }: { variant?: "default" | "dark" }
 
             {isAuthenticated ? (
               <Link
-                className="inline-flex min-h-8 items-center gap-1.5 whitespace-nowrap rounded-full bg-[#D4621A] px-2.5 py-1.5 text-[10px] font-semibold text-white transition-colors hover:bg-[#b85215] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] sm:min-h-9 sm:gap-2 sm:px-4 sm:py-2 sm:text-xs md:text-sm"
+                className="inline-flex min-w-0 min-h-8 items-center gap-1.5 rounded-full bg-[#D4621A] px-2.5 py-1.5 text-[10px] font-semibold text-white transition-colors hover:bg-[#b85215] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] sm:min-h-9 sm:gap-2 sm:px-4 sm:py-2 sm:text-xs md:text-sm"
                 href={dashboardUrl}
               >
                 <LayoutDashboard aria-hidden="true" className="size-4" />
@@ -75,7 +75,7 @@ export function Navbar({ variant = "default" }: { variant?: "default" | "dark" }
             ) : (
               <>
                 <Link
-                  className={`whitespace-nowrap rounded-full px-1.5 py-1 font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] sm:px-2 ${
+                  className={`min-w-0 break-words rounded-full px-1.5 py-1 font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] sm:px-2 ${
                     isDark
                       ? "text-zinc-300 hover:text-white"
                       : "text-[#71717A] hover:text-[#18181B] dark:text-[#A1A1AA] dark:hover:text-[#F5F5F5]"
@@ -85,7 +85,7 @@ export function Navbar({ variant = "default" }: { variant?: "default" | "dark" }
                   {pathname === "/login" ? "Sign up / Register" : "Sign In"}
                 </Link>
                 <Link
-                  className="inline-flex min-h-8 items-center gap-1 whitespace-nowrap rounded-full bg-[#D4621A] px-2.5 py-1.5 text-[10px] font-semibold text-white transition-colors hover:bg-[#b85215] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] sm:min-h-9 sm:gap-1.5 sm:px-3 sm:py-2 sm:text-xs md:text-sm"
+                  className="inline-flex min-w-0 min-h-8 items-center gap-1 rounded-full bg-[#D4621A] px-2.5 py-1.5 text-[10px] font-semibold text-white transition-colors hover:bg-[#b85215] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] sm:min-h-9 sm:gap-1.5 sm:px-3 sm:py-2 sm:text-xs md:text-sm"
                   href="/register"
                 >
                   Get Started
@@ -106,7 +106,7 @@ export function Navbar({ variant = "default" }: { variant?: "default" | "dark" }
         >
           {navigationItems.map(({ label, href }) => (
             <Link
-              className={`shrink-0 whitespace-nowrap rounded-sm py-1 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] ${
+              className={`min-w-0 break-words rounded-sm py-1 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] ${
                 isDark
                   ? "hover:text-white"
                   : "hover:text-[#18181B] dark:hover:text-[#F5F5F5]"

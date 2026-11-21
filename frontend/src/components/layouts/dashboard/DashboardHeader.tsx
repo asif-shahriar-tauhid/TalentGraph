@@ -20,7 +20,7 @@ export function DashboardHeader({
   const { user, role, logout, logoutPending } = useAuth();
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-border/80 bg-background/85 px-2 sm:px-6 backdrop-blur-md">
+    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-border/80 bg-background px-2 sm:px-6 backdrop-blur-md">
       <div className="flex items-center gap-1.5 sm:gap-3">
         {showMobileMenu && (
           <button
