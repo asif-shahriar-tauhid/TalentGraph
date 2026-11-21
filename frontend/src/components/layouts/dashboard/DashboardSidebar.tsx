@@ -51,6 +51,10 @@ export function DashboardSidebar({
   const normalizedPathname = pathname.replace(/\/+$/, "") || "/";
   const { user, role, logout, logoutPending } = useAuth();
   const collapsed = isCollapsed;
+  const isRecruiterPortal =
+    alwaysVisible ||
+    role?.toLowerCase() === "recruiter" ||
+    roleTitle.toLowerCase() === "recruiter";
   const userInitials =
     user?.name
       ?.split(/\s+/)
@@ -152,6 +156,24 @@ export function DashboardSidebar({
             <X className="size-4" />
           </button>
         </div>
+
+        {isRecruiterPortal && (
+          <div className="border-b border-border/60 bg-secondary/20 p-2 lg:px-3">
+            <div
+              aria-label="Governance Policy: Enforced"
+              title="Governance Policy: Enforced"
+              className="flex items-center justify-center gap-1.5 rounded-lg border border-[#1F242D] bg-[#121417] px-1 py-2 lg:justify-between lg:gap-2 lg:px-3"
+            >
+              <span className="size-2 shrink-0 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(74,222,128,0.65)]" />
+              <span className="hidden text-xs font-medium text-zinc-300 lg:inline">
+                Governance Policy
+              </span>
+              <span className="hidden text-xs font-semibold text-emerald-400 lg:inline">
+                Enforced
+              </span>
+            </div>
+          </div>
+        )}
 
         {alwaysVisible && (
           <div
