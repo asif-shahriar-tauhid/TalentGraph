@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import {
   changePassword,
   connectGithubAccount,
@@ -181,6 +182,7 @@ export const useDisconnectGithub = () => {
 
 export const useLogout = () => {
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   return useMutation({
     mutationFn: () => logout(),
@@ -190,16 +192,12 @@ export const useLogout = () => {
       gooeyToast.success("Signed Out", {
         description: "You have been logged out securely.",
       });
-      if (typeof window !== "undefined") {
-        window.location.assign("/login");
-      }
+      router.replace("/login");
     },
     onError: () => {
       clearClientAuthCookie();
       queryClient.clear();
-      if (typeof window !== "undefined") {
-        window.location.assign("/login");
-      }
+      router.replace("/login");
     },
   });
 };

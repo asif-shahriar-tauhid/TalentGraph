@@ -47,7 +47,8 @@ export function DashboardSidebar({
   footerNote,
   footerSecurityText,
 }: DashboardSidebarProps) {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "/";
+  const normalizedPathname = pathname.replace(/\/+$/, "") || "/";
   const { user, role, logout, logoutPending } = useAuth();
   const collapsed = isCollapsed;
   const userInitials =
@@ -73,8 +74,8 @@ export function DashboardSidebar({
           "z-50 flex h-screen shrink-0 flex-col border-r border-border/80 bg-card transition-[transform,width] duration-300",
           alwaysVisible
             ? cn(
-                "sticky top-0 w-16",
-                collapsed ? "lg:w-16" : "lg:w-64",
+                "sticky top-0 w-[68px] overflow-x-hidden lg:w-64",
+                collapsed && "lg:w-16",
               )
             : cn(
                 "fixed top-0 bottom-0 left-0 w-64 lg:static lg:translate-x-0",
@@ -111,7 +112,6 @@ export function DashboardSidebar({
               className={cn(
                 "flex items-center justify-center",
                 "lg:hidden",
-                collapsed && "lg:flex",
               )}
               href="/"
               title="TalentGraph"
@@ -143,7 +143,10 @@ export function DashboardSidebar({
           <button
             type="button"
             onClick={onClose}
-            className="cursor-pointer rounded-lg p-1 text-muted-foreground hover:bg-secondary lg:hidden"
+            className={cn(
+              "cursor-pointer rounded-lg p-1 text-muted-foreground hover:bg-secondary lg:hidden",
+              alwaysVisible && "hidden",
+            )}
             aria-label="Close navigation menu"
           >
             <X className="size-4" />
@@ -155,7 +158,7 @@ export function DashboardSidebar({
             className="border-b border-border/60 bg-secondary/20 px-1 py-2"
           >
             <div className="flex justify-center">
-              <span className="shrink-0 whitespace-nowrap rounded border border-orange-500/20 bg-orange-500/10 px-1 py-0.5 text-center text-[9px] font-bold uppercase tracking-wider text-orange-400">
+              <span className="max-w-full break-words rounded border border-orange-500/20 bg-orange-500/10 px-1 py-0.5 text-center text-[8px] font-bold uppercase leading-tight tracking-wide text-orange-400 [overflow-wrap:anywhere] lg:whitespace-nowrap lg:text-[9px] lg:leading-normal lg:tracking-wider">
                 {roleBadge}
               </span>
             </div>
@@ -173,23 +176,16 @@ export function DashboardSidebar({
           >
             <div
               className={cn(
-                "relative flex min-h-9 items-center gap-2 rounded-lg border border-border/70 bg-card px-2",
-                alwaysVisible && "justify-center lg:justify-start",
-                collapsed && "lg:justify-center",
-                alwaysVisible && "px-1 lg:px-2",
-                collapsed && "lg:px-1",
+                "relative flex min-h-9 min-w-0 items-center gap-2 rounded-lg border border-border/70 bg-card px-2",
+                alwaysVisible &&
+                  "flex-col justify-center gap-1 px-1 py-1 text-center lg:flex-row lg:justify-start lg:gap-2 lg:px-2 lg:text-left",
+                collapsed && !alwaysVisible && "lg:justify-center lg:px-1",
               )}
               title={`${companyStatus} — ${companyStatusVerified ? "Verified" : "Pending verification"}`}
               aria-label={`${companyStatus} — ${companyStatusVerified ? "Verified" : "Pending verification"}`}
             >
               {alwaysVisible && (
-                <span
-                  aria-hidden="true"
-                  className={cn(
-                    "flex flex-col items-center gap-1 py-1",
-                    !collapsed && "lg:hidden",
-                  )}
-                >
+                <span className="flex shrink-0 flex-col items-center gap-1 py-1">
                   <span className="relative flex size-5 items-center justify-center">
                     <Building2 className="size-4 text-muted-foreground" />
                     <span
@@ -227,9 +223,11 @@ export function DashboardSidebar({
               </span>
               <span
                 className={cn(
-                  "min-w-0 truncate text-[11px] font-medium text-foreground",
-                  alwaysVisible && "hidden lg:block",
-                  collapsed && "lg:hidden",
+                  "min-w-0 text-[11px] font-medium text-foreground",
+                  alwaysVisible &&
+                    "hidden lg:block lg:truncate lg:text-left",
+                  !alwaysVisible && "truncate",
+                  collapsed && !alwaysVisible && "lg:hidden",
                 )}
               >
                 {companyStatus}
@@ -240,8 +238,9 @@ export function DashboardSidebar({
                   companyStatusVerified
                     ? "text-emerald-700 dark:text-emerald-400"
                     : "text-amber-700 dark:text-amber-400",
-                  alwaysVisible && "hidden lg:block",
-                  collapsed && "lg:hidden",
+                  alwaysVisible &&
+                    "hidden lg:block lg:ml-auto lg:text-left",
+                  collapsed && !alwaysVisible && "lg:hidden",
                 )}
               >
                 {companyStatusVerified ? "Verified" : "Pending"}
@@ -277,9 +276,9 @@ export function DashboardSidebar({
         <nav
           aria-label="Dashboard navigation"
           className={cn(
-            "flex-1 space-y-6 overflow-y-auto py-4",
+            "flex-1 space-y-1 overflow-y-auto py-2 lg:space-y-6 lg:py-4",
             alwaysVisible
-              ? "px-1 lg:px-3.5"
+              ? "px-0 lg:px-3.5"
               : collapsed
                 ? "px-2 lg:px-1"
                 : "px-3.5",
@@ -287,11 +286,11 @@ export function DashboardSidebar({
         >
           {navGroups.map((group, groupIdx) => (
             <div key={groupIdx} className="space-y-1.5">
-              {group.title && !collapsed && (
+              {group.title && (
                 <div
                   className={cn(
-                    "px-2.5 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80",
-                    alwaysVisible && "hidden lg:block",
+                    "hidden px-2.5 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80 lg:block",
+                    collapsed && "lg:hidden",
                   )}
                 >
                   {group.title}
@@ -299,9 +298,14 @@ export function DashboardSidebar({
               )}
               <div className={cn("space-y-1", alwaysVisible && "lg:space-y-1.5")}>
                 {group.items.map((item, itemIdx) => {
-                  const isActive = item.isActive
-                    ? item.isActive(pathname)
-                    : pathname === item.href || pathname.startsWith(`${item.href}/`);
+                  const candidateEvidenceRoute =
+                    normalizedPathname.includes("/candidates/");
+                  const isActive = candidateEvidenceRoute
+                    ? item.label === "Applicants & Rankings"
+                    : item.isActive
+                      ? item.isActive(normalizedPathname)
+                      : normalizedPathname === item.href ||
+                        normalizedPathname.startsWith(`${item.href}/`);
                   const Icon = item.icon;
 
                   return (
@@ -310,12 +314,17 @@ export function DashboardSidebar({
                       href={item.href}
                       onClick={() => onClose?.()}
                       className={cn(
-                        "group relative flex min-h-11 items-center rounded-xl py-2 text-xs font-semibold transition-all",
+                        "group relative flex items-center rounded-xl text-xs font-semibold transition-all",
                         alwaysVisible
-                          ? "justify-center px-0 lg:justify-start lg:px-3"
+                          ? cn(
+                              "mx-auto h-10 w-10 justify-center px-0 py-0",
+                              collapsed
+                                ? "lg:mx-auto lg:h-10 lg:w-10 lg:px-0 lg:py-0"
+                                : "lg:mx-0 lg:h-11 lg:w-auto lg:justify-start lg:gap-2.5 lg:px-3 lg:py-2",
+                            )
                           : collapsed
-                            ? "justify-center px-0 lg:justify-center"
-                            : "justify-between px-3",
+                            ? "min-h-11 justify-center px-0 lg:justify-center"
+                            : "min-h-11 justify-between px-3",
                         isActive
                           ? "bg-[#F97316] text-white shadow-xs font-bold"
                           : "text-muted-foreground hover:bg-secondary hover:text-foreground",
@@ -347,19 +356,21 @@ export function DashboardSidebar({
                         {!collapsed && (
                           <span
                             className={cn(
-                              "truncate",
-                              alwaysVisible && "hidden lg:inline",
+                              "min-w-0",
+                              alwaysVisible
+                                ? "hidden lg:inline lg:truncate"
+                                : "truncate",
                             )}
                           >
                             {item.label}
                           </span>
                         )}
                       </div>
-                      {!collapsed && item.badge !== undefined && (
+                      {!collapsed &&
+                        item.badge !== undefined && (
                         <span
                           className={cn(
-                            "rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-bold text-primary",
-                            alwaysVisible && "hidden lg:inline-flex",
+                            "hidden rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-bold text-primary lg:inline-flex",
                           )}
                         >
                           {item.badge}
@@ -396,11 +407,12 @@ export function DashboardSidebar({
               : cn("space-y-3", collapsed && "lg:flex lg:justify-center"),
           )}
         >
-          {!collapsed && (footerNote || footerSecurityText) && (
+          {(!collapsed || alwaysVisible) &&
+            (footerNote || footerSecurityText) && (
             <div
               className={cn(
-                "px-1 text-[10px] leading-relaxed text-muted-foreground",
-                alwaysVisible && "hidden lg:block",
+                "hidden px-1 text-[10px] leading-relaxed text-muted-foreground lg:block",
+                collapsed && "lg:hidden",
               )}
             >
               {footerNote && <p className="font-semibold text-foreground">{footerNote}</p>}
@@ -410,9 +422,9 @@ export function DashboardSidebar({
           {alwaysVisible && (
             <div
               className={cn(
-                "flex flex-col items-center justify-center gap-2",
+                "hidden flex-col items-center justify-center gap-2 lg:flex",
                 !collapsed && "lg:flex-row lg:justify-start",
-                collapsed && "lg:flex-col lg:justify-center",
+                collapsed && "lg:hidden",
               )}
             >
               <div
@@ -425,14 +437,29 @@ export function DashboardSidebar({
               <div
                 className={cn(
                   "min-w-0 flex-1",
-                  collapsed && "hidden",
-                  alwaysVisible && "hidden lg:block",
+                  collapsed && !alwaysVisible && "hidden",
+                  alwaysVisible &&
+                    "max-w-full text-center lg:text-left",
                 )}
               >
-                <p className="truncate text-[11px] font-semibold text-foreground">
+                <p
+                  className={cn(
+                    "text-[11px] font-semibold text-foreground",
+                    alwaysVisible
+                      ? "break-words text-center [overflow-wrap:anywhere] lg:truncate lg:text-left"
+                      : "truncate",
+                  )}
+                >
                   {user?.name || "Recruiter"}
                 </p>
-                <p className="truncate text-[10px] text-muted-foreground">
+                <p
+                  className={cn(
+                    "text-[10px] text-muted-foreground",
+                    alwaysVisible
+                      ? "break-words text-center [overflow-wrap:anywhere] lg:truncate lg:text-left"
+                      : "truncate",
+                  )}
+                >
                   {role || roleTitle}
                 </p>
               </div>

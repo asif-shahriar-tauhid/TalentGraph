@@ -61,7 +61,9 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
               badge: "0",
               isActive: (path) =>
                 path === "/recruiter/jobs" ||
-                path.startsWith("/recruiter/jobs/"),
+                (path.startsWith("/recruiter/jobs/") &&
+                  !path.endsWith("/applicants") &&
+                  !path.endsWith("/pipeline")),
             },
           ],
         },
@@ -73,7 +75,10 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
               href: "/recruiter/applicants",
               icon: Users,
               badge: "0",
-              isActive: (path) => path.startsWith("/recruiter/applicants"),
+              isActive: (path) =>
+                path === "/recruiter/applicants" ||
+                (path.startsWith("/recruiter/jobs/") &&
+                  path.endsWith("/applicants")),
             },
             {
               label: "Assessment Review",
@@ -86,8 +91,13 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
               label: "Hiring Pipeline",
               href: "/recruiter/pipeline",
               icon: GitBranch,
-              badge: "0",
-              isActive: (path) => path.startsWith("/recruiter/pipeline"),
+              badge: "0 In Technical",
+              isActive: (path) =>
+                path === "/recruiter/pipeline" ||
+                path.startsWith("/recruiter/pipeline/") ||
+                (path.startsWith("/recruiter/jobs/") &&
+                  (path.endsWith("/pipeline") ||
+                    path.includes("/pipeline/"))),
             },
           ],
         },
