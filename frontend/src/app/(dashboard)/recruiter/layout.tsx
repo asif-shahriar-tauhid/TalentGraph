@@ -62,7 +62,8 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
               isActive: (path) =>
                 path === "/recruiter/jobs" ||
                 (path.startsWith("/recruiter/jobs/") &&
-                  !path.endsWith("/applicants")),
+                  !path.endsWith("/applicants") &&
+                  !path.endsWith("/pipeline")),
             },
           ],
         },
@@ -90,8 +91,11 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
               label: "Hiring Pipeline",
               href: "/recruiter/pipeline",
               icon: GitBranch,
-              badge: "0",
-              isActive: (path) => path.startsWith("/recruiter/pipeline"),
+              badge: "0 In Technical",
+              isActive: (path) =>
+                path === "/recruiter/pipeline" ||
+                (path.startsWith("/recruiter/jobs/") &&
+                  path.endsWith("/pipeline")),
             },
           ],
         },

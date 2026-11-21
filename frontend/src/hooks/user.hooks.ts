@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import {
   createSubRecruiter,
   deleteMyAccount,
@@ -102,6 +103,7 @@ export const useGetMyPersonalData = (enabled = true) => {
 
 export const useDeleteMyAccount = () => {
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   return useMutation({
     mutationFn: (payload?: DeleteMyAccountPayload) => deleteMyAccount(payload),
@@ -112,9 +114,7 @@ export const useDeleteMyAccount = () => {
         description:
           response.message || "Your account has been permanently deactivated.",
       });
-      if (typeof window !== "undefined") {
-        window.location.assign("/login");
-      }
+      router.replace("/login");
     },
     onError: (error: unknown) => {
       const err = error as { data?: { message?: string }; message?: string };
