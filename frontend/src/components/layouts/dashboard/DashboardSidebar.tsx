@@ -297,9 +297,14 @@ export function DashboardSidebar({
               )}
               <div className={cn("space-y-1", alwaysVisible && "lg:space-y-1.5")}>
                 {group.items.map((item, itemIdx) => {
-                  const isActive = item.isActive
-                    ? item.isActive(pathname)
-                    : pathname === item.href || pathname.startsWith(`${item.href}/`);
+                  const candidateEvidenceRoute =
+                    pathname.includes("/candidates/");
+                  const isActive = candidateEvidenceRoute
+                    ? item.label === "Applicants & Rankings"
+                    : item.isActive
+                      ? item.isActive(pathname)
+                      : pathname === item.href ||
+                        pathname.startsWith(`${item.href}/`);
                   const Icon = item.icon;
 
                   return (
