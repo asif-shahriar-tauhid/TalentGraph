@@ -77,7 +77,7 @@ function readStoredTheme(fallback: Theme): Theme {
 
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
+  defaultTheme = "dark",
 }: {
   children: ReactNode;
   defaultTheme?: Theme;

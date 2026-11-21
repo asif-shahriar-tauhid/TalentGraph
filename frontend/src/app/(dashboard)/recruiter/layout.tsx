@@ -120,7 +120,7 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
         },
       ]}
     >
-      {children}
+      <div className="frontend-type-scale min-w-0">{children}</div>
     </DashboardShell>
   );
 }

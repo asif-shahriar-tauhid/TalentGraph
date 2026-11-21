@@ -165,10 +165,20 @@ export function DashboardSidebar({
               className="flex items-center justify-center gap-1.5 rounded-lg border border-[#1F242D] bg-[#121417] px-1 py-2 lg:justify-between lg:gap-2 lg:px-3"
             >
               <span className="size-2 shrink-0 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(74,222,128,0.65)]" />
-              <span className="hidden text-xs font-medium text-zinc-300 lg:inline">
+              <span
+                className={cn(
+                  "hidden font-medium text-zinc-300 lg:inline",
+                  isRecruiterPortal ? "text-[13px]" : "text-xs",
+                )}
+              >
                 Governance Policy
               </span>
-              <span className="hidden text-xs font-semibold text-emerald-400 lg:inline">
+              <span
+                className={cn(
+                  "hidden font-semibold text-emerald-400 lg:inline",
+                  isRecruiterPortal ? "text-[13px]" : "text-xs",
+                )}
+              >
                 Enforced
               </span>
             </div>
@@ -180,7 +190,14 @@ export function DashboardSidebar({
             className="border-b border-border/60 bg-secondary/20 px-1 py-2"
           >
             <div className="flex justify-center">
-              <span className="max-w-full break-words rounded border border-orange-500/20 bg-orange-500/10 px-1 py-0.5 text-center text-[8px] font-bold uppercase leading-tight tracking-wide text-orange-400 [overflow-wrap:anywhere] lg:whitespace-nowrap lg:text-[9px] lg:leading-normal lg:tracking-wider">
+              <span
+                className={cn(
+                  "max-w-full break-words rounded border border-orange-500/20 bg-orange-500/10 px-1 py-0.5 text-center font-bold uppercase leading-tight tracking-wide text-orange-400 [overflow-wrap:anywhere] lg:leading-normal lg:tracking-wider",
+                  isRecruiterPortal
+                    ? "text-[13px]"
+                    : "text-[8px] lg:whitespace-nowrap lg:text-[9px]",
+                )}
+              >
                 {roleBadge}
               </span>
             </div>
@@ -200,7 +217,7 @@ export function DashboardSidebar({
               className={cn(
                 "relative flex min-h-9 min-w-0 items-center gap-2 rounded-lg border border-border/70 bg-card px-2",
                 alwaysVisible &&
-                  "flex-col justify-center gap-1 px-1 py-1 text-center lg:flex-row lg:justify-start lg:gap-2 lg:px-2 lg:text-left",
+                  "flex-col justify-center gap-1 px-1 py-1 text-center lg:flex-row lg:flex-wrap lg:justify-start lg:gap-2 lg:px-2 lg:text-left",
                 collapsed && !alwaysVisible && "lg:justify-center lg:px-1",
               )}
               title={`${companyStatus} — ${companyStatusVerified ? "Verified" : "Pending verification"}`}
@@ -217,7 +234,14 @@ export function DashboardSidebar({
                       )}
                     />
                   </span>
-                  <span className="shrink-0 whitespace-nowrap text-center text-[8px] font-semibold uppercase tracking-wider text-zinc-200">
+                  <span
+                    className={cn(
+                      "shrink-0 text-center font-semibold uppercase tracking-wider text-zinc-200",
+                      isRecruiterPortal
+                        ? "text-[13px]"
+                        : "whitespace-nowrap text-[8px]",
+                    )}
+                  >
                     WORKSPACE
                   </span>
                 </span>
@@ -245,9 +269,17 @@ export function DashboardSidebar({
               </span>
               <span
                 className={cn(
-                  "min-w-0 text-[11px] font-medium text-foreground",
+                  "min-w-0 font-medium text-foreground",
+                  isRecruiterPortal ? "text-[13px]" : "text-[11px]",
                   alwaysVisible &&
-                    "hidden lg:block lg:truncate lg:text-left",
+                    cn(
+                      "hidden lg:block lg:text-left",
+                      isRecruiterPortal && companyStatus === "Unassigned"
+                        ? "lg:whitespace-nowrap"
+                        : isRecruiterPortal
+                          ? "lg:break-words"
+                          : "lg:truncate",
+                    ),
                   !alwaysVisible && "truncate",
                   collapsed && !alwaysVisible && "lg:hidden",
                 )}
@@ -256,7 +288,8 @@ export function DashboardSidebar({
               </span>
               <span
                 className={cn(
-                  "ml-auto text-[10px] font-medium",
+                  "ml-auto font-medium",
+                  isRecruiterPortal ? "text-[13px]" : "text-[10px]",
                   companyStatusVerified
                     ? "text-emerald-700 dark:text-emerald-400"
                     : "text-amber-700 dark:text-amber-400",
@@ -276,13 +309,19 @@ export function DashboardSidebar({
               collapsed ? "justify-center px-2 lg:px-0" : "justify-between px-5",
             )}
           >
-            <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+            <span
+              className={cn(
+                "font-bold uppercase tracking-wider text-muted-foreground",
+                isRecruiterPortal ? "text-[13px]" : "text-[11px]",
+              )}
+            >
               {roleTitle}
             </span>
             <Badge
               variant="outline"
               className={cn(
-                "text-[10px] font-bold uppercase tracking-wider",
+                "font-bold uppercase tracking-wider",
+                isRecruiterPortal ? "text-[13px]" : "text-[10px]",
                 roleBadgeClassName ||
                   "border-primary/30 bg-primary/10 text-primary",
                 alwaysVisible && "hidden lg:inline-flex",
@@ -311,7 +350,8 @@ export function DashboardSidebar({
               {group.title && (
                 <div
                   className={cn(
-                    "hidden px-2.5 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80 lg:block",
+                    "hidden px-2.5 font-bold uppercase tracking-widest text-muted-foreground/80 lg:block",
+                    isRecruiterPortal ? "text-[13px]" : "text-[10px]",
                     collapsed && "lg:hidden",
                   )}
                 >
@@ -336,13 +376,18 @@ export function DashboardSidebar({
                       href={item.href}
                       onClick={() => onClose?.()}
                       className={cn(
-                        "group relative flex items-center rounded-xl text-xs font-semibold transition-all",
+                        "group relative flex items-center rounded-xl font-semibold transition-all",
+                        isRecruiterPortal
+                          ? "min-w-0 flex-wrap text-[15px]"
+                          : "text-xs",
                         alwaysVisible
                           ? cn(
                               "mx-auto h-10 w-10 justify-center px-0 py-0",
                               collapsed
                                 ? "lg:mx-auto lg:h-10 lg:w-10 lg:px-0 lg:py-0"
-                                : "lg:mx-0 lg:h-11 lg:w-auto lg:justify-start lg:gap-2.5 lg:px-3 lg:py-2",
+                                : isRecruiterPortal
+                                  ? "lg:mx-0 lg:min-h-11 lg:h-auto lg:w-auto lg:justify-start lg:gap-2.5 lg:px-3 lg:py-2"
+                                  : "lg:mx-0 lg:h-11 lg:w-auto lg:justify-start lg:gap-2.5 lg:px-3 lg:py-2",
                             )
                           : collapsed
                             ? "min-h-11 justify-center px-0 lg:justify-center"
@@ -369,7 +414,8 @@ export function DashboardSidebar({
                       >
                         <Icon
                           className={cn(
-                            "size-4 shrink-0 transition-colors",
+                            "shrink-0 transition-colors",
+                            isRecruiterPortal ? "size-5" : "size-4",
                             isActive
                               ? "text-white"
                               : "text-muted-foreground group-hover:text-foreground",
@@ -380,7 +426,12 @@ export function DashboardSidebar({
                             className={cn(
                               "min-w-0",
                               alwaysVisible
-                                ? "hidden lg:inline lg:truncate"
+                                ? cn(
+                                    "hidden lg:inline",
+                                    isRecruiterPortal
+                                      ? "lg:break-words"
+                                      : "lg:truncate",
+                                  )
                                 : "truncate",
                             )}
                           >
@@ -392,7 +443,10 @@ export function DashboardSidebar({
                         item.badge !== undefined && (
                         <span
                           className={cn(
-                            "hidden rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-bold text-primary lg:inline-flex",
+                            "hidden rounded-full bg-primary/10 px-1.5 py-0.5 font-bold text-primary lg:inline-flex",
+                            isRecruiterPortal
+                              ? "break-words text-[13px]"
+                              : "text-[10px]",
                           )}
                         >
                           {item.badge}
@@ -433,7 +487,8 @@ export function DashboardSidebar({
             (footerNote || footerSecurityText) && (
             <div
               className={cn(
-                "hidden px-1 text-[10px] leading-relaxed text-muted-foreground lg:block",
+                "hidden px-1 leading-relaxed text-muted-foreground lg:block",
+                isRecruiterPortal ? "text-[13px]" : "text-[10px]",
                 collapsed && "lg:hidden",
               )}
             >
@@ -451,7 +506,10 @@ export function DashboardSidebar({
             >
               <div
                 aria-label={user?.name || "Recruiter profile"}
-                className="flex size-9 shrink-0 items-center justify-center rounded-full border border-[#3A3A40] bg-[#27272B] text-xs font-semibold text-white"
+                className={cn(
+                  "flex size-9 shrink-0 items-center justify-center rounded-full border border-[#3A3A40] bg-[#27272B] font-semibold text-white",
+                  isRecruiterPortal ? "text-sm" : "text-xs",
+                )}
                 title={user?.name || "Recruiter profile"}
               >
                 {userInitials}
@@ -466,9 +524,13 @@ export function DashboardSidebar({
               >
                 <p
                   className={cn(
-                    "text-[11px] font-semibold text-foreground",
+                    "font-semibold text-foreground",
+                    isRecruiterPortal ? "text-[15px]" : "text-[11px]",
                     alwaysVisible
-                      ? "break-words text-center [overflow-wrap:anywhere] lg:truncate lg:text-left"
+                      ? cn(
+                          "break-words text-center [overflow-wrap:anywhere] lg:text-left",
+                          isRecruiterPortal ? "lg:break-words" : "lg:truncate",
+                        )
                       : "truncate",
                   )}
                 >
@@ -476,9 +538,13 @@ export function DashboardSidebar({
                 </p>
                 <p
                   className={cn(
-                    "text-[10px] text-muted-foreground",
+                    "text-muted-foreground",
+                    isRecruiterPortal ? "text-[13px]" : "text-[10px]",
                     alwaysVisible
-                      ? "break-words text-center [overflow-wrap:anywhere] lg:truncate lg:text-left"
+                      ? cn(
+                          "break-words text-center [overflow-wrap:anywhere] lg:text-left",
+                          isRecruiterPortal ? "lg:break-words" : "lg:truncate",
+                        )
                       : "truncate",
                   )}
                 >
@@ -505,7 +571,8 @@ export function DashboardSidebar({
               onClick={() => logout()}
               disabled={logoutPending}
               className={cn(
-                "w-full justify-center gap-2 text-xs text-muted-foreground hover:border-destructive/30 hover:bg-destructive/10 hover:text-destructive",
+                "w-full justify-center gap-2 text-muted-foreground hover:border-destructive/30 hover:bg-destructive/10 hover:text-destructive",
+                isRecruiterPortal ? "text-[15px]" : "text-xs",
                 collapsed && "lg:w-9 lg:px-0",
               )}
             >

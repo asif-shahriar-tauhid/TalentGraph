@@ -21,22 +21,17 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { useTheme } from "@/providers/themeProvider";
-
-type SkillDraft = {
-  name: string;
-  required: boolean;
-  weight: number;
-  minimum: number;
-};
-
-type QuestionDraft = {
-  title: string;
-  skill: string;
-  seconds: number;
-};
+import {
+  clearJobWizardDraft,
+  loadJobWizardDraft,
+  saveJobWizardDraft,
+  type JobWizardQuestionDraft,
+  type JobWizardSkillDraft,
+} from "./jobWizardDraft";
 
 type JobWizardViewProps = {
   jobId?: string;
@@ -95,17 +90,16 @@ function StepCard({
   return (
     <button
       type="button"
-      disabled={locked}
       onClick={() => onSelect(step)}
       aria-current={active ? "step" : undefined}
-      aria-label={`Step ${step}: ${stepNames[step - 1]}${locked ? ", locked" : ""}`}
+      aria-label={`Step ${step}: ${stepNames[step - 1]}${locked ? ", preview final gate" : ""}`}
       className={`flex min-w-0 items-center gap-3 rounded-lg border p-2.5 text-left transition-colors ${
         active
           ? "border-2 border-[#F97316] bg-[#202126]"
           : completed
             ? "border-[#214833] bg-[#12251B]/60"
             : locked
-              ? "cursor-not-allowed border-[#252930] bg-[#171A1F]/60"
+              ? "cursor-pointer border-[#252930] bg-[#171A1F]/60 hover:border-[#555B65]"
               : "border-[#30343C] bg-[#171A1F] hover:border-[#555B65]"
       }`}
     >
@@ -184,11 +178,36 @@ function SectionHeading({
 
 export default function JobWizardView({ jobId }: JobWizardViewProps) {
   const { resolvedTheme, setTheme } = useTheme();
+  const router = useRouter();
   const [activeStep, setActiveStep] = useState(3);
-  const [skills, setSkills] = useState<SkillDraft[]>([]);
-  const [questions, setQuestions] = useState<QuestionDraft[]>([]);
+  const [skills, setSkills] = useState<JobWizardSkillDraft[]>([]);
+  const [questions, setQuestions] = useState<JobWizardQuestionDraft[]>([]);
   const [saved, setSaved] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    queueMicrotask(() => {
+      if (!active) {
+        return;
+      }
+
+      try {
+        const draft = loadJobWizardDraft();
+        if (draft) {
+          setSkills(draft.skills);
+          setQuestions(draft.questions);
+          setSaved(true);
+        }
+      } catch {
+        setStatusMessage("The saved draft could not be loaded.");
+      }
+    });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const allocatedWeight = skills.reduce((total, skill) => total + skill.weight, 0);
   const validWeights =
@@ -218,8 +237,6 @@ export default function JobWizardView({ jobId }: JobWizardViewProps) {
     },
   ];
   const passedChecks = checks.filter((check) => check.passed).length;
-  const canPublish = passedChecks === checks.length;
-
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
@@ -229,7 +246,13 @@ export default function JobWizardView({ jobId }: JobWizardViewProps) {
 
   const selectStep = (step: number) => {
     if (step === 5) {
-      setStatusMessage("Complete every pre-flight check to unlock publishing.");
+      try {
+        saveJobWizardDraft({ skills, questions });
+        setSaved(true);
+      } catch {
+        setStatusMessage("The draft could not be saved in this browser session.");
+      }
+      router.push("/recruiter/jobs/new/preview");
       return;
     }
     setActiveStep(step);
@@ -243,8 +266,14 @@ export default function JobWizardView({ jobId }: JobWizardViewProps) {
   };
 
   const saveDraft = () => {
-    setSaved(true);
-    setStatusMessage("Draft saved in this session.");
+    try {
+      saveJobWizardDraft({ skills, questions });
+      setSaved(true);
+      setStatusMessage("Draft saved in this browser session.");
+    } catch {
+      setSaved(false);
+      setStatusMessage("The draft could not be saved in this browser session.");
+    }
   };
 
   const resetDraft = () => {
@@ -252,7 +281,12 @@ export default function JobWizardView({ jobId }: JobWizardViewProps) {
     setQuestions([]);
     setActiveStep(3);
     setSaved(false);
-    setStatusMessage("Wizard draft reset to its empty initial state.");
+    try {
+      clearJobWizardDraft();
+      setStatusMessage("Wizard draft reset to its empty initial state.");
+    } catch {
+      setStatusMessage("The saved draft could not be removed from this session.");
+    }
     scrollTo("skill-weight-matrix");
   };
 
@@ -265,7 +299,10 @@ export default function JobWizardView({ jobId }: JobWizardViewProps) {
     setStatusMessage("Added an empty skill weight row.");
   };
 
-  const updateSkill = (index: number, patch: Partial<SkillDraft>) => {
+  const updateSkill = (
+    index: number,
+    patch: Partial<JobWizardSkillDraft>,
+  ) => {
     setSkills((current) =>
       current.map((skill, currentIndex) =>
         currentIndex === index ? { ...skill, ...patch } : skill,
@@ -306,7 +343,10 @@ export default function JobWizardView({ jobId }: JobWizardViewProps) {
     setStatusMessage("Added an assessment question with a 60-second timer.");
   };
 
-  const updateQuestion = (index: number, patch: Partial<QuestionDraft>) => {
+  const updateQuestion = (
+    index: number,
+    patch: Partial<JobWizardQuestionDraft>,
+  ) => {
     setQuestions((current) =>
       current.map((question, currentIndex) =>
         currentIndex === index ? { ...question, ...patch } : question,
@@ -323,15 +363,7 @@ export default function JobWizardView({ jobId }: JobWizardViewProps) {
     setStatusMessage("Removed the assessment question.");
   };
 
-  const handleContinue = () => {
-    if (!canPublish) {
-      setStatusMessage(
-        `${passedChecks} of 5 pre-flight checks passed. Complete the remaining checks before preview and publish.`,
-      );
-      return;
-    }
-    setActiveStep(5);
-  };
+  const handleContinue = () => selectStep(5);
 
   return (
     <div className="-m-4 min-w-0 bg-[#0B0C0E] text-[#E4E4E7] sm:-m-6 lg:-m-8">

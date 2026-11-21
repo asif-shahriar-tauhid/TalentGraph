@@ -162,7 +162,7 @@ function StepPreview({ type }: { type: (typeof steps)[number]["preview"] }) {
           </span>
           <span className="text-[10px] text-zinc-500">ROLE: IOS ENGINEER</span>
         </div>
-        <div className="grid grid-cols-[1fr_auto_auto] gap-x-4 gap-y-3 text-[10px] sm:text-xs">
+        <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] gap-x-2 gap-y-3 text-[10px] sm:gap-x-4 sm:text-xs">
           <span className="text-zinc-500">Competency</span>
           <span className="text-zinc-500">Assessment</span>
           <span className="text-zinc-500">Review</span>
