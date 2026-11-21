@@ -118,8 +118,6 @@ export const INITIAL_ASSESSMENT_REVIEW_DATA: AssessmentReviewData = {
 
 const panelClass =
   "min-w-0 rounded-[12px] border border-[#25252A] bg-[#121417] p-5";
-const quietButtonClass =
-  "inline-flex min-h-9 items-center justify-center gap-2 rounded-[8px] border border-[#27272C] bg-[#161619] px-3 text-xs font-medium text-[#D4D4D8] transition-colors hover:border-[#3F3F46] hover:bg-[#202024] disabled:cursor-not-allowed disabled:opacity-50";
 
 function formatDuration(seconds: number | null) {
   if (seconds === null) return "0m 00s";

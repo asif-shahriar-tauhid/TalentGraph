@@ -809,7 +809,7 @@ export default function ApplicantsRankingsView({
               </div>
               <div className="rounded-[8px] border border-[#27272C] bg-[#17171B] p-3 font-mono text-[11px] leading-relaxed text-[#D4D4D8]">
                 <p className="mb-1 text-[#71717A]">
-                  // Mathematical definition:
+                  {"// Mathematical definition:"}
                 </p>
                 <p className="break-words text-[#4ADE80]">
                   Contribution(c, s) = W(s) × [ Score(c, s) / MaxScore(s) ]
