@@ -1,1 +1,1 @@
-// Migrated to src/components/recruiter/ApplicantsRankingsView.tsx.
+// Migrated to src/components/recruiter/AssessmentReviewView.tsx.
