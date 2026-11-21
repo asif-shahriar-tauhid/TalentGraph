@@ -226,7 +226,7 @@ function StepPreview({ type }: { type: (typeof steps)[number]["preview"] }) {
 
 export function Features() {
   return (
-    <div className="bg-[#0D0D0F] text-white">
+    <div className="bg-[#0B0C0E] text-white">
       <section
         aria-labelledby="features-title"
         className="border-b border-zinc-800 px-3 py-14 sm:px-6 sm:py-20 lg:px-8"

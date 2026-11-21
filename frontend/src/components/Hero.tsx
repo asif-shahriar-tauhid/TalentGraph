@@ -1,135 +1,134 @@
-import { ArrowRight, BadgeCheck } from "lucide-react";
+import { ArrowRight, BadgeCheck, ChevronDown } from "lucide-react";
 import Link from "next/link";
 
-const profileCards = [
+const proofCards = [
   {
-    name: "Maya Chen",
-    role: "Senior iOS Engineer",
-    initials: "MC",
-    avatar: "from-rose-400 to-orange-300",
-    quote: "I build polished apps with SwiftUI and a11y at the core.",
+    name: "Arif Rahman",
+    role: "Senior Go Engineer",
+    initials: "AR",
+    avatar: "bg-[#F97316]",
+    quote: "Where is the commit proof for high-throughput concurrency?",
+    position: "top-[6%] left-[3%] xl:left-[6%]",
   },
   {
-    name: "Ravi Patel",
-    role: "Lead Rust Developer",
-    initials: "RP",
-    avatar: "from-cyan-400 to-blue-500",
-    quote: "My systems work is right there in the source and tests.",
+    name: "Sarah Jenkins",
+    role: "Lead Tech Recruiter",
+    initials: "SJ",
+    avatar: "bg-[#818CF8]",
+    quote: "How do custom deterministic skill weights total 100%?",
+    position: "top-[6%] right-[3%] xl:right-[6%]",
   },
   {
-    name: "Amara Okafor",
-    role: "Staff Product Engineer",
-    initials: "AO",
-    avatar: "from-violet-400 to-fuchsia-500",
-    quote: "I can connect every claim to work I actually shipped.",
+    name: "Nusrat Jahan",
+    role: "Full-Stack Dev",
+    initials: "NJ",
+    avatar: "bg-[#EC4899]",
+    quote: "Verified AST syntax analysis & zero black-box scoring.",
+    position: "top-[38%] left-[1.5%] xl:left-[3%]",
   },
   {
-    name: "Leo Andersson",
-    role: "Platform Engineer",
-    initials: "LA",
-    avatar: "from-emerald-400 to-teal-500",
-    quote: "The evidence reflects how I solve real engineering problems.",
+    name: "Zack Kass",
+    role: "VP of Engineering",
+    initials: "ZK",
+    avatar: "bg-[#A855F7]",
+    quote: "Show exact commit permalinks and AST line ranges.",
+    position: "top-[38%] right-[1.5%] xl:right-[3%]",
   },
   {
-    name: "Sofia Alvarez",
-    role: "Machine Learning Engineer",
-    initials: "SA",
-    avatar: "from-amber-300 to-orange-500",
-    quote: "A clear signal is better than another keyword on a CV.",
+    name: "Tanvir Hasan",
+    role: "ML Systems Engineer",
+    initials: "TH",
+    avatar: "bg-[#14B8A6]",
+    quote: "Which PyTorch repo benchmarks match the senior job weight?",
+    position: "bottom-[12%] left-[4%] xl:left-[7%]",
   },
   {
-    name: "Noah Williams",
-    role: "Frontend Architect",
-    initials: "NW",
-    avatar: "from-sky-400 to-indigo-500",
-    quote: "Let the quality of the work speak for itself.",
+    name: "Dr. Elisa Song",
+    role: "CTO, CloudScale",
+    initials: "ES",
+    avatar: "bg-[#3B82F6]",
+    quote: "How do mobile proctoring snapshots ensure human integrity?",
+    position: "bottom-[12%] right-[4%] xl:right-[7%]",
   },
-];
+] as const;
 
-function ProfileCard({
-  name,
-  role,
-  initials,
-  avatar,
-  quote,
-}: (typeof profileCards)[number]) {
+function ProofCard({ card }: { card: (typeof proofCards)[number] }) {
   return (
-    <article className="min-w-0 rounded-xl border border-zinc-800 bg-[#121215]/90 p-3 text-left text-xs shadow-xl backdrop-blur-md">
+    <article className="min-w-0 rounded-2xl border border-white/10 bg-[#111215]/95 p-3 text-left shadow-2xl backdrop-blur-md">
       <div className="flex min-w-0 items-center gap-2">
         <span
           aria-hidden="true"
-          className={`flex size-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${avatar} text-[10px] font-bold text-white ring-2 ring-white/10`}
+          className={`flex size-8 shrink-0 items-center justify-center rounded-full ${card.avatar} text-xs font-bold text-white`}
         >
-          {initials}
+          {card.initials}
         </span>
         <div className="min-w-0 flex-1">
-          <p className="truncate font-semibold text-zinc-100">{name}</p>
-          <p className="truncate text-[10px] text-zinc-400">{role}</p>
+          <div className="flex min-w-0 flex-wrap items-center gap-1.5">
+            <span className="break-words text-xs font-semibold text-white">{card.name}</span>
+            <BadgeCheck aria-label="Verified" className="size-3.5 shrink-0 text-sky-400" />
+          </div>
+          <p className="break-words text-[11px] text-zinc-400">{card.role}</p>
         </div>
-        <BadgeCheck
-          aria-label="Verified profile"
-          className="size-4 shrink-0 text-emerald-400"
-        />
       </div>
-      <p className="mt-2 leading-relaxed text-zinc-300">&ldquo;{quote}&rdquo;</p>
+      <p className="mt-2 break-words text-[13px] leading-snug text-zinc-300">
+        &ldquo;{card.quote}&rdquo;
+      </p>
     </article>
   );
 }
 
 export function Hero() {
-  const leftCards = profileCards.slice(0, 3);
-  const rightCards = profileCards.slice(3);
-
   return (
-    <section
-      aria-labelledby="hero-title"
-      className="relative isolate flex flex-col items-center overflow-hidden border-b border-zinc-800 bg-[#0D0D0F] px-3 py-12 text-center sm:px-6 sm:py-16"
-      id="about"
-    >
+    <div className="contents">
+      <section
+        aria-labelledby="hero-title"
+        className="relative isolate flex min-h-screen flex-col justify-between overflow-hidden bg-[#08090A] px-4 py-4 text-center text-white sm:px-6 lg:h-[calc(100dvh_-_var(--landing-navbar-height))] lg:min-h-0 lg:max-h-[calc(100dvh_-_var(--landing-navbar-height))] lg:px-8"
+        id="about"
+      >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_42%,rgba(212,98,26,0.14),transparent_58%)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_42%,rgba(249,115,22,0.12),transparent_58%)]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-[17%] top-[23%] -z-10 size-40 rounded-full bg-orange-500/10 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-[18%] top-[53%] -z-10 size-52 rounded-full bg-violet-500/5 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-[12%] left-[42%] -z-10 size-36 rounded-full bg-sky-500/5 blur-3xl"
       />
 
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)_minmax(0,1fr)] lg:gap-8">
-        <div
-          aria-label="Three illustrative verified candidate profiles"
-          className="order-2 grid grid-cols-1 gap-2 text-left sm:grid-cols-3 lg:order-none lg:grid-cols-1 lg:gap-4"
-        >
-          {leftCards.map((card) => (
-            <ProfileCard key={card.name} {...card} />
-          ))}
-        </div>
-
-        <div className="order-1 mx-auto flex w-full max-w-3xl flex-col items-center lg:order-none">
-          <p className="mb-4 inline-flex max-w-full items-center rounded-full border border-[#D4621A]/30 bg-[#D4621A]/10 px-3 py-1.5 text-[10px] font-semibold tracking-wide text-[#F0A374] sm:mb-6 sm:px-3.5 sm:text-xs">
+      <div className="relative mx-auto flex w-full max-w-[1440px] flex-1 flex-col items-center justify-center">
+        <div className="relative z-20 mx-auto flex w-full max-w-[520px] flex-col items-center px-4 text-center xl:max-w-[580px]">
+          <p className="mb-5 inline-flex max-w-full items-center rounded-full border border-[#F97316]/30 bg-[#F97316]/10 px-4 py-2 text-xs font-semibold tracking-wide text-[#FDBA74]">
             Evidence-based technical recruitment
           </p>
-
           <h1
-            className="text-[clamp(2rem,8vw,3rem)] font-medium leading-tight tracking-tight text-[#F5F5F5] sm:text-5xl md:text-6xl md:leading-[1.12]"
+            className="font-serif text-[clamp(2.5rem,3.8vw,3.5rem)] font-medium leading-[1.03] tracking-tight text-white"
             id="hero-title"
           >
-            Don&apos;t just claim a skill.{" "}
-            <span className="font-normal italic text-[#D4621A]">Prove it.</span>
+            <span className="block">Don&rsquo;t just claim a skill.</span>
+            <span className="block font-serif italic text-[#FDBA74]">Prove it.</span>
           </h1>
-
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-[#A1A1AA] sm:mt-6 sm:text-base md:text-lg">
+          <p className="mx-auto mt-5 max-w-full text-base leading-relaxed text-zinc-300 sm:text-lg">
             TalentGraph connects candidate claims with CV, selected GitHub
-            repositories, and technical assessment evidence—delivering
+            repositories, and technical assessment evidence&mdash;delivering
             transparent, verifiable job fit without black-box scores.
           </p>
-
-          <div className="mt-7 flex w-full flex-col items-stretch justify-center gap-3 sm:mt-8 sm:w-auto sm:flex-row sm:flex-wrap">
+          <div className="mt-6 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
             <Link
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#D4621A] px-6 py-3 text-sm font-semibold text-[#18181B] shadow-lg shadow-[#D4621A]/20 transition-colors hover:bg-[#E47735] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735]"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#F97316] px-6 py-3 text-base font-semibold text-[#17120F] shadow-lg shadow-[#F97316]/20 transition-colors hover:bg-[#FB923C]"
               href="/register"
             >
               Get Started
-              <ArrowRight aria-hidden="true" className="size-4" />
+              <ArrowRight aria-hidden="true" className="size-5 shrink-0" />
             </Link>
             <Link
-              className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#E4E4E7] bg-white/80 px-6 py-3 text-sm font-semibold text-[#18181B] transition-colors hover:bg-[#F4F4F5] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E47735] dark:border-[#3F3F46] dark:bg-[#19191C]/80 dark:text-[#F5F5F5] dark:hover:bg-[#252528]"
+              className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/15 bg-[#121417] px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-[#1A1D22]"
               href="#evidence"
             >
               See How It Works
@@ -138,14 +137,45 @@ export function Hero() {
         </div>
 
         <div
-          aria-label="Three illustrative verified candidate profiles"
-          className="order-3 grid grid-cols-1 gap-2 text-left sm:grid-cols-3 lg:order-none lg:grid-cols-1 lg:gap-4"
+          aria-label="Verified proof conversations"
+          className="pointer-events-none absolute inset-0 hidden lg:block"
         >
-          {rightCards.map((card) => (
-            <ProfileCard key={card.name} {...card} />
+          <div
+            aria-hidden="true"
+            className="absolute left-[12%] top-[25%] h-36 w-[min(22rem,30%)] rotate-[-5deg] rounded-2xl border border-white/10 bg-[#111215]/40 opacity-30 blur-sm"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute right-[13%] top-[35%] h-36 w-[min(22rem,30%)] rotate-[4deg] rounded-2xl border border-white/10 bg-[#111215]/40 opacity-25 blur-sm"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute left-[34%] top-[78%] h-36 w-[min(22rem,30%)] rotate-[-2deg] rounded-2xl border border-white/10 bg-[#111215]/35 opacity-20 blur-sm"
+          />
+          {proofCards.map((card) => (
+            <div
+              className={`absolute w-[225px] xl:w-[255px] ${card.position}`}
+              key={card.name}
+            >
+              <ProofCard card={card} />
+            </div>
           ))}
         </div>
       </div>
-    </section>
+
+      <Link
+        className="mx-auto inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-zinc-400 transition-colors hover:text-white"
+        href="#evidence"
+      >
+        EXPLORE PROVENANCE METHODOLOGY
+        <ChevronDown aria-hidden="true" className="size-4 animate-bounce" />
+      </Link>
+      </section>
+      <div className="grid min-w-0 grid-cols-1 gap-3 bg-[#08090A] px-4 pb-8 text-left sm:px-6 lg:hidden">
+        {proofCards.map((card) => (
+          <ProofCard card={card} key={card.name} />
+        ))}
+      </div>
+    </div>
   );
 }
