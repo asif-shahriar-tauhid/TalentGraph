@@ -520,11 +520,11 @@ export default function CandidateEvaluationView({
               <div className="min-w-[700px]">
                 <div className="flex items-center gap-4 px-4 py-1 text-[#A1A1AA]">
                   <span className="w-5 shrink-0 text-right text-[#52525B]">01</span>
-                  <code>// Abstract Syntax Tree (AST) Ground-Truth Verification Canvas</code>
+                  <code>{"// Abstract Syntax Tree (AST) Ground-Truth Verification Canvas"}</code>
                 </div>
                 <div className="flex items-center gap-4 px-4 py-1 text-[#A1A1AA]">
                   <span className="w-5 shrink-0 text-right text-[#52525B]">02</span>
-                  <code>// Awaiting candidate repository indexing and git commit provenance</code>
+                  <code>{"// Awaiting candidate repository indexing and git commit provenance"}</code>
                 </div>
                 <div className="flex items-center gap-4 border-l-2 border-[#F97316] bg-[#F97316]/10 px-4 py-1 text-[#E4E4E7]">
                   <span className="w-5 shrink-0 text-right text-[#52525B]">03</span>
@@ -535,19 +535,19 @@ export default function CandidateEvaluationView({
                 </div>
                 <div className="flex items-center gap-4 px-4 py-1 text-[#A1A1AA]">
                   <span className="w-5 shrink-0 text-right text-[#52525B]">04</span>
-                  <code>// Verified AST nodes will appear after repository indexing.</code>
+                  <code>{"// Verified AST nodes will appear after repository indexing."}</code>
                 </div>
                 <div className="flex items-center gap-4 px-4 py-1 text-[#A1A1AA]">
                   <span className="w-5 shrink-0 text-right text-[#52525B]">05</span>
-                  <code>// Commit provenance will appear after candidate assignment.</code>
+                  <code>{"// Commit provenance will appear after candidate assignment."}</code>
                 </div>
                 <div className="flex items-center gap-4 px-4 py-1 text-[#A1A1AA]">
                   <span className="w-5 shrink-0 text-right text-[#52525B]">06</span>
-                  <code>// No source lines are available for inspection.</code>
+                  <code>{"// No source lines are available for inspection."}</code>
                 </div>
                 <div className="flex items-center gap-4 px-4 py-1 text-[#A1A1AA]">
                   <span className="w-5 shrink-0 text-right text-[#52525B]">07</span>
-                  <code>// Awaiting verified source and commit provenance.</code>
+                  <code>{"// Awaiting verified source and commit provenance."}</code>
                 </div>
               </div>
             </div>
