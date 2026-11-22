@@ -512,10 +512,6 @@ export type JobUncheckedUpdateManyWithoutRecruiterNestedInput = {
   deleteMany?: Prisma.JobScalarWhereInput | Prisma.JobScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type JobCreateNestedOneWithoutRequirementsInput = {
   create?: Prisma.XOR<Prisma.JobCreateWithoutRequirementsInput, Prisma.JobUncheckedCreateWithoutRequirementsInput>
   connectOrCreate?: Prisma.JobCreateOrConnectWithoutRequirementsInput

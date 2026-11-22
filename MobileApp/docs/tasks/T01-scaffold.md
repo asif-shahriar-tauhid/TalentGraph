@@ -8,3 +8,5 @@ Do:
 5. Folder skeleton per AGENTS.md; Inter font assets (ask owner for files if absent). `lib/main.dart`: `ProviderScope` → blank `Scaffold`.
 Don't: screens, themes, networking.
 Accept: `flutter pub get`, `flutter analyze`, `flutter test` run clean; app launches to a blank screen on an emulator.
+
+## Status: Verified

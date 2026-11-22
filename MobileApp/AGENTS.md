@@ -1,8 +1,8 @@
 # AGENTS.md — TalentGraph Mobile (Flutter, Candidate-only)
 
 ## Current mission
-Build **only the authentication slice**: GitHub OAuth sign-in → session → gated placeholder shell. GitHub-only: **no email/password, no email verification screens.**
-Everything else (jobs, applications, assessments, notifications) is OUT OF SCOPE until the owner edits this line.
+Build **only the authentication slice + Jobs Discovery landing screen**: GitHub OAuth sign-in → session → `JobsDiscoveryScreen` landing page. GitHub-only: **no email/password, no email verification screens.**
+Applications, Assessments, and Notifications are OUT OF SCOPE (placeholders only) until the owner edits this line.
 App id `com.groupf.talentgraph` · URL scheme `talentgraph` · Android first.
 
 ## Read order (keep context small)
@@ -13,16 +13,16 @@ Root files `mobile_agent_guidelines.md`, `mobile_design_guidelines.md`, `mobile_
 
 ## Hard boundaries (never break)
 - Candidate-only. No Recruiter/Admin entry, no role picker, no email/password form.
-- Sign-in = GitHub OAuth. Capture strategy is fixed by `docs/api/auth-contract.md` §2. An in-app WebView is allowed ONLY inside the single OAuth-capture screen under strategy A, only after owner approval (Q11), never for other content.
+- Sign-in = GitHub OAuth. Capture strategy is fixed by `docs/api/auth-contract.md` §2 and §5: System browser / Chrome Custom Tab via `flutter_web_auth_2` with custom scheme `talentgraph://auth/callback`. In-app WebViews are forbidden per auth-security rules.
 - Tokens only in `flutter_secure_storage`. Never log, print or display them. Never display server `stack`/`error` fields.
-- Post-auth shell bottom nav = exactly Jobs, Assessments, Notifications (placeholders). No Home/Profile/Settings/Billing/SkillGraph/Applications.
+- Post-auth shell bottom nav = exactly Jobs (`JobsDiscoveryScreen`), Assessments (placeholder), Notifications (placeholder). No Home/Profile/Settings/Billing/SkillGraph/Applications.
 - Dark mode = first-launch default (never System). Light is a designed palette.
 - Backend and web app are FROZEN. Never propose or require changes to them. Blocked → record in `docs/api/observed-responses.md` and ask.
 - No invented endpoints, fields, policies, scores or copy claims. Don't parse server message strings for logic (use HTTP status + our own copy).
 - Backend is authoritative: after sign-in the app requires `role == CANDIDATE`; any other role → access-denied, tokens discarded.
 
 ## Stack (fixed)
-Flutter/Dart, Material 3, `flutter_riverpod`, `dio`, `go_router`, `flutter_secure_storage`. Approved additions: `shared_preferences` (theme only), `flutter_web_auth_2`. Pending Q11: `webview_flutter`. Versions via `flutter pub add`; no pinning from memory. No code generation in this slice.
+Flutter/Dart, Material 3, `flutter_riverpod`, `dio`, `go_router`, `flutter_secure_storage`. Approved additions: `shared_preferences` (theme only), `flutter_web_auth_2` (OAuth via system browser). No `webview_flutter`. Versions via `flutter pub add`; no pinning from memory. No code generation in this slice.
 
 ## Folder map (create only what the task needs)
 ```

@@ -11,10 +11,30 @@
 
 export const Role = {
   CANDIDATE: 'CANDIDATE',
-  RECRUITER: 'RECRUITER'
+  RECRUITER: 'RECRUITER',
+  SUB_RECRUITER: 'SUB_RECRUITER',
+  SYSTEM_ADMIN: 'SYSTEM_ADMIN'
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const AuthProvider = {
+  CREDENTIAL: 'CREDENTIAL',
+  GITHUB: 'GITHUB',
+  GOOGLE: 'GOOGLE'
+} as const
+
+export type AuthProvider = (typeof AuthProvider)[keyof typeof AuthProvider]
+
+
+export const UserStatus = {
+  ACTIVE: 'ACTIVE',
+  BLOCKED: 'BLOCKED',
+  DELETED: 'DELETED'
+} as const
+
+export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
 
 
 export const ApplicationStatus = {
@@ -92,3 +112,14 @@ export const SubscriptionStatus = {
 } as const
 
 export type SubscriptionStatus = (typeof SubscriptionStatus)[keyof typeof SubscriptionStatus]
+
+
+export const CompanyVerificationStatus = {
+  DRAFT: 'DRAFT',
+  PENDING: 'PENDING',
+  NEEDS_MORE_INFO: 'NEEDS_MORE_INFO',
+  VERIFIED: 'VERIFIED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type CompanyVerificationStatus = (typeof CompanyVerificationStatus)[keyof typeof CompanyVerificationStatus]

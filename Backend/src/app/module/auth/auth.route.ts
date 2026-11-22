@@ -25,6 +25,7 @@ router.post(
 );
 
 router.get("/github/url", AuthController.getGithubAuthUrl);
+router.get("/github/callback", AuthController.handleGithubCallbackRedirect);
 
 router.post(
   "/github",

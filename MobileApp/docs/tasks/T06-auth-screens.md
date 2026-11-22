@@ -3,6 +3,6 @@ Read: `docs/spec/auth-scope.md`, `docs/design/tokens.md`, `docs/design/screens/I
 Do:
 1. A01 Welcome per scope. No email/password, no role UI, no fake logos/stats. Terms/Privacy links only if Q6 answered.
 2. A02 states: loading (inline progress), cancelled (matches PNG), denied, failed, network, server, accountUnavailable, accessDenied — same components, icon + text + Retry / Back to sign in; duplicate taps disabled.
-3. Capture screen (strategy A): header with Cancel (→ canceled), progress indicator, WebView fills the rest; nothing else.
+3. OAuth launch & return: launch system browser via `flutter_web_auth_2` (`talentgraph` scheme). If user closes browser or denies access, transition directly to A02 (cancelled/denied) with Retry / Back to sign in. No in-app WebView screen needed (Path 1 chosen).
 4. Strings in `auth_strings.dart`.
 Accept: all in dark + light; 320dp, text scale 2.0, long error string — no overflow/clipping; buttons wired; semantics labels; nothing invented.

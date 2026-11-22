@@ -1,6 +1,20 @@
 enum Role {
   CANDIDATE
   RECRUITER
+  SUB_RECRUITER
+  SYSTEM_ADMIN
+}
+
+enum AuthProvider {
+  CREDENTIAL
+  GITHUB
+  GOOGLE
+}
+
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+  DELETED
 }
 
 enum ApplicationStatus {
@@ -54,4 +68,12 @@ enum SubscriptionStatus {
   CANCELED
   PAST_DUE
   INCOMPLETE
+}
+
+enum CompanyVerificationStatus {
+  DRAFT
+  PENDING
+  NEEDS_MORE_INFO
+  VERIFIED
+  REJECTED
 }

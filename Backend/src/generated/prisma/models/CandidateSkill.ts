@@ -445,6 +445,12 @@ export type FloatFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type CandidateSkillCreateNestedOneWithoutEvidenceInput = {
+  create?: Prisma.XOR<Prisma.CandidateSkillCreateWithoutEvidenceInput, Prisma.CandidateSkillUncheckedCreateWithoutEvidenceInput>
+  connectOrCreate?: Prisma.CandidateSkillCreateOrConnectWithoutEvidenceInput
+  connect?: Prisma.CandidateSkillWhereUniqueInput
+}
+
 export type CandidateSkillUpdateOneRequiredWithoutEvidenceNestedInput = {
   create?: Prisma.XOR<Prisma.CandidateSkillCreateWithoutEvidenceInput, Prisma.CandidateSkillUncheckedCreateWithoutEvidenceInput>
   connectOrCreate?: Prisma.CandidateSkillCreateOrConnectWithoutEvidenceInput

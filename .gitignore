@@ -1,0 +1,37 @@
+project_structure.txt
+
+# Backend secrets and build artifacts (also caught by Backend/.gitignore, belt-and-suspenders)
+Backend/.env
+Backend/.env.*
+!Backend/.env.example
+Backend/node_modules/
+Backend/dist/
+Backend/*.log
+
+# Frontend
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+frontend/node_modules/
+frontend/.next/
+frontend/dist/
+
+# Mobile build artifacts and secrets
+MobileApp/.dart_tool/
+MobileApp/build/
+MobileApp/.flutter-plugins
+MobileApp/.flutter-plugins-dependencies
+MobileApp/pubspec.lock
+MobileApp/coverage/
+MobileApp/**/*.jks
+MobileApp/**/*.keystore
+MobileApp/**/key.properties
+MobileApp/**/google-services.json
+MobileApp/**/GoogleService-Info.plist
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log

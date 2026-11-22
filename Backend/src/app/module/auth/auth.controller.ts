@@ -77,6 +77,12 @@ const getGithubAuthUrl = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const handleGithubCallbackRedirect = catchAsync(async (req: Request, res: Response) => {
+  const queryParams = new URLSearchParams(req.query as Record<string, string>).toString();
+  // Redirect to app custom scheme so system browser / Custom Tab returns to Flutter
+  res.redirect(`talentgraph://auth/callback?${queryParams}`);
+});
+
 const githubAuthCallback = catchAsync(async (req: Request, res: Response) => {
   const result = await AuthService.githubAuthCallback(req.body);
   setAuthCookies(res, result.accessToken, result.refreshToken);
@@ -155,6 +161,7 @@ export const AuthController = {
   verifyEmail,
   loginUser,
   getGithubAuthUrl,
+  handleGithubCallbackRedirect,
   githubAuthCallback,
   refreshToken,
   forgotPassword,

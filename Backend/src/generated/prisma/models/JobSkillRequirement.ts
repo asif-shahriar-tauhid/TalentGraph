@@ -475,10 +475,6 @@ export type JobSkillRequirementUncheckedUpdateManyWithoutJobNestedInput = {
   deleteMany?: Prisma.JobSkillRequirementScalarWhereInput | Prisma.JobSkillRequirementScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type JobSkillRequirementCreateWithoutSkillInput = {
   id?: string
   weight: number

@@ -31,6 +31,8 @@ export type CompanyMinAggregateOutputType = {
   website: string | null
   logoUrl: string | null
   subscriptionTier: $Enums.SubscriptionTier | null
+  rejectionReason: string | null
+  verificationStatus: $Enums.CompanyVerificationStatus | null
 }
 
 export type CompanyMaxAggregateOutputType = {
@@ -40,6 +42,8 @@ export type CompanyMaxAggregateOutputType = {
   website: string | null
   logoUrl: string | null
   subscriptionTier: $Enums.SubscriptionTier | null
+  rejectionReason: string | null
+  verificationStatus: $Enums.CompanyVerificationStatus | null
 }
 
 export type CompanyCountAggregateOutputType = {
@@ -49,6 +53,10 @@ export type CompanyCountAggregateOutputType = {
   website: number
   logoUrl: number
   subscriptionTier: number
+  recruiterAffiliationProof: number
+  rejectionReason: number
+  verificationDocuments: number
+  verificationStatus: number
   _all: number
 }
 
@@ -60,6 +68,8 @@ export type CompanyMinAggregateInputType = {
   website?: true
   logoUrl?: true
   subscriptionTier?: true
+  rejectionReason?: true
+  verificationStatus?: true
 }
 
 export type CompanyMaxAggregateInputType = {
@@ -69,6 +79,8 @@ export type CompanyMaxAggregateInputType = {
   website?: true
   logoUrl?: true
   subscriptionTier?: true
+  rejectionReason?: true
+  verificationStatus?: true
 }
 
 export type CompanyCountAggregateInputType = {
@@ -78,6 +90,10 @@ export type CompanyCountAggregateInputType = {
   website?: true
   logoUrl?: true
   subscriptionTier?: true
+  recruiterAffiliationProof?: true
+  rejectionReason?: true
+  verificationDocuments?: true
+  verificationStatus?: true
   _all?: true
 }
 
@@ -160,6 +176,10 @@ export type CompanyGroupByOutputType = {
   website: string
   logoUrl: string
   subscriptionTier: $Enums.SubscriptionTier
+  recruiterAffiliationProof: runtime.JsonValue
+  rejectionReason: string | null
+  verificationDocuments: runtime.JsonValue
+  verificationStatus: $Enums.CompanyVerificationStatus
   _count: CompanyCountAggregateOutputType | null
   _min: CompanyMinAggregateOutputType | null
   _max: CompanyMaxAggregateOutputType | null
@@ -190,6 +210,10 @@ export type CompanyWhereInput = {
   website?: Prisma.StringFilter<"Company"> | string
   logoUrl?: Prisma.StringFilter<"Company"> | string
   subscriptionTier?: Prisma.EnumSubscriptionTierFilter<"Company"> | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonFilter<"Company">
+  rejectionReason?: Prisma.StringNullableFilter<"Company"> | string | null
+  verificationDocuments?: Prisma.JsonFilter<"Company">
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusFilter<"Company"> | $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileListRelationFilter
   jobs?: Prisma.JobListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
@@ -203,6 +227,10 @@ export type CompanyOrderByWithRelationInput = {
   website?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
   subscriptionTier?: Prisma.SortOrder
+  recruiterAffiliationProof?: Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  verificationDocuments?: Prisma.SortOrder
+  verificationStatus?: Prisma.SortOrder
   recruiters?: Prisma.RecruiterProfileOrderByRelationAggregateInput
   jobs?: Prisma.JobOrderByRelationAggregateInput
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
@@ -219,6 +247,10 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   website?: Prisma.StringFilter<"Company"> | string
   logoUrl?: Prisma.StringFilter<"Company"> | string
   subscriptionTier?: Prisma.EnumSubscriptionTierFilter<"Company"> | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonFilter<"Company">
+  rejectionReason?: Prisma.StringNullableFilter<"Company"> | string | null
+  verificationDocuments?: Prisma.JsonFilter<"Company">
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusFilter<"Company"> | $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileListRelationFilter
   jobs?: Prisma.JobListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
@@ -232,6 +264,10 @@ export type CompanyOrderByWithAggregationInput = {
   website?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
   subscriptionTier?: Prisma.SortOrder
+  recruiterAffiliationProof?: Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  verificationDocuments?: Prisma.SortOrder
+  verificationStatus?: Prisma.SortOrder
   _count?: Prisma.CompanyCountOrderByAggregateInput
   _max?: Prisma.CompanyMaxOrderByAggregateInput
   _min?: Prisma.CompanyMinOrderByAggregateInput
@@ -247,6 +283,10 @@ export type CompanyScalarWhereWithAggregatesInput = {
   website?: Prisma.StringWithAggregatesFilter<"Company"> | string
   logoUrl?: Prisma.StringWithAggregatesFilter<"Company"> | string
   subscriptionTier?: Prisma.EnumSubscriptionTierWithAggregatesFilter<"Company"> | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonWithAggregatesFilter<"Company">
+  rejectionReason?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  verificationDocuments?: Prisma.JsonWithAggregatesFilter<"Company">
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusWithAggregatesFilter<"Company"> | $Enums.CompanyVerificationStatus
 }
 
 export type CompanyCreateInput = {
@@ -256,6 +296,10 @@ export type CompanyCreateInput = {
   website: string
   logoUrl: string
   subscriptionTier: $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileCreateNestedManyWithoutCompanyInput
   jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCompanyInput
@@ -269,6 +313,10 @@ export type CompanyUncheckedCreateInput = {
   website: string
   logoUrl: string
   subscriptionTier: $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileUncheckedCreateNestedManyWithoutCompanyInput
   jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCompanyInput
@@ -282,6 +330,10 @@ export type CompanyUpdateInput = {
   website?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.StringFieldUpdateOperationsInput | string
   subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusFieldUpdateOperationsInput | $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileUpdateManyWithoutCompanyNestedInput
   jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutCompanyNestedInput
@@ -295,6 +347,10 @@ export type CompanyUncheckedUpdateInput = {
   website?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.StringFieldUpdateOperationsInput | string
   subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusFieldUpdateOperationsInput | $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileUncheckedUpdateManyWithoutCompanyNestedInput
   jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCompanyNestedInput
@@ -308,6 +364,10 @@ export type CompanyCreateManyInput = {
   website: string
   logoUrl: string
   subscriptionTier: $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: $Enums.CompanyVerificationStatus
 }
 
 export type CompanyUpdateManyMutationInput = {
@@ -317,6 +377,10 @@ export type CompanyUpdateManyMutationInput = {
   website?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.StringFieldUpdateOperationsInput | string
   subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusFieldUpdateOperationsInput | $Enums.CompanyVerificationStatus
 }
 
 export type CompanyUncheckedUpdateManyInput = {
@@ -326,6 +390,10 @@ export type CompanyUncheckedUpdateManyInput = {
   website?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.StringFieldUpdateOperationsInput | string
   subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusFieldUpdateOperationsInput | $Enums.CompanyVerificationStatus
 }
 
 export type CompanyCountOrderByAggregateInput = {
@@ -335,6 +403,10 @@ export type CompanyCountOrderByAggregateInput = {
   website?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
   subscriptionTier?: Prisma.SortOrder
+  recruiterAffiliationProof?: Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrder
+  verificationDocuments?: Prisma.SortOrder
+  verificationStatus?: Prisma.SortOrder
 }
 
 export type CompanyMaxOrderByAggregateInput = {
@@ -344,6 +416,8 @@ export type CompanyMaxOrderByAggregateInput = {
   website?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
   subscriptionTier?: Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrder
+  verificationStatus?: Prisma.SortOrder
 }
 
 export type CompanyMinOrderByAggregateInput = {
@@ -353,6 +427,8 @@ export type CompanyMinOrderByAggregateInput = {
   website?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
   subscriptionTier?: Prisma.SortOrder
+  rejectionReason?: Prisma.SortOrder
+  verificationStatus?: Prisma.SortOrder
 }
 
 export type CompanyScalarRelationFilter = {
@@ -363,6 +439,14 @@ export type CompanyScalarRelationFilter = {
 export type CompanyNullableScalarRelationFilter = {
   is?: Prisma.CompanyWhereInput | null
   isNot?: Prisma.CompanyWhereInput | null
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type EnumCompanyVerificationStatusFieldUpdateOperationsInput = {
+  set?: $Enums.CompanyVerificationStatus
 }
 
 export type CompanyCreateNestedOneWithoutRecruitersInput = {
@@ -432,6 +516,10 @@ export type CompanyCreateWithoutRecruitersInput = {
   website: string
   logoUrl: string
   subscriptionTier: $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: $Enums.CompanyVerificationStatus
   jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCompanyInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutCompanyInput
@@ -444,6 +532,10 @@ export type CompanyUncheckedCreateWithoutRecruitersInput = {
   website: string
   logoUrl: string
   subscriptionTier: $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: $Enums.CompanyVerificationStatus
   jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCompanyInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutCompanyInput
@@ -472,6 +564,10 @@ export type CompanyUpdateWithoutRecruitersInput = {
   website?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.StringFieldUpdateOperationsInput | string
   subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusFieldUpdateOperationsInput | $Enums.CompanyVerificationStatus
   jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutCompanyNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutCompanyNestedInput
@@ -484,6 +580,10 @@ export type CompanyUncheckedUpdateWithoutRecruitersInput = {
   website?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.StringFieldUpdateOperationsInput | string
   subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusFieldUpdateOperationsInput | $Enums.CompanyVerificationStatus
   jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCompanyNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutCompanyNestedInput
@@ -496,6 +596,10 @@ export type CompanyCreateWithoutJobsInput = {
   website: string
   logoUrl: string
   subscriptionTier: $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileCreateNestedManyWithoutCompanyInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCompanyInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutCompanyInput
@@ -508,6 +612,10 @@ export type CompanyUncheckedCreateWithoutJobsInput = {
   website: string
   logoUrl: string
   subscriptionTier: $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileUncheckedCreateNestedManyWithoutCompanyInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCompanyInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutCompanyInput
@@ -536,6 +644,10 @@ export type CompanyUpdateWithoutJobsInput = {
   website?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.StringFieldUpdateOperationsInput | string
   subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusFieldUpdateOperationsInput | $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileUpdateManyWithoutCompanyNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutCompanyNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutCompanyNestedInput
@@ -548,6 +660,10 @@ export type CompanyUncheckedUpdateWithoutJobsInput = {
   website?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.StringFieldUpdateOperationsInput | string
   subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusFieldUpdateOperationsInput | $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileUncheckedUpdateManyWithoutCompanyNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCompanyNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutCompanyNestedInput
@@ -560,6 +676,10 @@ export type CompanyCreateWithoutSubscriptionsInput = {
   website: string
   logoUrl: string
   subscriptionTier: $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileCreateNestedManyWithoutCompanyInput
   jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutCompanyInput
@@ -572,6 +692,10 @@ export type CompanyUncheckedCreateWithoutSubscriptionsInput = {
   website: string
   logoUrl: string
   subscriptionTier: $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileUncheckedCreateNestedManyWithoutCompanyInput
   jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutCompanyInput
@@ -600,6 +724,10 @@ export type CompanyUpdateWithoutSubscriptionsInput = {
   website?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.StringFieldUpdateOperationsInput | string
   subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusFieldUpdateOperationsInput | $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileUpdateManyWithoutCompanyNestedInput
   jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutCompanyNestedInput
@@ -612,6 +740,10 @@ export type CompanyUncheckedUpdateWithoutSubscriptionsInput = {
   website?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.StringFieldUpdateOperationsInput | string
   subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusFieldUpdateOperationsInput | $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileUncheckedUpdateManyWithoutCompanyNestedInput
   jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutCompanyNestedInput
@@ -624,6 +756,10 @@ export type CompanyCreateWithoutTransactionsInput = {
   website: string
   logoUrl: string
   subscriptionTier: $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileCreateNestedManyWithoutCompanyInput
   jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCompanyInput
@@ -636,6 +772,10 @@ export type CompanyUncheckedCreateWithoutTransactionsInput = {
   website: string
   logoUrl: string
   subscriptionTier: $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileUncheckedCreateNestedManyWithoutCompanyInput
   jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCompanyInput
@@ -664,6 +804,10 @@ export type CompanyUpdateWithoutTransactionsInput = {
   website?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.StringFieldUpdateOperationsInput | string
   subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusFieldUpdateOperationsInput | $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileUpdateManyWithoutCompanyNestedInput
   jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutCompanyNestedInput
@@ -676,6 +820,10 @@ export type CompanyUncheckedUpdateWithoutTransactionsInput = {
   website?: Prisma.StringFieldUpdateOperationsInput | string
   logoUrl?: Prisma.StringFieldUpdateOperationsInput | string
   subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  recruiterAffiliationProof?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationDocuments?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  verificationStatus?: Prisma.EnumCompanyVerificationStatusFieldUpdateOperationsInput | $Enums.CompanyVerificationStatus
   recruiters?: Prisma.RecruiterProfileUncheckedUpdateManyWithoutCompanyNestedInput
   jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCompanyNestedInput
@@ -746,6 +894,10 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   website?: boolean
   logoUrl?: boolean
   subscriptionTier?: boolean
+  recruiterAffiliationProof?: boolean
+  rejectionReason?: boolean
+  verificationDocuments?: boolean
+  verificationStatus?: boolean
   recruiters?: boolean | Prisma.Company$recruitersArgs<ExtArgs>
   jobs?: boolean | Prisma.Company$jobsArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Company$subscriptionsArgs<ExtArgs>
@@ -760,6 +912,10 @@ export type CompanySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   website?: boolean
   logoUrl?: boolean
   subscriptionTier?: boolean
+  recruiterAffiliationProof?: boolean
+  rejectionReason?: boolean
+  verificationDocuments?: boolean
+  verificationStatus?: boolean
 }, ExtArgs["result"]["company"]>
 
 export type CompanySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -769,6 +925,10 @@ export type CompanySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   website?: boolean
   logoUrl?: boolean
   subscriptionTier?: boolean
+  recruiterAffiliationProof?: boolean
+  rejectionReason?: boolean
+  verificationDocuments?: boolean
+  verificationStatus?: boolean
 }, ExtArgs["result"]["company"]>
 
 export type CompanySelectScalar = {
@@ -778,9 +938,13 @@ export type CompanySelectScalar = {
   website?: boolean
   logoUrl?: boolean
   subscriptionTier?: boolean
+  recruiterAffiliationProof?: boolean
+  rejectionReason?: boolean
+  verificationDocuments?: boolean
+  verificationStatus?: boolean
 }
 
-export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "website" | "logoUrl" | "subscriptionTier", ExtArgs["result"]["company"]>
+export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "website" | "logoUrl" | "subscriptionTier" | "recruiterAffiliationProof" | "rejectionReason" | "verificationDocuments" | "verificationStatus", ExtArgs["result"]["company"]>
 export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   recruiters?: boolean | Prisma.Company$recruitersArgs<ExtArgs>
   jobs?: boolean | Prisma.Company$jobsArgs<ExtArgs>
@@ -806,6 +970,10 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     website: string
     logoUrl: string
     subscriptionTier: $Enums.SubscriptionTier
+    recruiterAffiliationProof: runtime.JsonValue
+    rejectionReason: string | null
+    verificationDocuments: runtime.JsonValue
+    verificationStatus: $Enums.CompanyVerificationStatus
   }, ExtArgs["result"]["company"]>
   composites: {}
 }
@@ -1239,6 +1407,10 @@ export interface CompanyFieldRefs {
   readonly website: Prisma.FieldRef<"Company", 'String'>
   readonly logoUrl: Prisma.FieldRef<"Company", 'String'>
   readonly subscriptionTier: Prisma.FieldRef<"Company", 'SubscriptionTier'>
+  readonly recruiterAffiliationProof: Prisma.FieldRef<"Company", 'Json'>
+  readonly rejectionReason: Prisma.FieldRef<"Company", 'String'>
+  readonly verificationDocuments: Prisma.FieldRef<"Company", 'Json'>
+  readonly verificationStatus: Prisma.FieldRef<"Company", 'CompanyVerificationStatus'>
 }
     
 

@@ -58,12 +58,16 @@ const registerUser = async (payload: IRegisterUserPayload) => {
     CURRENT_YEAR: new Date().getFullYear(),
   });
 
-  await transporter.sendMail({
-    from: config.email_sender,
-    to: email,
-    subject: "Verify Your Email - TalentGraph",
-    html,
-  });
+  try {
+    await transporter.sendMail({
+      from: config.email_sender,
+      to: email,
+      subject: "Verify Your Email - TalentGraph",
+      html,
+    });
+  } catch (e) {
+    console.warn("Email skipped (verify):", e);
+  }
 };
 
 const verifyEmail = async (payload: IVerifyEmailPayload) => {
@@ -92,8 +96,9 @@ const verifyEmail = async (payload: IVerifyEmailPayload) => {
       email: pendingData.email,
       password: pendingData.password,
       role: pendingData.role,
-      emailVerified: true,
+      status: "ACTIVE",
       authProvider: "CREDENTIAL",
+      emailVerified: true,
     },
   });
 
@@ -172,8 +177,19 @@ const loginUser = async (payload: ILoginUserPayload) => {
 };
 
 const githubAuthCallback = async (payload: IGithubAuthPayload) => {
-  const ghAccessToken = await githubAuth.getGithubAccessToken(payload.code);
-  const ghProfile = await githubAuth.getGithubUserProfile(ghAccessToken);
+  let ghAccessToken: string;
+  try {
+    ghAccessToken = await githubAuth.getGithubAccessToken(payload.code);
+  } catch (e) {
+    throw e;
+  }
+
+  let ghProfile;
+  try {
+    ghProfile = await githubAuth.getGithubUserProfile(ghAccessToken);
+  } catch (e) {
+    throw e;
+  }
 
   let user = await prisma.user.findFirst({
     where: {
@@ -200,15 +216,16 @@ const githubAuthCallback = async (payload: IGithubAuthPayload) => {
     }
   } else {
     user = await prisma.user.create({
-      data: {
-        name: ghProfile.name,
-        email: ghProfile.email,
-        githubId: ghProfile.id,
-        imageUrl: ghProfile.avatarUrl,
-        authProvider: "GITHUB",
-        emailVerified: true,
-        role: payload.role || "CANDIDATE",
-      },
+    data: {
+      name: ghProfile.name,
+      email: ghProfile.email,
+      githubId: ghProfile.id,
+      imageUrl: ghProfile.avatarUrl,
+      authProvider: "GITHUB",
+      emailVerified: true,
+      role: payload.role || "CANDIDATE",
+      status: "ACTIVE",
+    },
     });
   }
 
@@ -293,12 +310,16 @@ const forgotPassword = async (payload: IForgotPasswordPayload) => {
     CURRENT_YEAR: new Date().getFullYear(),
   });
 
-  await transporter.sendMail({
-    from: config.email_sender,
-    to: email,
-    subject: "Reset Your Password - OTP Code",
-    html,
-  });
+  try {
+    await transporter.sendMail({
+      from: config.email_sender,
+      to: email,
+      subject: "Reset Your Password - OTP Code",
+      html,
+    });
+  } catch (e) {
+    console.warn("Email skipped (forgot-password):", e);
+  }
 };
 
 const resetPassword = async (payload: IResetPasswordPayload) => {

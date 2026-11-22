@@ -23,6 +23,8 @@ export const seedSuperAdmin = async () => {
         email: config.system_admin_email,
         password: hashedPassword,
         role: "SYSTEM_ADMIN",
+        status: "ACTIVE",
+        authProvider: "CREDENTIAL",
         emailVerified: true,
       },
     });

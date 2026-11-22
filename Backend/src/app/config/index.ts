@@ -17,6 +17,7 @@ export default {
   system_admin_name: process.env.SYSTEM_ADMIN_NAME || "System Admin",
   system_admin_email: process.env.SYSTEM_ADMIN_EMAIL || "admin@talentgraph.com",
   system_admin_password: process.env.SYSTEM_ADMIN_PASSWORD || "AdminPassword@123",
+  redis_url: process.env.REDIS_URL,
   redis_user: process.env.REDIS_USER,
   redis_password: process.env.REDIS_PASSWORD,
   redis_host: process.env.REDIS_HOST || "localhost",

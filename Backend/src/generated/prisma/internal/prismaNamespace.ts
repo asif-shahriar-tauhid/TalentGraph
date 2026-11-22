@@ -830,6 +830,18 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
           args: Prisma.EvidenceFindManyArgs<ExtArgs>
           result: runtime.Types.Utils.PayloadToResult<Prisma.$EvidencePayload>[]
         }
+        create: {
+          args: Prisma.EvidenceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvidencePayload>
+        }
+        createMany: {
+          args: Prisma.EvidenceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EvidenceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvidencePayload>[]
+        }
         delete: {
           args: Prisma.EvidenceDeleteArgs<ExtArgs>
           result: runtime.Types.Utils.PayloadToResult<Prisma.$EvidencePayload>
@@ -849,6 +861,10 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         updateManyAndReturn: {
           args: Prisma.EvidenceUpdateManyAndReturnArgs<ExtArgs>
           result: runtime.Types.Utils.PayloadToResult<Prisma.$EvidencePayload>[]
+        }
+        upsert: {
+          args: Prisma.EvidenceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EvidencePayload>
         }
         aggregate: {
           args: Prisma.EvidenceAggregateArgs<ExtArgs>
@@ -1947,7 +1963,9 @@ export const CandidateProfileScalarFieldEnum = {
   education: 'education',
   links: 'links',
   cvUrl: 'cvUrl',
-  subscriptionTier: 'subscriptionTier'
+  subscriptionTier: 'subscriptionTier',
+  githubSyncCount: 'githubSyncCount',
+  githubSyncResetAt: 'githubSyncResetAt'
 } as const
 
 export type CandidateProfileScalarFieldEnum = (typeof CandidateProfileScalarFieldEnum)[keyof typeof CandidateProfileScalarFieldEnum]
@@ -1959,7 +1977,11 @@ export const CompanyScalarFieldEnum = {
   description: 'description',
   website: 'website',
   logoUrl: 'logoUrl',
-  subscriptionTier: 'subscriptionTier'
+  subscriptionTier: 'subscriptionTier',
+  recruiterAffiliationProof: 'recruiterAffiliationProof',
+  rejectionReason: 'rejectionReason',
+  verificationDocuments: 'verificationDocuments',
+  verificationStatus: 'verificationStatus'
 } as const
 
 export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
@@ -2017,7 +2039,9 @@ export const GitHubRepoScalarFieldEnum = {
   languages: 'languages',
   dependencies: 'dependencies',
   stargazers: 'stargazers',
-  lastCommitAt: 'lastCommitAt'
+  lastCommitAt: 'lastCommitAt',
+  isSelected: 'isSelected',
+  lastSyncCommitSha: 'lastSyncCommitSha'
 } as const
 
 export type GitHubRepoScalarFieldEnum = (typeof GitHubRepoScalarFieldEnum)[keyof typeof GitHubRepoScalarFieldEnum]
@@ -2185,11 +2209,23 @@ export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
   passwordHash: 'passwordHash',
+  password: 'password',
   role: 'role',
+  status: 'status',
+  name: 'name',
+  authProvider: 'authProvider',
+  emailVerified: 'emailVerified',
+  needPasswordChange: 'needPasswordChange',
+  isDeleted: 'isDeleted',
+  isAssessmentBanned: 'isAssessmentBanned',
   githubId: 'githubId',
   githubToken: 'githubToken',
+  imageUrl: 'imageUrl',
+  imagePublicId: 'imagePublicId',
+  deletedAt: 'deletedAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  candidateProfileId: 'candidateProfileId'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -2284,6 +2320,48 @@ export type ListEnumSubscriptionTierFieldRefInput<$PrismaModel> = FieldRefInputT
 
 
 /**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'CompanyVerificationStatus'
+ */
+export type EnumCompanyVerificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CompanyVerificationStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'CompanyVerificationStatus[]'
+ */
+export type ListEnumCompanyVerificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CompanyVerificationStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2308,34 +2386,6 @@ export type EnumEvidenceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'EvidenceType[]'
  */
 export type ListEnumEvidenceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EvidenceType[]'>
-    
-
-
-/**
- * Reference to a field of type 'DateTime'
- */
-export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-/**
- * Reference to a field of type 'DateTime[]'
- */
-export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-/**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -2441,6 +2491,34 @@ export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'Role[]'
  */
 export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+/**
+ * Reference to a field of type 'UserStatus'
+ */
+export type EnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'UserStatus[]'
+ */
+export type ListEnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AuthProvider'
+ */
+export type EnumAuthProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuthProvider'>
+    
+
+
+/**
+ * Reference to a field of type 'AuthProvider[]'
+ */
+export type ListEnumAuthProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuthProvider[]'>
     
 
 /**

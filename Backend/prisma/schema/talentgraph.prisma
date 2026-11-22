@@ -1,31 +1,37 @@
 model CandidateProfile {
-  id               String           @id @default(uuid())
-  userId           String           @unique
-  name             String
-  headline         String
-  education        Json
-  links            Json
-  cvUrl            String
-  subscriptionTier SubscriptionTier
-  user             User             @relation(fields: [userId], references: [id])
-  skills           CandidateSkill[]
-  githubRepos      GitHubRepo[]
-  applications     Application[]
-  subscriptions    Subscription[]
-  transactions     Transaction[]
+  id                String           @id @default(uuid())
+  userId            String           @unique
+  name              String
+  headline          String
+  education         Json
+  links             Json
+  cvUrl             String
+  subscriptionTier  SubscriptionTier
+  githubSyncCount   Int              @default(0)
+  githubSyncResetAt DateTime?
+  skills            CandidateSkill[]
+  githubRepos       GitHubRepo[]
+  applications      Application[]
+  subscriptions     Subscription[]
+  transactions      Transaction[]
+  users             User[]
 }
 
 model Company {
-  id               String             @id @default(uuid())
-  name             String
-  description      String
-  website          String
-  logoUrl          String
-  subscriptionTier SubscriptionTier
-  recruiters       RecruiterProfile[]
-  jobs             Job[]
-  subscriptions    Subscription[]
-  transactions     Transaction[]
+  id                        String                    @id @default(uuid())
+  name                      String
+  description               String
+  website                   String
+  logoUrl                   String
+  subscriptionTier          SubscriptionTier
+  recruiters                RecruiterProfile[]
+  jobs                      Job[]
+  recruiterAffiliationProof Json                      @default("{}")
+  rejectionReason           String?
+  verificationDocuments     Json                      @default("[]")
+  verificationStatus        CompanyVerificationStatus @default(DRAFT)
+  subscriptions             Subscription[]
+  transactions              Transaction[]
 }
 
 model RecruiterProfile {
@@ -58,28 +64,30 @@ model CandidateSkill {
 }
 
 model Evidence {
-  id               String                @id @default(uuid())
+  id               String                 @id @default(uuid())
   candidateSkillId String
   type             EvidenceType
   sourceUrl        String
   description      String
   extractedScore   Float
   metadata         Json
-  embedding        Unsupported("vector")
-  createdAt        DateTime              @default(now())
-  candidateSkill   CandidateSkill        @relation(fields: [candidateSkillId], references: [id])
+  embedding        Unsupported("vector")?
+  createdAt        DateTime               @default(now())
+  candidateSkill   CandidateSkill         @relation(fields: [candidateSkillId], references: [id])
 }
 
 model GitHubRepo {
-  id           String           @id @default(uuid())
-  candidateId  String
-  repoName     String
-  repoUrl      String
-  languages    Json
-  dependencies Json
-  stargazers   Int
-  lastCommitAt DateTime
-  candidate    CandidateProfile @relation(fields: [candidateId], references: [id])
+  id                String           @id @default(uuid())
+  candidateId       String
+  repoName          String
+  repoUrl           String
+  languages         Json
+  dependencies      Json
+  stargazers        Int
+  lastCommitAt      DateTime
+  isSelected        Boolean          @default(false)
+  lastSyncCommitSha String?
+  candidate         CandidateProfile @relation(fields: [candidateId], references: [id])
 }
 
 model Job {

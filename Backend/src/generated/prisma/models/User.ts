@@ -28,33 +28,69 @@ export type UserMinAggregateOutputType = {
   id: string | null
   email: string | null
   passwordHash: string | null
+  password: string | null
   role: $Enums.Role | null
+  status: $Enums.UserStatus | null
+  name: string | null
+  authProvider: $Enums.AuthProvider | null
+  emailVerified: boolean | null
+  needPasswordChange: boolean | null
+  isDeleted: boolean | null
+  isAssessmentBanned: boolean | null
   githubId: string | null
   githubToken: string | null
+  imageUrl: string | null
+  imagePublicId: string | null
+  deletedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  candidateProfileId: string | null
 }
 
 export type UserMaxAggregateOutputType = {
   id: string | null
   email: string | null
   passwordHash: string | null
+  password: string | null
   role: $Enums.Role | null
+  status: $Enums.UserStatus | null
+  name: string | null
+  authProvider: $Enums.AuthProvider | null
+  emailVerified: boolean | null
+  needPasswordChange: boolean | null
+  isDeleted: boolean | null
+  isAssessmentBanned: boolean | null
   githubId: string | null
   githubToken: string | null
+  imageUrl: string | null
+  imagePublicId: string | null
+  deletedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  candidateProfileId: string | null
 }
 
 export type UserCountAggregateOutputType = {
   id: number
   email: number
   passwordHash: number
+  password: number
   role: number
+  status: number
+  name: number
+  authProvider: number
+  emailVerified: number
+  needPasswordChange: number
+  isDeleted: number
+  isAssessmentBanned: number
   githubId: number
   githubToken: number
+  imageUrl: number
+  imagePublicId: number
+  deletedAt: number
   createdAt: number
   updatedAt: number
+  candidateProfileId: number
   _all: number
 }
 
@@ -63,33 +99,69 @@ export type UserMinAggregateInputType = {
   id?: true
   email?: true
   passwordHash?: true
+  password?: true
   role?: true
+  status?: true
+  name?: true
+  authProvider?: true
+  emailVerified?: true
+  needPasswordChange?: true
+  isDeleted?: true
+  isAssessmentBanned?: true
   githubId?: true
   githubToken?: true
+  imageUrl?: true
+  imagePublicId?: true
+  deletedAt?: true
   createdAt?: true
   updatedAt?: true
+  candidateProfileId?: true
 }
 
 export type UserMaxAggregateInputType = {
   id?: true
   email?: true
   passwordHash?: true
+  password?: true
   role?: true
+  status?: true
+  name?: true
+  authProvider?: true
+  emailVerified?: true
+  needPasswordChange?: true
+  isDeleted?: true
+  isAssessmentBanned?: true
   githubId?: true
   githubToken?: true
+  imageUrl?: true
+  imagePublicId?: true
+  deletedAt?: true
   createdAt?: true
   updatedAt?: true
+  candidateProfileId?: true
 }
 
 export type UserCountAggregateInputType = {
   id?: true
   email?: true
   passwordHash?: true
+  password?: true
   role?: true
+  status?: true
+  name?: true
+  authProvider?: true
+  emailVerified?: true
+  needPasswordChange?: true
+  isDeleted?: true
+  isAssessmentBanned?: true
   githubId?: true
   githubToken?: true
+  imageUrl?: true
+  imagePublicId?: true
+  deletedAt?: true
   createdAt?: true
   updatedAt?: true
+  candidateProfileId?: true
   _all?: true
 }
 
@@ -168,12 +240,24 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type UserGroupByOutputType = {
   id: string
   email: string
-  passwordHash: string
+  passwordHash: string | null
+  password: string | null
   role: $Enums.Role
+  status: $Enums.UserStatus
+  name: string
+  authProvider: $Enums.AuthProvider
+  emailVerified: boolean
+  needPasswordChange: boolean
+  isDeleted: boolean
+  isAssessmentBanned: boolean
   githubId: string | null
   githubToken: string | null
+  imageUrl: string | null
+  imagePublicId: string | null
+  deletedAt: Date | null
   createdAt: Date
   updatedAt: Date
+  candidateProfileId: string | null
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -200,12 +284,24 @@ export type UserWhereInput = {
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
-  passwordHash?: Prisma.StringFilter<"User"> | string
+  passwordHash?: Prisma.StringNullableFilter<"User"> | string | null
+  password?: Prisma.StringNullableFilter<"User"> | string | null
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
+  name?: Prisma.StringFilter<"User"> | string
+  authProvider?: Prisma.EnumAuthProviderFilter<"User"> | $Enums.AuthProvider
+  emailVerified?: Prisma.BoolFilter<"User"> | boolean
+  needPasswordChange?: Prisma.BoolFilter<"User"> | boolean
+  isDeleted?: Prisma.BoolFilter<"User"> | boolean
+  isAssessmentBanned?: Prisma.BoolFilter<"User"> | boolean
   githubId?: Prisma.StringNullableFilter<"User"> | string | null
   githubToken?: Prisma.StringNullableFilter<"User"> | string | null
+  imageUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  imagePublicId?: Prisma.StringNullableFilter<"User"> | string | null
+  deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  candidateProfileId?: Prisma.StringNullableFilter<"User"> | string | null
   candidateProfile?: Prisma.XOR<Prisma.CandidateProfileNullableScalarRelationFilter, Prisma.CandidateProfileWhereInput> | null
   recruiterProfile?: Prisma.XOR<Prisma.RecruiterProfileNullableScalarRelationFilter, Prisma.RecruiterProfileWhereInput> | null
 }
@@ -213,12 +309,24 @@ export type UserWhereInput = {
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  passwordHash?: Prisma.SortOrder
+  passwordHash?: Prisma.SortOrderInput | Prisma.SortOrder
+  password?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  authProvider?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  needPasswordChange?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  isAssessmentBanned?: Prisma.SortOrder
   githubId?: Prisma.SortOrderInput | Prisma.SortOrder
   githubToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  imagePublicId?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  candidateProfileId?: Prisma.SortOrderInput | Prisma.SortOrder
   candidateProfile?: Prisma.CandidateProfileOrderByWithRelationInput
   recruiterProfile?: Prisma.RecruiterProfileOrderByWithRelationInput
 }
@@ -230,11 +338,23 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  passwordHash?: Prisma.StringFilter<"User"> | string
+  passwordHash?: Prisma.StringNullableFilter<"User"> | string | null
+  password?: Prisma.StringNullableFilter<"User"> | string | null
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
+  name?: Prisma.StringFilter<"User"> | string
+  authProvider?: Prisma.EnumAuthProviderFilter<"User"> | $Enums.AuthProvider
+  emailVerified?: Prisma.BoolFilter<"User"> | boolean
+  needPasswordChange?: Prisma.BoolFilter<"User"> | boolean
+  isDeleted?: Prisma.BoolFilter<"User"> | boolean
+  isAssessmentBanned?: Prisma.BoolFilter<"User"> | boolean
   githubToken?: Prisma.StringNullableFilter<"User"> | string | null
+  imageUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  imagePublicId?: Prisma.StringNullableFilter<"User"> | string | null
+  deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  candidateProfileId?: Prisma.StringNullableFilter<"User"> | string | null
   candidateProfile?: Prisma.XOR<Prisma.CandidateProfileNullableScalarRelationFilter, Prisma.CandidateProfileWhereInput> | null
   recruiterProfile?: Prisma.XOR<Prisma.RecruiterProfileNullableScalarRelationFilter, Prisma.RecruiterProfileWhereInput> | null
 }, "id" | "email" | "githubId">
@@ -242,12 +362,24 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  passwordHash?: Prisma.SortOrder
+  passwordHash?: Prisma.SortOrderInput | Prisma.SortOrder
+  password?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  authProvider?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  needPasswordChange?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  isAssessmentBanned?: Prisma.SortOrder
   githubId?: Prisma.SortOrderInput | Prisma.SortOrder
   githubToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  imagePublicId?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  candidateProfileId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -259,84 +391,163 @@ export type UserScalarWhereWithAggregatesInput = {
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
-  passwordHash?: Prisma.StringWithAggregatesFilter<"User"> | string
+  passwordHash?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  password?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   role?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
+  status?: Prisma.EnumUserStatusWithAggregatesFilter<"User"> | $Enums.UserStatus
+  name?: Prisma.StringWithAggregatesFilter<"User"> | string
+  authProvider?: Prisma.EnumAuthProviderWithAggregatesFilter<"User"> | $Enums.AuthProvider
+  emailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  needPasswordChange?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  isDeleted?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  isAssessmentBanned?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   githubId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   githubToken?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  imageUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  imagePublicId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  candidateProfileId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
   id?: string
   email: string
-  passwordHash: string
+  passwordHash?: string | null
+  password?: string | null
   role: $Enums.Role
+  status: $Enums.UserStatus
+  name: string
+  authProvider: $Enums.AuthProvider
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  isAssessmentBanned?: boolean
   githubId?: string | null
   githubToken?: string | null
+  imageUrl?: string | null
+  imagePublicId?: string | null
+  deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  candidateProfile?: Prisma.CandidateProfileCreateNestedOneWithoutUserInput
+  candidateProfile?: Prisma.CandidateProfileCreateNestedOneWithoutUsersInput
   recruiterProfile?: Prisma.RecruiterProfileCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
   id?: string
   email: string
-  passwordHash: string
+  passwordHash?: string | null
+  password?: string | null
   role: $Enums.Role
+  status: $Enums.UserStatus
+  name: string
+  authProvider: $Enums.AuthProvider
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  isAssessmentBanned?: boolean
   githubId?: string | null
   githubToken?: string | null
+  imageUrl?: string | null
+  imagePublicId?: string | null
+  deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  candidateProfile?: Prisma.CandidateProfileUncheckedCreateNestedOneWithoutUserInput
+  candidateProfileId?: string | null
   recruiterProfile?: Prisma.RecruiterProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  authProvider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAssessmentBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   githubId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   githubToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imagePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  candidateProfile?: Prisma.CandidateProfileUpdateOneWithoutUserNestedInput
+  candidateProfile?: Prisma.CandidateProfileUpdateOneWithoutUsersNestedInput
   recruiterProfile?: Prisma.RecruiterProfileUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  authProvider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAssessmentBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   githubId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   githubToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imagePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  candidateProfile?: Prisma.CandidateProfileUncheckedUpdateOneWithoutUserNestedInput
+  candidateProfileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   recruiterProfile?: Prisma.RecruiterProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
   id?: string
   email: string
-  passwordHash: string
+  passwordHash?: string | null
+  password?: string | null
   role: $Enums.Role
+  status: $Enums.UserStatus
+  name: string
+  authProvider: $Enums.AuthProvider
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  isAssessmentBanned?: boolean
   githubId?: string | null
   githubToken?: string | null
+  imageUrl?: string | null
+  imagePublicId?: string | null
+  deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  candidateProfileId?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  authProvider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAssessmentBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   githubId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   githubToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imagePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -344,12 +555,34 @@ export type UserUpdateManyMutationInput = {
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  authProvider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAssessmentBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   githubId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   githubToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imagePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  candidateProfileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type UserListRelationFilter = {
+  every?: Prisma.UserWhereInput
+  some?: Prisma.UserWhereInput
+  none?: Prisma.UserWhereInput
+}
+
+export type UserOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -361,47 +594,111 @@ export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
+  password?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  authProvider?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  needPasswordChange?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  isAssessmentBanned?: Prisma.SortOrder
   githubId?: Prisma.SortOrder
   githubToken?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
+  imagePublicId?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  candidateProfileId?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
+  password?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  authProvider?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  needPasswordChange?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  isAssessmentBanned?: Prisma.SortOrder
   githubId?: Prisma.SortOrder
   githubToken?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
+  imagePublicId?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  candidateProfileId?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   passwordHash?: Prisma.SortOrder
+  password?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  authProvider?: Prisma.SortOrder
+  emailVerified?: Prisma.SortOrder
+  needPasswordChange?: Prisma.SortOrder
+  isDeleted?: Prisma.SortOrder
+  isAssessmentBanned?: Prisma.SortOrder
   githubId?: Prisma.SortOrder
   githubToken?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
+  imagePublicId?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  candidateProfileId?: Prisma.SortOrder
 }
 
-export type UserCreateNestedOneWithoutCandidateProfileInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCandidateProfileInput, Prisma.UserUncheckedCreateWithoutCandidateProfileInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCandidateProfileInput
-  connect?: Prisma.UserWhereUniqueInput
+export type UserCreateNestedManyWithoutCandidateProfileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCandidateProfileInput, Prisma.UserUncheckedCreateWithoutCandidateProfileInput> | Prisma.UserCreateWithoutCandidateProfileInput[] | Prisma.UserUncheckedCreateWithoutCandidateProfileInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCandidateProfileInput | Prisma.UserCreateOrConnectWithoutCandidateProfileInput[]
+  createMany?: Prisma.UserCreateManyCandidateProfileInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
 }
 
-export type UserUpdateOneRequiredWithoutCandidateProfileNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCandidateProfileInput, Prisma.UserUncheckedCreateWithoutCandidateProfileInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCandidateProfileInput
-  upsert?: Prisma.UserUpsertWithoutCandidateProfileInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCandidateProfileInput, Prisma.UserUpdateWithoutCandidateProfileInput>, Prisma.UserUncheckedUpdateWithoutCandidateProfileInput>
+export type UserUncheckedCreateNestedManyWithoutCandidateProfileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCandidateProfileInput, Prisma.UserUncheckedCreateWithoutCandidateProfileInput> | Prisma.UserCreateWithoutCandidateProfileInput[] | Prisma.UserUncheckedCreateWithoutCandidateProfileInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCandidateProfileInput | Prisma.UserCreateOrConnectWithoutCandidateProfileInput[]
+  createMany?: Prisma.UserCreateManyCandidateProfileInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUpdateManyWithoutCandidateProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCandidateProfileInput, Prisma.UserUncheckedCreateWithoutCandidateProfileInput> | Prisma.UserCreateWithoutCandidateProfileInput[] | Prisma.UserUncheckedCreateWithoutCandidateProfileInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCandidateProfileInput | Prisma.UserCreateOrConnectWithoutCandidateProfileInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutCandidateProfileInput | Prisma.UserUpsertWithWhereUniqueWithoutCandidateProfileInput[]
+  createMany?: Prisma.UserCreateManyCandidateProfileInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutCandidateProfileInput | Prisma.UserUpdateWithWhereUniqueWithoutCandidateProfileInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutCandidateProfileInput | Prisma.UserUpdateManyWithWhereWithoutCandidateProfileInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserUncheckedUpdateManyWithoutCandidateProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCandidateProfileInput, Prisma.UserUncheckedCreateWithoutCandidateProfileInput> | Prisma.UserCreateWithoutCandidateProfileInput[] | Prisma.UserUncheckedCreateWithoutCandidateProfileInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCandidateProfileInput | Prisma.UserCreateOrConnectWithoutCandidateProfileInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutCandidateProfileInput | Prisma.UserUpsertWithWhereUniqueWithoutCandidateProfileInput[]
+  createMany?: Prisma.UserCreateManyCandidateProfileInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutCandidateProfileInput | Prisma.UserUpdateWithWhereUniqueWithoutCandidateProfileInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutCandidateProfileInput | Prisma.UserUpdateManyWithWhereWithoutCandidateProfileInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
 export type UserCreateNestedOneWithoutRecruiterProfileInput = {
@@ -422,13 +719,32 @@ export type EnumRoleFieldUpdateOperationsInput = {
   set?: $Enums.Role
 }
 
+export type EnumUserStatusFieldUpdateOperationsInput = {
+  set?: $Enums.UserStatus
+}
+
+export type EnumAuthProviderFieldUpdateOperationsInput = {
+  set?: $Enums.AuthProvider
+}
+
 export type UserCreateWithoutCandidateProfileInput = {
   id?: string
   email: string
-  passwordHash: string
+  passwordHash?: string | null
+  password?: string | null
   role: $Enums.Role
+  status: $Enums.UserStatus
+  name: string
+  authProvider: $Enums.AuthProvider
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  isAssessmentBanned?: boolean
   githubId?: string | null
   githubToken?: string | null
+  imageUrl?: string | null
+  imagePublicId?: string | null
+  deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   recruiterProfile?: Prisma.RecruiterProfileCreateNestedOneWithoutUserInput
@@ -437,10 +753,21 @@ export type UserCreateWithoutCandidateProfileInput = {
 export type UserUncheckedCreateWithoutCandidateProfileInput = {
   id?: string
   email: string
-  passwordHash: string
+  passwordHash?: string | null
+  password?: string | null
   role: $Enums.Role
+  status: $Enums.UserStatus
+  name: string
+  authProvider: $Enums.AuthProvider
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  isAssessmentBanned?: boolean
   githubId?: string | null
   githubToken?: string | null
+  imageUrl?: string | null
+  imagePublicId?: string | null
+  deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   recruiterProfile?: Prisma.RecruiterProfileUncheckedCreateNestedOneWithoutUserInput
@@ -451,63 +778,97 @@ export type UserCreateOrConnectWithoutCandidateProfileInput = {
   create: Prisma.XOR<Prisma.UserCreateWithoutCandidateProfileInput, Prisma.UserUncheckedCreateWithoutCandidateProfileInput>
 }
 
-export type UserUpsertWithoutCandidateProfileInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutCandidateProfileInput, Prisma.UserUncheckedUpdateWithoutCandidateProfileInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutCandidateProfileInput, Prisma.UserUncheckedCreateWithoutCandidateProfileInput>
-  where?: Prisma.UserWhereInput
+export type UserCreateManyCandidateProfileInputEnvelope = {
+  data: Prisma.UserCreateManyCandidateProfileInput | Prisma.UserCreateManyCandidateProfileInput[]
+  skipDuplicates?: boolean
 }
 
-export type UserUpdateToOneWithWhereWithoutCandidateProfileInput = {
-  where?: Prisma.UserWhereInput
+export type UserUpsertWithWhereUniqueWithoutCandidateProfileInput = {
+  where: Prisma.UserWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCandidateProfileInput, Prisma.UserUncheckedUpdateWithoutCandidateProfileInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCandidateProfileInput, Prisma.UserUncheckedCreateWithoutCandidateProfileInput>
+}
+
+export type UserUpdateWithWhereUniqueWithoutCandidateProfileInput = {
+  where: Prisma.UserWhereUniqueInput
   data: Prisma.XOR<Prisma.UserUpdateWithoutCandidateProfileInput, Prisma.UserUncheckedUpdateWithoutCandidateProfileInput>
 }
 
-export type UserUpdateWithoutCandidateProfileInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  githubId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  githubToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recruiterProfile?: Prisma.RecruiterProfileUpdateOneWithoutUserNestedInput
+export type UserUpdateManyWithWhereWithoutCandidateProfileInput = {
+  where: Prisma.UserScalarWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutCandidateProfileInput>
 }
 
-export type UserUncheckedUpdateWithoutCandidateProfileInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
-  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
-  githubId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  githubToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  recruiterProfile?: Prisma.RecruiterProfileUncheckedUpdateOneWithoutUserNestedInput
+export type UserScalarWhereInput = {
+  AND?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+  OR?: Prisma.UserScalarWhereInput[]
+  NOT?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+  id?: Prisma.StringFilter<"User"> | string
+  email?: Prisma.StringFilter<"User"> | string
+  passwordHash?: Prisma.StringNullableFilter<"User"> | string | null
+  password?: Prisma.StringNullableFilter<"User"> | string | null
+  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  status?: Prisma.EnumUserStatusFilter<"User"> | $Enums.UserStatus
+  name?: Prisma.StringFilter<"User"> | string
+  authProvider?: Prisma.EnumAuthProviderFilter<"User"> | $Enums.AuthProvider
+  emailVerified?: Prisma.BoolFilter<"User"> | boolean
+  needPasswordChange?: Prisma.BoolFilter<"User"> | boolean
+  isDeleted?: Prisma.BoolFilter<"User"> | boolean
+  isAssessmentBanned?: Prisma.BoolFilter<"User"> | boolean
+  githubId?: Prisma.StringNullableFilter<"User"> | string | null
+  githubToken?: Prisma.StringNullableFilter<"User"> | string | null
+  imageUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  imagePublicId?: Prisma.StringNullableFilter<"User"> | string | null
+  deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  candidateProfileId?: Prisma.StringNullableFilter<"User"> | string | null
 }
 
 export type UserCreateWithoutRecruiterProfileInput = {
   id?: string
   email: string
-  passwordHash: string
+  passwordHash?: string | null
+  password?: string | null
   role: $Enums.Role
+  status: $Enums.UserStatus
+  name: string
+  authProvider: $Enums.AuthProvider
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  isAssessmentBanned?: boolean
   githubId?: string | null
   githubToken?: string | null
+  imageUrl?: string | null
+  imagePublicId?: string | null
+  deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  candidateProfile?: Prisma.CandidateProfileCreateNestedOneWithoutUserInput
+  candidateProfile?: Prisma.CandidateProfileCreateNestedOneWithoutUsersInput
 }
 
 export type UserUncheckedCreateWithoutRecruiterProfileInput = {
   id?: string
   email: string
-  passwordHash: string
+  passwordHash?: string | null
+  password?: string | null
   role: $Enums.Role
+  status: $Enums.UserStatus
+  name: string
+  authProvider: $Enums.AuthProvider
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  isAssessmentBanned?: boolean
   githubId?: string | null
   githubToken?: string | null
+  imageUrl?: string | null
+  imagePublicId?: string | null
+  deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  candidateProfile?: Prisma.CandidateProfileUncheckedCreateNestedOneWithoutUserInput
+  candidateProfileId?: string | null
 }
 
 export type UserCreateOrConnectWithoutRecruiterProfileInput = {
@@ -529,25 +890,137 @@ export type UserUpdateToOneWithWhereWithoutRecruiterProfileInput = {
 export type UserUpdateWithoutRecruiterProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  authProvider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAssessmentBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   githubId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   githubToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imagePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  candidateProfile?: Prisma.CandidateProfileUpdateOneWithoutUserNestedInput
+  candidateProfile?: Prisma.CandidateProfileUpdateOneWithoutUsersNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRecruiterProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  authProvider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAssessmentBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   githubId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   githubToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imagePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  candidateProfile?: Prisma.CandidateProfileUncheckedUpdateOneWithoutUserNestedInput
+  candidateProfileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type UserCreateManyCandidateProfileInput = {
+  id?: string
+  email: string
+  passwordHash?: string | null
+  password?: string | null
+  role: $Enums.Role
+  status: $Enums.UserStatus
+  name: string
+  authProvider: $Enums.AuthProvider
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  isAssessmentBanned?: boolean
+  githubId?: string | null
+  githubToken?: string | null
+  imageUrl?: string | null
+  imagePublicId?: string | null
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type UserUpdateWithoutCandidateProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  authProvider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAssessmentBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  githubId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  githubToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imagePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recruiterProfile?: Prisma.RecruiterProfileUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCandidateProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  authProvider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAssessmentBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  githubId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  githubToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imagePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recruiterProfile?: Prisma.RecruiterProfileUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateManyWithoutCandidateProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  authProvider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  needPasswordChange?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isAssessmentBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  githubId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  githubToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imagePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -556,11 +1029,23 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id?: boolean
   email?: boolean
   passwordHash?: boolean
+  password?: boolean
   role?: boolean
+  status?: boolean
+  name?: boolean
+  authProvider?: boolean
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  isAssessmentBanned?: boolean
   githubId?: boolean
   githubToken?: boolean
+  imageUrl?: boolean
+  imagePublicId?: boolean
+  deletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  candidateProfileId?: boolean
   candidateProfile?: boolean | Prisma.User$candidateProfileArgs<ExtArgs>
   recruiterProfile?: boolean | Prisma.User$recruiterProfileArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -569,42 +1054,84 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   email?: boolean
   passwordHash?: boolean
+  password?: boolean
   role?: boolean
+  status?: boolean
+  name?: boolean
+  authProvider?: boolean
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  isAssessmentBanned?: boolean
   githubId?: boolean
   githubToken?: boolean
+  imageUrl?: boolean
+  imagePublicId?: boolean
+  deletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  candidateProfileId?: boolean
+  candidateProfile?: boolean | Prisma.User$candidateProfileArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
   passwordHash?: boolean
+  password?: boolean
   role?: boolean
+  status?: boolean
+  name?: boolean
+  authProvider?: boolean
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  isAssessmentBanned?: boolean
   githubId?: boolean
   githubToken?: boolean
+  imageUrl?: boolean
+  imagePublicId?: boolean
+  deletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  candidateProfileId?: boolean
+  candidateProfile?: boolean | Prisma.User$candidateProfileArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
   id?: boolean
   email?: boolean
   passwordHash?: boolean
+  password?: boolean
   role?: boolean
+  status?: boolean
+  name?: boolean
+  authProvider?: boolean
+  emailVerified?: boolean
+  needPasswordChange?: boolean
+  isDeleted?: boolean
+  isAssessmentBanned?: boolean
   githubId?: boolean
   githubToken?: boolean
+  imageUrl?: boolean
+  imagePublicId?: boolean
+  deletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  candidateProfileId?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "passwordHash" | "role" | "githubId" | "githubToken" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "passwordHash" | "password" | "role" | "status" | "name" | "authProvider" | "emailVerified" | "needPasswordChange" | "isDeleted" | "isAssessmentBanned" | "githubId" | "githubToken" | "imageUrl" | "imagePublicId" | "deletedAt" | "createdAt" | "updatedAt" | "candidateProfileId", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   candidateProfile?: boolean | Prisma.User$candidateProfileArgs<ExtArgs>
   recruiterProfile?: boolean | Prisma.User$recruiterProfileArgs<ExtArgs>
 }
-export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  candidateProfile?: boolean | Prisma.User$candidateProfileArgs<ExtArgs>
+}
+export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  candidateProfile?: boolean | Prisma.User$candidateProfileArgs<ExtArgs>
+}
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
@@ -615,12 +1142,24 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     email: string
-    passwordHash: string
+    passwordHash: string | null
+    password: string | null
     role: $Enums.Role
+    status: $Enums.UserStatus
+    name: string
+    authProvider: $Enums.AuthProvider
+    emailVerified: boolean
+    needPasswordChange: boolean
+    isDeleted: boolean
+    isAssessmentBanned: boolean
     githubId: string | null
     githubToken: string | null
+    imageUrl: string | null
+    imagePublicId: string | null
+    deletedAt: Date | null
     createdAt: Date
     updatedAt: Date
+    candidateProfileId: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1049,11 +1588,23 @@ export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly passwordHash: Prisma.FieldRef<"User", 'String'>
+  readonly password: Prisma.FieldRef<"User", 'String'>
   readonly role: Prisma.FieldRef<"User", 'Role'>
+  readonly status: Prisma.FieldRef<"User", 'UserStatus'>
+  readonly name: Prisma.FieldRef<"User", 'String'>
+  readonly authProvider: Prisma.FieldRef<"User", 'AuthProvider'>
+  readonly emailVerified: Prisma.FieldRef<"User", 'Boolean'>
+  readonly needPasswordChange: Prisma.FieldRef<"User", 'Boolean'>
+  readonly isDeleted: Prisma.FieldRef<"User", 'Boolean'>
+  readonly isAssessmentBanned: Prisma.FieldRef<"User", 'Boolean'>
   readonly githubId: Prisma.FieldRef<"User", 'String'>
   readonly githubToken: Prisma.FieldRef<"User", 'String'>
+  readonly imageUrl: Prisma.FieldRef<"User", 'String'>
+  readonly imagePublicId: Prisma.FieldRef<"User", 'String'>
+  readonly deletedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly candidateProfileId: Prisma.FieldRef<"User", 'String'>
 }
     
 
@@ -1308,6 +1859,10 @@ export type UserCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    */
   data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1378,6 +1933,10 @@ export type UserUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many Users to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

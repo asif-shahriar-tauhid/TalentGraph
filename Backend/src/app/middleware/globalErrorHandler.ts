@@ -7,10 +7,22 @@ import { AppError } from "../utils/AppError";
 
 export const globalErrorHandler = (
   err: any,
-  _req: Request,
+  req: Request,
   res: Response,
   _next: NextFunction,
 ) => {
+  if (err.statusCode && err.statusCode >= 500) {
+    console.error(
+      '[500 Error]',
+      req.method,
+      req.originalUrl,
+      err.message,
+      err.stack,
+    );
+  } else if (config.node_env !== "production") {
+    console.error("[GlobalError]", err);
+  }
+
   let statusCode: number = httpStatus.INTERNAL_SERVER_ERROR;
   let message: string = err.message || "Internal Server Error";
   let errorSources: Array<{ path: string | number; message: string }> = [];

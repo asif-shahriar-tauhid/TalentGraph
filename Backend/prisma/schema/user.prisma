@@ -1,12 +1,24 @@
 model User {
-  id               String            @id @default(uuid())
-  email            String            @unique
-  passwordHash     String
-  role             Role
-  githubId         String?           @unique
-  githubToken      String?
-  candidateProfile CandidateProfile?
-  recruiterProfile RecruiterProfile?
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
+  id                 String            @id @default(uuid())
+  email              String            @unique
+  passwordHash       String?
+  password           String?
+  role               Role
+  status             UserStatus
+  name               String
+  authProvider       AuthProvider
+  emailVerified      Boolean           @default(false)
+  needPasswordChange Boolean           @default(false)
+  isDeleted          Boolean           @default(false)
+  isAssessmentBanned Boolean           @default(false)
+  githubId           String?           @unique
+  githubToken        String?
+  imageUrl           String?
+  imagePublicId      String?
+  deletedAt          DateTime?
+  candidateProfile   CandidateProfile? @relation(fields: [candidateProfileId], references: [id])
+  recruiterProfile   RecruiterProfile?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  candidateProfileId String?
 }
