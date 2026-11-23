@@ -20,46 +20,70 @@ export type AssessmentTemplateModel = runtime.Types.Result.DefaultSelection<Pris
 
 export type AggregateAssessmentTemplate = {
   _count: AssessmentTemplateCountAggregateOutputType | null
+  _avg: AssessmentTemplateAvgAggregateOutputType | null
+  _sum: AssessmentTemplateSumAggregateOutputType | null
   _min: AssessmentTemplateMinAggregateOutputType | null
   _max: AssessmentTemplateMaxAggregateOutputType | null
+}
+
+export type AssessmentTemplateAvgAggregateOutputType = {
+  overallDurationSecs: number | null
+}
+
+export type AssessmentTemplateSumAggregateOutputType = {
+  overallDurationSecs: number | null
 }
 
 export type AssessmentTemplateMinAggregateOutputType = {
   id: string | null
   title: string | null
   description: string | null
+  overallDurationSecs: number | null
 }
 
 export type AssessmentTemplateMaxAggregateOutputType = {
   id: string | null
   title: string | null
   description: string | null
+  overallDurationSecs: number | null
 }
 
 export type AssessmentTemplateCountAggregateOutputType = {
   id: number
   title: number
   description: number
+  overallDurationSecs: number
   _all: number
 }
 
+
+export type AssessmentTemplateAvgAggregateInputType = {
+  overallDurationSecs?: true
+}
+
+export type AssessmentTemplateSumAggregateInputType = {
+  overallDurationSecs?: true
+}
 
 export type AssessmentTemplateMinAggregateInputType = {
   id?: true
   title?: true
   description?: true
+  overallDurationSecs?: true
 }
 
 export type AssessmentTemplateMaxAggregateInputType = {
   id?: true
   title?: true
   description?: true
+  overallDurationSecs?: true
 }
 
 export type AssessmentTemplateCountAggregateInputType = {
   id?: true
   title?: true
   description?: true
+  overallDurationSecs?: true
   _all?: true
 }
 
@@ -101,6 +125,18 @@ export type AssessmentTemplateAggregateArgs<ExtArgs extends runtime.Types.Extens
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: AssessmentTemplateAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: AssessmentTemplateSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: AssessmentTemplateMinAggregateInputType
@@ -131,6 +167,8 @@ export type AssessmentTemplateGroupByArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   _count?: AssessmentTemplateCountAggregateInputType | true
+  _avg?: AssessmentTemplateAvgAggregateInputType
+  _sum?: AssessmentTemplateSumAggregateInputType
   _min?: AssessmentTemplateMinAggregateInputType
   _max?: AssessmentTemplateMaxAggregateInputType
 }
@@ -139,7 +177,10 @@ export type AssessmentTemplateGroupByOutputType = {
   id: string
   title: string
   description: string
+  overallDurationSecs: number
   _count: AssessmentTemplateCountAggregateOutputType | null
+  _avg: AssessmentTemplateAvgAggregateOutputType | null
+  _sum: AssessmentTemplateSumAggregateOutputType | null
   _min: AssessmentTemplateMinAggregateOutputType | null
   _max: AssessmentTemplateMaxAggregateOutputType | null
 }
@@ -166,6 +207,7 @@ export type AssessmentTemplateWhereInput = {
   id?: Prisma.StringFilter<"AssessmentTemplate"> | string
   title?: Prisma.StringFilter<"AssessmentTemplate"> | string
   description?: Prisma.StringFilter<"AssessmentTemplate"> | string
+  overallDurationSecs?: Prisma.IntFilter<"AssessmentTemplate"> | number
   jobs?: Prisma.JobListRelationFilter
   questions?: Prisma.QuestionListRelationFilter
 }
@@ -174,6 +216,7 @@ export type AssessmentTemplateOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  overallDurationSecs?: Prisma.SortOrder
   jobs?: Prisma.JobOrderByRelationAggregateInput
   questions?: Prisma.QuestionOrderByRelationAggregateInput
 }
@@ -185,6 +228,7 @@ export type AssessmentTemplateWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.AssessmentTemplateWhereInput | Prisma.AssessmentTemplateWhereInput[]
   title?: Prisma.StringFilter<"AssessmentTemplate"> | string
   description?: Prisma.StringFilter<"AssessmentTemplate"> | string
+  overallDurationSecs?: Prisma.IntFilter<"AssessmentTemplate"> | number
   jobs?: Prisma.JobListRelationFilter
   questions?: Prisma.QuestionListRelationFilter
 }, "id">
@@ -193,9 +237,12 @@ export type AssessmentTemplateOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  overallDurationSecs?: Prisma.SortOrder
   _count?: Prisma.AssessmentTemplateCountOrderByAggregateInput
+  _avg?: Prisma.AssessmentTemplateAvgOrderByAggregateInput
   _max?: Prisma.AssessmentTemplateMaxOrderByAggregateInput
   _min?: Prisma.AssessmentTemplateMinOrderByAggregateInput
+  _sum?: Prisma.AssessmentTemplateSumOrderByAggregateInput
 }
 
 export type AssessmentTemplateScalarWhereWithAggregatesInput = {
@@ -205,12 +252,14 @@ export type AssessmentTemplateScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"AssessmentTemplate"> | string
   title?: Prisma.StringWithAggregatesFilter<"AssessmentTemplate"> | string
   description?: Prisma.StringWithAggregatesFilter<"AssessmentTemplate"> | string
+  overallDurationSecs?: Prisma.IntWithAggregatesFilter<"AssessmentTemplate"> | number
 }
 
 export type AssessmentTemplateCreateInput = {
   id?: string
   title: string
   description: string
+  overallDurationSecs?: number
   jobs?: Prisma.JobCreateNestedManyWithoutAssessmentInput
   questions?: Prisma.QuestionCreateNestedManyWithoutTemplateInput
 }
@@ -219,6 +268,7 @@ export type AssessmentTemplateUncheckedCreateInput = {
   id?: string
   title: string
   description: string
+  overallDurationSecs?: number
   jobs?: Prisma.JobUncheckedCreateNestedManyWithoutAssessmentInput
   questions?: Prisma.QuestionUncheckedCreateNestedManyWithoutTemplateInput
 }
@@ -227,6 +277,7 @@ export type AssessmentTemplateUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  overallDurationSecs?: Prisma.IntFieldUpdateOperationsInput | number
   jobs?: Prisma.JobUpdateManyWithoutAssessmentNestedInput
   questions?: Prisma.QuestionUpdateManyWithoutTemplateNestedInput
 }
@@ -235,6 +286,7 @@ export type AssessmentTemplateUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  overallDurationSecs?: Prisma.IntFieldUpdateOperationsInput | number
   jobs?: Prisma.JobUncheckedUpdateManyWithoutAssessmentNestedInput
   questions?: Prisma.QuestionUncheckedUpdateManyWithoutTemplateNestedInput
 }
@@ -243,18 +295,21 @@ export type AssessmentTemplateCreateManyInput = {
   id?: string
   title: string
   description: string
+  overallDurationSecs?: number
 }
 
 export type AssessmentTemplateUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  overallDurationSecs?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type AssessmentTemplateUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  overallDurationSecs?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type AssessmentTemplateNullableScalarRelationFilter = {
@@ -266,18 +321,29 @@ export type AssessmentTemplateCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  overallDurationSecs?: Prisma.SortOrder
+}
+
+export type AssessmentTemplateAvgOrderByAggregateInput = {
+  overallDurationSecs?: Prisma.SortOrder
 }
 
 export type AssessmentTemplateMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  overallDurationSecs?: Prisma.SortOrder
 }
 
 export type AssessmentTemplateMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  overallDurationSecs?: Prisma.SortOrder
+}
+
+export type AssessmentTemplateSumOrderByAggregateInput = {
+  overallDurationSecs?: Prisma.SortOrder
 }
 
 export type AssessmentTemplateScalarRelationFilter = {
@@ -319,6 +385,7 @@ export type AssessmentTemplateCreateWithoutJobsInput = {
   id?: string
   title: string
   description: string
+  overallDurationSecs?: number
   questions?: Prisma.QuestionCreateNestedManyWithoutTemplateInput
 }
 
@@ -326,6 +393,7 @@ export type AssessmentTemplateUncheckedCreateWithoutJobsInput = {
   id?: string
   title: string
   description: string
+  overallDurationSecs?: number
   questions?: Prisma.QuestionUncheckedCreateNestedManyWithoutTemplateInput
 }
 
@@ -349,6 +417,7 @@ export type AssessmentTemplateUpdateWithoutJobsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  overallDurationSecs?: Prisma.IntFieldUpdateOperationsInput | number
   questions?: Prisma.QuestionUpdateManyWithoutTemplateNestedInput
 }
 
@@ -356,6 +425,7 @@ export type AssessmentTemplateUncheckedUpdateWithoutJobsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  overallDurationSecs?: Prisma.IntFieldUpdateOperationsInput | number
   questions?: Prisma.QuestionUncheckedUpdateManyWithoutTemplateNestedInput
 }
 
@@ -363,6 +433,7 @@ export type AssessmentTemplateCreateWithoutQuestionsInput = {
   id?: string
   title: string
   description: string
+  overallDurationSecs?: number
   jobs?: Prisma.JobCreateNestedManyWithoutAssessmentInput
 }
 
@@ -370,6 +441,7 @@ export type AssessmentTemplateUncheckedCreateWithoutQuestionsInput = {
   id?: string
   title: string
   description: string
+  overallDurationSecs?: number
   jobs?: Prisma.JobUncheckedCreateNestedManyWithoutAssessmentInput
 }
 
@@ -393,6 +465,7 @@ export type AssessmentTemplateUpdateWithoutQuestionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  overallDurationSecs?: Prisma.IntFieldUpdateOperationsInput | number
   jobs?: Prisma.JobUpdateManyWithoutAssessmentNestedInput
 }
 
@@ -400,6 +473,7 @@ export type AssessmentTemplateUncheckedUpdateWithoutQuestionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
+  overallDurationSecs?: Prisma.IntFieldUpdateOperationsInput | number
   jobs?: Prisma.JobUncheckedUpdateManyWithoutAssessmentNestedInput
 }
 
@@ -447,6 +521,7 @@ export type AssessmentTemplateSelect<ExtArgs extends runtime.Types.Extensions.In
   id?: boolean
   title?: boolean
   description?: boolean
+  overallDurationSecs?: boolean
   jobs?: boolean | Prisma.AssessmentTemplate$jobsArgs<ExtArgs>
   questions?: boolean | Prisma.AssessmentTemplate$questionsArgs<ExtArgs>
   _count?: boolean | Prisma.AssessmentTemplateCountOutputTypeDefaultArgs<ExtArgs>
@@ -456,21 +531,24 @@ export type AssessmentTemplateSelectCreateManyAndReturn<ExtArgs extends runtime.
   id?: boolean
   title?: boolean
   description?: boolean
+  overallDurationSecs?: boolean
 }, ExtArgs["result"]["assessmentTemplate"]>
 
 export type AssessmentTemplateSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
   description?: boolean
+  overallDurationSecs?: boolean
 }, ExtArgs["result"]["assessmentTemplate"]>
 
 export type AssessmentTemplateSelectScalar = {
   id?: boolean
   title?: boolean
   description?: boolean
+  overallDurationSecs?: boolean
 }
 
-export type AssessmentTemplateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description", ExtArgs["result"]["assessmentTemplate"]>
+export type AssessmentTemplateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "overallDurationSecs", ExtArgs["result"]["assessmentTemplate"]>
 export type AssessmentTemplateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   jobs?: boolean | Prisma.AssessmentTemplate$jobsArgs<ExtArgs>
   questions?: boolean | Prisma.AssessmentTemplate$questionsArgs<ExtArgs>
@@ -489,6 +567,7 @@ export type $AssessmentTemplatePayload<ExtArgs extends runtime.Types.Extensions.
     id: string
     title: string
     description: string
+    overallDurationSecs: number
   }, ExtArgs["result"]["assessmentTemplate"]>
   composites: {}
 }
@@ -917,6 +996,7 @@ export interface AssessmentTemplateFieldRefs {
   readonly id: Prisma.FieldRef<"AssessmentTemplate", 'String'>
   readonly title: Prisma.FieldRef<"AssessmentTemplate", 'String'>
   readonly description: Prisma.FieldRef<"AssessmentTemplate", 'String'>
+  readonly overallDurationSecs: Prisma.FieldRef<"AssessmentTemplate", 'Int'>
 }
     
 

@@ -27,10 +27,12 @@ export type AggregateQuestion = {
 }
 
 export type QuestionAvgAggregateOutputType = {
+  points: number | null
   timeLimitSecs: number | null
 }
 
 export type QuestionSumAggregateOutputType = {
+  points: number | null
   timeLimitSecs: number | null
 }
 
@@ -40,6 +42,7 @@ export type QuestionMinAggregateOutputType = {
   text: string | null
   type: $Enums.QuestionType | null
   correctAnswer: string | null
+  points: number | null
   timeLimitSecs: number | null
 }
 
@@ -49,6 +52,7 @@ export type QuestionMaxAggregateOutputType = {
   text: string | null
   type: $Enums.QuestionType | null
   correctAnswer: string | null
+  points: number | null
   timeLimitSecs: number | null
 }
 
@@ -59,16 +63,19 @@ export type QuestionCountAggregateOutputType = {
   type: number
   options: number
   correctAnswer: number
+  points: number
   timeLimitSecs: number
   _all: number
 }
 
 
 export type QuestionAvgAggregateInputType = {
+  points?: true
   timeLimitSecs?: true
 }
 
 export type QuestionSumAggregateInputType = {
+  points?: true
   timeLimitSecs?: true
 }
 
@@ -78,6 +85,7 @@ export type QuestionMinAggregateInputType = {
   text?: true
   type?: true
   correctAnswer?: true
+  points?: true
   timeLimitSecs?: true
 }
 
@@ -87,6 +95,7 @@ export type QuestionMaxAggregateInputType = {
   text?: true
   type?: true
   correctAnswer?: true
+  points?: true
   timeLimitSecs?: true
 }
 
@@ -97,6 +106,7 @@ export type QuestionCountAggregateInputType = {
   type?: true
   options?: true
   correctAnswer?: true
+  points?: true
   timeLimitSecs?: true
   _all?: true
 }
@@ -194,6 +204,7 @@ export type QuestionGroupByOutputType = {
   type: $Enums.QuestionType
   options: runtime.JsonValue
   correctAnswer: string
+  points: number
   timeLimitSecs: number
   _count: QuestionCountAggregateOutputType | null
   _avg: QuestionAvgAggregateOutputType | null
@@ -227,6 +238,7 @@ export type QuestionWhereInput = {
   type?: Prisma.EnumQuestionTypeFilter<"Question"> | $Enums.QuestionType
   options?: Prisma.JsonFilter<"Question">
   correctAnswer?: Prisma.StringFilter<"Question"> | string
+  points?: Prisma.FloatFilter<"Question"> | number
   timeLimitSecs?: Prisma.IntFilter<"Question"> | number
   template?: Prisma.XOR<Prisma.AssessmentTemplateScalarRelationFilter, Prisma.AssessmentTemplateWhereInput>
   answers?: Prisma.AssessmentAnswerListRelationFilter
@@ -239,6 +251,7 @@ export type QuestionOrderByWithRelationInput = {
   type?: Prisma.SortOrder
   options?: Prisma.SortOrder
   correctAnswer?: Prisma.SortOrder
+  points?: Prisma.SortOrder
   timeLimitSecs?: Prisma.SortOrder
   template?: Prisma.AssessmentTemplateOrderByWithRelationInput
   answers?: Prisma.AssessmentAnswerOrderByRelationAggregateInput
@@ -254,6 +267,7 @@ export type QuestionWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.EnumQuestionTypeFilter<"Question"> | $Enums.QuestionType
   options?: Prisma.JsonFilter<"Question">
   correctAnswer?: Prisma.StringFilter<"Question"> | string
+  points?: Prisma.FloatFilter<"Question"> | number
   timeLimitSecs?: Prisma.IntFilter<"Question"> | number
   template?: Prisma.XOR<Prisma.AssessmentTemplateScalarRelationFilter, Prisma.AssessmentTemplateWhereInput>
   answers?: Prisma.AssessmentAnswerListRelationFilter
@@ -266,6 +280,7 @@ export type QuestionOrderByWithAggregationInput = {
   type?: Prisma.SortOrder
   options?: Prisma.SortOrder
   correctAnswer?: Prisma.SortOrder
+  points?: Prisma.SortOrder
   timeLimitSecs?: Prisma.SortOrder
   _count?: Prisma.QuestionCountOrderByAggregateInput
   _avg?: Prisma.QuestionAvgOrderByAggregateInput
@@ -284,6 +299,7 @@ export type QuestionScalarWhereWithAggregatesInput = {
   type?: Prisma.EnumQuestionTypeWithAggregatesFilter<"Question"> | $Enums.QuestionType
   options?: Prisma.JsonWithAggregatesFilter<"Question">
   correctAnswer?: Prisma.StringWithAggregatesFilter<"Question"> | string
+  points?: Prisma.FloatWithAggregatesFilter<"Question"> | number
   timeLimitSecs?: Prisma.IntWithAggregatesFilter<"Question"> | number
 }
 
@@ -293,6 +309,7 @@ export type QuestionCreateInput = {
   type: $Enums.QuestionType
   options: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer: string
+  points?: number
   timeLimitSecs: number
   template: Prisma.AssessmentTemplateCreateNestedOneWithoutQuestionsInput
   answers?: Prisma.AssessmentAnswerCreateNestedManyWithoutQuestionInput
@@ -305,6 +322,7 @@ export type QuestionUncheckedCreateInput = {
   type: $Enums.QuestionType
   options: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer: string
+  points?: number
   timeLimitSecs: number
   answers?: Prisma.AssessmentAnswerUncheckedCreateNestedManyWithoutQuestionInput
 }
@@ -315,6 +333,7 @@ export type QuestionUpdateInput = {
   type?: Prisma.EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
   options?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer?: Prisma.StringFieldUpdateOperationsInput | string
+  points?: Prisma.FloatFieldUpdateOperationsInput | number
   timeLimitSecs?: Prisma.IntFieldUpdateOperationsInput | number
   template?: Prisma.AssessmentTemplateUpdateOneRequiredWithoutQuestionsNestedInput
   answers?: Prisma.AssessmentAnswerUpdateManyWithoutQuestionNestedInput
@@ -327,6 +346,7 @@ export type QuestionUncheckedUpdateInput = {
   type?: Prisma.EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
   options?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer?: Prisma.StringFieldUpdateOperationsInput | string
+  points?: Prisma.FloatFieldUpdateOperationsInput | number
   timeLimitSecs?: Prisma.IntFieldUpdateOperationsInput | number
   answers?: Prisma.AssessmentAnswerUncheckedUpdateManyWithoutQuestionNestedInput
 }
@@ -338,6 +358,7 @@ export type QuestionCreateManyInput = {
   type: $Enums.QuestionType
   options: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer: string
+  points?: number
   timeLimitSecs: number
 }
 
@@ -347,6 +368,7 @@ export type QuestionUpdateManyMutationInput = {
   type?: Prisma.EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
   options?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer?: Prisma.StringFieldUpdateOperationsInput | string
+  points?: Prisma.FloatFieldUpdateOperationsInput | number
   timeLimitSecs?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -357,6 +379,7 @@ export type QuestionUncheckedUpdateManyInput = {
   type?: Prisma.EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
   options?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer?: Prisma.StringFieldUpdateOperationsInput | string
+  points?: Prisma.FloatFieldUpdateOperationsInput | number
   timeLimitSecs?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -377,10 +400,12 @@ export type QuestionCountOrderByAggregateInput = {
   type?: Prisma.SortOrder
   options?: Prisma.SortOrder
   correctAnswer?: Prisma.SortOrder
+  points?: Prisma.SortOrder
   timeLimitSecs?: Prisma.SortOrder
 }
 
 export type QuestionAvgOrderByAggregateInput = {
+  points?: Prisma.SortOrder
   timeLimitSecs?: Prisma.SortOrder
 }
 
@@ -390,6 +415,7 @@ export type QuestionMaxOrderByAggregateInput = {
   text?: Prisma.SortOrder
   type?: Prisma.SortOrder
   correctAnswer?: Prisma.SortOrder
+  points?: Prisma.SortOrder
   timeLimitSecs?: Prisma.SortOrder
 }
 
@@ -399,10 +425,12 @@ export type QuestionMinOrderByAggregateInput = {
   text?: Prisma.SortOrder
   type?: Prisma.SortOrder
   correctAnswer?: Prisma.SortOrder
+  points?: Prisma.SortOrder
   timeLimitSecs?: Prisma.SortOrder
 }
 
 export type QuestionSumOrderByAggregateInput = {
+  points?: Prisma.SortOrder
   timeLimitSecs?: Prisma.SortOrder
 }
 
@@ -477,6 +505,7 @@ export type QuestionCreateWithoutTemplateInput = {
   type: $Enums.QuestionType
   options: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer: string
+  points?: number
   timeLimitSecs: number
   answers?: Prisma.AssessmentAnswerCreateNestedManyWithoutQuestionInput
 }
@@ -487,6 +516,7 @@ export type QuestionUncheckedCreateWithoutTemplateInput = {
   type: $Enums.QuestionType
   options: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer: string
+  points?: number
   timeLimitSecs: number
   answers?: Prisma.AssessmentAnswerUncheckedCreateNestedManyWithoutQuestionInput
 }
@@ -527,6 +557,7 @@ export type QuestionScalarWhereInput = {
   type?: Prisma.EnumQuestionTypeFilter<"Question"> | $Enums.QuestionType
   options?: Prisma.JsonFilter<"Question">
   correctAnswer?: Prisma.StringFilter<"Question"> | string
+  points?: Prisma.FloatFilter<"Question"> | number
   timeLimitSecs?: Prisma.IntFilter<"Question"> | number
 }
 
@@ -536,6 +567,7 @@ export type QuestionCreateWithoutAnswersInput = {
   type: $Enums.QuestionType
   options: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer: string
+  points?: number
   timeLimitSecs: number
   template: Prisma.AssessmentTemplateCreateNestedOneWithoutQuestionsInput
 }
@@ -547,6 +579,7 @@ export type QuestionUncheckedCreateWithoutAnswersInput = {
   type: $Enums.QuestionType
   options: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer: string
+  points?: number
   timeLimitSecs: number
 }
 
@@ -572,6 +605,7 @@ export type QuestionUpdateWithoutAnswersInput = {
   type?: Prisma.EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
   options?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer?: Prisma.StringFieldUpdateOperationsInput | string
+  points?: Prisma.FloatFieldUpdateOperationsInput | number
   timeLimitSecs?: Prisma.IntFieldUpdateOperationsInput | number
   template?: Prisma.AssessmentTemplateUpdateOneRequiredWithoutQuestionsNestedInput
 }
@@ -583,6 +617,7 @@ export type QuestionUncheckedUpdateWithoutAnswersInput = {
   type?: Prisma.EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
   options?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer?: Prisma.StringFieldUpdateOperationsInput | string
+  points?: Prisma.FloatFieldUpdateOperationsInput | number
   timeLimitSecs?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -592,6 +627,7 @@ export type QuestionCreateManyTemplateInput = {
   type: $Enums.QuestionType
   options: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer: string
+  points?: number
   timeLimitSecs: number
 }
 
@@ -601,6 +637,7 @@ export type QuestionUpdateWithoutTemplateInput = {
   type?: Prisma.EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
   options?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer?: Prisma.StringFieldUpdateOperationsInput | string
+  points?: Prisma.FloatFieldUpdateOperationsInput | number
   timeLimitSecs?: Prisma.IntFieldUpdateOperationsInput | number
   answers?: Prisma.AssessmentAnswerUpdateManyWithoutQuestionNestedInput
 }
@@ -611,6 +648,7 @@ export type QuestionUncheckedUpdateWithoutTemplateInput = {
   type?: Prisma.EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
   options?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer?: Prisma.StringFieldUpdateOperationsInput | string
+  points?: Prisma.FloatFieldUpdateOperationsInput | number
   timeLimitSecs?: Prisma.IntFieldUpdateOperationsInput | number
   answers?: Prisma.AssessmentAnswerUncheckedUpdateManyWithoutQuestionNestedInput
 }
@@ -621,6 +659,7 @@ export type QuestionUncheckedUpdateManyWithoutTemplateInput = {
   type?: Prisma.EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
   options?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   correctAnswer?: Prisma.StringFieldUpdateOperationsInput | string
+  points?: Prisma.FloatFieldUpdateOperationsInput | number
   timeLimitSecs?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -662,6 +701,7 @@ export type QuestionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   type?: boolean
   options?: boolean
   correctAnswer?: boolean
+  points?: boolean
   timeLimitSecs?: boolean
   template?: boolean | Prisma.AssessmentTemplateDefaultArgs<ExtArgs>
   answers?: boolean | Prisma.Question$answersArgs<ExtArgs>
@@ -675,6 +715,7 @@ export type QuestionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   type?: boolean
   options?: boolean
   correctAnswer?: boolean
+  points?: boolean
   timeLimitSecs?: boolean
   template?: boolean | Prisma.AssessmentTemplateDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["question"]>
@@ -686,6 +727,7 @@ export type QuestionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   type?: boolean
   options?: boolean
   correctAnswer?: boolean
+  points?: boolean
   timeLimitSecs?: boolean
   template?: boolean | Prisma.AssessmentTemplateDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["question"]>
@@ -697,10 +739,11 @@ export type QuestionSelectScalar = {
   type?: boolean
   options?: boolean
   correctAnswer?: boolean
+  points?: boolean
   timeLimitSecs?: boolean
 }
 
-export type QuestionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "templateId" | "text" | "type" | "options" | "correctAnswer" | "timeLimitSecs", ExtArgs["result"]["question"]>
+export type QuestionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "templateId" | "text" | "type" | "options" | "correctAnswer" | "points" | "timeLimitSecs", ExtArgs["result"]["question"]>
 export type QuestionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   template?: boolean | Prisma.AssessmentTemplateDefaultArgs<ExtArgs>
   answers?: boolean | Prisma.Question$answersArgs<ExtArgs>
@@ -726,6 +769,7 @@ export type $QuestionPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     type: $Enums.QuestionType
     options: runtime.JsonValue
     correctAnswer: string
+    points: number
     timeLimitSecs: number
   }, ExtArgs["result"]["question"]>
   composites: {}
@@ -1158,6 +1202,7 @@ export interface QuestionFieldRefs {
   readonly type: Prisma.FieldRef<"Question", 'QuestionType'>
   readonly options: Prisma.FieldRef<"Question", 'Json'>
   readonly correctAnswer: Prisma.FieldRef<"Question", 'String'>
+  readonly points: Prisma.FieldRef<"Question", 'Float'>
   readonly timeLimitSecs: Prisma.FieldRef<"Question", 'Int'>
 }
     

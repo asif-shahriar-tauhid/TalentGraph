@@ -12,60 +12,92 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { DashboardShell } from "@/components/layouts/dashboard";
+import { useAuth } from "@/providers/authProvider";
 
 export default function RecruiterLayout({ children }: { children: ReactNode }) {
+  const { user } = useAuth();
+  const linkedCompany = user?.recruiterProfile?.company;
+  const companyStatus = linkedCompany?.name || "Unassigned";
+  const companyStatusVerified =
+    linkedCompany?.verificationStatus === "VERIFIED";
+  const roleBadge =
+    user?.role === "SUB_RECRUITER" ? "SUB-RECRUITER" : "RECRUITER";
+
   return (
     <DashboardShell
       userRole="RECRUITER"
-      roleTitle="Recruiter Desk"
-      roleBadge="Hiring Team"
+      roleTitle="Recruiter"
+      roleBadge={roleBadge}
       roleBadgeClassName="border-primary/30 bg-primary/10 text-primary"
-      footerNote="Verified Technical Hiring Portal"
-      footerSecurityText="Human-in-the-Loop Integrity Verification"
+      alwaysVisibleSidebar
+      allowDevelopmentPreview
+      companyStatus={companyStatus}
+      companyStatusVerified={companyStatusVerified}
+      footerNote="Recruiter workspace"
+      footerSecurityText="Hiring decisions remain human-owned."
       navGroups={[
         {
-          title: "Hiring Desk",
+          title: "Hiring desk",
           items: [
             {
-              label: "Overview",
-              href: "/recruiter",
+              label: "Dashboard",
+              href: "/recruiter/dashboard",
               icon: LayoutDashboard,
-              isActive: (path) => path === "/recruiter",
+              isActive: (path) =>
+                path === "/recruiter" || path === "/recruiter/dashboard",
             },
             {
               label: "Company Profile",
               href: "/recruiter/company",
               icon: Building2,
-              isActive: (path) => path.startsWith("/recruiter/company"),
+              isActive: (path) =>
+                path === "/recruiter/company" ||
+                path.startsWith("/recruiter/company/"),
             },
             {
-              label: "Job Openings",
+              label: "Job Management",
               href: "/recruiter/jobs",
               icon: Briefcase,
-              isActive: (path) => path.startsWith("/recruiter/jobs"),
+              badge: "0",
+              isActive: (path) =>
+                path === "/recruiter/jobs" ||
+                (path.startsWith("/recruiter/jobs/") &&
+                  !path.endsWith("/applicants") &&
+                  !path.endsWith("/pipeline")),
             },
           ],
         },
         {
-          title: "Candidate Review",
+          title: "Candidate review",
           items: [
             {
-              label: "Applicants & Code",
+              label: "Applicants & Rankings",
               href: "/recruiter/applicants",
               icon: Users,
-              isActive: (path) => path.startsWith("/recruiter/applicants"),
+              badge: "0",
+              isActive: (path) =>
+                path === "/recruiter/applicants" ||
+                (path.startsWith("/recruiter/jobs/") &&
+                  path.endsWith("/applicants")),
             },
             {
               label: "Assessment Review",
               href: "/recruiter/assessments",
               icon: ShieldCheck,
+              badge: "0",
               isActive: (path) => path.startsWith("/recruiter/assessments"),
             },
             {
               label: "Hiring Pipeline",
               href: "/recruiter/pipeline",
               icon: GitBranch,
-              isActive: (path) => path.startsWith("/recruiter/pipeline"),
+              badge: "0 In Technical",
+              isActive: (path) =>
+                path === "/recruiter/pipeline" ||
+                path.startsWith("/recruiter/pipeline/") ||
+                (path.startsWith("/recruiter/jobs/") &&
+                  (path.endsWith("/pipeline") ||
+                    path.includes("/pipeline/"))),
             },
           ],
         },
@@ -79,7 +111,7 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
               isActive: (path) => path.startsWith("/recruiter/billing"),
             },
             {
-              label: "Settings",
+              label: "Recruiter Settings",
               href: "/recruiter/settings",
               icon: Settings,
               isActive: (path) => path.startsWith("/recruiter/settings"),
@@ -88,7 +120,7 @@ export default function RecruiterLayout({ children }: { children: ReactNode }) {
         },
       ]}
     >
-      {children}
+      <div className="frontend-type-scale min-w-0">{children}</div>
     </DashboardShell>
   );
 }

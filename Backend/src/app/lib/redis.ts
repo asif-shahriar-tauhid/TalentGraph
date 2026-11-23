@@ -1,9 +1,32 @@
 import { createClient } from "redis";
 import config from "../config";
 
-// Use REDIS_URL (e.g. Upstash rediss://) when set, otherwise fall back to host/port config.
-export const redisClient = config.redis_url
-  ? createClient({ url: config.redis_url })
+const normalizeRedisUrl = (rawUrl?: string): string | undefined => {
+  if (!rawUrl) return undefined;
+  let cleaned = rawUrl.trim();
+  const hasTlsFlag = cleaned.includes("--tls");
+
+  const match = cleaned.match(/rediss?:\/\/[^\s"']+/);
+  if (match) {
+    cleaned = match[0];
+  }
+
+  if (
+    (hasTlsFlag || cleaned.includes(".upstash.io")) &&
+    cleaned.startsWith("redis://")
+  ) {
+    cleaned = cleaned.replace(/^redis:\/\//, "rediss://");
+  }
+
+  return cleaned;
+};
+
+const resolvedRedisUrl = normalizeRedisUrl(config.redis_url);
+
+export const redisClient = resolvedRedisUrl
+  ? createClient({
+      url: resolvedRedisUrl,
+    })
   : createClient({
       username: config.redis_user || undefined,
       password: config.redis_password || undefined,

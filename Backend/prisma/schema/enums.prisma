@@ -5,16 +5,32 @@ enum Role {
   SYSTEM_ADMIN
 }
 
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+  DELETED
+}
+
 enum AuthProvider {
   CREDENTIAL
   GITHUB
   GOOGLE
 }
 
-enum UserStatus {
+enum CompanyVerificationStatus {
+  DRAFT
+  PENDING
+  NEEDS_MORE_INFO
+  VERIFIED
+  REJECTED
+}
+
+enum JobStatus {
+  DRAFT
+  PENDING_VERIFICATION
   ACTIVE
-  BLOCKED
-  DELETED
+  CLOSED
+  ARCHIVED
 }
 
 enum ApplicationStatus {
@@ -50,6 +66,12 @@ enum AttemptStatus {
   REVIEWED
 }
 
+enum IntegrityReviewVerdict {
+  PENDING
+  NO_VIOLATION
+  CONFIRMED_VIOLATION
+}
+
 enum PaymentGateway {
   STRIPE
   SSLCOMMERZ
@@ -70,10 +92,9 @@ enum SubscriptionStatus {
   INCOMPLETE
 }
 
-enum CompanyVerificationStatus {
-  DRAFT
+enum BackgroundJobStatus {
   PENDING
-  NEEDS_MORE_INFO
-  VERIFIED
-  REJECTED
+  PROCESSING
+  COMPLETED
+  FAILED
 }

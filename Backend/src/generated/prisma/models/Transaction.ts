@@ -330,7 +330,7 @@ export type TransactionScalarWhereWithAggregatesInput = {
 export type TransactionCreateInput = {
   id?: string
   amount: number
-  currency: string
+  currency?: string
   gateway: $Enums.PaymentGateway
   gatewayTransactionId: string
   status: $Enums.PaymentStatus
@@ -343,7 +343,7 @@ export type TransactionCreateInput = {
 export type TransactionUncheckedCreateInput = {
   id?: string
   amount: number
-  currency: string
+  currency?: string
   companyId?: string | null
   candidateId?: string | null
   gateway: $Enums.PaymentGateway
@@ -382,7 +382,7 @@ export type TransactionUncheckedUpdateInput = {
 export type TransactionCreateManyInput = {
   id?: string
   amount: number
-  currency: string
+  currency?: string
   companyId?: string | null
   candidateId?: string | null
   gateway: $Enums.PaymentGateway
@@ -564,7 +564,7 @@ export type EnumPaymentStatusFieldUpdateOperationsInput = {
 export type TransactionCreateWithoutCandidateInput = {
   id?: string
   amount: number
-  currency: string
+  currency?: string
   gateway: $Enums.PaymentGateway
   gatewayTransactionId: string
   status: $Enums.PaymentStatus
@@ -576,7 +576,7 @@ export type TransactionCreateWithoutCandidateInput = {
 export type TransactionUncheckedCreateWithoutCandidateInput = {
   id?: string
   amount: number
-  currency: string
+  currency?: string
   companyId?: string | null
   gateway: $Enums.PaymentGateway
   gatewayTransactionId: string
@@ -630,7 +630,7 @@ export type TransactionScalarWhereInput = {
 export type TransactionCreateWithoutCompanyInput = {
   id?: string
   amount: number
-  currency: string
+  currency?: string
   gateway: $Enums.PaymentGateway
   gatewayTransactionId: string
   status: $Enums.PaymentStatus
@@ -642,7 +642,7 @@ export type TransactionCreateWithoutCompanyInput = {
 export type TransactionUncheckedCreateWithoutCompanyInput = {
   id?: string
   amount: number
-  currency: string
+  currency?: string
   candidateId?: string | null
   gateway: $Enums.PaymentGateway
   gatewayTransactionId: string
@@ -680,7 +680,7 @@ export type TransactionUpdateManyWithWhereWithoutCompanyInput = {
 export type TransactionCreateManyCandidateInput = {
   id?: string
   amount: number
-  currency: string
+  currency?: string
   companyId?: string | null
   gateway: $Enums.PaymentGateway
   gatewayTransactionId: string
@@ -728,7 +728,7 @@ export type TransactionUncheckedUpdateManyWithoutCandidateInput = {
 export type TransactionCreateManyCompanyInput = {
   id?: string
   amount: number
-  currency: string
+  currency?: string
   candidateId?: string | null
   gateway: $Enums.PaymentGateway
   gatewayTransactionId: string

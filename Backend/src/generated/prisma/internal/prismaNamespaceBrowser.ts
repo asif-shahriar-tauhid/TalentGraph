@@ -70,6 +70,8 @@ export const ModelName = {
   IntegrityFlag: 'IntegrityFlag',
   Subscription: 'Subscription',
   Transaction: 'Transaction',
+  Notification: 'Notification',
+  BackgroundJob: 'BackgroundJob',
   User: 'User'
 } as const
 
@@ -97,9 +99,9 @@ export const CandidateProfileScalarFieldEnum = {
   education: 'education',
   links: 'links',
   cvUrl: 'cvUrl',
-  subscriptionTier: 'subscriptionTier',
   githubSyncCount: 'githubSyncCount',
-  githubSyncResetAt: 'githubSyncResetAt'
+  githubSyncResetAt: 'githubSyncResetAt',
+  subscriptionTier: 'subscriptionTier'
 } as const
 
 export type CandidateProfileScalarFieldEnum = (typeof CandidateProfileScalarFieldEnum)[keyof typeof CandidateProfileScalarFieldEnum]
@@ -111,11 +113,11 @@ export const CompanyScalarFieldEnum = {
   description: 'description',
   website: 'website',
   logoUrl: 'logoUrl',
-  subscriptionTier: 'subscriptionTier',
+  verificationStatus: 'verificationStatus',
+  verificationDocuments: 'verificationDocuments',
   recruiterAffiliationProof: 'recruiterAffiliationProof',
   rejectionReason: 'rejectionReason',
-  verificationDocuments: 'verificationDocuments',
-  verificationStatus: 'verificationStatus'
+  subscriptionTier: 'subscriptionTier'
 } as const
 
 export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
@@ -170,12 +172,12 @@ export const GitHubRepoScalarFieldEnum = {
   candidateId: 'candidateId',
   repoName: 'repoName',
   repoUrl: 'repoUrl',
+  isSelected: 'isSelected',
+  lastSyncCommitSha: 'lastSyncCommitSha',
   languages: 'languages',
   dependencies: 'dependencies',
   stargazers: 'stargazers',
-  lastCommitAt: 'lastCommitAt',
-  isSelected: 'isSelected',
-  lastSyncCommitSha: 'lastSyncCommitSha'
+  lastCommitAt: 'lastCommitAt'
 } as const
 
 export type GitHubRepoScalarFieldEnum = (typeof GitHubRepoScalarFieldEnum)[keyof typeof GitHubRepoScalarFieldEnum]
@@ -213,7 +215,9 @@ export const ApplicationScalarFieldEnum = {
   jobId: 'jobId',
   candidateId: 'candidateId',
   status: 'status',
+  cvSnapshotUrl: 'cvSnapshotUrl',
   matchScore: 'matchScore',
+  perSkillBreakdown: 'perSkillBreakdown',
   matchExplanation: 'matchExplanation',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -225,7 +229,8 @@ export type ApplicationScalarFieldEnum = (typeof ApplicationScalarFieldEnum)[key
 export const AssessmentTemplateScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  description: 'description'
+  description: 'description',
+  overallDurationSecs: 'overallDurationSecs'
 } as const
 
 export type AssessmentTemplateScalarFieldEnum = (typeof AssessmentTemplateScalarFieldEnum)[keyof typeof AssessmentTemplateScalarFieldEnum]
@@ -238,6 +243,7 @@ export const QuestionScalarFieldEnum = {
   type: 'type',
   options: 'options',
   correctAnswer: 'correctAnswer',
+  points: 'points',
   timeLimitSecs: 'timeLimitSecs'
 } as const
 
@@ -249,6 +255,11 @@ export const AssessmentAttemptScalarFieldEnum = {
   applicationId: 'applicationId',
   status: 'status',
   totalScore: 'totalScore',
+  configSnapshot: 'configSnapshot',
+  reviewVerdict: 'reviewVerdict',
+  reviewerId: 'reviewerId',
+  reviewReason: 'reviewReason',
+  reviewedAt: 'reviewedAt',
   startedAt: 'startedAt',
   completedAt: 'completedAt'
 } as const
@@ -339,27 +350,54 @@ export const TransactionScalarFieldEnum = {
 export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
 
 
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  category: 'category',
+  title: 'title',
+  message: 'message',
+  targetUrl: 'targetUrl',
+  isRead: 'isRead',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+export const BackgroundJobScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  status: 'status',
+  correlationId: 'correlationId',
+  payload: 'payload',
+  retryCount: 'retryCount',
+  errorSummary: 'errorSummary',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BackgroundJobScalarFieldEnum = (typeof BackgroundJobScalarFieldEnum)[keyof typeof BackgroundJobScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   email: 'email',
-  passwordHash: 'passwordHash',
   password: 'password',
   role: 'role',
   status: 'status',
-  name: 'name',
   authProvider: 'authProvider',
   emailVerified: 'emailVerified',
   needPasswordChange: 'needPasswordChange',
-  isDeleted: 'isDeleted',
-  isAssessmentBanned: 'isAssessmentBanned',
   githubId: 'githubId',
   githubToken: 'githubToken',
   imageUrl: 'imageUrl',
   imagePublicId: 'imagePublicId',
+  isAssessmentBanned: 'isAssessmentBanned',
+  isDeleted: 'isDeleted',
   deletedAt: 'deletedAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  candidateProfileId: 'candidateProfileId'
+  updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]

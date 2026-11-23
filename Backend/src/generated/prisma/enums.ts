@@ -19,6 +19,15 @@ export const Role = {
 export type Role = (typeof Role)[keyof typeof Role]
 
 
+export const UserStatus = {
+  ACTIVE: 'ACTIVE',
+  BLOCKED: 'BLOCKED',
+  DELETED: 'DELETED'
+} as const
+
+export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
+
+
 export const AuthProvider = {
   CREDENTIAL: 'CREDENTIAL',
   GITHUB: 'GITHUB',
@@ -28,13 +37,26 @@ export const AuthProvider = {
 export type AuthProvider = (typeof AuthProvider)[keyof typeof AuthProvider]
 
 
-export const UserStatus = {
-  ACTIVE: 'ACTIVE',
-  BLOCKED: 'BLOCKED',
-  DELETED: 'DELETED'
+export const CompanyVerificationStatus = {
+  DRAFT: 'DRAFT',
+  PENDING: 'PENDING',
+  NEEDS_MORE_INFO: 'NEEDS_MORE_INFO',
+  VERIFIED: 'VERIFIED',
+  REJECTED: 'REJECTED'
 } as const
 
-export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
+export type CompanyVerificationStatus = (typeof CompanyVerificationStatus)[keyof typeof CompanyVerificationStatus]
+
+
+export const JobStatus = {
+  DRAFT: 'DRAFT',
+  PENDING_VERIFICATION: 'PENDING_VERIFICATION',
+  ACTIVE: 'ACTIVE',
+  CLOSED: 'CLOSED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type JobStatus = (typeof JobStatus)[keyof typeof JobStatus]
 
 
 export const ApplicationStatus = {
@@ -85,6 +107,15 @@ export const AttemptStatus = {
 export type AttemptStatus = (typeof AttemptStatus)[keyof typeof AttemptStatus]
 
 
+export const IntegrityReviewVerdict = {
+  PENDING: 'PENDING',
+  NO_VIOLATION: 'NO_VIOLATION',
+  CONFIRMED_VIOLATION: 'CONFIRMED_VIOLATION'
+} as const
+
+export type IntegrityReviewVerdict = (typeof IntegrityReviewVerdict)[keyof typeof IntegrityReviewVerdict]
+
+
 export const PaymentGateway = {
   STRIPE: 'STRIPE',
   SSLCOMMERZ: 'SSLCOMMERZ',
@@ -114,12 +145,11 @@ export const SubscriptionStatus = {
 export type SubscriptionStatus = (typeof SubscriptionStatus)[keyof typeof SubscriptionStatus]
 
 
-export const CompanyVerificationStatus = {
-  DRAFT: 'DRAFT',
+export const BackgroundJobStatus = {
   PENDING: 'PENDING',
-  NEEDS_MORE_INFO: 'NEEDS_MORE_INFO',
-  VERIFIED: 'VERIFIED',
-  REJECTED: 'REJECTED'
+  PROCESSING: 'PROCESSING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED'
 } as const
 
-export type CompanyVerificationStatus = (typeof CompanyVerificationStatus)[keyof typeof CompanyVerificationStatus]
+export type BackgroundJobStatus = (typeof BackgroundJobStatus)[keyof typeof BackgroundJobStatus]

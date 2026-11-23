@@ -1,20 +1,37 @@
-project_structure.txt
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
 
-# Backend secrets and build artifacts (also caught by Backend/.gitignore, belt-and-suspenders)
-Backend/.env
-Backend/.env.*
-!Backend/.env.example
-Backend/node_modules/
-Backend/dist/
-Backend/*.log
+# Testing and builds
+dist/
+build/
+.next/
+out/
 
-# Frontend
-frontend/.env
-frontend/.env.*
-!frontend/.env.example
-frontend/node_modules/
-frontend/.next/
-frontend/dist/
+# Environment files
+.env
+.env.*
+!.env.example
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System and Editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Task tracking & temporary agent instructions
+remaining_works.md
+Backend/remaining_works.md
+instruction.md
+Backend/instruction.md
 
 # Mobile build artifacts and secrets
 MobileApp/.dart_tool/
@@ -28,10 +45,3 @@ MobileApp/**/*.keystore
 MobileApp/**/key.properties
 MobileApp/**/google-services.json
 MobileApp/**/GoogleService-Info.plist
-
-# OS / editor
-.DS_Store
-Thumbs.db
-.idea/
-.vscode/
-*.log

@@ -1,5 +1,9 @@
-import { ofetch } from "ofetch";
-import { getClientAuthToken } from "./authUtils";
+import { type FetchOptions, type FetchRequest, ofetch } from "ofetch";
+import {
+  clearClientAuthCookie,
+  getClientAuthToken,
+  syncClientAuthCookie,
+} from "./authUtils";
 
 const getBaseUrl = (): string => {
   const envUrl = process.env.NEXT_PUBLIC_API_BASE_URL?.trim();
@@ -27,7 +31,37 @@ const getBaseUrl = (): string => {
   return clean.endsWith("/api/v1") ? clean : `${clean}/api/v1`;
 };
 
-const apiClient = ofetch.create({
+let refreshPromise: Promise<string | null> | null = null;
+
+async function attemptTokenRefresh(): Promise<string | null> {
+  if (refreshPromise) return refreshPromise;
+
+  refreshPromise = (async () => {
+    try {
+      const res = await ofetch<{
+        success: boolean;
+        data?: { accessToken?: string; refreshToken?: string };
+      }>(`${getBaseUrl()}/auth/refresh-token`, {
+        method: "POST",
+        credentials: "include",
+      });
+      const newAccessToken = res?.data?.accessToken ?? null;
+      if (newAccessToken) {
+        syncClientAuthCookie(newAccessToken);
+      }
+      return newAccessToken;
+    } catch {
+      clearClientAuthCookie();
+      return null;
+    } finally {
+      refreshPromise = null;
+    }
+  })();
+
+  return refreshPromise;
+}
+
+const rawClient = ofetch.create({
   baseURL: getBaseUrl(),
   credentials: "include",
   onRequest({ options }) {
@@ -41,5 +75,36 @@ const apiClient = ofetch.create({
     }
   },
 });
+
+const apiClient = async <T = unknown>(
+  request: FetchRequest,
+  options?: FetchOptions<"json">,
+): Promise<T> => {
+  try {
+    return await rawClient<T>(request, options);
+  } catch (error: unknown) {
+    const errObj = error as { status?: number; statusCode?: number };
+    const status = errObj?.status ?? errObj?.statusCode;
+    const reqStr = typeof request === "string" ? request : "";
+    const isAuthEndpoint =
+      reqStr.includes("/auth/login") ||
+      reqStr.includes("/auth/register") ||
+      reqStr.includes("/auth/refresh-token") ||
+      reqStr.includes("/auth/verify-email");
+
+    if (status === 401 && !isAuthEndpoint && typeof window !== "undefined") {
+      const newAccessToken = await attemptTokenRefresh();
+      if (newAccessToken) {
+        const retryHeaders = new Headers(options?.headers);
+        retryHeaders.set("Authorization", `Bearer ${newAccessToken}`);
+        return await rawClient<T>(request, {
+          ...options,
+          headers: retryHeaders,
+        });
+      }
+    }
+    throw error;
+  }
+};
 
 export default apiClient;

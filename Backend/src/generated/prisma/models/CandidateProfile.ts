@@ -40,9 +40,9 @@ export type CandidateProfileMinAggregateOutputType = {
   name: string | null
   headline: string | null
   cvUrl: string | null
-  subscriptionTier: $Enums.SubscriptionTier | null
   githubSyncCount: number | null
   githubSyncResetAt: Date | null
+  subscriptionTier: $Enums.SubscriptionTier | null
 }
 
 export type CandidateProfileMaxAggregateOutputType = {
@@ -51,9 +51,9 @@ export type CandidateProfileMaxAggregateOutputType = {
   name: string | null
   headline: string | null
   cvUrl: string | null
-  subscriptionTier: $Enums.SubscriptionTier | null
   githubSyncCount: number | null
   githubSyncResetAt: Date | null
+  subscriptionTier: $Enums.SubscriptionTier | null
 }
 
 export type CandidateProfileCountAggregateOutputType = {
@@ -64,9 +64,9 @@ export type CandidateProfileCountAggregateOutputType = {
   education: number
   links: number
   cvUrl: number
-  subscriptionTier: number
   githubSyncCount: number
   githubSyncResetAt: number
+  subscriptionTier: number
   _all: number
 }
 
@@ -85,9 +85,9 @@ export type CandidateProfileMinAggregateInputType = {
   name?: true
   headline?: true
   cvUrl?: true
-  subscriptionTier?: true
   githubSyncCount?: true
   githubSyncResetAt?: true
+  subscriptionTier?: true
 }
 
 export type CandidateProfileMaxAggregateInputType = {
@@ -96,9 +96,9 @@ export type CandidateProfileMaxAggregateInputType = {
   name?: true
   headline?: true
   cvUrl?: true
-  subscriptionTier?: true
   githubSyncCount?: true
   githubSyncResetAt?: true
+  subscriptionTier?: true
 }
 
 export type CandidateProfileCountAggregateInputType = {
@@ -109,9 +109,9 @@ export type CandidateProfileCountAggregateInputType = {
   education?: true
   links?: true
   cvUrl?: true
-  subscriptionTier?: true
   githubSyncCount?: true
   githubSyncResetAt?: true
+  subscriptionTier?: true
   _all?: true
 }
 
@@ -209,9 +209,9 @@ export type CandidateProfileGroupByOutputType = {
   education: runtime.JsonValue
   links: runtime.JsonValue
   cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
   githubSyncCount: number
   githubSyncResetAt: Date | null
+  subscriptionTier: $Enums.SubscriptionTier
   _count: CandidateProfileCountAggregateOutputType | null
   _avg: CandidateProfileAvgAggregateOutputType | null
   _sum: CandidateProfileSumAggregateOutputType | null
@@ -245,15 +245,15 @@ export type CandidateProfileWhereInput = {
   education?: Prisma.JsonFilter<"CandidateProfile">
   links?: Prisma.JsonFilter<"CandidateProfile">
   cvUrl?: Prisma.StringFilter<"CandidateProfile"> | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFilter<"CandidateProfile"> | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFilter<"CandidateProfile"> | number
   githubSyncResetAt?: Prisma.DateTimeNullableFilter<"CandidateProfile"> | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFilter<"CandidateProfile"> | $Enums.SubscriptionTier
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   skills?: Prisma.CandidateSkillListRelationFilter
   githubRepos?: Prisma.GitHubRepoListRelationFilter
   applications?: Prisma.ApplicationListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
   transactions?: Prisma.TransactionListRelationFilter
-  users?: Prisma.UserListRelationFilter
 }
 
 export type CandidateProfileOrderByWithRelationInput = {
@@ -264,15 +264,15 @@ export type CandidateProfileOrderByWithRelationInput = {
   education?: Prisma.SortOrder
   links?: Prisma.SortOrder
   cvUrl?: Prisma.SortOrder
-  subscriptionTier?: Prisma.SortOrder
   githubSyncCount?: Prisma.SortOrder
   githubSyncResetAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionTier?: Prisma.SortOrder
+  user?: Prisma.UserOrderByWithRelationInput
   skills?: Prisma.CandidateSkillOrderByRelationAggregateInput
   githubRepos?: Prisma.GitHubRepoOrderByRelationAggregateInput
   applications?: Prisma.ApplicationOrderByRelationAggregateInput
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
   transactions?: Prisma.TransactionOrderByRelationAggregateInput
-  users?: Prisma.UserOrderByRelationAggregateInput
 }
 
 export type CandidateProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -286,15 +286,15 @@ export type CandidateProfileWhereUniqueInput = Prisma.AtLeast<{
   education?: Prisma.JsonFilter<"CandidateProfile">
   links?: Prisma.JsonFilter<"CandidateProfile">
   cvUrl?: Prisma.StringFilter<"CandidateProfile"> | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFilter<"CandidateProfile"> | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFilter<"CandidateProfile"> | number
   githubSyncResetAt?: Prisma.DateTimeNullableFilter<"CandidateProfile"> | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFilter<"CandidateProfile"> | $Enums.SubscriptionTier
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   skills?: Prisma.CandidateSkillListRelationFilter
   githubRepos?: Prisma.GitHubRepoListRelationFilter
   applications?: Prisma.ApplicationListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
   transactions?: Prisma.TransactionListRelationFilter
-  users?: Prisma.UserListRelationFilter
 }, "id" | "userId">
 
 export type CandidateProfileOrderByWithAggregationInput = {
@@ -305,9 +305,9 @@ export type CandidateProfileOrderByWithAggregationInput = {
   education?: Prisma.SortOrder
   links?: Prisma.SortOrder
   cvUrl?: Prisma.SortOrder
-  subscriptionTier?: Prisma.SortOrder
   githubSyncCount?: Prisma.SortOrder
   githubSyncResetAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionTier?: Prisma.SortOrder
   _count?: Prisma.CandidateProfileCountOrderByAggregateInput
   _avg?: Prisma.CandidateProfileAvgOrderByAggregateInput
   _max?: Prisma.CandidateProfileMaxOrderByAggregateInput
@@ -326,66 +326,63 @@ export type CandidateProfileScalarWhereWithAggregatesInput = {
   education?: Prisma.JsonWithAggregatesFilter<"CandidateProfile">
   links?: Prisma.JsonWithAggregatesFilter<"CandidateProfile">
   cvUrl?: Prisma.StringWithAggregatesFilter<"CandidateProfile"> | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierWithAggregatesFilter<"CandidateProfile"> | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntWithAggregatesFilter<"CandidateProfile"> | number
   githubSyncResetAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CandidateProfile"> | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierWithAggregatesFilter<"CandidateProfile"> | $Enums.SubscriptionTier
 }
 
 export type CandidateProfileCreateInput = {
   id?: string
-  userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
+  user: Prisma.UserCreateNestedOneWithoutCandidateProfileInput
   skills?: Prisma.CandidateSkillCreateNestedManyWithoutCandidateInput
   githubRepos?: Prisma.GitHubRepoCreateNestedManyWithoutCandidateInput
   applications?: Prisma.ApplicationCreateNestedManyWithoutCandidateInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCandidateInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutCandidateInput
-  users?: Prisma.UserCreateNestedManyWithoutCandidateProfileInput
 }
 
 export type CandidateProfileUncheckedCreateInput = {
   id?: string
   userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
   skills?: Prisma.CandidateSkillUncheckedCreateNestedManyWithoutCandidateInput
   githubRepos?: Prisma.GitHubRepoUncheckedCreateNestedManyWithoutCandidateInput
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutCandidateInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCandidateInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutCandidateInput
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutCandidateProfileInput
 }
 
 export type CandidateProfileUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  user?: Prisma.UserUpdateOneRequiredWithoutCandidateProfileNestedInput
   skills?: Prisma.CandidateSkillUpdateManyWithoutCandidateNestedInput
   githubRepos?: Prisma.GitHubRepoUpdateManyWithoutCandidateNestedInput
   applications?: Prisma.ApplicationUpdateManyWithoutCandidateNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutCandidateNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutCandidateNestedInput
-  users?: Prisma.UserUpdateManyWithoutCandidateProfileNestedInput
 }
 
 export type CandidateProfileUncheckedUpdateInput = {
@@ -396,41 +393,39 @@ export type CandidateProfileUncheckedUpdateInput = {
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   skills?: Prisma.CandidateSkillUncheckedUpdateManyWithoutCandidateNestedInput
   githubRepos?: Prisma.GitHubRepoUncheckedUpdateManyWithoutCandidateNestedInput
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutCandidateNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCandidateNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutCandidateNestedInput
-  users?: Prisma.UserUncheckedUpdateManyWithoutCandidateProfileNestedInput
 }
 
 export type CandidateProfileCreateManyInput = {
   id?: string
   userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
 }
 
 export type CandidateProfileUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
 }
 
 export type CandidateProfileUncheckedUpdateManyInput = {
@@ -441,9 +436,9 @@ export type CandidateProfileUncheckedUpdateManyInput = {
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
 }
 
 export type CandidateProfileCountOrderByAggregateInput = {
@@ -454,9 +449,9 @@ export type CandidateProfileCountOrderByAggregateInput = {
   education?: Prisma.SortOrder
   links?: Prisma.SortOrder
   cvUrl?: Prisma.SortOrder
-  subscriptionTier?: Prisma.SortOrder
   githubSyncCount?: Prisma.SortOrder
   githubSyncResetAt?: Prisma.SortOrder
+  subscriptionTier?: Prisma.SortOrder
 }
 
 export type CandidateProfileAvgOrderByAggregateInput = {
@@ -469,9 +464,9 @@ export type CandidateProfileMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   headline?: Prisma.SortOrder
   cvUrl?: Prisma.SortOrder
-  subscriptionTier?: Prisma.SortOrder
   githubSyncCount?: Prisma.SortOrder
   githubSyncResetAt?: Prisma.SortOrder
+  subscriptionTier?: Prisma.SortOrder
 }
 
 export type CandidateProfileMinOrderByAggregateInput = {
@@ -480,9 +475,9 @@ export type CandidateProfileMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   headline?: Prisma.SortOrder
   cvUrl?: Prisma.SortOrder
-  subscriptionTier?: Prisma.SortOrder
   githubSyncCount?: Prisma.SortOrder
   githubSyncResetAt?: Prisma.SortOrder
+  subscriptionTier?: Prisma.SortOrder
 }
 
 export type CandidateProfileSumOrderByAggregateInput = {
@@ -503,10 +498,6 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
-export type EnumSubscriptionTierFieldUpdateOperationsInput = {
-  set?: $Enums.SubscriptionTier
-}
-
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -517,6 +508,10 @@ export type IntFieldUpdateOperationsInput = {
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
+}
+
+export type EnumSubscriptionTierFieldUpdateOperationsInput = {
+  set?: $Enums.SubscriptionTier
 }
 
 export type CandidateProfileCreateNestedOneWithoutSkillsInput = {
@@ -593,56 +588,70 @@ export type CandidateProfileUpdateOneWithoutTransactionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CandidateProfileUpdateToOneWithWhereWithoutTransactionsInput, Prisma.CandidateProfileUpdateWithoutTransactionsInput>, Prisma.CandidateProfileUncheckedUpdateWithoutTransactionsInput>
 }
 
-export type CandidateProfileCreateNestedOneWithoutUsersInput = {
-  create?: Prisma.XOR<Prisma.CandidateProfileCreateWithoutUsersInput, Prisma.CandidateProfileUncheckedCreateWithoutUsersInput>
-  connectOrCreate?: Prisma.CandidateProfileCreateOrConnectWithoutUsersInput
+export type CandidateProfileCreateNestedOneWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.CandidateProfileCreateWithoutUserInput, Prisma.CandidateProfileUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.CandidateProfileCreateOrConnectWithoutUserInput
   connect?: Prisma.CandidateProfileWhereUniqueInput
 }
 
-export type CandidateProfileUpdateOneWithoutUsersNestedInput = {
-  create?: Prisma.XOR<Prisma.CandidateProfileCreateWithoutUsersInput, Prisma.CandidateProfileUncheckedCreateWithoutUsersInput>
-  connectOrCreate?: Prisma.CandidateProfileCreateOrConnectWithoutUsersInput
-  upsert?: Prisma.CandidateProfileUpsertWithoutUsersInput
+export type CandidateProfileUncheckedCreateNestedOneWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.CandidateProfileCreateWithoutUserInput, Prisma.CandidateProfileUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.CandidateProfileCreateOrConnectWithoutUserInput
+  connect?: Prisma.CandidateProfileWhereUniqueInput
+}
+
+export type CandidateProfileUpdateOneWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.CandidateProfileCreateWithoutUserInput, Prisma.CandidateProfileUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.CandidateProfileCreateOrConnectWithoutUserInput
+  upsert?: Prisma.CandidateProfileUpsertWithoutUserInput
   disconnect?: Prisma.CandidateProfileWhereInput | boolean
   delete?: Prisma.CandidateProfileWhereInput | boolean
   connect?: Prisma.CandidateProfileWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CandidateProfileUpdateToOneWithWhereWithoutUsersInput, Prisma.CandidateProfileUpdateWithoutUsersInput>, Prisma.CandidateProfileUncheckedUpdateWithoutUsersInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CandidateProfileUpdateToOneWithWhereWithoutUserInput, Prisma.CandidateProfileUpdateWithoutUserInput>, Prisma.CandidateProfileUncheckedUpdateWithoutUserInput>
+}
+
+export type CandidateProfileUncheckedUpdateOneWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.CandidateProfileCreateWithoutUserInput, Prisma.CandidateProfileUncheckedCreateWithoutUserInput>
+  connectOrCreate?: Prisma.CandidateProfileCreateOrConnectWithoutUserInput
+  upsert?: Prisma.CandidateProfileUpsertWithoutUserInput
+  disconnect?: Prisma.CandidateProfileWhereInput | boolean
+  delete?: Prisma.CandidateProfileWhereInput | boolean
+  connect?: Prisma.CandidateProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CandidateProfileUpdateToOneWithWhereWithoutUserInput, Prisma.CandidateProfileUpdateWithoutUserInput>, Prisma.CandidateProfileUncheckedUpdateWithoutUserInput>
 }
 
 export type CandidateProfileCreateWithoutSkillsInput = {
   id?: string
-  userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
+  user: Prisma.UserCreateNestedOneWithoutCandidateProfileInput
   githubRepos?: Prisma.GitHubRepoCreateNestedManyWithoutCandidateInput
   applications?: Prisma.ApplicationCreateNestedManyWithoutCandidateInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCandidateInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutCandidateInput
-  users?: Prisma.UserCreateNestedManyWithoutCandidateProfileInput
 }
 
 export type CandidateProfileUncheckedCreateWithoutSkillsInput = {
   id?: string
   userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
   githubRepos?: Prisma.GitHubRepoUncheckedCreateNestedManyWithoutCandidateInput
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutCandidateInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCandidateInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutCandidateInput
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutCandidateProfileInput
 }
 
 export type CandidateProfileCreateOrConnectWithoutSkillsInput = {
@@ -663,20 +672,19 @@ export type CandidateProfileUpdateToOneWithWhereWithoutSkillsInput = {
 
 export type CandidateProfileUpdateWithoutSkillsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  user?: Prisma.UserUpdateOneRequiredWithoutCandidateProfileNestedInput
   githubRepos?: Prisma.GitHubRepoUpdateManyWithoutCandidateNestedInput
   applications?: Prisma.ApplicationUpdateManyWithoutCandidateNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutCandidateNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutCandidateNestedInput
-  users?: Prisma.UserUpdateManyWithoutCandidateProfileNestedInput
 }
 
 export type CandidateProfileUncheckedUpdateWithoutSkillsInput = {
@@ -687,50 +695,47 @@ export type CandidateProfileUncheckedUpdateWithoutSkillsInput = {
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubRepos?: Prisma.GitHubRepoUncheckedUpdateManyWithoutCandidateNestedInput
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutCandidateNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCandidateNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutCandidateNestedInput
-  users?: Prisma.UserUncheckedUpdateManyWithoutCandidateProfileNestedInput
 }
 
 export type CandidateProfileCreateWithoutGithubReposInput = {
   id?: string
-  userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
+  user: Prisma.UserCreateNestedOneWithoutCandidateProfileInput
   skills?: Prisma.CandidateSkillCreateNestedManyWithoutCandidateInput
   applications?: Prisma.ApplicationCreateNestedManyWithoutCandidateInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCandidateInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutCandidateInput
-  users?: Prisma.UserCreateNestedManyWithoutCandidateProfileInput
 }
 
 export type CandidateProfileUncheckedCreateWithoutGithubReposInput = {
   id?: string
   userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
   skills?: Prisma.CandidateSkillUncheckedCreateNestedManyWithoutCandidateInput
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutCandidateInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCandidateInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutCandidateInput
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutCandidateProfileInput
 }
 
 export type CandidateProfileCreateOrConnectWithoutGithubReposInput = {
@@ -751,20 +756,19 @@ export type CandidateProfileUpdateToOneWithWhereWithoutGithubReposInput = {
 
 export type CandidateProfileUpdateWithoutGithubReposInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  user?: Prisma.UserUpdateOneRequiredWithoutCandidateProfileNestedInput
   skills?: Prisma.CandidateSkillUpdateManyWithoutCandidateNestedInput
   applications?: Prisma.ApplicationUpdateManyWithoutCandidateNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutCandidateNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutCandidateNestedInput
-  users?: Prisma.UserUpdateManyWithoutCandidateProfileNestedInput
 }
 
 export type CandidateProfileUncheckedUpdateWithoutGithubReposInput = {
@@ -775,50 +779,47 @@ export type CandidateProfileUncheckedUpdateWithoutGithubReposInput = {
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   skills?: Prisma.CandidateSkillUncheckedUpdateManyWithoutCandidateNestedInput
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutCandidateNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCandidateNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutCandidateNestedInput
-  users?: Prisma.UserUncheckedUpdateManyWithoutCandidateProfileNestedInput
 }
 
 export type CandidateProfileCreateWithoutApplicationsInput = {
   id?: string
-  userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
+  user: Prisma.UserCreateNestedOneWithoutCandidateProfileInput
   skills?: Prisma.CandidateSkillCreateNestedManyWithoutCandidateInput
   githubRepos?: Prisma.GitHubRepoCreateNestedManyWithoutCandidateInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCandidateInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutCandidateInput
-  users?: Prisma.UserCreateNestedManyWithoutCandidateProfileInput
 }
 
 export type CandidateProfileUncheckedCreateWithoutApplicationsInput = {
   id?: string
   userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
   skills?: Prisma.CandidateSkillUncheckedCreateNestedManyWithoutCandidateInput
   githubRepos?: Prisma.GitHubRepoUncheckedCreateNestedManyWithoutCandidateInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCandidateInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutCandidateInput
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutCandidateProfileInput
 }
 
 export type CandidateProfileCreateOrConnectWithoutApplicationsInput = {
@@ -839,20 +840,19 @@ export type CandidateProfileUpdateToOneWithWhereWithoutApplicationsInput = {
 
 export type CandidateProfileUpdateWithoutApplicationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  user?: Prisma.UserUpdateOneRequiredWithoutCandidateProfileNestedInput
   skills?: Prisma.CandidateSkillUpdateManyWithoutCandidateNestedInput
   githubRepos?: Prisma.GitHubRepoUpdateManyWithoutCandidateNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutCandidateNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutCandidateNestedInput
-  users?: Prisma.UserUpdateManyWithoutCandidateProfileNestedInput
 }
 
 export type CandidateProfileUncheckedUpdateWithoutApplicationsInput = {
@@ -863,50 +863,47 @@ export type CandidateProfileUncheckedUpdateWithoutApplicationsInput = {
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   skills?: Prisma.CandidateSkillUncheckedUpdateManyWithoutCandidateNestedInput
   githubRepos?: Prisma.GitHubRepoUncheckedUpdateManyWithoutCandidateNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCandidateNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutCandidateNestedInput
-  users?: Prisma.UserUncheckedUpdateManyWithoutCandidateProfileNestedInput
 }
 
 export type CandidateProfileCreateWithoutSubscriptionsInput = {
   id?: string
-  userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
+  user: Prisma.UserCreateNestedOneWithoutCandidateProfileInput
   skills?: Prisma.CandidateSkillCreateNestedManyWithoutCandidateInput
   githubRepos?: Prisma.GitHubRepoCreateNestedManyWithoutCandidateInput
   applications?: Prisma.ApplicationCreateNestedManyWithoutCandidateInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutCandidateInput
-  users?: Prisma.UserCreateNestedManyWithoutCandidateProfileInput
 }
 
 export type CandidateProfileUncheckedCreateWithoutSubscriptionsInput = {
   id?: string
   userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
   skills?: Prisma.CandidateSkillUncheckedCreateNestedManyWithoutCandidateInput
   githubRepos?: Prisma.GitHubRepoUncheckedCreateNestedManyWithoutCandidateInput
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutCandidateInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutCandidateInput
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutCandidateProfileInput
 }
 
 export type CandidateProfileCreateOrConnectWithoutSubscriptionsInput = {
@@ -927,20 +924,19 @@ export type CandidateProfileUpdateToOneWithWhereWithoutSubscriptionsInput = {
 
 export type CandidateProfileUpdateWithoutSubscriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  user?: Prisma.UserUpdateOneRequiredWithoutCandidateProfileNestedInput
   skills?: Prisma.CandidateSkillUpdateManyWithoutCandidateNestedInput
   githubRepos?: Prisma.GitHubRepoUpdateManyWithoutCandidateNestedInput
   applications?: Prisma.ApplicationUpdateManyWithoutCandidateNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutCandidateNestedInput
-  users?: Prisma.UserUpdateManyWithoutCandidateProfileNestedInput
 }
 
 export type CandidateProfileUncheckedUpdateWithoutSubscriptionsInput = {
@@ -951,50 +947,47 @@ export type CandidateProfileUncheckedUpdateWithoutSubscriptionsInput = {
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   skills?: Prisma.CandidateSkillUncheckedUpdateManyWithoutCandidateNestedInput
   githubRepos?: Prisma.GitHubRepoUncheckedUpdateManyWithoutCandidateNestedInput
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutCandidateNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutCandidateNestedInput
-  users?: Prisma.UserUncheckedUpdateManyWithoutCandidateProfileNestedInput
 }
 
 export type CandidateProfileCreateWithoutTransactionsInput = {
   id?: string
-  userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
+  user: Prisma.UserCreateNestedOneWithoutCandidateProfileInput
   skills?: Prisma.CandidateSkillCreateNestedManyWithoutCandidateInput
   githubRepos?: Prisma.GitHubRepoCreateNestedManyWithoutCandidateInput
   applications?: Prisma.ApplicationCreateNestedManyWithoutCandidateInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCandidateInput
-  users?: Prisma.UserCreateNestedManyWithoutCandidateProfileInput
 }
 
 export type CandidateProfileUncheckedCreateWithoutTransactionsInput = {
   id?: string
   userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
   skills?: Prisma.CandidateSkillUncheckedCreateNestedManyWithoutCandidateInput
   githubRepos?: Prisma.GitHubRepoUncheckedCreateNestedManyWithoutCandidateInput
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutCandidateInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCandidateInput
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutCandidateProfileInput
 }
 
 export type CandidateProfileCreateOrConnectWithoutTransactionsInput = {
@@ -1015,20 +1008,19 @@ export type CandidateProfileUpdateToOneWithWhereWithoutTransactionsInput = {
 
 export type CandidateProfileUpdateWithoutTransactionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
+  user?: Prisma.UserUpdateOneRequiredWithoutCandidateProfileNestedInput
   skills?: Prisma.CandidateSkillUpdateManyWithoutCandidateNestedInput
   githubRepos?: Prisma.GitHubRepoUpdateManyWithoutCandidateNestedInput
   applications?: Prisma.ApplicationUpdateManyWithoutCandidateNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutCandidateNestedInput
-  users?: Prisma.UserUpdateManyWithoutCandidateProfileNestedInput
 }
 
 export type CandidateProfileUncheckedUpdateWithoutTransactionsInput = {
@@ -1039,27 +1031,25 @@ export type CandidateProfileUncheckedUpdateWithoutTransactionsInput = {
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   skills?: Prisma.CandidateSkillUncheckedUpdateManyWithoutCandidateNestedInput
   githubRepos?: Prisma.GitHubRepoUncheckedUpdateManyWithoutCandidateNestedInput
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutCandidateNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCandidateNestedInput
-  users?: Prisma.UserUncheckedUpdateManyWithoutCandidateProfileNestedInput
 }
 
-export type CandidateProfileCreateWithoutUsersInput = {
+export type CandidateProfileCreateWithoutUserInput = {
   id?: string
-  userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
   skills?: Prisma.CandidateSkillCreateNestedManyWithoutCandidateInput
   githubRepos?: Prisma.GitHubRepoCreateNestedManyWithoutCandidateInput
   applications?: Prisma.ApplicationCreateNestedManyWithoutCandidateInput
@@ -1067,17 +1057,16 @@ export type CandidateProfileCreateWithoutUsersInput = {
   transactions?: Prisma.TransactionCreateNestedManyWithoutCandidateInput
 }
 
-export type CandidateProfileUncheckedCreateWithoutUsersInput = {
+export type CandidateProfileUncheckedCreateWithoutUserInput = {
   id?: string
-  userId: string
   name: string
-  headline: string
-  education: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  links: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  cvUrl: string
-  subscriptionTier: $Enums.SubscriptionTier
+  headline?: string
+  education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  cvUrl?: string
   githubSyncCount?: number
   githubSyncResetAt?: Date | string | null
+  subscriptionTier?: $Enums.SubscriptionTier
   skills?: Prisma.CandidateSkillUncheckedCreateNestedManyWithoutCandidateInput
   githubRepos?: Prisma.GitHubRepoUncheckedCreateNestedManyWithoutCandidateInput
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutCandidateInput
@@ -1085,33 +1074,32 @@ export type CandidateProfileUncheckedCreateWithoutUsersInput = {
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutCandidateInput
 }
 
-export type CandidateProfileCreateOrConnectWithoutUsersInput = {
+export type CandidateProfileCreateOrConnectWithoutUserInput = {
   where: Prisma.CandidateProfileWhereUniqueInput
-  create: Prisma.XOR<Prisma.CandidateProfileCreateWithoutUsersInput, Prisma.CandidateProfileUncheckedCreateWithoutUsersInput>
+  create: Prisma.XOR<Prisma.CandidateProfileCreateWithoutUserInput, Prisma.CandidateProfileUncheckedCreateWithoutUserInput>
 }
 
-export type CandidateProfileUpsertWithoutUsersInput = {
-  update: Prisma.XOR<Prisma.CandidateProfileUpdateWithoutUsersInput, Prisma.CandidateProfileUncheckedUpdateWithoutUsersInput>
-  create: Prisma.XOR<Prisma.CandidateProfileCreateWithoutUsersInput, Prisma.CandidateProfileUncheckedCreateWithoutUsersInput>
+export type CandidateProfileUpsertWithoutUserInput = {
+  update: Prisma.XOR<Prisma.CandidateProfileUpdateWithoutUserInput, Prisma.CandidateProfileUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.CandidateProfileCreateWithoutUserInput, Prisma.CandidateProfileUncheckedCreateWithoutUserInput>
   where?: Prisma.CandidateProfileWhereInput
 }
 
-export type CandidateProfileUpdateToOneWithWhereWithoutUsersInput = {
+export type CandidateProfileUpdateToOneWithWhereWithoutUserInput = {
   where?: Prisma.CandidateProfileWhereInput
-  data: Prisma.XOR<Prisma.CandidateProfileUpdateWithoutUsersInput, Prisma.CandidateProfileUncheckedUpdateWithoutUsersInput>
+  data: Prisma.XOR<Prisma.CandidateProfileUpdateWithoutUserInput, Prisma.CandidateProfileUncheckedUpdateWithoutUserInput>
 }
 
-export type CandidateProfileUpdateWithoutUsersInput = {
+export type CandidateProfileUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   skills?: Prisma.CandidateSkillUpdateManyWithoutCandidateNestedInput
   githubRepos?: Prisma.GitHubRepoUpdateManyWithoutCandidateNestedInput
   applications?: Prisma.ApplicationUpdateManyWithoutCandidateNestedInput
@@ -1119,17 +1107,16 @@ export type CandidateProfileUpdateWithoutUsersInput = {
   transactions?: Prisma.TransactionUpdateManyWithoutCandidateNestedInput
 }
 
-export type CandidateProfileUncheckedUpdateWithoutUsersInput = {
+export type CandidateProfileUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   headline?: Prisma.StringFieldUpdateOperationsInput | string
   education?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   links?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   githubSyncCount?: Prisma.IntFieldUpdateOperationsInput | number
   githubSyncResetAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionTier?: Prisma.EnumSubscriptionTierFieldUpdateOperationsInput | $Enums.SubscriptionTier
   skills?: Prisma.CandidateSkillUncheckedUpdateManyWithoutCandidateNestedInput
   githubRepos?: Prisma.GitHubRepoUncheckedUpdateManyWithoutCandidateNestedInput
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutCandidateNestedInput
@@ -1148,7 +1135,6 @@ export type CandidateProfileCountOutputType = {
   applications: number
   subscriptions: number
   transactions: number
-  users: number
 }
 
 export type CandidateProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1157,7 +1143,6 @@ export type CandidateProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.
   applications?: boolean | CandidateProfileCountOutputTypeCountApplicationsArgs
   subscriptions?: boolean | CandidateProfileCountOutputTypeCountSubscriptionsArgs
   transactions?: boolean | CandidateProfileCountOutputTypeCountTransactionsArgs
-  users?: boolean | CandidateProfileCountOutputTypeCountUsersArgs
 }
 
 /**
@@ -1205,13 +1190,6 @@ export type CandidateProfileCountOutputTypeCountTransactionsArgs<ExtArgs extends
   where?: Prisma.TransactionWhereInput
 }
 
-/**
- * CandidateProfileCountOutputType without action
- */
-export type CandidateProfileCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserWhereInput
-}
-
 
 export type CandidateProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1221,15 +1199,15 @@ export type CandidateProfileSelect<ExtArgs extends runtime.Types.Extensions.Inte
   education?: boolean
   links?: boolean
   cvUrl?: boolean
-  subscriptionTier?: boolean
   githubSyncCount?: boolean
   githubSyncResetAt?: boolean
+  subscriptionTier?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   skills?: boolean | Prisma.CandidateProfile$skillsArgs<ExtArgs>
   githubRepos?: boolean | Prisma.CandidateProfile$githubReposArgs<ExtArgs>
   applications?: boolean | Prisma.CandidateProfile$applicationsArgs<ExtArgs>
   subscriptions?: boolean | Prisma.CandidateProfile$subscriptionsArgs<ExtArgs>
   transactions?: boolean | Prisma.CandidateProfile$transactionsArgs<ExtArgs>
-  users?: boolean | Prisma.CandidateProfile$usersArgs<ExtArgs>
   _count?: boolean | Prisma.CandidateProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidateProfile"]>
 
@@ -1241,9 +1219,10 @@ export type CandidateProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   education?: boolean
   links?: boolean
   cvUrl?: boolean
-  subscriptionTier?: boolean
   githubSyncCount?: boolean
   githubSyncResetAt?: boolean
+  subscriptionTier?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidateProfile"]>
 
 export type CandidateProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1254,9 +1233,10 @@ export type CandidateProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   education?: boolean
   links?: boolean
   cvUrl?: boolean
-  subscriptionTier?: boolean
   githubSyncCount?: boolean
   githubSyncResetAt?: boolean
+  subscriptionTier?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidateProfile"]>
 
 export type CandidateProfileSelectScalar = {
@@ -1267,33 +1247,37 @@ export type CandidateProfileSelectScalar = {
   education?: boolean
   links?: boolean
   cvUrl?: boolean
-  subscriptionTier?: boolean
   githubSyncCount?: boolean
   githubSyncResetAt?: boolean
+  subscriptionTier?: boolean
 }
 
-export type CandidateProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "name" | "headline" | "education" | "links" | "cvUrl" | "subscriptionTier" | "githubSyncCount" | "githubSyncResetAt", ExtArgs["result"]["candidateProfile"]>
+export type CandidateProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "name" | "headline" | "education" | "links" | "cvUrl" | "githubSyncCount" | "githubSyncResetAt" | "subscriptionTier", ExtArgs["result"]["candidateProfile"]>
 export type CandidateProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   skills?: boolean | Prisma.CandidateProfile$skillsArgs<ExtArgs>
   githubRepos?: boolean | Prisma.CandidateProfile$githubReposArgs<ExtArgs>
   applications?: boolean | Prisma.CandidateProfile$applicationsArgs<ExtArgs>
   subscriptions?: boolean | Prisma.CandidateProfile$subscriptionsArgs<ExtArgs>
   transactions?: boolean | Prisma.CandidateProfile$transactionsArgs<ExtArgs>
-  users?: boolean | Prisma.CandidateProfile$usersArgs<ExtArgs>
   _count?: boolean | Prisma.CandidateProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type CandidateProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type CandidateProfileIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type CandidateProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type CandidateProfileIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
 
 export type $CandidateProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CandidateProfile"
   objects: {
+    user: Prisma.$UserPayload<ExtArgs>
     skills: Prisma.$CandidateSkillPayload<ExtArgs>[]
     githubRepos: Prisma.$GitHubRepoPayload<ExtArgs>[]
     applications: Prisma.$ApplicationPayload<ExtArgs>[]
     subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
     transactions: Prisma.$TransactionPayload<ExtArgs>[]
-    users: Prisma.$UserPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1303,9 +1287,9 @@ export type $CandidateProfilePayload<ExtArgs extends runtime.Types.Extensions.In
     education: runtime.JsonValue
     links: runtime.JsonValue
     cvUrl: string
-    subscriptionTier: $Enums.SubscriptionTier
     githubSyncCount: number
     githubSyncResetAt: Date | null
+    subscriptionTier: $Enums.SubscriptionTier
   }, ExtArgs["result"]["candidateProfile"]>
   composites: {}
 }
@@ -1700,12 +1684,12 @@ readonly fields: CandidateProfileFieldRefs;
  */
 export interface Prisma__CandidateProfileClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   skills<T extends Prisma.CandidateProfile$skillsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CandidateProfile$skillsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CandidateSkillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   githubRepos<T extends Prisma.CandidateProfile$githubReposArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CandidateProfile$githubReposArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GitHubRepoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   applications<T extends Prisma.CandidateProfile$applicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CandidateProfile$applicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptions<T extends Prisma.CandidateProfile$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CandidateProfile$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   transactions<T extends Prisma.CandidateProfile$transactionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CandidateProfile$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  users<T extends Prisma.CandidateProfile$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CandidateProfile$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1742,9 +1726,9 @@ export interface CandidateProfileFieldRefs {
   readonly education: Prisma.FieldRef<"CandidateProfile", 'Json'>
   readonly links: Prisma.FieldRef<"CandidateProfile", 'Json'>
   readonly cvUrl: Prisma.FieldRef<"CandidateProfile", 'String'>
-  readonly subscriptionTier: Prisma.FieldRef<"CandidateProfile", 'SubscriptionTier'>
   readonly githubSyncCount: Prisma.FieldRef<"CandidateProfile", 'Int'>
   readonly githubSyncResetAt: Prisma.FieldRef<"CandidateProfile", 'DateTime'>
+  readonly subscriptionTier: Prisma.FieldRef<"CandidateProfile", 'SubscriptionTier'>
 }
     
 
@@ -1999,6 +1983,10 @@ export type CandidateProfileCreateManyAndReturnArgs<ExtArgs extends runtime.Type
    */
   data: Prisma.CandidateProfileCreateManyInput | Prisma.CandidateProfileCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CandidateProfileIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2069,6 +2057,10 @@ export type CandidateProfileUpdateManyAndReturnArgs<ExtArgs extends runtime.Type
    * Limit how many CandidateProfiles to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CandidateProfileIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2255,30 +2247,6 @@ export type CandidateProfile$transactionsArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.TransactionScalarFieldEnum | Prisma.TransactionScalarFieldEnum[]
-}
-
-/**
- * CandidateProfile.users
- */
-export type CandidateProfile$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the User
-   */
-  select?: Prisma.UserSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the User
-   */
-  omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
-  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
-  cursor?: Prisma.UserWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
 }
 
 /**
