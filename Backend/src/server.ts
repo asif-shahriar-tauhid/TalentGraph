@@ -3,9 +3,7 @@ import config from "./app/config";
 import { transporter } from "./app/lib/nodemailer";
 import { prisma } from "./app/lib/prisma";
 import { redisClient } from "./app/lib/redis";
-// seedSuperAdmin disabled: Role enum in generated Prisma client does not include SYSTEM_ADMIN.
-// Re-enable after running `prisma migrate dev` with the full schema.
-// import { seedSuperAdmin } from "./app/utils/seed";
+import { seedSuperAdmin } from "./app/utils/seed";
 
 const PORT = config.port;
 
@@ -24,7 +22,7 @@ const main = async () => {
       console.warn("Nodemailer SMTP verification warning (check SMTP credentials in .env):", smtpErr);
     }
 
-    // await seedSuperAdmin(); // disabled — see comment above
+    await seedSuperAdmin();
 
     app.listen(PORT, () => {
       console.log(`Server listening on port ${PORT}`);
