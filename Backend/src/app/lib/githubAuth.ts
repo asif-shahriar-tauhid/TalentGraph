@@ -11,6 +11,19 @@ export interface IGithubUserProfile {
 }
 
 export const getGithubAuthUrl = (state?: string): string => {
+  if (!config.github_client_id) {
+    throw new AppError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      "GitHub OAuth is not configured: GITHUB_CLIENT_ID is missing.",
+    );
+  }
+  if (!config.github_callback_url) {
+    throw new AppError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      "GitHub OAuth is not configured: GITHUB_CALLBACK_URL is missing.",
+    );
+  }
+
   const rootUrl = "https://github.com/login/oauth/authorize";
   const options = {
     client_id: config.github_client_id,
@@ -100,7 +113,7 @@ export const getGithubUserProfile = async (accessToken: string): Promise<IGithub
   }
 
   if (!primaryEmail) {
-    throw new AppError(httpStatus.BAD_REQUEST, "No email found associated with your GitHub account.");
+    primaryEmail = `${ghUser.login}@users.noreply.github.com`;
   }
 
   return {

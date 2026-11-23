@@ -6,3 +6,5 @@ Do:
 3. `shared/widgets/theme_toggle.dart`: sun/moon icon button, tooltip + semantics = next action.
 4. `shared/widgets/primary_button.dart` (loading + disabled states, label wraps) and `state_banner.dart` (icon + text; kinds: info, success, warning, error).
 Accept: widget tests — first launch is dark; toggle flips and persists across restart; both themes render buttons/banners with token colors; text scale 2.0 no overflow.
+
+## Status: Verified

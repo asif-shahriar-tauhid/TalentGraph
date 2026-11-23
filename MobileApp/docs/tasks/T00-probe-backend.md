@@ -6,3 +6,5 @@ Do:
 3. From the `redirect_uri`: custom scheme → strategy C; http(s) URL → strategy A unless owner chose B (Q11). Record the choice in the contract §5.
 Don't: write app code, edit backend/web, print tokens.
 Accept: observed-responses.md filled; contract updated where reality differs; strategy recorded; blockers listed or "none".
+
+## Status: Verified

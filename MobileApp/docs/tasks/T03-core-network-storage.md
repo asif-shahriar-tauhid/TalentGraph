@@ -6,3 +6,5 @@ Do:
 3. `core/storage/token_store.dart`: interface + `SecureTokenStore` (flutter_secure_storage), read/write/clear.
 4. `core/network/dio_client.dart`: provider, timeouts, envelope unwrap in one place (`data`), redacting logger, Bearer interceptor, **single-flight** refresh via `POST /auth/refresh-token {refreshToken}` (refresh call bypasses interceptor); refresh failure → clear tokens + emit unauthorized.
 Accept: tests with a fake adapter — header attached; concurrent 401s → exactly one refresh; refresh failure clears tokens; 400/403/502/network map correctly; no token or `stack` in logs.
+
+## Status: Verified

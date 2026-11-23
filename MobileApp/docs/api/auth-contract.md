@@ -32,10 +32,10 @@ Code references user fields `id, name, email, role, status, emailVerified, image
 Capture strategies (no backend change either way):
 | | How | Needs | Trade-off |
 |---|---|---|---|
-| **A (default for dev/MVP)** | In-app WebView on a dedicated screen; `NavigationDelegate` cancels the navigation to the callback URL and reads `code`/`state` | `webview_flutter` (Q11) | Works for https or localhost callbacks, zero web/server change. Embedded browser: no shared GitHub session/passkeys; weaker than system browser. |
-| **B (release hardening)** | System browser/Custom Tab + Android App Link on the callback URL | `assetlinks.json` hosted on the callback's domain + signing-cert SHA-256 + intent filter (a web static file, owner decision) | Strongest; app opens before the page loads |
-| C | Custom scheme `talentgraph://…` | Only if `GITHUB_CALLBACK_URL` already is one | Not expected |
-T00 decides C vs A/B from the observed `redirect_uri`. Choose A unless the owner chose B. Put the choice behind an `OAuthCapture` interface so B can replace A later.
+| **System Browser + Custom Scheme (CHOSEN — Path 1)** | System browser / Chrome Custom Tab via `flutter_web_auth_2`; backend `GET /auth/github/callback` responds with 302 redirect to `talentgraph://auth/callback?...` | `flutter_web_auth_2`, URL scheme `talentgraph` | Adheres strictly to auth-security rule (no embedded WebView). Full isolation, passkeys, address bar visibility, zero credential exposure. |
+| **B (release hardening)** | System browser/Custom Tab + Android App Link on the callback URL | `assetlinks.json` hosted on the callback's domain + signing-cert SHA-256 + intent filter | Strongest; app opens before page loads |
+**Capture Strategy: System Browser via `flutter_web_auth_2` + `talentgraph://auth/callback` (2026-11-21).**
+`GITHUB_CALLBACK_URL` is `http://localhost:5000/api/v1/auth/github/callback`. The backend route `GET /auth/github/callback` issues an HTTP 302 redirect to `talentgraph://auth/callback?${query}`. The mobile app invokes `FlutterWebAuth2.authenticate(url: authUrl, callbackUrlScheme: 'talentgraph')`, intercepting the return cleanly without any embedded WebView. No WebView packages (`webview_flutter`) needed.
 No PKCE (backend doesn't support it).
 
 ## 6. Failure mapping
@@ -53,5 +53,6 @@ No PKCE (backend doesn't support it).
 Never show server bodies, `stack`, or tokens.
 
 ## 7. Owner TODOs
-- [ ] Send the value of `GITHUB_CALLBACK_URL` (not a secret) or run T00.
-- [ ] Answer Q11 (WebView strategy A now, App Link B later?).
+- [x] `GITHUB_CALLBACK_URL` = `http://localhost:5000/api/v1/auth/github/callback` (read from `Backend/.env`, 2026-11-21).
+- [x] Q11 answered: Path 1 chosen — System browser / Custom Tab via `flutter_web_auth_2` with custom scheme `talentgraph://auth/callback` (backed by backend 302 redirect bridge). No embedded WebView per auth-security rule (2026-11-21).
+- [x] Run T00 (probe backend) and paste observed shapes into `docs/api/observed-responses.md` (completed 2026-11-21).

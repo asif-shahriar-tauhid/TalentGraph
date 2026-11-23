@@ -59,12 +59,16 @@ const registerUser = async (payload: IRegisterUserPayload) => {
     CURRENT_YEAR: new Date().getFullYear(),
   });
 
-  await transporter.sendMail({
-    from: config.email_sender,
-    to: email,
-    subject: "Verify Your Email - TalentGraph",
-    html,
-  });
+  try {
+    await transporter.sendMail({
+      from: config.email_sender,
+      to: email,
+      subject: "Verify Your Email - TalentGraph",
+      html,
+    });
+  } catch (e) {
+    console.warn("Email skipped (verify):", e);
+  }
 };
 
 const verifyEmail = async (payload: IVerifyEmailPayload) => {

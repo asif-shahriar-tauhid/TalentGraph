@@ -32,3 +32,16 @@ remaining_works.md
 Backend/remaining_works.md
 instruction.md
 Backend/instruction.md
+
+# Mobile build artifacts and secrets
+MobileApp/.dart_tool/
+MobileApp/build/
+MobileApp/.flutter-plugins
+MobileApp/.flutter-plugins-dependencies
+MobileApp/pubspec.lock
+MobileApp/coverage/
+MobileApp/**/*.jks
+MobileApp/**/*.keystore
+MobileApp/**/key.properties
+MobileApp/**/google-services.json
+MobileApp/**/GoogleService-Info.plist
