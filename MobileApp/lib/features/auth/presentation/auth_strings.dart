@@ -45,6 +45,8 @@ class AuthStrings {
   static const String backToWelcome = 'Back to Welcome';
   static const String footerHelpPrefix = 'Need help? Visit the ';
   static const String footerHelpLink = 'Candidate Help Center.';
+  static const String helpSupportDialogMessage =
+      'please contact at talentgraph@gmail.com for further assistance and await for 2 hours before resolving';
   static const String privacyPolicy = 'Privacy Policy';
   static const String candidateTerms = 'Candidate Terms';
 
