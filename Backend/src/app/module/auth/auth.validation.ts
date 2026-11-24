@@ -30,6 +30,10 @@ const GithubAuthZodSchema = z.object({
   role: z.enum(["RECRUITER", "SUB_RECRUITER", "CANDIDATE"]).optional(),
 });
 
+const ConnectGithubZodSchema = z.object({
+  code: z.string().min(1, "Authorization code is required"),
+});
+
 const ForgotPasswordZodSchema = z.object({
   email: z.string().email("Invalid email address"),
 });
@@ -50,6 +54,7 @@ export const AuthValidation = {
   VerifyEmailZodSchema,
   LoginZodSchema,
   GithubAuthZodSchema,
+  ConnectGithubZodSchema,
   ForgotPasswordZodSchema,
   ResetPasswordZodSchema,
   ChangePasswordZodSchema,

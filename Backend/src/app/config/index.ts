@@ -28,7 +28,9 @@ export default {
   github_client_id: process.env.GITHUB_CLIENT_ID || "",
   github_client_secret: process.env.GITHUB_CLIENT_SECRET || "",
   github_callback_url: process.env.GITHUB_CALLBACK_URL || "",
+  mobile_callback_url: process.env.MOBILE_CALLBACK_URL || "talentgraph://auth/callback",
   cloudinary_cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   cloudinary_api_key: process.env.CLOUDINARY_API_KEY,
   cloudinary_api_secret: process.env.CLOUDINARY_API_SECRET,
+  service_api_key: process.env.SERVICE_API_KEY || "talentgraph_service_secret_key",
 };

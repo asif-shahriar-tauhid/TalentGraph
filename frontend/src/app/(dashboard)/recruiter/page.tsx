@@ -3,8 +3,6 @@
 import {
   ArrowRight,
   Briefcase,
-  CheckCircle2,
-  Code2,
   FileSearch,
   Plus,
   ShieldAlert,
@@ -13,11 +11,8 @@ import {
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/providers/authProvider";
 
 export default function RecruiterDashboardPage() {
-  const { user } = useAuth();
-
   return (
     <div className="space-y-6">
       {/* Top Welcome Strip */}

@@ -10,14 +10,15 @@ cloudinary.config({
 export const uploadToCloudinary = (
   buffer: Buffer,
   folder = "uploads",
+  options: Record<string, unknown> = {},
 ): Promise<UploadApiResponse> => {
   return new Promise((resolve, reject) => {
     cloudinary.uploader
       .upload_stream(
-        { resource_type: "auto", folder },
+        { resource_type: "auto", folder, ...options },
         (error, result) => {
           if (error || !result) {
-            return reject(error || new Error("Failed to upload image to Cloudinary"));
+            return reject(error || new Error("Failed to upload file to Cloudinary"));
           }
           resolve(result);
         },

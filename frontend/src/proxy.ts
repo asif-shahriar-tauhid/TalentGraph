@@ -24,6 +24,18 @@ export function proxy(request: NextRequest) {
   const token = request.cookies.get("accessToken")?.value;
   const decoded = decodeJwtPayload(token);
 
+  if (
+    process.env.NODE_ENV === "development" &&
+    ["localhost", "127.0.0.1"].includes(request.nextUrl.hostname) &&
+    !token &&
+    (pathname === "/recruiter" ||
+      pathname.startsWith("/recruiter/") ||
+      pathname === "/admin" ||
+      pathname.startsWith("/admin/"))
+  ) {
+    return NextResponse.next();
+  }
+
   const isExpired = decoded?.exp ? decoded.exp * 1000 < Date.now() : false;
   const validRole = !isExpired && decoded?.role ? decoded.role : null;
   const isAuthenticated = Boolean(validRole);

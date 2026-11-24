@@ -2,6 +2,7 @@
 
 @layer base {
   :root {
+    font-size: 16px;
     --background: #FAFAFA;
     --foreground: #18181B;
     --card: #FFFFFF;
@@ -26,11 +27,11 @@
   }
 
   .dark {
-    --background: #0D0D0F;
+    --background: #0B0C0E;
     --foreground: #F5F5F5;
-    --card: #19191C;
+    --card: #121417;
     --card-foreground: #F5F5F5;
-    --popover: #19191C;
+    --popover: #121417;
     --popover-foreground: #F5F5F5;
     --primary: #D4621A;
     --primary-foreground: #18181B;
@@ -50,6 +51,8 @@
 }
 
 @theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -79,4 +82,111 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
+  font-size: 16px;
+}
+
+.frontend-type-scale [class*="text-[8px]"],
+.frontend-type-scale [class*="text-[9px]"],
+.frontend-type-scale [class*="text-[10px]"],
+.frontend-type-scale [class*="text-[11px]"] {
+  font-size: 13px !important;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.frontend-type-scale [class*="text-xs"] {
+  font-size: 14px !important;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.frontend-type-scale [class*="text-sm"] {
+  font-size: 16px !important;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.frontend-type-scale [class*="text-base"] {
+  font-size: 18px !important;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.frontend-type-scale [class*="text-lg"] {
+  font-size: 20px !important;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.frontend-type-scale [class*="text-xl"] {
+  font-size: 24px !important;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.frontend-type-scale [class*="text-2xl"] {
+  font-size: 30px !important;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.frontend-type-scale [class*="text-3xl"] {
+  font-size: 36px !important;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.frontend-type-scale [class*="flex"][class*="items-center"],
+.frontend-type-scale [class*="inline-flex"] {
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.frontend-type-scale h1,
+.frontend-type-scale h2,
+.frontend-type-scale h3,
+.frontend-type-scale h4,
+.frontend-type-scale th,
+.frontend-type-scale td {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.frontend-type-scale [class*="truncate"],
+.frontend-type-scale [class*="whitespace-nowrap"] {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+}
+
+.frontend-type-scale button,
+.frontend-type-scale [role="tab"],
+.frontend-type-scale [role="heading"] {
+  min-width: 0;
+  max-width: 100%;
+  flex-wrap: wrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.frontend-type-scale input,
+.frontend-type-scale select,
+.frontend-type-scale textarea {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.frontend-type-scale table {
+  max-width: 100%;
 }

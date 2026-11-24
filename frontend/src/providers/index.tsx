@@ -7,7 +7,7 @@ import { ThemeProvider } from "./themeProvider";
 
 const Providers = ({ children }: { children: ReactNode }) => {
   return (
-    <ThemeProvider defaultTheme="system">
+    <ThemeProvider defaultTheme="dark">
       <QueryProvider>
         <AuthProvider>{children}</AuthProvider>
       </QueryProvider>

@@ -1,7 +1,6 @@
 import type {
   HTMLAttributes,
   LabelHTMLAttributes,
-  ReactNode,
 } from "react";
 import { cn } from "@/lib/utils";
 
@@ -47,12 +46,21 @@ export function FieldLabel({
   );
 }
 
+function getErrorMessage(err: unknown): string {
+  if (typeof err === "string") return err;
+  if (err && typeof err === "object" && "message" in err) {
+    const message = (err as { message?: unknown }).message;
+    if (typeof message === "string") return message;
+  }
+  return err ? String(err) : "";
+}
+
 export function FieldError({
   className,
   errors,
   children,
   ...props
-}: HTMLAttributes<HTMLParagraphElement> & { errors?: Array<any> }) {
+}: HTMLAttributes<HTMLParagraphElement> & { errors?: ReadonlyArray<unknown> }) {
   if (!errors?.length && !children) return null;
 
   return (
@@ -63,15 +71,7 @@ export function FieldError({
       )}
       {...props}
     >
-      {children ||
-        errors
-          ?.map((err) =>
-            typeof err === "string"
-              ? err
-              : err?.message || (err ? String(err) : ""),
-          )
-          .filter(Boolean)
-          .join(", ")}
+      {children || errors?.map(getErrorMessage).filter(Boolean).join(", ")}
     </p>
   );
 }
