@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:talentgraph/app/theme/tg_colors.dart';
@@ -617,8 +618,29 @@ class OAuthStatusScreen extends ConsumerWidget {
       onHelpCenterTap!();
       return;
     }
-    // TODO(candidate-help): Connect final Help Center route or external URL
-    debugPrint('Tap: Candidate Help Center ($kCandidateHelpCenterRoute)');
+    showDialog<void>(
+      context: context,
+      builder:
+          (dialogContext) => AlertDialog(
+            title: const Text('Need help?'),
+            content: const Text(AuthStrings.helpSupportDialogMessage),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Clipboard.setData(
+                    const ClipboardData(text: 'talentgraph@gmail.com'),
+                  );
+                  Navigator.of(dialogContext).pop();
+                },
+                child: const Text('Copy Email'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(dialogContext).pop(),
+                child: const Text('Close'),
+              ),
+            ],
+          ),
+    );
   }
 
   @override

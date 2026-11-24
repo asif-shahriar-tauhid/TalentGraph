@@ -309,5 +309,60 @@ void main() {
       expect(find.text('Authorization Cancelled'), findsOneWidget);
       expect(find.text('Continue with GitHub'), findsNothing);
     });
+
+    testWidgets('Help link on cancelled OAuth screen opens support dialog', (
+      WidgetTester tester,
+    ) async {
+      final container = ProviderContainer(
+        overrides: [
+          authControllerProvider.overrideWith(
+            () => _FixedAuthNotifier(
+              const AuthSignedOut(notice: AuthStrings.userCancelled),
+            ),
+          ),
+        ],
+      );
+
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: container,
+          child: MaterialApp.router(
+            routerConfig: container.read(goRouterProvider),
+            theme: darkTheme,
+            darkTheme: darkTheme,
+            themeMode: ThemeMode.dark,
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      expect(find.byType(OAuthStatusScreen), findsOneWidget);
+
+      // Tap the footer help link.
+      final helpLink = find.byWidgetPredicate(
+        (widget) =>
+            widget is RichText &&
+            widget.text.toPlainText().contains(AuthStrings.footerHelpLink),
+      );
+      expect(helpLink, findsOneWidget);
+
+      await tester.ensureVisible(helpLink);
+      await tester.pumpAndSettle();
+
+      await tester.tap(helpLink, warnIfMissed: false);
+      await tester.pumpAndSettle();
+
+      // Dialog shows the support message and a Close button.
+      expect(find.text(AuthStrings.helpSupportDialogMessage), findsOneWidget);
+      expect(find.widgetWithText(TextButton, 'Close'), findsOneWidget);
+      expect(find.widgetWithText(TextButton, 'Copy Email'), findsOneWidget);
+
+      // Close the dialog.
+      await tester.tap(find.widgetWithText(TextButton, 'Close'));
+      await tester.pumpAndSettle();
+
+      expect(find.text(AuthStrings.helpSupportDialogMessage), findsNothing);
+    });
   });
 }

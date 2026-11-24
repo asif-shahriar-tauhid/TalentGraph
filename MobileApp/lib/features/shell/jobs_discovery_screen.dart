@@ -150,15 +150,12 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
   @override
   Widget build(BuildContext context) {
     final tokens = Theme.of(context).extension<TgColors>()!;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     final filteredJobs = _filteredJobs(context);
 
     return Scaffold(
       backgroundColor: tokens.canvas,
       body: Column(
         children: [
-          // Top App Bar (fixed, 64dp + status bar safe area)
-          _buildAppBar(context, tokens, isDark),
           // Scrollable body
           Expanded(
             child: SingleChildScrollView(
@@ -198,60 +195,6 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildAppBar(BuildContext context, TgColors tokens, bool isDark) {
-    return SafeArea(
-      child: Container(
-        height: 64,
-        padding: EdgeInsets.symmetric(horizontal: _horizontalPadding(context)),
-        decoration: BoxDecoration(
-          color: tokens.canvas,
-          border: Border(bottom: BorderSide(color: tokens.border, width: 1)),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'TalentGraph',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: tokens.text,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    'Find your next technical role',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: tokens.textSecondary,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            IconButton(
-              icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-              tooltip: isDark ? 'Switch to light mode' : 'Switch to dark mode',
-              onPressed: widget.onThemeToggle,
-              constraints: const BoxConstraints.tightFor(width: 48, height: 48),
-              style: IconButton.styleFrom(
-                backgroundColor: tokens.surfaceContainer,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
