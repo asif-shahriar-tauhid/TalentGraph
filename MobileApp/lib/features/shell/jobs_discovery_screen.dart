@@ -455,6 +455,7 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
             fontSize: 13,
             fontWeight: FontWeight.w500,
             color: isActive ? tokens.onPrimary : tokens.textSecondary,
+            height: 1.0,
           ),
         ),
         selected: isActive,
@@ -472,6 +473,7 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
             ),
           );
         },
+        showCheckmark: false,
         backgroundColor: tokens.surfaceContainer,
         selectedColor: tokens.brand,
         side: BorderSide(
@@ -479,9 +481,10 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
           width: 1,
         ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        padding: EdgeInsets.zero,
-        labelPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-        materialTapTargetSize: MaterialTapTargetSize.padded,
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        labelPadding: EdgeInsets.zero,
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        visualDensity: VisualDensity.compact,
       ),
     );
   }

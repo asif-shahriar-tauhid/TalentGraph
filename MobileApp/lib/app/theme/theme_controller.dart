@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,7 +24,7 @@ class ThemeController extends Notifier<ThemeMode> {
     _prefs ??= await SharedPreferences.getInstance();
     final next = state == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
     state = next;
-    await _prefs!.setBool(_prefsKey, state == ThemeMode.dark);
+    unawaited(_prefs!.setBool(_prefsKey, state == ThemeMode.dark));
   }
 
   bool get isDark => state == ThemeMode.dark;

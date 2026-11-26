@@ -28,6 +28,7 @@ class MyApp extends ConsumerWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: themeMode,
+      themeAnimationDuration: Duration.zero,
     );
   }
 }

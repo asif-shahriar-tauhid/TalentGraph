@@ -112,10 +112,12 @@ class _FilterJobsBottomSheetState extends State<FilterJobsBottomSheet> {
                       fontWeight: FontWeight.w500,
                       color:
                           isSelected ? tokens.onPrimary : tokens.textSecondary,
+                      height: 1.0,
                     ),
                   ),
                   selected: isSelected,
                   onSelected: (_) => _toggle(category, option),
+                  showCheckmark: false,
                   backgroundColor: tokens.surfaceContainer,
                   selectedColor: tokens.brand,
                   checkmarkColor: tokens.onPrimary,
@@ -126,12 +128,13 @@ class _FilterJobsBottomSheetState extends State<FilterJobsBottomSheet> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  padding: EdgeInsets.zero,
-                  labelPadding: const EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 10,
                   ),
-                  materialTapTargetSize: MaterialTapTargetSize.padded,
+                  labelPadding: EdgeInsets.zero,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  visualDensity: VisualDensity.compact,
                 );
               }).toList(),
         ),
