@@ -125,7 +125,7 @@ ThemeData _buildTheme(TgColors tokens, Brightness brightness) {
       contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
       hintStyle: TextStyle(color: tokens.textSecondary, fontSize: 14),
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: tokens.surface,
       elevation: 0,
       shadowColor: Colors.transparent,
