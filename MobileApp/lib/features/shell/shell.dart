@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:talentgraph/features/assessments/presentation/assessment_center_screen.dart';
+import 'package:talentgraph/features/notifications/presentation/notifications_screen.dart';
 import 'package:talentgraph/features/shell/jobs_discovery_screen.dart';
-import 'package:talentgraph/shared/widgets/theme_toggle.dart';
+import 'package:talentgraph/shared/widgets/tg_app_bar.dart';
 
 class ShellScreen extends ConsumerWidget {
   const ShellScreen({super.key, required this.tabIndex});
@@ -31,16 +33,13 @@ class ShellScreen extends ConsumerWidget {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('TalentGraph'),
-          actions: [const AppearanceToggle()],
-        ),
+        appBar: const TgAppBar(),
         body: IndexedStack(
           index: tabIndex,
           children: const [
             JobsDiscoveryScreen(),
-            AssessmentsPlaceholder(),
-            NotificationsPlaceholder(),
+            AssessmentCenterScreen(),
+            NotificationsScreen(),
           ],
         ),
         bottomNavigationBar: NavigationBar(
@@ -69,23 +68,5 @@ class ShellScreen extends ConsumerWidget {
         ),
       ),
     );
-  }
-}
-
-class AssessmentsPlaceholder extends StatelessWidget {
-  const AssessmentsPlaceholder({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('Assessments — coming in a later build'));
-  }
-}
-
-class NotificationsPlaceholder extends StatelessWidget {
-  const NotificationsPlaceholder({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('Notifications — coming in a later build'));
   }
 }
