@@ -37,9 +37,9 @@ class ShellScreen extends ConsumerWidget {
         body: IndexedStack(
           index: tabIndex,
           children: const [
-            JobsDiscoveryScreen(),
-            AssessmentCenterScreen(),
-            NotificationsScreen(),
+            RepaintBoundary(child: JobsDiscoveryScreen()),
+            RepaintBoundary(child: AssessmentCenterScreen()),
+            RepaintBoundary(child: NotificationsScreen()),
           ],
         ),
         bottomNavigationBar: NavigationBar(

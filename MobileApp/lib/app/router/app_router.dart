@@ -43,8 +43,8 @@ final _authRefresh = _AuthRefreshListenable();
 String? redirectFor(String currentLocation, AuthState authState) {
   final loggingIn =
       currentLocation == '/welcome' ||
-          currentLocation == '/oauth' ||
-          currentLocation == '/oauth-status';
+      currentLocation == '/oauth' ||
+      currentLocation == '/oauth-status';
 
   switch (authState) {
     case AuthBootstrapping():
@@ -94,15 +94,21 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/jobs',
-        builder: (context, state) => const ShellScreen(tabIndex: 0),
+        pageBuilder:
+            (context, state) =>
+                const NoTransitionPage(child: ShellScreen(tabIndex: 0)),
       ),
       GoRoute(
         path: '/assessments',
-        builder: (context, state) => const ShellScreen(tabIndex: 1),
+        pageBuilder:
+            (context, state) =>
+                const NoTransitionPage(child: ShellScreen(tabIndex: 1)),
       ),
       GoRoute(
         path: '/notifications',
-        builder: (context, state) => const ShellScreen(tabIndex: 2),
+        pageBuilder:
+            (context, state) =>
+                const NoTransitionPage(child: ShellScreen(tabIndex: 2)),
       ),
       GoRoute(
         path: '/applied-jobs',
@@ -110,8 +116,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/applied-jobs/:id/percentiles',
-        builder: (context, state) =>
-            SkillPercentilesScreen(applicationId: state.pathParameters['id']!),
+        builder:
+            (context, state) => SkillPercentilesScreen(
+              applicationId: state.pathParameters['id']!,
+            ),
       ),
     ],
   );
@@ -364,11 +372,11 @@ class WelcomeScreen extends ConsumerWidget {
   }
 
   Widget _buildStepItem(
-      BuildContext context,
-      TgColors tokens,
-      String step,
-      String desc,
-      ) {
+    BuildContext context,
+    TgColors tokens,
+    String step,
+    String desc,
+  ) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 14),
       child: Row(
@@ -496,11 +504,11 @@ class WelcomeScreen extends ConsumerWidget {
   }
 
   Widget _buildAuthControl(
-      BuildContext context,
-      WidgetRef ref,
-      AuthState authState,
-      AuthController controller,
-      ) {
+    BuildContext context,
+    WidgetRef ref,
+    AuthState authState,
+    AuthController controller,
+  ) {
     switch (authState) {
       case AuthBootstrapping():
         return const Center(
@@ -633,24 +641,24 @@ class OAuthStatusScreen extends ConsumerWidget {
       context: context,
       builder:
           (dialogContext) => AlertDialog(
-        title: const Text('Need help?'),
-        content: const Text(AuthStrings.helpSupportDialogMessage),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Clipboard.setData(
-                const ClipboardData(text: 'talentgraph@gmail.com'),
-              );
-              Navigator.of(dialogContext).pop();
-            },
-            child: const Text('Copy Email'),
+            title: const Text('Need help?'),
+            content: const Text(AuthStrings.helpSupportDialogMessage),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Clipboard.setData(
+                    const ClipboardData(text: 'talentgraph@gmail.com'),
+                  );
+                  Navigator.of(dialogContext).pop();
+                },
+                child: const Text('Copy Email'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(dialogContext).pop(),
+                child: const Text('Close'),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(),
-            child: const Text('Close'),
-          ),
-        ],
-      ),
     );
   }
 
@@ -775,9 +783,9 @@ class OAuthStatusScreen extends ConsumerWidget {
                         trailing: const Icon(Icons.arrow_forward, size: 18),
                         onPressed:
                             () =>
-                            ref
-                                .read(authControllerProvider.notifier)
-                                .signIn(),
+                                ref
+                                    .read(authControllerProvider.notifier)
+                                    .signIn(),
                       ),
                     ),
                     const SizedBox(height: 12),

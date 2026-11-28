@@ -1,15 +1,8 @@
 import 'package:flutter/foundation.dart';
 
-enum AppliedJobStatus {
-  inProgress,
-  evaluated,
-}
+enum AppliedJobStatus { inProgress, evaluated }
 
-enum AppliedJobsFilter {
-  all,
-  inProgress,
-  evaluated,
-}
+enum AppliedJobsFilter { all, inProgress, evaluated }
 
 extension AppliedJobStatusX on AppliedJobStatus {
   String get label {
@@ -179,10 +172,7 @@ abstract final class TalentGraphSampleData {
   );
 }
 
-enum NotificationType {
-  assessmentScheduled,
-  interviewInvitation,
-}
+enum NotificationType { assessmentScheduled, interviewInvitation }
 
 extension NotificationTypeX on NotificationType {
   String get label {
@@ -195,10 +185,7 @@ extension NotificationTypeX on NotificationType {
   }
 }
 
-enum NotificationSection {
-  today,
-  earlier,
-}
+enum NotificationSection { today, earlier }
 
 extension NotificationSectionX on NotificationSection {
   String get headerTitle {

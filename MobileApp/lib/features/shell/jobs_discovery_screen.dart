@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:talentgraph/features/applications/presentation/talent_graph_view_models.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talentgraph/app/theme/tg_colors.dart';
 import 'package:talentgraph/features/shell/filter_jobs_bottom_sheet.dart';
@@ -218,6 +220,17 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
             fontSize: 12,
             fontWeight: FontWeight.w400,
             color: tokens.textSecondary,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: ActionChip(
+            avatar: const Icon(Icons.assignment_outlined, size: 16),
+            label: Text(
+              'Applied (${TalentGraphSampleData.appliedJobs.length})',
+            ),
+            onPressed: () => context.push('/applied-jobs'),
           ),
         ),
       ],

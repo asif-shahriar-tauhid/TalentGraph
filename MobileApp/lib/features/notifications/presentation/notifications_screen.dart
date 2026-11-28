@@ -39,25 +39,29 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
     try {
       final repo = ref.read(notificationsRepositoryProvider);
       final models = await repo.listNotifications();
-      final mapped = models.map((m) {
-        final type = m.type == domain.NotificationType.assessmentAnnounced
-            ? NotificationType.assessmentScheduled
-            : NotificationType.interviewInvitation;
-        final section = _isToday(m.createdAt)
-            ? NotificationSection.today
-            : NotificationSection.earlier;
-        return TalentNotificationItem(
-          id: m.id,
-          type: type,
-          section: section,
-          companyName: m.companyName,
-          roleTitle: m.roleTitle,
-          timeAgoLabel: _timeAgo(m.createdAt),
-          isUnread: !m.isRead,
-          scheduleLabel: m.scheduleLabel.isNotEmpty ? m.scheduleLabel : null,
-          messageBody: m.message.isNotEmpty ? m.message : null,
-        );
-      }).toList();
+      final mapped =
+          models.map((m) {
+            final type =
+                m.type == domain.NotificationType.assessmentAnnounced
+                    ? NotificationType.assessmentScheduled
+                    : NotificationType.interviewInvitation;
+            final section =
+                _isToday(m.createdAt)
+                    ? NotificationSection.today
+                    : NotificationSection.earlier;
+            return TalentNotificationItem(
+              id: m.id,
+              type: type,
+              section: section,
+              companyName: m.companyName,
+              roleTitle: m.roleTitle,
+              timeAgoLabel: _timeAgo(m.createdAt),
+              isUnread: !m.isRead,
+              scheduleLabel:
+                  m.scheduleLabel.isNotEmpty ? m.scheduleLabel : null,
+              messageBody: m.message.isNotEmpty ? m.message : null,
+            );
+          }).toList();
       if (!mounted) return;
       setState(() {
         _items = mapped;
@@ -94,9 +98,10 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
     await repo.markRead(id);
     if (!mounted) return;
     setState(() {
-      _items = _items
-          .map((i) => i.id == id ? i.copyWith(isUnread: false) : i)
-          .toList();
+      _items =
+          _items
+              .map((i) => i.id == id ? i.copyWith(isUnread: false) : i)
+              .toList();
     });
   }
 
@@ -164,16 +169,18 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                           icon: Icon(
                             Icons.done_all_rounded,
                             size: 16,
-                            color: _unreadCount == 0
-                                ? palette.textMuted
-                                : palette.accentSoftText,
+                            color:
+                                _unreadCount == 0
+                                    ? palette.textMuted
+                                    : palette.accentSoftText,
                           ),
                           label: Text(
                             'Mark all read',
                             style: TextStyle(
-                              color: _unreadCount == 0
-                                  ? palette.textMuted
-                                  : palette.accentSoftText,
+                              color:
+                                  _unreadCount == 0
+                                      ? palette.textMuted
+                                      : palette.accentSoftText,
                             ),
                           ),
                         ),
@@ -192,16 +199,16 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                         ),
                       )
                     else if (_items.isEmpty)
-                        Center(
-                          child: Text(
-                            'All caught up',
-                            style: TextStyle(color: palette.textMuted),
-                          ),
-                        )
-                      else ...[
-                          ..._section(palette, NotificationSection.today),
-                          ..._section(palette, NotificationSection.earlier),
-                        ],
+                      Center(
+                        child: Text(
+                          'All caught up',
+                          style: TextStyle(color: palette.textMuted),
+                        ),
+                      )
+                    else ...[
+                      ..._section(palette, NotificationSection.today),
+                      ..._section(palette, NotificationSection.earlier),
+                    ],
                   ],
                 ),
               ),
@@ -213,9 +220,9 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
   }
 
   List<Widget> _section(
-      TalentGraphPalette palette,
-      NotificationSection section,
-      ) {
+    TalentGraphPalette palette,
+    NotificationSection section,
+  ) {
     final items = _items.where((i) => i.section == section).toList();
     if (items.isEmpty) return [];
     return [
@@ -267,9 +274,8 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                     it.type == NotificationType.assessmentScheduled
                         ? Icons.event_note_outlined
                         : Icons.mail_outline_rounded,
-                    color: unread
-                        ? palette.accentSoftText
-                        : palette.textSecondary,
+                    color:
+                        unread ? palette.accentSoftText : palette.textSecondary,
                     size: 18,
                   ),
                 ),
@@ -285,9 +291,10 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                               it.type.label,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                color: unread
-                                    ? palette.accentSoftText
-                                    : palette.textMuted,
+                                color:
+                                    unread
+                                        ? palette.accentSoftText
+                                        : palette.textMuted,
                                 fontSize: 12.5,
                                 fontWeight: FontWeight.w500,
                               ),

@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:talentgraph/features/applications/presentation/talent_graph_palette.dart';
 import 'package:talentgraph/features/assessments/presentation/assessment_preflight_screen.dart';
 
-enum AssessmentStatus {
-  scheduled,
-  decisionPending,
-}
+enum AssessmentStatus { scheduled, decisionPending }
 
 @immutable
 class AssessmentCenterItem {
@@ -35,7 +32,7 @@ abstract final class TalentGraphAssessmentsSampleData {
       referenceCode: 'ID: #TG-8492',
       companyName: 'Aether Telemetry Systems',
       roleTitle:
-      'Staff Distributed Systems Engineer - High Throughput Telemetry',
+          'Staff Distributed Systems Engineer - High Throughput Telemetry',
       status: AssessmentStatus.scheduled,
       scheduledLabel: 'Assessment: Thursday, Oct 29, 2026 at 14:00 UTC',
     ),
@@ -141,9 +138,10 @@ class AssessmentCenterScreen extends StatelessWidget {
                     if (i > 0) const SizedBox(height: 12),
                     AssessmentCard(
                       item: assessments[i],
-                      onTap: assessments[i].isScheduled
-                          ? () => _handleTap(context, assessments[i])
-                          : null,
+                      onTap:
+                          assessments[i].isScheduled
+                              ? () => _handleTap(context, assessments[i])
+                              : null,
                     ),
                   ],
               ],
@@ -221,11 +219,7 @@ class _AssessmentCenterHeader extends StatelessWidget {
 }
 
 class AssessmentCard extends StatelessWidget {
-  const AssessmentCard({
-    super.key,
-    required this.item,
-    this.onTap,
-  });
+  const AssessmentCard({super.key, required this.item, this.onTap});
 
   final AssessmentCenterItem item;
   final VoidCallback? onTap;
@@ -234,9 +228,10 @@ class AssessmentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = TalentGraphPalette.of(context);
     final isScheduled = item.isScheduled;
-    final scheduledColor = Theme.of(context).brightness == Brightness.dark
-        ? const Color(0xFFF59E0B)
-        : const Color(0xFFB45309);
+    final scheduledColor =
+        Theme.of(context).brightness == Brightness.dark
+            ? const Color(0xFFF59E0B)
+            : const Color(0xFFB45309);
 
     return Material(
       color: palette.surface,

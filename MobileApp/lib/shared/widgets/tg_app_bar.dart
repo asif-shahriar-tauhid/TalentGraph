@@ -63,13 +63,15 @@ class ProfileAvatarButton extends StatelessWidget {
             border: Border.all(color: tokens.border, width: 1),
           ),
           child: ClipOval(
-            child: imageUrl.isNotEmpty
-                ? Image.network(
-                    imageUrl,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => _buildFallback(tokens, initial),
-                  )
-                : _buildFallback(tokens, initial),
+            child:
+                imageUrl.isNotEmpty
+                    ? Image.network(
+                      imageUrl,
+                      fit: BoxFit.cover,
+                      errorBuilder:
+                          (_, __, ___) => _buildFallback(tokens, initial),
+                    )
+                    : _buildFallback(tokens, initial),
           ),
         ),
       ),
@@ -150,17 +152,19 @@ class _AccountSheetState extends ConsumerState<_AccountSheet> {
                 CircleAvatar(
                   radius: 24,
                   backgroundColor: tokens.surfaceContainer,
-                  backgroundImage: imageUrl.isNotEmpty ? NetworkImage(imageUrl) : null,
-                  child: imageUrl.isEmpty
-                      ? Text(
-                          initial,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: tokens.brand,
-                          ),
-                        )
-                      : null,
+                  backgroundImage:
+                      imageUrl.isNotEmpty ? NetworkImage(imageUrl) : null,
+                  child:
+                      imageUrl.isEmpty
+                          ? Text(
+                            initial,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: tokens.brand,
+                            ),
+                          )
+                          : null,
                 ),
                 const SizedBox(width: 14),
                 Expanded(
@@ -193,7 +197,10 @@ class _AccountSheetState extends ConsumerState<_AccountSheet> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: tokens.surfaceContainer,
                     borderRadius: BorderRadius.circular(6),
@@ -235,14 +242,19 @@ class _AccountSheetState extends ConsumerState<_AccountSheet> {
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Theme.of(context).colorScheme.error,
                   side: BorderSide(
-                    color: Theme.of(context).colorScheme.error.withValues(alpha: 0.5),
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.error.withValues(alpha: 0.5),
                   ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
                 icon: const Icon(Icons.logout, size: 18),
-                label: const Text('Log out', style: TextStyle(fontWeight: FontWeight.w600)),
+                label: const Text(
+                  'Log out',
+                  style: TextStyle(fontWeight: FontWeight.w600),
+                ),
               ),
             ),
           ],

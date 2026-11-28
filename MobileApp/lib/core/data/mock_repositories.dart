@@ -72,10 +72,30 @@ class MockApplicationsRepository implements ApplicationsRepository {
       matchScore: 91,
       hasEnoughCohortData: true,
       percentiles: const [
-        SkillPercentileModel(skillName: 'Go', percentile: 88, eligibleCohortSize: 50, minCohortRequired: 10),
-        SkillPercentileModel(skillName: 'Distributed Systems', percentile: 82, eligibleCohortSize: 50, minCohortRequired: 10),
-        SkillPercentileModel(skillName: 'Concurrency', percentile: 74, eligibleCohortSize: 50, minCohortRequired: 10),
-        SkillPercentileModel(skillName: 'Kubernetes', percentile: 61, eligibleCohortSize: 50, minCohortRequired: 10),
+        SkillPercentileModel(
+          skillName: 'Go',
+          percentile: 88,
+          eligibleCohortSize: 50,
+          minCohortRequired: 10,
+        ),
+        SkillPercentileModel(
+          skillName: 'Distributed Systems',
+          percentile: 82,
+          eligibleCohortSize: 50,
+          minCohortRequired: 10,
+        ),
+        SkillPercentileModel(
+          skillName: 'Concurrency',
+          percentile: 74,
+          eligibleCohortSize: 50,
+          minCohortRequired: 10,
+        ),
+        SkillPercentileModel(
+          skillName: 'Kubernetes',
+          percentile: 61,
+          eligibleCohortSize: 50,
+          minCohortRequired: 10,
+        ),
       ],
     ),
   ];
@@ -117,7 +137,8 @@ class MockNotificationsRepository implements NotificationsRepository {
       title: 'Interview Invitation',
       companyName: 'Prisma Cloud Systems',
       roleTitle: 'Senior Rust Backend Engineer',
-      message: 'You have received an interview invitation. Check your email for details.',
+      message:
+          'You have received an interview invitation. Check your email for details.',
       scheduleLabel: '',
       isRead: false,
       createdAt: DateTime.now().subtract(const Duration(hours: 2)),
@@ -130,7 +151,8 @@ class MockNotificationsRepository implements NotificationsRepository {
       title: 'Interview Invitation',
       companyName: 'Nexus Global Infrastructure',
       roleTitle: 'Lead Site Reliability Engineer',
-      message: 'You have received an interview invitation. Check your email for details.',
+      message:
+          'You have received an interview invitation. Check your email for details.',
       scheduleLabel: '',
       isRead: true,
       createdAt: DateTime.now().subtract(const Duration(days: 2)),
@@ -152,7 +174,8 @@ class MockNotificationsRepository implements NotificationsRepository {
     ),
   ];
   @override
-  Future<List<NotificationItemModel>> listNotifications() async => List.of(_items);
+  Future<List<NotificationItemModel>> listNotifications() async =>
+      List.of(_items);
   @override
   Future<void> markRead(String id) async {
     final i = _items.indexWhere((n) => n.id == id);
@@ -171,6 +194,7 @@ class MockNotificationsRepository implements NotificationsRepository {
       applicationId: _items[i].applicationId,
     );
   }
+
   @override
   Future<void> markAllRead() async {
     for (var i = 0; i < _items.length; i++) {
