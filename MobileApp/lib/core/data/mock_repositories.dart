@@ -28,6 +28,72 @@ class MockJobsRepository implements JobsRepository {
       evidenceTrailText: j.evidenceTrailText,
     );
   }
+
+  @override
+  Future<JobDetailModel?> getJobDetail(String jobId) async {
+    final i = _jobs.indexWhere((j) => j.jobId == jobId);
+    if (i < 0) return null;
+    final j = _jobs[i];
+
+    final skills =
+        j.skillChips.isNotEmpty
+            ? j.skillChips
+            : const [
+              'System Design',
+              'Backend Architecture',
+              'Distributed Systems',
+            ];
+
+    final requirements = List<JobSkillRequirementModel>.generate(
+      skills.length,
+      (idx) {
+        final isPreferred = idx >= 3;
+        final weight = switch (idx) {
+          0 => 40,
+          1 => 30,
+          2 => 20,
+          _ => 10,
+        };
+        return JobSkillRequirementModel(
+          id: '${j.jobId}_skill_$idx',
+          skillName: skills[idx],
+          weight: weight,
+          minThreshold: isPreferred ? 60 : 75,
+          isPreferred: isPreferred,
+        );
+      },
+    );
+
+    final now = DateTime.now();
+    return JobDetailModel(
+      jobId: j.jobId,
+      title: j.title,
+      company: j.company,
+      isVerified: j.isVerified,
+      isBookmarked: j.isBookmarked,
+      location: j.location,
+      jobType: j.jobType,
+      level: j.level,
+      postedAgo: j.postedAgo,
+      summary: j.summary,
+      skillChips: j.skillChips,
+      evidenceTrailActive: j.evidenceTrailActive,
+      evidenceTrailText: j.evidenceTrailText,
+      missionAndScope:
+          '${j.company} is hiring a ${j.title} to own mission-critical technical architecture and production reliability. ${j.summary}',
+      responsibilities: [
+        'Design, build, and operate fault-tolerant services with clear latency and reliability SLOs.',
+        'Collaborate directly with engineering leads on system architecture, code reviews, and technical roadmaps.',
+        'Drive automated testing, observability, and performance profiling across core ${skills.first} workloads.',
+        'Mentor peers through structured engineering reviews and transparent technical documentation.',
+      ],
+      eligibilityNotes:
+          'Open to candidates who can collaborate across ${j.location} hours. Evaluation is based on objective technical evidence and weighted skill thresholds rather than keyword screening.',
+      postedAt: now.subtract(const Duration(days: 3)),
+      closesAt: now.add(const Duration(days: 21)),
+      skillRequirements: requirements,
+    );
+  }
 }
 
 class MockApplicationsRepository implements ApplicationsRepository {

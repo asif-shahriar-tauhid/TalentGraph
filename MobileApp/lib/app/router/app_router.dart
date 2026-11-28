@@ -13,6 +13,8 @@ import 'package:talentgraph/features/applications/presentation/skill_percentiles
 import 'package:talentgraph/features/shell/shell.dart';
 import 'package:talentgraph/shared/widgets/primary_button.dart';
 import 'package:talentgraph/shared/widgets/theme_toggle.dart';
+import 'package:talentgraph/features/shell/job_detail_screen.dart';
+import 'package:talentgraph/features/applications/presentation/review_application_screen.dart';
 
 /// Notifier that GoRouter listens to for re-evaluating redirects
 /// when auth state changes (cached session, fresh sign-in, sign-out).
@@ -99,6 +101,18 @@ final goRouterProvider = Provider<GoRouter>((ref) {
                 const NoTransitionPage(child: ShellScreen(tabIndex: 0)),
       ),
       GoRoute(
+        path: '/jobs/:id',
+        builder:
+            (context, state) =>
+                JobDetailScreen(jobId: state.pathParameters['id']!),
+      ),
+      GoRoute(
+        path: '/jobs/:id/apply',
+        builder:
+            (context, state) =>
+                ReviewApplicationScreen(jobId: state.pathParameters['id']!),
+      ),
+      GoRoute(
         path: '/assessments',
         pageBuilder:
             (context, state) =>
@@ -131,6 +145,7 @@ class WelcomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authControllerProvider);
+    debugPrint('>>> 3. WelcomeScreen build | authState=$authState');
     final controller = ref.read(authControllerProvider.notifier);
     final tokens = Theme.of(context).extension<TgColors>()!;
 

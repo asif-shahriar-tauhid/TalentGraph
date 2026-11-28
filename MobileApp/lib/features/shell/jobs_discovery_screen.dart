@@ -6,6 +6,8 @@ import 'package:talentgraph/app/theme/tg_colors.dart';
 import 'package:talentgraph/features/shell/filter_jobs_bottom_sheet.dart';
 import 'package:talentgraph/features/shell/job_brief_model.dart';
 
+typedef JobFilters = Map<String, Set<String>>;
+
 class JobsDiscoveryScreen extends ConsumerStatefulWidget {
   const JobsDiscoveryScreen({
     super.key,
@@ -24,7 +26,7 @@ class JobsDiscoveryScreen extends ConsumerStatefulWidget {
   final ValueChanged<String>? onSearchChanged;
   final ValueChanged<int>? onFeedTabChanged;
   final ValueChanged<String>? onRemoveFilterChip;
-  final ValueChanged<Map<String, Set<String>>>? onApplyFilters;
+  final ValueChanged<JobFilters>? onApplyFilters;
   final VoidCallback? onResetFilters;
   final ValueChanged<String>? onToggleBookmark;
   final ValueChanged<String>? onViewJobDetails;
@@ -287,7 +289,7 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
             children: [
               FilledButton(
                 onPressed: () async {
-                  final initialFilters = <String, Set<String>>{};
+                  final initialFilters = JobFilters();
                   for (final chip in _activeFilterChips) {
                     final parts = chip.split(': ');
                     if (parts.length == 2) {
@@ -295,19 +297,18 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
                       initialFilters[parts[0]]!.add(parts[1]);
                     }
                   }
-                  final result =
-                      await showModalBottomSheet<Map<String, Set<String>>>(
-                        context: context,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        builder:
-                            (context) => FilterJobsBottomSheet(
-                              activeFilters: initialFilters,
-                              onRemoveFilterChip: (_) {},
-                              onApplyFilters: (filters) {},
-                              onResetFilters: () {},
-                            ),
-                      );
+                  final result = await showModalBottomSheet<JobFilters>(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder:
+                        (context) => FilterJobsBottomSheet(
+                          activeFilters: initialFilters,
+                          onRemoveFilterChip: (_) {},
+                          onApplyFilters: (filters) {},
+                          onResetFilters: () {},
+                        ),
+                  );
                   if (result != null && mounted) {
                     setState(() {
                       _activeFilterChips.clear();
@@ -765,7 +766,13 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
                   width: double.infinity,
                   height: 48,
                   child: FilledButton(
-                    onPressed: () => widget.onViewJobDetails?.call(job.jobId),
+                    onPressed: () {
+                      if (widget.onViewJobDetails != null) {
+                        widget.onViewJobDetails!(job.jobId);
+                      } else {
+                        context.push('/jobs/${job.jobId}');
+                      }
+                    },
                     style: FilledButton.styleFrom(
                       backgroundColor: tokens.brand,
                       foregroundColor: tokens.onPrimary,

@@ -5,6 +5,7 @@ import 'package:talentgraph/features/shell/job_brief_model.dart';
 
 abstract class JobsRepository {
   Future<List<JobBriefModel>> listJobs();
+  Future<JobDetailModel?> getJobDetail(String jobId);
   Future<void> toggleBookmark(String jobId);
 }
 
