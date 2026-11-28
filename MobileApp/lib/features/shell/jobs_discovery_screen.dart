@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:talentgraph/app/theme/tg_colors.dart';
 import 'package:talentgraph/features/shell/filter_jobs_bottom_sheet.dart';
 import 'package:talentgraph/features/shell/job_brief_model.dart';
+
+typedef JobFilters = Map<String, Set<String>>;
 
 class JobsDiscoveryScreen extends ConsumerStatefulWidget {
   const JobsDiscoveryScreen({
@@ -22,7 +25,7 @@ class JobsDiscoveryScreen extends ConsumerStatefulWidget {
   final ValueChanged<String>? onSearchChanged;
   final ValueChanged<int>? onFeedTabChanged;
   final ValueChanged<String>? onRemoveFilterChip;
-  final ValueChanged<Map<String, Set<String>>>? onApplyFilters;
+  final ValueChanged<JobFilters>? onApplyFilters;
   final VoidCallback? onResetFilters;
   final ValueChanged<String>? onToggleBookmark;
   final ValueChanged<String>? onViewJobDetails;
@@ -56,7 +59,7 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
         final matchesTitle = job.title.toLowerCase().contains(q);
         final matchesCompany = job.company.toLowerCase().contains(q);
         final matchesSkills = job.skillChips.any(
-          (chip) => chip.toLowerCase().contains(q),
+              (chip) => chip.toLowerCase().contains(q),
         );
         if (!matchesTitle && !matchesCompany && !matchesSkills) {
           return false;
@@ -108,7 +111,7 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
           // Required skills chips: split compound labels on '/'
           final skillTokens = c.split('/').map((s) => s.trim());
           if (skillTokens.any(
-            (token) =>
+                (token) =>
                 job.skillChips.any((s) => s.toLowerCase().contains(token)),
           )) {
             return true;
@@ -274,7 +277,7 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
             children: [
               FilledButton(
                 onPressed: () async {
-                  final initialFilters = <String, Set<String>>{};
+                  final initialFilters = JobFilters();
                   for (final chip in _activeFilterChips) {
                     final parts = chip.split(': ');
                     if (parts.length == 2) {
@@ -282,19 +285,18 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
                       initialFilters[parts[0]]!.add(parts[1]);
                     }
                   }
-                  final result =
-                      await showModalBottomSheet<Map<String, Set<String>>>(
-                        context: context,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        builder:
-                            (context) => FilterJobsBottomSheet(
-                              activeFilters: initialFilters,
-                              onRemoveFilterChip: (_) {},
-                              onApplyFilters: (filters) {},
-                              onResetFilters: () {},
-                            ),
-                      );
+                  final result = await showModalBottomSheet<JobFilters>(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder:
+                        (context) => FilterJobsBottomSheet(
+                      activeFilters: initialFilters,
+                      onRemoveFilterChip: (_) {},
+                      onApplyFilters: (filters) {},
+                      onResetFilters: () {},
+                    ),
+                  );
                   if (result != null && mounted) {
                     setState(() {
                       _activeFilterChips.clear();
@@ -369,7 +371,7 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
                   ),
                   decoration: BoxDecoration(
                     color:
-                        isActive ? tokens.surfaceContainer : Colors.transparent,
+                    isActive ? tokens.surfaceContainer : Colors.transparent,
                     border: Border(
                       bottom: BorderSide(
                         color: isActive ? tokens.brand : Colors.transparent,
@@ -432,20 +434,20 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
       scrollDirection: Axis.horizontal,
       child: Row(
         children:
-            allChips.map((chip) {
-              final isActive = _activeFilterChips.contains(chip);
-              return _buildFilterChip(context, tokens, chip, isActive);
-            }).toList(),
+        allChips.map((chip) {
+          final isActive = _activeFilterChips.contains(chip);
+          return _buildFilterChip(context, tokens, chip, isActive);
+        }).toList(),
       ),
     );
   }
 
   Widget _buildFilterChip(
-    BuildContext context,
-    TgColors tokens,
-    String label,
-    bool isActive,
-  ) {
+      BuildContext context,
+      TgColors tokens,
+      String label,
+      bool isActive,
+      ) {
     return Container(
       margin: const EdgeInsets.only(right: 8),
       child: ChoiceChip(
@@ -490,10 +492,10 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
   }
 
   Widget _buildJobCard(
-    BuildContext context,
-    TgColors tokens,
-    JobBriefModel job,
-  ) {
+      BuildContext context,
+      TgColors tokens,
+      JobBriefModel job,
+      ) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
@@ -594,9 +596,9 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
                               ? Icons.bookmark
                               : Icons.bookmark_border,
                           color:
-                              _bookmarkedJobIds.contains(job.jobId)
-                                  ? tokens.brand
-                                  : tokens.textSecondary,
+                          _bookmarkedJobIds.contains(job.jobId)
+                              ? tokens.brand
+                              : tokens.textSecondary,
                           size: 24,
                         ),
                       ),
@@ -693,27 +695,27 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
                   spacing: 8,
                   runSpacing: 8,
                   children:
-                      job.skillChips.map((chip) {
-                        return Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            color: tokens.surfaceContainer,
-                            border: Border.all(color: tokens.border, width: 1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Text(
-                            chip,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: tokens.textSecondary,
-                            ),
-                          ),
-                        );
-                      }).toList(),
+                  job.skillChips.map((chip) {
+                    return Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: tokens.surfaceContainer,
+                        border: Border.all(color: tokens.border, width: 1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        chip,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: tokens.textSecondary,
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
                 const SizedBox(height: 16),
                 // Evidence Trail status
@@ -724,9 +726,9 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
                       height: 8,
                       decoration: BoxDecoration(
                         color:
-                            job.evidenceTrailActive
-                                ? tokens.brand
-                                : tokens.textSecondary,
+                        job.evidenceTrailActive
+                            ? tokens.brand
+                            : tokens.textSecondary,
                         shape: BoxShape.circle,
                       ),
                     ),
@@ -738,9 +740,9 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
                           color:
-                              job.evidenceTrailActive
-                                  ? tokens.brand
-                                  : tokens.textSecondary,
+                          job.evidenceTrailActive
+                              ? tokens.brand
+                              : tokens.textSecondary,
                         ),
                       ),
                     ),
@@ -752,7 +754,13 @@ class _JobsDiscoveryScreenState extends ConsumerState<JobsDiscoveryScreen> {
                   width: double.infinity,
                   height: 48,
                   child: FilledButton(
-                    onPressed: () => widget.onViewJobDetails?.call(job.jobId),
+                    onPressed: () {
+                      if (widget.onViewJobDetails != null) {
+                        widget.onViewJobDetails!(job.jobId);
+                      } else {
+                        context.push('/jobs/${job.jobId}');
+                      }
+                    },
                     style: FilledButton.styleFrom(
                       backgroundColor: tokens.brand,
                       foregroundColor: tokens.onPrimary,

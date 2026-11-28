@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:talentgraph/features/applications/presentation/talent_graph_palette.dart';
 import 'package:talentgraph/features/assessments/presentation/assessment_preflight_screen.dart';
+import 'package:talentgraph/features/assessments/presentation/assessment_result_screen.dart';
 
 enum AssessmentStatus {
   scheduled,
   decisionPending,
+  resultPublished,
 }
 
 @immutable
@@ -16,6 +18,8 @@ class AssessmentCenterItem {
     required this.roleTitle,
     required this.status,
     this.scheduledLabel,
+    this.resultSummaryLabel,
+    this.jobId = 'job-1',
   });
 
   final String id;
@@ -24,20 +28,34 @@ class AssessmentCenterItem {
   final String roleTitle;
   final AssessmentStatus status;
   final String? scheduledLabel;
+  final String? resultSummaryLabel;
+  final String jobId;
 
   bool get isScheduled => status == AssessmentStatus.scheduled;
+  bool get isResultPublished => status == AssessmentStatus.resultPublished;
+  bool get isInteractive => isScheduled || isResultPublished;
 }
 
 abstract final class TalentGraphAssessmentsSampleData {
   static const List<AssessmentCenterItem> items = [
     AssessmentCenterItem(
-      id: 'assess-1',
+      id: 'assess-0',
       referenceCode: 'ID: #TG-8492',
       companyName: 'Aether Telemetry Systems',
       roleTitle:
       'Staff Distributed Systems Engineer - High Throughput Telemetry',
+      status: AssessmentStatus.resultPublished,
+      resultSummaryLabel: 'Score: 118/140 (84.3%)',
+      jobId: 'job-1',
+    ),
+    AssessmentCenterItem(
+      id: 'assess-1',
+      referenceCode: 'ID: #TG-8105',
+      companyName: 'Hyperion Stream Systems',
+      roleTitle: 'Principal Event Streaming & Consensus Engineer',
       status: AssessmentStatus.scheduled,
       scheduledLabel: 'Assessment: Thursday, Oct 29, 2026 at 14:00 UTC',
+      jobId: 'job-2',
     ),
     AssessmentCenterItem(
       id: 'assess-2',
@@ -89,6 +107,23 @@ class AssessmentCenterScreen extends StatelessWidget {
       onAssessmentTap!(item);
       return;
     }
+
+    if (item.isResultPublished) {
+      final resultData = TalentGraphAssessmentResultSampleData.sample.copyWith(
+        assessmentId: item.id,
+        jobId: item.jobId,
+        referenceCode: item.referenceCode.replaceFirst('ID: ', ''),
+        companyName: item.companyName.toUpperCase(),
+        roleTitle: item.roleTitle,
+      );
+      Navigator.of(context, rootNavigator: true).push(
+        MaterialPageRoute<void>(
+          builder: (_) => AssessmentResultScreen(data: resultData),
+        ),
+      );
+      return;
+    }
+
     final preflightData = TalentGraphPreflightSampleData.sample.copyWith(
       assessmentId: item.id,
       companyName: item.companyName,
@@ -141,7 +176,7 @@ class AssessmentCenterScreen extends StatelessWidget {
                     if (i > 0) const SizedBox(height: 12),
                     AssessmentCard(
                       item: assessments[i],
-                      onTap: assessments[i].isScheduled
+                      onTap: assessments[i].isInteractive
                           ? () => _handleTap(context, assessments[i])
                           : null,
                     ),
@@ -234,6 +269,7 @@ class AssessmentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = TalentGraphPalette.of(context);
     final isScheduled = item.isScheduled;
+    final isResultPublished = item.isResultPublished;
     final scheduledColor = Theme.of(context).brightness == Brightness.dark
         ? const Color(0xFFF59E0B)
         : const Color(0xFFB45309);
@@ -248,7 +284,12 @@ class AssessmentCard extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: palette.subtleBorder, width: 1),
+            border: Border.all(
+              color: isResultPublished
+                  ? palette.successBorder
+                  : palette.subtleBorder,
+              width: 1,
+            ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -291,7 +332,59 @@ class AssessmentCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 14),
-              if (isScheduled)
+              if (isResultPublished)
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.check_circle_outline,
+                      size: 16,
+                      color: palette.success,
+                    ),
+                    const SizedBox(width: 7),
+                    Expanded(
+                      child: Text(
+                        item.resultSummaryLabel ?? 'Result Published',
+                        style: TextStyle(
+                          color: palette.success,
+                          fontSize: 12.5,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 7,
+                      ),
+                      decoration: BoxDecoration(
+                        color: palette.accent,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'View Result',
+                            style: TextStyle(
+                              color: Color(0xFF0E0E10),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Icon(
+                            Icons.arrow_forward_rounded,
+                            size: 14,
+                            color: Color(0xFF0E0E10),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              else if (isScheduled)
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
