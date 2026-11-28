@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:talentgraph/features/applications/presentation/talent_graph_palette.dart';
 import 'package:talentgraph/shared/widgets/tg_app_bar.dart';
 import 'package:talentgraph/features/assessments/presentation/active_assessment_screen.dart';
+
 @immutable
 class AssessmentPreflightData {
   const AssessmentPreflightData({
@@ -105,29 +106,29 @@ abstract final class TalentGraphPreflightSampleData {
     scheduledDateLabel: 'Thursday, Oct 29, 2026',
     scheduledTimeSubLabel: '14:00 UTC · Synchronous Cohort',
     scheduleHelperText:
-    'All candidates assigned to this assessment share the same scheduled start time.',
+        'All candidates assigned to this assessment share the same scheduled start time.',
     questionCount: 7,
     questionCategoryLabel: 'Technical & Architecture',
     durationMinutes: 45,
     durationLimitLabel: 'Total Cohort Limit',
     timerNoticeText:
-    'Your assessment timer starts when you enter the active assessment. When the overall time limit expires, your assessment is automatically submitted.',
+        'Your assessment timer starts when you enter the active assessment. When the overall time limit expires, your assessment is automatically submitted.',
     cameraStatusLabel: 'Camera Ready',
     isCameraReady: true,
     cameraPrimaryNotice:
-    'Exactly five randomly timed front-camera snapshot opportunities may occur during your assessment. These snapshots are collected for later human review.',
+        'Exactly five randomly timed front-camera snapshot opportunities may occur during your assessment. These snapshots are collected for later human review.',
     cameraSecondaryNotice:
-    'Snapshots are not automatic proof of misconduct. Camera or network issues must not automatically disqualify a candidate.',
+        'Snapshots are not automatic proof of misconduct. Camera or network issues must not automatically disqualify a candidate.',
     microphoneStatusLabel: 'Microphone Ready',
     isMicrophoneReady: true,
     microphonePrimaryNotice:
-    "Voice recording will also be collected during your technical assessment for the assessment's stated review purpose.",
+        "Voice recording will also be collected during your technical assessment for the assessment's stated review purpose.",
     microphoneSecondaryNotice:
-    'Microphone permission is required before entry. Audio recording only initiates inside the active assessment; no audio is recorded on this preflight screen.',
+        'Microphone permission is required before entry. Audio recording only initiates inside the active assessment; no audio is recorded on this preflight screen.',
     consentStatement:
-    'I have reviewed the assessment instructions and understand and consent to the collection of front-camera snapshots and voice recordings during my assessment for the stated review purpose.',
+        'I have reviewed the assessment instructions and understand and consent to the collection of front-camera snapshots and voice recordings during my assessment for the stated review purpose.',
     footerIsolationNotice:
-    'Starting enters isolated assessment mode. Timers initiate upon entry.',
+        'Starting enters isolated assessment mode. Timers initiate upon entry.',
   );
 }
 
@@ -191,8 +192,9 @@ class _AssessmentPreflightScreenState extends State<AssessmentPreflightScreen> {
                 _PreflightTopNavigationRow(
                   sessionLabel: data.sessionStatusLabel,
                   isSessionOpen: data.isSessionOpen,
-                  onBack: widget.onBackToAssessments ??
-                          () => Navigator.of(context).maybePop(),
+                  onBack:
+                      widget.onBackToAssessments ??
+                      () => Navigator.of(context).maybePop(),
                   palette: palette,
                   isDark: isDark,
                 ),
@@ -229,8 +231,10 @@ class _AssessmentPreflightScreenState extends State<AssessmentPreflightScreen> {
                   title: 'Assessment Schedule',
                   indicatorColor: palette.accent,
                   trailing: Container(
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 3,
+                    ),
                     decoration: BoxDecoration(
                       color: palette.surfaceElevated,
                       borderRadius: BorderRadius.circular(6),
@@ -378,15 +382,18 @@ class _PreflightTopNavigationRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final badgeFg = isSessionOpen
-        ? _PreflightAccents.success(isDark)
-        : _PreflightAccents.warning(isDark);
-    final badgeBg = isSessionOpen
-        ? _PreflightAccents.successTint(isDark)
-        : _PreflightAccents.warningTint(isDark);
-    final badgeBorder = isSessionOpen
-        ? _PreflightAccents.successBorder(isDark)
-        : _PreflightAccents.warningBorder(isDark);
+    final badgeFg =
+        isSessionOpen
+            ? _PreflightAccents.success(isDark)
+            : _PreflightAccents.warning(isDark);
+    final badgeBg =
+        isSessionOpen
+            ? _PreflightAccents.successTint(isDark)
+            : _PreflightAccents.warningTint(isDark);
+    final badgeBorder =
+        isSessionOpen
+            ? _PreflightAccents.successBorder(isDark)
+            : _PreflightAccents.warningBorder(isDark);
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -483,11 +490,7 @@ class _VerifiedOrgBadge extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            Icons.verified_rounded,
-            size: 12,
-            color: fg,
-          ),
+          Icon(Icons.verified_rounded, size: 12, color: fg),
           const SizedBox(width: 4),
           Text(
             'Verified Org',
@@ -541,10 +544,7 @@ class _SectionHeadingRow extends StatelessWidget {
             ),
           ),
         ),
-        if (trailing != null) ...[
-          const SizedBox(width: 8),
-          trailing!,
-        ],
+        if (trailing != null) ...[const SizedBox(width: 8), trailing!],
       ],
     );
   }
@@ -608,10 +608,7 @@ class _ScheduleSummaryCard extends StatelessWidget {
                 const SizedBox(height: 3),
                 Text(
                   timeSubLabel,
-                  style: TextStyle(
-                    color: palette.textMuted,
-                    fontSize: 12,
-                  ),
+                  style: TextStyle(color: palette.textMuted, fontSize: 12),
                 ),
               ],
             ),
@@ -674,10 +671,7 @@ class _PreflightMetricCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             subtitle,
-            style: TextStyle(
-              color: palette.textMuted,
-              fontSize: 11.5,
-            ),
+            style: TextStyle(color: palette.textMuted, fontSize: 11.5),
           ),
         ],
       ),
@@ -774,11 +768,7 @@ class _HardwareCheckCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(
-                icon,
-                size: 16,
-                color: palette.textSecondary,
-              ),
+              Icon(icon, size: 16, color: palette.textSecondary),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
@@ -875,9 +865,10 @@ class _ConsentCheckboxCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: isChecked
-                  ? _PreflightAccents.accentBorder(isDark)
-                  : palette.subtleBorder,
+              color:
+                  isChecked
+                      ? _PreflightAccents.accentBorder(isDark)
+                      : palette.subtleBorder,
               width: 1,
             ),
           ),
@@ -898,15 +889,15 @@ class _ConsentCheckboxCard extends StatelessWidget {
                       width: 1.2,
                     ),
                   ),
-                  child: isChecked
-                      ? Icon(
-                    Icons.check_rounded,
-                    size: 14,
-                    color: isDark
-                        ? const Color(0xFF111827)
-                        : Colors.white,
-                  )
-                      : null,
+                  child:
+                      isChecked
+                          ? Icon(
+                            Icons.check_rounded,
+                            size: 14,
+                            color:
+                                isDark ? const Color(0xFF111827) : Colors.white,
+                          )
+                          : null,
                 ),
               ),
               const SizedBox(width: 12),
@@ -943,12 +934,14 @@ class _StartAssessmentButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = enabled
-        ? palette.accent
-        : (isDark ? const Color(0xFF7C3F17) : const Color(0xFFFED7AA));
-    final foregroundColor = enabled
-        ? (isDark ? const Color(0xFF14110F) : Colors.white)
-        : (isDark ? const Color(0xFF1F1610) : const Color(0xFF9A3412));
+    final backgroundColor =
+        enabled
+            ? palette.accent
+            : (isDark ? const Color(0xFF7C3F17) : const Color(0xFFFED7AA));
+    final foregroundColor =
+        enabled
+            ? (isDark ? const Color(0xFF14110F) : Colors.white)
+            : (isDark ? const Color(0xFF1F1610) : const Color(0xFF9A3412));
 
     return SizedBox(
       width: double.infinity,

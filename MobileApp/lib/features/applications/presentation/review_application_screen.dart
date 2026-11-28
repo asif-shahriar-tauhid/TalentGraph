@@ -41,9 +41,9 @@ class _ReviewApplicationScreenState
         allowedExtensions: const ['pdf', 'docx'],
       );
 
-      if (result == null || result.isEmpty) return;
+      if (result == null || result.files.isEmpty) return;
 
-      final file = result.first;
+      final file = result.files.first;
       int? fileSize;
       if (file.path != null) {
         fileSize = await File(file.path!).length();
@@ -62,7 +62,7 @@ class _ReviewApplicationScreenState
       setState(() {
         _uploadedFileName = file.name;
         _uploadedFileSize =
-        fileSize != null ? _formatBytes(fileSize) : 'Selected';
+            fileSize != null ? _formatBytes(fileSize) : 'Selected';
       });
     } catch (_) {
       if (!mounted) return;
@@ -114,9 +114,10 @@ class _ReviewApplicationScreenState
       AuthSignedIn(:final user) when user.email.trim().isNotEmpty => user.email,
       _ => 'alex.chen.dev@example.com',
     };
-    final githubHandle = candidateEmail.contains('@')
-        ? candidateEmail.split('@').first.replaceAll('.', '')
-        : 'alexchen-dev';
+    final githubHandle =
+        candidateEmail.contains('@')
+            ? candidateEmail.split('@').first.replaceAll('.', '')
+            : 'alexchen-dev';
     final profileCvName =
         '${candidateName.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_')}_cv.pdf';
 
@@ -124,26 +125,27 @@ class _ReviewApplicationScreenState
       backgroundColor: tokens.canvas,
       body: SafeArea(
         child: detailAsync.when(
-          loading: () => Center(
-            child: CircularProgressIndicator(color: tokens.brand),
-          ),
-          error: (_, _) => Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Could not load application details',
-                  style: TextStyle(color: tokens.text, fontSize: 15),
+          loading:
+              () =>
+                  Center(child: CircularProgressIndicator(color: tokens.brand)),
+          error:
+              (_, _) => Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Could not load application details',
+                      style: TextStyle(color: tokens.text, fontSize: 15),
+                    ),
+                    const SizedBox(height: 12),
+                    FilledButton(
+                      onPressed:
+                          () => ref.invalidate(jobDetailProvider(widget.jobId)),
+                      child: const Text('Retry'),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 12),
-                FilledButton(
-                  onPressed: () =>
-                      ref.invalidate(jobDetailProvider(widget.jobId)),
-                  child: const Text('Retry'),
-                ),
-              ],
-            ),
-          ),
+              ),
           data: (job) {
             if (job == null) {
               return Center(
@@ -154,7 +156,8 @@ class _ReviewApplicationScreenState
               );
             }
 
-            final hasValidCv = _selectedCv == _CvOption.profile ||
+            final hasValidCv =
+                _selectedCv == _CvOption.profile ||
                 (_selectedCv == _CvOption.upload && _uploadedFileName != null);
             final canSubmit =
                 _agreedToDeclaration && hasValidCv && !_isSubmitting;
@@ -220,8 +223,10 @@ class _ReviewApplicationScreenState
                           tokens: tokens,
                           isSelected: _selectedCv == _CvOption.profile,
                           fileName: profileCvName,
-                          onTap: () =>
-                              setState(() => _selectedCv = _CvOption.profile),
+                          onTap:
+                              () => setState(
+                                () => _selectedCv = _CvOption.profile,
+                              ),
                         ),
                         const SizedBox(height: 12),
                         _UploadCvCard(
@@ -247,8 +252,9 @@ class _ReviewApplicationScreenState
                         _DeclarationCard(
                           tokens: tokens,
                           agreed: _agreedToDeclaration,
-                          onChanged: (val) =>
-                              setState(() => _agreedToDeclaration = val),
+                          onChanged:
+                              (val) =>
+                                  setState(() => _agreedToDeclaration = val),
                         ),
                         const SizedBox(height: 20),
                         SizedBox(
@@ -256,39 +262,44 @@ class _ReviewApplicationScreenState
                           height: 48,
                           child: FilledButton(
                             onPressed:
-                            canSubmit ? () => _submitApplication(job) : null,
+                                canSubmit
+                                    ? () => _submitApplication(job)
+                                    : null,
                             style: FilledButton.styleFrom(
                               backgroundColor: tokens.brand,
-                              disabledBackgroundColor:
-                              tokens.brand.withValues(alpha: 0.4),
+                              disabledBackgroundColor: tokens.brand.withValues(
+                                alpha: 0.4,
+                              ),
                               foregroundColor: tokens.onPrimary,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            child: _isSubmitting
-                                ? SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                color: tokens.onPrimary,
-                              ),
-                            )
-                                : const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.send_rounded, size: 17),
-                                SizedBox(width: 8),
-                                Text(
-                                  'Submit Application',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ],
-                            ),
+                            child:
+                                _isSubmitting
+                                    ? SizedBox(
+                                      width: 20,
+                                      height: 20,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        color: tokens.onPrimary,
+                                      ),
+                                    )
+                                    : const Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(Icons.send_rounded, size: 17),
+                                        SizedBox(width: 8),
+                                        Text(
+                                          'Submit Application',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                           ),
                         ),
                       ],
@@ -395,8 +406,10 @@ class _JobSummaryCard extends StatelessWidget {
               ),
               if (job.isVerified)
                 Container(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: tokens.success.withValues(alpha: 0.15),
                     border: Border.all(
@@ -416,11 +429,7 @@ class _JobSummaryCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 4),
-                      Icon(
-                        Icons.check_circle,
-                        size: 12,
-                        color: tokens.success,
-                      ),
+                      Icon(Icons.check_circle, size: 12, color: tokens.success),
                     ],
                   ),
                 ),
@@ -485,10 +494,7 @@ class _InlineMeta extends StatelessWidget {
       children: [
         Icon(icon, size: 13, color: tokens.textSecondary),
         const SizedBox(width: 5),
-        Text(
-          text,
-          style: TextStyle(fontSize: 12, color: tokens.textSecondary),
-        ),
+        Text(text, style: TextStyle(fontSize: 12, color: tokens.textSecondary)),
       ],
     );
   }
@@ -743,9 +749,10 @@ class _ProfileCvCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: tokens.surface,
           border: Border.all(
-            color: isSelected
-                ? tokens.brand.withValues(alpha: 0.7)
-                : tokens.border,
+            color:
+                isSelected
+                    ? tokens.brand.withValues(alpha: 0.7)
+                    : tokens.border,
             width: isSelected ? 1.5 : 1,
           ),
           borderRadius: BorderRadius.circular(12),
@@ -767,8 +774,10 @@ class _ProfileCvCard extends StatelessWidget {
                 const Spacer(),
                 if (isSelected)
                   Container(
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 3,
+                    ),
                     decoration: BoxDecoration(
                       color: tokens.brand.withValues(alpha: 0.14),
                       border: Border.all(
@@ -874,9 +883,10 @@ class _UploadCvCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: tokens.surface,
           border: Border.all(
-            color: isSelected
-                ? tokens.brand.withValues(alpha: 0.7)
-                : tokens.border,
+            color:
+                isSelected
+                    ? tokens.brand.withValues(alpha: 0.7)
+                    : tokens.border,
             width: isSelected ? 1.5 : 1,
           ),
           borderRadius: BorderRadius.circular(12),
@@ -898,10 +908,7 @@ class _UploadCvCard extends StatelessWidget {
                 const Spacer(),
                 Text(
                   'This application only',
-                  style: TextStyle(
-                    fontSize: 11.5,
-                    color: tokens.textSecondary,
-                  ),
+                  style: TextStyle(fontSize: 11.5, color: tokens.textSecondary),
                 ),
               ],
             ),
@@ -914,78 +921,79 @@ class _UploadCvCard extends StatelessWidget {
                 border: Border.all(color: tokens.border),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: uploadedFileName == null
-                  ? Column(
-                children: [
-                  Icon(
-                    Icons.upload_file_outlined,
-                    size: 22,
-                    color: tokens.brand,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Tap to select PDF or DOCX file',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: tokens.text,
-                    ),
-                  ),
-                  const SizedBox(height: 3),
-                  Text(
-                    'Maximum size 5 MB',
-                    style: TextStyle(
-                      fontSize: 11.5,
-                      color: tokens.textSecondary,
-                    ),
-                  ),
-                ],
-              )
-                  : Row(
-                children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: tokens.brand.withValues(alpha: 0.15),
-                      border: Border.all(
-                        color: tokens.brand.withValues(alpha: 0.35),
+              child:
+                  uploadedFileName == null
+                      ? Column(
+                        children: [
+                          Icon(
+                            Icons.upload_file_outlined,
+                            size: 22,
+                            color: tokens.brand,
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'Tap to select PDF or DOCX file',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: tokens.text,
+                            ),
+                          ),
+                          const SizedBox(height: 3),
+                          Text(
+                            'Maximum size 5 MB',
+                            style: TextStyle(
+                              fontSize: 11.5,
+                              color: tokens.textSecondary,
+                            ),
+                          ),
+                        ],
+                      )
+                      : Row(
+                        children: [
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: tokens.brand.withValues(alpha: 0.15),
+                              border: Border.all(
+                                color: tokens.brand.withValues(alpha: 0.35),
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Icon(
+                              Icons.description_outlined,
+                              size: 20,
+                              color: tokens.brand,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  uploadedFileName!,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: tokens.text,
+                                  ),
+                                ),
+                                const SizedBox(height: 3),
+                                Text(
+                                  '${uploadedFileSize ?? ''}  •  Tap to replace',
+                                  style: TextStyle(
+                                    fontSize: 11.5,
+                                    color: tokens.textSecondary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Icon(
-                      Icons.description_outlined,
-                      size: 20,
-                      color: tokens.brand,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          uploadedFileName!,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            color: tokens.text,
-                          ),
-                        ),
-                        const SizedBox(height: 3),
-                        Text(
-                          '${uploadedFileSize ?? ''}  •  Tap to replace',
-                          style: TextStyle(
-                            fontSize: 11.5,
-                            color: tokens.textSecondary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
             ),
           ],
         ),
@@ -1001,20 +1009,20 @@ class _NextStepsCard extends StatelessWidget {
 
   static const _steps = [
     (
-    Icons.sync_alt_rounded,
-    'Your application status updates after the server confirms successful submission.',
+      Icons.sync_alt_rounded,
+      'Your application status updates after the server confirms successful submission.',
     ),
     (
-    Icons.event_available_outlined,
-    'The company may schedule an assessment for eligible applicants.',
+      Icons.event_available_outlined,
+      'The company may schedule an assessment for eligible applicants.',
     ),
     (
-    Icons.assignment_outlined,
-    'Assessment availability and timing will appear in the Assessment Center when confirmed.',
+      Icons.assignment_outlined,
+      'Assessment availability and timing will appear in the Assessment Center when confirmed.',
     ),
     (
-    Icons.analytics_outlined,
-    'Assessment results and job-specific percentile information are shown only when the backend makes them available.',
+      Icons.analytics_outlined,
+      'Assessment results and job-specific percentile information are shown only when the backend makes them available.',
     ),
   ];
 
@@ -1098,9 +1106,10 @@ class _DeclarationCard extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(4),
               ),
-              child: agreed
-                  ? Icon(Icons.check, size: 13, color: tokens.onPrimary)
-                  : null,
+              child:
+                  agreed
+                      ? Icon(Icons.check, size: 13, color: tokens.onPrimary)
+                      : null,
             ),
             const SizedBox(width: 12),
             Expanded(

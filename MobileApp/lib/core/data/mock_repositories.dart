@@ -35,13 +35,18 @@ class MockJobsRepository implements JobsRepository {
     if (i < 0) return null;
     final j = _jobs[i];
 
-    final skills = j.skillChips.isNotEmpty
-        ? j.skillChips
-        : const ['System Design', 'Backend Architecture', 'Distributed Systems'];
+    final skills =
+        j.skillChips.isNotEmpty
+            ? j.skillChips
+            : const [
+              'System Design',
+              'Backend Architecture',
+              'Distributed Systems',
+            ];
 
     final requirements = List<JobSkillRequirementModel>.generate(
       skills.length,
-          (idx) {
+      (idx) {
         final isPreferred = idx >= 3;
         final weight = switch (idx) {
           0 => 40,
@@ -75,7 +80,7 @@ class MockJobsRepository implements JobsRepository {
       evidenceTrailActive: j.evidenceTrailActive,
       evidenceTrailText: j.evidenceTrailText,
       missionAndScope:
-      '${j.company} is hiring a ${j.title} to own mission-critical technical architecture and production reliability. ${j.summary}',
+          '${j.company} is hiring a ${j.title} to own mission-critical technical architecture and production reliability. ${j.summary}',
       responsibilities: [
         'Design, build, and operate fault-tolerant services with clear latency and reliability SLOs.',
         'Collaborate directly with engineering leads on system architecture, code reviews, and technical roadmaps.',
@@ -83,7 +88,7 @@ class MockJobsRepository implements JobsRepository {
         'Mentor peers through structured engineering reviews and transparent technical documentation.',
       ],
       eligibilityNotes:
-      'Open to candidates who can collaborate across ${j.location} hours. Evaluation is based on objective technical evidence and weighted skill thresholds rather than keyword screening.',
+          'Open to candidates who can collaborate across ${j.location} hours. Evaluation is based on objective technical evidence and weighted skill thresholds rather than keyword screening.',
       postedAt: now.subtract(const Duration(days: 3)),
       closesAt: now.add(const Duration(days: 21)),
       skillRequirements: requirements,
@@ -133,10 +138,30 @@ class MockApplicationsRepository implements ApplicationsRepository {
       matchScore: 91,
       hasEnoughCohortData: true,
       percentiles: const [
-        SkillPercentileModel(skillName: 'Go', percentile: 88, eligibleCohortSize: 50, minCohortRequired: 10),
-        SkillPercentileModel(skillName: 'Distributed Systems', percentile: 82, eligibleCohortSize: 50, minCohortRequired: 10),
-        SkillPercentileModel(skillName: 'Concurrency', percentile: 74, eligibleCohortSize: 50, minCohortRequired: 10),
-        SkillPercentileModel(skillName: 'Kubernetes', percentile: 61, eligibleCohortSize: 50, minCohortRequired: 10),
+        SkillPercentileModel(
+          skillName: 'Go',
+          percentile: 88,
+          eligibleCohortSize: 50,
+          minCohortRequired: 10,
+        ),
+        SkillPercentileModel(
+          skillName: 'Distributed Systems',
+          percentile: 82,
+          eligibleCohortSize: 50,
+          minCohortRequired: 10,
+        ),
+        SkillPercentileModel(
+          skillName: 'Concurrency',
+          percentile: 74,
+          eligibleCohortSize: 50,
+          minCohortRequired: 10,
+        ),
+        SkillPercentileModel(
+          skillName: 'Kubernetes',
+          percentile: 61,
+          eligibleCohortSize: 50,
+          minCohortRequired: 10,
+        ),
       ],
     ),
   ];
@@ -178,7 +203,8 @@ class MockNotificationsRepository implements NotificationsRepository {
       title: 'Interview Invitation',
       companyName: 'Prisma Cloud Systems',
       roleTitle: 'Senior Rust Backend Engineer',
-      message: 'You have received an interview invitation. Check your email for details.',
+      message:
+          'You have received an interview invitation. Check your email for details.',
       scheduleLabel: '',
       isRead: false,
       createdAt: DateTime.now().subtract(const Duration(hours: 2)),
@@ -191,7 +217,8 @@ class MockNotificationsRepository implements NotificationsRepository {
       title: 'Interview Invitation',
       companyName: 'Nexus Global Infrastructure',
       roleTitle: 'Lead Site Reliability Engineer',
-      message: 'You have received an interview invitation. Check your email for details.',
+      message:
+          'You have received an interview invitation. Check your email for details.',
       scheduleLabel: '',
       isRead: true,
       createdAt: DateTime.now().subtract(const Duration(days: 2)),
@@ -213,7 +240,8 @@ class MockNotificationsRepository implements NotificationsRepository {
     ),
   ];
   @override
-  Future<List<NotificationItemModel>> listNotifications() async => List.of(_items);
+  Future<List<NotificationItemModel>> listNotifications() async =>
+      List.of(_items);
   @override
   Future<void> markRead(String id) async {
     final i = _items.indexWhere((n) => n.id == id);
@@ -232,6 +260,7 @@ class MockNotificationsRepository implements NotificationsRepository {
       applicationId: _items[i].applicationId,
     );
   }
+
   @override
   Future<void> markAllRead() async {
     for (var i = 0; i < _items.length; i++) {

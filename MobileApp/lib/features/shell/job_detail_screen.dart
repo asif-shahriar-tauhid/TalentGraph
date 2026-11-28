@@ -6,10 +6,10 @@ import 'package:talentgraph/app/theme/tg_colors.dart';
 import 'package:talentgraph/core/data/repositories.dart';
 import 'package:talentgraph/core/domain/tg_models.dart';
 
-final jobDetailProvider =
-FutureProvider.autoDispose.family<JobDetailModel?, String>((ref, jobId) {
-  return ref.watch(jobsRepositoryProvider).getJobDetail(jobId);
-});
+final jobDetailProvider = FutureProvider.autoDispose
+    .family<JobDetailModel?, String>((ref, jobId) {
+      return ref.watch(jobsRepositoryProvider).getJobDetail(jobId);
+    });
 
 class JobDetailScreen extends ConsumerWidget {
   const JobDetailScreen({super.key, required this.jobId});
@@ -25,14 +25,15 @@ class JobDetailScreen extends ConsumerWidget {
       backgroundColor: tokens.canvas,
       body: SafeArea(
         child: detailAsync.when(
-          loading: () => Center(
-            child: CircularProgressIndicator(color: tokens.brand),
-          ),
-          error: (error, _) => _ErrorState(
-            tokens: tokens,
-            onBack: () => _goBack(context),
-            onRetry: () => ref.invalidate(jobDetailProvider(jobId)),
-          ),
+          loading:
+              () =>
+                  Center(child: CircularProgressIndicator(color: tokens.brand)),
+          error:
+              (error, _) => _ErrorState(
+                tokens: tokens,
+                onBack: () => _goBack(context),
+                onRetry: () => ref.invalidate(jobDetailProvider(jobId)),
+              ),
           data: (job) {
             if (job == null) {
               return _NotFoundState(
@@ -72,7 +73,7 @@ class JobDetailScreen extends ConsumerWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Job details copied to clipboard'),
-                        duration: const Duration(seconds: 2),
+                        duration: Duration(seconds: 2),
                       ),
                     );
                   },
@@ -102,42 +103,46 @@ class JobDetailScreen extends ConsumerWidget {
                           tokens: tokens,
                           title: 'Responsibilities',
                           child: Column(
-                            children: job.responsibilities
-                                .map(
-                                  (item) => Padding(
-                                padding: const EdgeInsets.only(bottom: 10),
-                                child: Row(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding:
-                                      const EdgeInsets.only(top: 6),
-                                      child: Container(
-                                        width: 5,
-                                        height: 5,
-                                        decoration: BoxDecoration(
-                                          color: tokens.brand,
-                                          shape: BoxShape.circle,
+                            children:
+                                job.responsibilities
+                                    .map(
+                                      (item) => Padding(
+                                        padding: const EdgeInsets.only(
+                                          bottom: 10,
+                                        ),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                top: 6,
+                                              ),
+                                              child: Container(
+                                                width: 5,
+                                                height: 5,
+                                                decoration: BoxDecoration(
+                                                  color: tokens.brand,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 10),
+                                            Expanded(
+                                              child: Text(
+                                                item,
+                                                style: TextStyle(
+                                                  fontSize: 13.5,
+                                                  height: 1.5,
+                                                  color: tokens.textSecondary,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    ),
-                                    const SizedBox(width: 10),
-                                    Expanded(
-                                      child: Text(
-                                        item,
-                                        style: TextStyle(
-                                          fontSize: 13.5,
-                                          height: 1.5,
-                                          color: tokens.textSecondary,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )
-                                .toList(),
+                                    )
+                                    .toList(),
                           ),
                         ),
                         const SizedBox(height: 14),
@@ -286,7 +291,9 @@ class _HeroCard extends StatelessWidget {
     final parts = name.trim().split(RegExp(r'\s+')).where((p) => p.isNotEmpty);
     if (parts.isEmpty) return 'TG';
     if (parts.length == 1) {
-      return parts.first.substring(0, parts.first.length.clamp(1, 2)).toUpperCase();
+      return parts.first
+          .substring(0, parts.first.length.clamp(1, 2))
+          .toUpperCase();
     }
     return '${parts.first[0]}${parts.elementAt(1)[0]}'.toUpperCase();
   }
@@ -345,11 +352,7 @@ class _HeroCard extends StatelessWidget {
                     color: tokens.success.withValues(alpha: 0.16),
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(
-                    Icons.check,
-                    size: 12,
-                    color: tokens.success,
-                  ),
+                  child: Icon(Icons.check, size: 12, color: tokens.success),
                 ),
               ],
             ],
@@ -508,9 +511,9 @@ class _RoleRequirementsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final requiredSkills =
-    job.skillRequirements.where((s) => !s.isPreferred).toList();
+        job.skillRequirements.where((s) => !s.isPreferred).toList();
     final preferredSkills =
-    job.skillRequirements.where((s) => s.isPreferred).toList();
+        job.skillRequirements.where((s) => s.isPreferred).toList();
 
     return _AccentSectionCard(
       tokens: tokens,
@@ -533,10 +536,7 @@ class _RoleRequirementsCard extends StatelessWidget {
                 const Spacer(),
                 Text(
                   'Expected day one',
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: tokens.textSecondary,
-                  ),
+                  style: TextStyle(fontSize: 11, color: tokens.textSecondary),
                 ),
               ],
             ),
@@ -544,31 +544,32 @@ class _RoleRequirementsCard extends StatelessWidget {
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: requiredSkills
-                  .map(
-                    (s) => Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 5,
-                  ),
-                  decoration: BoxDecoration(
-                    color: tokens.brand.withValues(alpha: 0.14),
-                    border: Border.all(
-                      color: tokens.brand.withValues(alpha: 0.35),
-                    ),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Text(
-                    s.skillName,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: tokens.text,
-                    ),
-                  ),
-                ),
-              )
-                  .toList(),
+              children:
+                  requiredSkills
+                      .map(
+                        (s) => Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 5,
+                          ),
+                          decoration: BoxDecoration(
+                            color: tokens.brand.withValues(alpha: 0.14),
+                            border: Border.all(
+                              color: tokens.brand.withValues(alpha: 0.35),
+                            ),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text(
+                            s.skillName,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: tokens.text,
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
             ),
             const SizedBox(height: 16),
           ],
@@ -587,10 +588,7 @@ class _RoleRequirementsCard extends StatelessWidget {
                 const Spacer(),
                 Text(
                   'Breadth across & depth',
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: tokens.textSecondary,
-                  ),
+                  style: TextStyle(fontSize: 11, color: tokens.textSecondary),
                 ),
               ],
             ),
@@ -598,31 +596,36 @@ class _RoleRequirementsCard extends StatelessWidget {
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: preferredSkills
-                  .map(
-                    (s) => Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 5,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF3B82F6).withValues(alpha: 0.14),
-                    border: Border.all(
-                      color: const Color(0xFF3B82F6).withValues(alpha: 0.35),
-                    ),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Text(
-                    s.skillName,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: tokens.text,
-                    ),
-                  ),
-                ),
-              )
-                  .toList(),
+              children:
+                  preferredSkills
+                      .map(
+                        (s) => Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 5,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(
+                              0xFF3B82F6,
+                            ).withValues(alpha: 0.14),
+                            border: Border.all(
+                              color: const Color(
+                                0xFF3B82F6,
+                              ).withValues(alpha: 0.35),
+                            ),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text(
+                            s.skillName,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: tokens.text,
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
             ),
             const SizedBox(height: 16),
           ],
@@ -754,7 +757,7 @@ class _EvaluationCard extends StatelessWidget {
                 ),
                 const TextSpan(
                   text:
-                  'Skill weights represent evaluation proportion across submitted evidence and technical assessment; candidate match metrics are calculated post-submission.',
+                      'Skill weights represent evaluation proportion across submitted evidence and technical assessment; candidate match metrics are calculated post-submission.',
                 ),
               ],
             ),
@@ -822,10 +825,7 @@ class _EvaluationSkillBar extends StatelessWidget {
 }
 
 class _ApplyBottomBar extends StatelessWidget {
-  const _ApplyBottomBar({
-    required this.tokens,
-    required this.onApply,
-  });
+  const _ApplyBottomBar({required this.tokens, required this.onApply});
 
   final TgColors tokens;
   final VoidCallback onApply;
@@ -937,7 +937,11 @@ class _NotFoundState extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.work_off_outlined, size: 48, color: tokens.textSecondary),
+            Icon(
+              Icons.work_off_outlined,
+              size: 48,
+              color: tokens.textSecondary,
+            ),
             const SizedBox(height: 12),
             Text(
               'Job not found',
@@ -948,10 +952,7 @@ class _NotFoundState extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            FilledButton(
-              onPressed: onBack,
-              child: const Text('Back to Jobs'),
-            ),
+            FilledButton(onPressed: onBack, child: const Text('Back to Jobs')),
           ],
         ),
       ),
@@ -961,8 +962,18 @@ class _NotFoundState extends StatelessWidget {
 
 String _formatShortDate(DateTime date) {
   const months = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
   ];
   return '${months[date.month - 1]} ${date.day}, ${date.year}';
 }

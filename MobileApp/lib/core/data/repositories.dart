@@ -24,16 +24,25 @@ abstract class NotificationsRepository {
   Future<void> markAllRead();
 }
 
-final useMockApiProvider = Provider<bool>((ref) => true);
+final useMockApiProvider = Provider<bool>(
+  (ref) => true,
+  name: "useMockApiProvider",
+);
 final jobsRepositoryProvider = Provider<JobsRepository>((ref) {
+  ref.keepAlive();
   return MockJobsRepository();
 });
 final applicationsRepositoryProvider = Provider<ApplicationsRepository>((ref) {
+  ref.keepAlive();
   return MockApplicationsRepository();
 });
 final assessmentsRepositoryProvider = Provider<AssessmentsRepository>((ref) {
+  ref.keepAlive();
   return MockAssessmentsRepository();
 });
-final notificationsRepositoryProvider = Provider<NotificationsRepository>((ref) {
+final notificationsRepositoryProvider = Provider<NotificationsRepository>((
+  ref,
+) {
+  ref.keepAlive();
   return MockNotificationsRepository();
 });

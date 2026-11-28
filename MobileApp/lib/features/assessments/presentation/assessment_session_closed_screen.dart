@@ -34,14 +34,14 @@ abstract final class TalentGraphSessionClosedSampleData {
     assessmentId: 'assess-1',
     title: 'Assessment Session Closed',
     subtitle:
-    'The scheduled assessment session has ended. New attempts cannot be initiated.',
+        'The scheduled assessment session has ended. New attempts cannot be initiated.',
     companyName: 'Aether Telemetry Systems',
     isCompanyVerified: true,
     roleTitle: 'Staff Distributed Systems Engineer - High Throughput Telemetry',
     sessionTimeLabel: 'Oct 29, 2026 · 14:00 UTC',
     scopeLabel: '7 Technical Prompts · 45 min',
     supportNotice:
-    'Need assistance or have scheduling questions? Contact the recruiting coordinator.',
+        'Need assistance or have scheduling questions? Contact the recruiting coordinator.',
   );
 }
 
@@ -287,7 +287,7 @@ class _ClosedSessionSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final verifiedColor =
-    isDark ? const Color(0xFF34D399) : const Color(0xFF059669);
+        isDark ? const Color(0xFF34D399) : const Color(0xFF059669);
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -303,11 +303,7 @@ class _ClosedSessionSummaryCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               if (data.isCompanyVerified) ...[
-                Icon(
-                  Icons.verified_outlined,
-                  size: 14,
-                  color: verifiedColor,
-                ),
+                Icon(Icons.verified_outlined, size: 14, color: verifiedColor),
                 const SizedBox(width: 6),
               ],
               Expanded(
@@ -383,11 +379,7 @@ class _SessionDetailRow extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              icon,
-              size: 15,
-              color: palette.textMuted,
-            ),
+            Icon(icon, size: 15, color: palette.textMuted),
             const SizedBox(width: 8),
             Text(
               label,

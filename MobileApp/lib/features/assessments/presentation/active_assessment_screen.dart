@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui' show FontFeature;
 
 import 'package:flutter/material.dart';
 import 'package:talentgraph/features/applications/presentation/talent_graph_palette.dart';
@@ -51,8 +50,8 @@ class ActiveAssessmentQuestionData {
 }
 
 abstract final class TalentGraphActiveAssessmentSampleData {
-  static const ActiveAssessmentQuestionData question3 =
-  ActiveAssessmentQuestionData(
+  static const ActiveAssessmentQuestionData
+  question3 = ActiveAssessmentQuestionData(
     assessmentCode: 'ID: 8820-RAFT',
     questionRemaining: Duration(minutes: 4, seconds: 16),
     assessmentRemaining: Duration(minutes: 32, seconds: 45),
@@ -64,31 +63,31 @@ abstract final class TalentGraphActiveAssessmentSampleData {
     topicLabel: 'Distributed Consensus & Raft Log Replication',
     questionTitle: 'State Resolution Post-Partition in Raft Majority Quorum',
     scenarioPrompt:
-    'In a Raft consensus cluster consisting of 5 nodes, Node A (Leader) successfully writes entry #104 to its local log and receives network acknowledgments from Node B and Node C before experiencing an unrecoverable network partition that isolates Node A and Node B into a minority partition.',
+        'In a Raft consensus cluster consisting of 5 nodes, Node A (Leader) successfully writes entry #104 to its local log and receives network acknowledgments from Node B and Node C before experiencing an unrecoverable network partition that isolates Node A and Node B into a minority partition.',
     options: [
       AssessmentOption(
         id: 'opt-a',
         labelLetter: 'A',
         text:
-        'Entry #104 is committed and preserved because Node C already acknowledged receipt to the prior leader before the partition occurred.',
+            'Entry #104 is committed and preserved because Node C already acknowledged receipt to the prior leader before the partition occurred.',
       ),
       AssessmentOption(
         id: 'opt-b',
         labelLetter: 'B',
         text:
-        'Entry #104 is committed in the cluster state machine because 3 out of 5 nodes (A, B, C) persisted the entry to disk, meeting the strict quorum threshold (N/2 + 1).',
+            'Entry #104 is committed in the cluster state machine because 3 out of 5 nodes (A, B, C) persisted the entry to disk, meeting the strict quorum threshold (N/2 + 1).',
       ),
       AssessmentOption(
         id: 'opt-c',
         labelLetter: 'C',
         text:
-        'Entry #104 is overwritten and discarded by the new majority leader because entry #104 was never committed in the term of the new leader.',
+            'Entry #104 is overwritten and discarded by the new majority leader because entry #104 was never committed in the term of the new leader.',
       ),
       AssessmentOption(
         id: 'opt-d',
         labelLetter: 'D',
         text:
-        'The majority partition halts log execution and enters an unrecoverable deadlock state until Node A reconnects and syncs term indices.',
+            'The majority partition halts log execution and enters an unrecoverable deadlock state until Node A reconnects and syncs term indices.',
       ),
     ],
   );
@@ -132,10 +131,12 @@ class _ActiveAssessmentScreenState extends State<ActiveAssessmentScreen>
     final now = DateTime.now();
     _questionEndsAt = now.add(widget.question.questionRemaining);
     _assessmentEndsAt = now.add(widget.question.assessmentRemaining);
-    _questionSecondsLeft =
-        widget.question.questionRemaining.inSeconds.clamp(0, 359999);
-    _assessmentSecondsLeft =
-        widget.question.assessmentRemaining.inSeconds.clamp(0, 359999);
+    _questionSecondsLeft = widget.question.questionRemaining.inSeconds.clamp(
+      0,
+      359999,
+    );
+    _assessmentSecondsLeft = widget.question.assessmentRemaining.inSeconds
+        .clamp(0, 359999);
     _startTimers();
   }
 
@@ -146,14 +147,16 @@ class _ActiveAssessmentScreenState extends State<ActiveAssessmentScreen>
       final now = DateTime.now();
       _selectedOptionId = null;
       _questionEndsAt = now.add(widget.question.questionRemaining);
-      _questionSecondsLeft =
-          widget.question.questionRemaining.inSeconds.clamp(0, 359999);
+      _questionSecondsLeft = widget.question.questionRemaining.inSeconds.clamp(
+        0,
+        359999,
+      );
 
       if (oldWidget.question.assessmentRemaining !=
           widget.question.assessmentRemaining) {
         _assessmentEndsAt = now.add(widget.question.assessmentRemaining);
-        _assessmentSecondsLeft =
-            widget.question.assessmentRemaining.inSeconds.clamp(0, 359999);
+        _assessmentSecondsLeft = widget.question.assessmentRemaining.inSeconds
+            .clamp(0, 359999);
       }
     }
   }
@@ -198,10 +201,7 @@ class _ActiveAssessmentScreenState extends State<ActiveAssessmentScreen>
           _assessmentSecondsLeft = 0;
         });
       }
-      _navigateToSubmittedScreen(
-        wasEarlyExit: false,
-        wasAutoSubmitted: true,
-      );
+      _navigateToSubmittedScreen(wasEarlyExit: false, wasAutoSubmitted: true);
       return;
     }
 
@@ -265,7 +265,7 @@ class _ActiveAssessmentScreenState extends State<ActiveAssessmentScreen>
     final palette = TalentGraphPalette.of(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final dangerColor =
-    isDark ? const Color(0xFFF87171) : const Color(0xFFDC2626);
+        isDark ? const Color(0xFFF87171) : const Color(0xFFDC2626);
 
     _isDialogOpen = true;
     bool? shouldExit;
@@ -341,10 +341,7 @@ class _ActiveAssessmentScreenState extends State<ActiveAssessmentScreen>
     }
 
     if (shouldExit == true && mounted) {
-      _navigateToSubmittedScreen(
-        wasEarlyExit: true,
-        wasAutoSubmitted: false,
-      );
+      _navigateToSubmittedScreen(wasEarlyExit: true, wasAutoSubmitted: false);
     }
   }
 
@@ -380,9 +377,10 @@ class _ActiveAssessmentScreenState extends State<ActiveAssessmentScreen>
       return;
     }
 
-    final dialogMessage = selected != null
-        ? 'You selected Option ${selected.labelLetter}. Submit this demo assessment now?'
-        : 'Time for this question expired with no option selected. Submit this demo assessment now?';
+    final dialogMessage =
+        selected != null
+            ? 'You selected Option ${selected.labelLetter}. Submit this demo assessment now?'
+            : 'Time for this question expired with no option selected. Submit this demo assessment now?';
 
     _isDialogOpen = true;
     bool? confirmed;
@@ -430,7 +428,7 @@ class _ActiveAssessmentScreenState extends State<ActiveAssessmentScreen>
                 style: FilledButton.styleFrom(
                   backgroundColor: palette.accent,
                   foregroundColor:
-                  isDark ? const Color(0xFF14110F) : Colors.white,
+                      isDark ? const Color(0xFF14110F) : Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -450,10 +448,7 @@ class _ActiveAssessmentScreenState extends State<ActiveAssessmentScreen>
     }
 
     if (confirmed == true && mounted) {
-      _navigateToSubmittedScreen(
-        wasEarlyExit: false,
-        wasAutoSubmitted: false,
-      );
+      _navigateToSubmittedScreen(wasEarlyExit: false, wasAutoSubmitted: false);
     }
   }
 
@@ -463,7 +458,7 @@ class _ActiveAssessmentScreenState extends State<ActiveAssessmentScreen>
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final q = widget.question;
     final warningRed =
-    isDark ? const Color(0xFFF87171) : const Color(0xFFDC2626);
+        isDark ? const Color(0xFFF87171) : const Color(0xFFDC2626);
 
     return PopScope(
       canPop: false,
@@ -494,8 +489,9 @@ class _ActiveAssessmentScreenState extends State<ActiveAssessmentScreen>
                       children: [
                         _AssessmentTimersRow(
                           questionTimeText: _formatMmSs(_questionSecondsLeft),
-                          assessmentTimeText:
-                          _formatMmSs(_assessmentSecondsLeft),
+                          assessmentTimeText: _formatMmSs(
+                            _assessmentSecondsLeft,
+                          ),
                           isQuestionLow: _questionSecondsLeft <= 60,
                           isAssessmentLow: _assessmentSecondsLeft <= 300,
                           palette: palette,
@@ -703,7 +699,7 @@ class _AssessmentTimersRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final warningRed =
-    isDark ? const Color(0xFFF87171) : const Color(0xFFDC2626);
+        isDark ? const Color(0xFFF87171) : const Color(0xFFDC2626);
 
     return Row(
       children: [
@@ -831,10 +827,7 @@ class _ProctoringStatusBar extends StatelessWidget {
               isCameraEnabled
                   ? 'Camera snapshots enabled'
                   : 'Camera snapshots paused',
-              style: TextStyle(
-                color: palette.textMuted,
-                fontSize: 11.5,
-              ),
+              style: TextStyle(color: palette.textMuted, fontSize: 11.5),
             ),
           ],
         ),
@@ -845,9 +838,10 @@ class _ProctoringStatusBar extends StatelessWidget {
               width: 6.5,
               height: 6.5,
               decoration: BoxDecoration(
-                color: isVoiceRecordingActive
-                    ? liveRecordingRed
-                    : palette.textMuted,
+                color:
+                    isVoiceRecordingActive
+                        ? liveRecordingRed
+                        : palette.textMuted,
                 shape: BoxShape.circle,
               ),
             ),
@@ -862,10 +856,7 @@ class _ProctoringStatusBar extends StatelessWidget {
               isVoiceRecordingActive
                   ? 'Voice recording active'
                   : 'Voice recording idle',
-              style: TextStyle(
-                color: palette.textSecondary,
-                fontSize: 11.5,
-              ),
+              style: TextStyle(color: palette.textSecondary, fontSize: 11.5),
             ),
           ],
         ),
@@ -1079,25 +1070,25 @@ class _AssessmentOptionCardState extends State<_AssessmentOptionCard> {
       palette.surface,
     );
 
-    final bgColor = isSelected
-        ? selectedFill
-        : (isHovered ? hoverFill : palette.surface);
+    final bgColor =
+        isSelected ? selectedFill : (isHovered ? hoverFill : palette.surface);
 
-    final borderColor = isSelected
-        ? palette.accent
-        : (isHovered
-        ? palette.accent.withAlpha(isDark ? 140 : 120)
-        : palette.subtleBorder);
+    final borderColor =
+        isSelected
+            ? palette.accent
+            : (isHovered
+                ? palette.accent.withAlpha(isDark ? 140 : 120)
+                : palette.subtleBorder);
 
-    final double translateY = isPressed || isLocked
-        ? 0.0
-        : (isSelected ? -2.0 : (isHovered ? -1.5 : 0.0));
+    final double translateY =
+        isPressed || isLocked
+            ? 0.0
+            : (isSelected ? -2.0 : (isHovered ? -1.5 : 0.0));
 
     return Opacity(
       opacity: isLocked && !isSelected ? 0.6 : 1.0,
       child: MouseRegion(
-        cursor:
-        isLocked ? SystemMouseCursors.basic : SystemMouseCursors.click,
+        cursor: isLocked ? SystemMouseCursors.basic : SystemMouseCursors.click,
         onEnter: (_) {
           if (!isLocked) setState(() => _isHovered = true);
         },
@@ -1111,32 +1102,31 @@ class _AssessmentOptionCardState extends State<_AssessmentOptionCard> {
           decoration: BoxDecoration(
             color: bgColor,
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: borderColor,
-              width: isSelected ? 1.5 : 1,
-            ),
-            boxShadow: isElevated && !isLocked
-                ? [
-              BoxShadow(
-                color: palette.accent.withAlpha(
-                  isSelected ? (isDark ? 48 : 34) : (isDark ? 24 : 18),
-                ),
-                blurRadius: isSelected ? 14 : 8,
-                offset: Offset(0, isSelected ? 4 : 2),
-              ),
-            ]
-                : const [],
+            border: Border.all(color: borderColor, width: isSelected ? 1.5 : 1),
+            boxShadow:
+                isElevated && !isLocked
+                    ? [
+                      BoxShadow(
+                        color: palette.accent.withAlpha(
+                          isSelected ? (isDark ? 48 : 34) : (isDark ? 24 : 18),
+                        ),
+                        blurRadius: isSelected ? 14 : 8,
+                        offset: Offset(0, isSelected ? 4 : 2),
+                      ),
+                    ]
+                    : const [],
           ),
           child: Material(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(12),
             child: InkWell(
               onTap: isLocked ? null : widget.onTap,
-              onHighlightChanged: isLocked
-                  ? null
-                  : (pressed) {
-                setState(() => _isPressed = pressed);
-              },
+              onHighlightChanged:
+                  isLocked
+                      ? null
+                      : (pressed) {
+                        setState(() => _isPressed = pressed);
+                      },
               splashColor: palette.accent.withAlpha(32),
               highlightColor: palette.accent.withAlpha(18),
               borderRadius: BorderRadius.circular(12),
@@ -1152,29 +1142,32 @@ class _AssessmentOptionCardState extends State<_AssessmentOptionCard> {
                       height: 28,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: isSelected
-                            ? palette.accent
-                            : (isHovered
-                            ? palette.accent.withAlpha(isDark ? 45 : 30)
-                            : palette.surfaceElevated),
+                        color:
+                            isSelected
+                                ? palette.accent
+                                : (isHovered
+                                    ? palette.accent.withAlpha(isDark ? 45 : 30)
+                                    : palette.surfaceElevated),
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: isSelected || isHovered
-                              ? palette.accent
-                              : palette.border,
+                          color:
+                              isSelected || isHovered
+                                  ? palette.accent
+                                  : palette.border,
                           width: 1,
                         ),
                       ),
                       child: Text(
                         widget.option.labelLetter,
                         style: TextStyle(
-                          color: isSelected
-                              ? (isDark
-                              ? const Color(0xFF111827)
-                              : Colors.white)
-                              : (isHovered
-                              ? palette.accent
-                              : palette.textSecondary),
+                          color:
+                              isSelected
+                                  ? (isDark
+                                      ? const Color(0xFF111827)
+                                      : Colors.white)
+                                  : (isHovered
+                                      ? palette.accent
+                                      : palette.textSecondary),
                           fontSize: 12,
                           fontWeight: FontWeight.w700,
                         ),
@@ -1187,12 +1180,13 @@ class _AssessmentOptionCardState extends State<_AssessmentOptionCard> {
                         child: Text(
                           widget.option.text,
                           style: TextStyle(
-                            color: isSelected || isHovered
-                                ? palette.textPrimary
-                                : palette.textSecondary,
+                            color:
+                                isSelected || isHovered
+                                    ? palette.textPrimary
+                                    : palette.textSecondary,
                             fontSize: 13,
                             fontWeight:
-                            isSelected ? FontWeight.w500 : FontWeight.w400,
+                                isSelected ? FontWeight.w500 : FontWeight.w400,
                             height: 1.45,
                           ),
                         ),
@@ -1233,9 +1227,7 @@ class _AssessmentBottomActionBar extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(16, 12, 16, 12 + bottomInset),
       decoration: BoxDecoration(
         color: palette.background,
-        border: Border(
-          top: BorderSide(color: palette.subtleBorder, width: 1),
-        ),
+        border: Border(top: BorderSide(color: palette.subtleBorder, width: 1)),
       ),
       child: Align(
         alignment: Alignment.center,

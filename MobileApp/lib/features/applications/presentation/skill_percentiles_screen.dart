@@ -14,14 +14,26 @@ class SkillPercentilesScreen extends ConsumerStatefulWidget {
   final String applicationId;
 
   @override
-  ConsumerState<SkillPercentilesScreen> createState() => _SkillPercentilesScreenState();
+  ConsumerState<SkillPercentilesScreen> createState() =>
+      _SkillPercentilesScreenState();
 }
 
-class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen> {
+class _SkillPercentilesScreenState
+    extends ConsumerState<SkillPercentilesScreen> {
   String _formatDate(DateTime d) {
     const months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
     ];
     return 'Submitted ${months[d.month - 1]} ${d.day}, ${d.year}';
   }
@@ -43,10 +55,17 @@ class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen>
         future: repo.getApplication(widget.applicationId),
         builder: (context, snap) {
           if (snap.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator(color: palette.accent));
+            return Center(
+              child: CircularProgressIndicator(color: palette.accent),
+            );
           }
           if (snap.hasError) {
-            return Center(child: Text('Failed to load', style: TextStyle(color: palette.textMuted)));
+            return Center(
+              child: Text(
+                'Failed to load',
+                style: TextStyle(color: palette.textMuted),
+              ),
+            );
           }
           final model = snap.data;
           if (model == null) {
@@ -94,10 +113,20 @@ class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen>
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.arrow_back_rounded, size: 16, color: palette.textSecondary),
+                            Icon(
+                              Icons.arrow_back_rounded,
+                              size: 16,
+                              color: palette.textSecondary,
+                            ),
                             const SizedBox(width: 4),
-                            Text('Back to Applied Jobs',
-                                style: TextStyle(color: palette.textSecondary, fontSize: 13.5, fontWeight: FontWeight.w500)),
+                            Text(
+                              'Back to Applied Jobs',
+                              style: TextStyle(
+                                color: palette.textSecondary,
+                                fontSize: 13.5,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -115,19 +144,40 @@ class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen>
                             Row(
                               children: [
                                 Expanded(
-                                  child: Text(model.companyName,
-                                      style: TextStyle(color: palette.textSecondary, fontSize: 13, fontWeight: FontWeight.w600)),
+                                  child: Text(
+                                    model.companyName,
+                                    style: TextStyle(
+                                      color: palette.textSecondary,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
                                 ),
                                 if (model.isVerifiedCompany)
                                   Padding(
                                     padding: const EdgeInsets.only(right: 8),
-                                    child: Icon(Icons.verified_rounded, size: 15, color: palette.accent),
+                                    child: Icon(
+                                      Icons.verified_rounded,
+                                      size: 15,
+                                      color: palette.accent,
+                                    ),
                                   ),
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 4,
+                                  ),
                                   decoration: BoxDecoration(
-                                    color: isInProgress ? palette.warningTint : palette.successTint,
-                                    border: Border.all(color: isInProgress ? palette.warningBorder : palette.successBorder),
+                                    color:
+                                        isInProgress
+                                            ? palette.warningTint
+                                            : palette.successTint,
+                                    border: Border.all(
+                                      color:
+                                          isInProgress
+                                              ? palette.warningBorder
+                                              : palette.successBorder,
+                                    ),
                                     borderRadius: BorderRadius.circular(999),
                                   ),
                                   child: Row(
@@ -137,34 +187,60 @@ class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen>
                                         width: 6,
                                         height: 6,
                                         decoration: BoxDecoration(
-                                          color: isInProgress ? palette.warning : palette.success,
+                                          color:
+                                              isInProgress
+                                                  ? palette.warning
+                                                  : palette.success,
                                           shape: BoxShape.circle,
                                         ),
                                       ),
                                       const SizedBox(width: 6),
-                                      Text(isInProgress ? 'In Progress' : 'Evaluated',
-                                          style: TextStyle(
-                                              color: isInProgress ? palette.warning : palette.success,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w600)),
+                                      Text(
+                                        isInProgress
+                                            ? 'In Progress'
+                                            : 'Evaluated',
+                                        style: TextStyle(
+                                          color:
+                                              isInProgress
+                                                  ? palette.warning
+                                                  : palette.success,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
                               ],
                             ),
                             const SizedBox(height: 6),
-                            Text(model.jobTitle,
-                                style: TextStyle(color: palette.textPrimary, fontSize: 19, fontWeight: FontWeight.w700)),
+                            Text(
+                              model.jobTitle,
+                              style: TextStyle(
+                                color: palette.textPrimary,
+                                fontSize: 19,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
                             const SizedBox(height: 4),
-                            Text('${_formatDate(model.appliedAt)} · ${model.referenceCode}',
-                                style: TextStyle(color: palette.dateHighlight, fontSize: 12.5, fontWeight: FontWeight.w500)),
+                            Text(
+                              '${_formatDate(model.appliedAt)} · ${model.referenceCode}',
+                              style: TextStyle(
+                                color: palette.dateHighlight,
+                                fontSize: 12.5,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                           ],
                         ),
                       ),
                       const SizedBox(height: 12),
                       if (isInProgress)
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 32,
+                          ),
                           decoration: BoxDecoration(
                             color: palette.surface,
                             border: Border.all(color: palette.warningBorder),
@@ -177,25 +253,46 @@ class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen>
                                 height: 56,
                                 decoration: BoxDecoration(
                                   color: palette.warningTint,
-                                  border: Border.all(color: palette.warningBorder),
+                                  border: Border.all(
+                                    color: palette.warningBorder,
+                                  ),
                                   shape: BoxShape.circle,
                                 ),
-                                child: Icon(Icons.hourglass_top_rounded, size: 28, color: palette.warning),
+                                child: Icon(
+                                  Icons.hourglass_top_rounded,
+                                  size: 28,
+                                  color: palette.warning,
+                                ),
                               ),
                               const SizedBox(height: 16),
-                              Text('Evaluation In Progress',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(color: palette.textPrimary, fontSize: 20, fontWeight: FontWeight.w700)),
+                              Text(
+                                'Evaluation In Progress',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: palette.textPrimary,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
                               const SizedBox(height: 8),
                               Text(
                                 'Your application is currently being reviewed. Skill percentiles are not visible while evaluation is in progress. Once the recruiter publishes the results, you will be able to view your full skill percentile breakdown here.',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(color: palette.textSecondary, fontSize: 14, height: 1.55),
+                                style: TextStyle(
+                                  color: palette.textSecondary,
+                                  fontSize: 14,
+                                  height: 1.55,
+                                ),
                               ),
                               const SizedBox(height: 12),
-                              Text('Check back after the recruiter publishes evaluation results.',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(color: palette.textMuted, fontSize: 12.5)),
+                              Text(
+                                'Check back after the recruiter publishes evaluation results.',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: palette.textMuted,
+                                  fontSize: 12.5,
+                                ),
+                              ),
                               const SizedBox(height: 16),
                               GestureDetector(
                                 onTap: () {
@@ -206,14 +303,24 @@ class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen>
                                   }
                                 },
                                 child: Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 10,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: palette.accentTint,
-                                    border: Border.all(color: palette.accentBorder),
+                                    border: Border.all(
+                                      color: palette.accentBorder,
+                                    ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-                                  child: Text('Back to Applied Jobs',
-                                      style: TextStyle(color: palette.accentSoftText, fontWeight: FontWeight.w600)),
+                                  child: Text(
+                                    'Back to Applied Jobs',
+                                    style: TextStyle(
+                                      color: palette.accentSoftText,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
@@ -229,11 +336,20 @@ class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen>
                           ),
                           child: Row(
                             children: [
-                              Icon(Icons.insights_rounded, color: palette.accentSoftText, size: 18),
+                              Icon(
+                                Icons.insights_rounded,
+                                color: palette.accentSoftText,
+                                size: 18,
+                              ),
                               const SizedBox(width: 8),
                               Expanded(
-                                child: Text('Rankings reflect the eligible applicant pool for this role.',
-                                    style: TextStyle(color: palette.accentSoftText, fontSize: 12.5)),
+                                child: Text(
+                                  'Rankings reflect the eligible applicant pool for this role.',
+                                  style: TextStyle(
+                                    color: palette.accentSoftText,
+                                    fontSize: 12.5,
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -251,25 +367,40 @@ class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen>
                             children: [
                               Row(
                                 children: [
-                                  Icon(Icons.info_outline_rounded, size: 16, color: palette.noteIconTint),
+                                  Icon(
+                                    Icons.info_outline_rounded,
+                                    size: 16,
+                                    color: palette.noteIconTint,
+                                  ),
                                   const SizedBox(width: 6),
-                                  Text('WHAT DO THESE PERCENTILES MEAN?',
-                                      style: TextStyle(
-                                          color: palette.textSecondary,
-                                          fontSize: 11.5,
-                                          fontWeight: FontWeight.w700,
-                                          letterSpacing: 0.6)),
+                                  Text(
+                                    'WHAT DO THESE PERCENTILES MEAN?',
+                                    style: TextStyle(
+                                      color: palette.textSecondary,
+                                      fontSize: 11.5,
+                                      fontWeight: FontWeight.w700,
+                                      letterSpacing: 0.6,
+                                    ),
+                                  ),
                                 ],
                               ),
                               const SizedBox(height: 6),
                               Text(
                                 'Each percentile shows the percentage of eligible applicants you performed better than on that skill. Relative comparison, not a hiring guarantee.',
-                                style: TextStyle(color: palette.textSecondary, fontSize: 13, height: 1.45),
+                                style: TextStyle(
+                                  color: palette.textSecondary,
+                                  fontSize: 13,
+                                  height: 1.45,
+                                ),
                               ),
                               const SizedBox(height: 4),
                               Text(
                                 "Other applicants' individual scores and identities remain strictly confidential.",
-                                style: TextStyle(color: palette.textMuted, fontSize: 12.5, height: 1.4),
+                                style: TextStyle(
+                                  color: palette.textMuted,
+                                  fontSize: 12.5,
+                                  height: 1.4,
+                                ),
                               ),
                             ],
                           ),
@@ -277,17 +408,31 @@ class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen>
                         const SizedBox(height: 12),
                         Row(
                           children: [
-                            Text('Skill Breakdown',
-                                style: TextStyle(color: palette.textPrimary, fontSize: 15, fontWeight: FontWeight.w600)),
+                            Text(
+                              'Skill Breakdown',
+                              style: TextStyle(
+                                color: palette.textPrimary,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
                             const SizedBox(width: 8),
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
                               decoration: BoxDecoration(
                                 color: palette.surfaceElevated,
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Text('${model.percentiles.length}',
-                                  style: TextStyle(color: palette.textMuted, fontSize: 12)),
+                              child: Text(
+                                '${model.percentiles.length}',
+                                style: TextStyle(
+                                  color: palette.textMuted,
+                                  fontSize: 12,
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -300,12 +445,21 @@ class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen>
                               border: Border.all(color: palette.border),
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Center(child: Text('No skill data yet', style: TextStyle(color: palette.textMuted))),
+                            child: Center(
+                              child: Text(
+                                'No skill data yet',
+                                style: TextStyle(color: palette.textMuted),
+                              ),
+                            ),
                           )
                         else
                           ...model.percentiles.map((skill) {
-                            final available = skill.isAvailable && model.hasEnoughCohortData;
-                            final item = SkillPercentileItem(skillName: skill.skillName, percentile: skill.percentile);
+                            final available =
+                                skill.isAvailable && model.hasEnoughCohortData;
+                            final item = SkillPercentileItem(
+                              skillName: skill.skillName,
+                              percentile: skill.percentile,
+                            );
                             return Container(
                               margin: const EdgeInsets.only(bottom: 10),
                               padding: const EdgeInsets.all(16),
@@ -320,29 +474,54 @@ class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen>
                                   Row(
                                     children: [
                                       Expanded(
-                                        child: Text(skill.skillName,
-                                            style: TextStyle(color: palette.textPrimary, fontSize: 14.5, fontWeight: FontWeight.w600)),
+                                        child: Text(
+                                          skill.skillName,
+                                          style: TextStyle(
+                                            color: palette.textPrimary,
+                                            fontSize: 14.5,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
                                       ),
                                       Container(
-                                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 4,
+                                        ),
                                         decoration: BoxDecoration(
-                                          color: available
-                                              ? (item.percentile >= 75 ? palette.successTint : palette.accentTint)
-                                              : palette.surfaceElevated,
+                                          color:
+                                              available
+                                                  ? (item.percentile >= 75
+                                                      ? palette.successTint
+                                                      : palette.accentTint)
+                                                  : palette.surfaceElevated,
                                           border: Border.all(
-                                              color: available
-                                                  ? (item.percentile >= 75 ? palette.successBorder : palette.accentBorder)
-                                                  : palette.border),
-                                          borderRadius: BorderRadius.circular(6),
+                                            color:
+                                                available
+                                                    ? (item.percentile >= 75
+                                                        ? palette.successBorder
+                                                        : palette.accentBorder)
+                                                    : palette.border,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                            6,
+                                          ),
                                         ),
                                         child: Text(
-                                          available ? '${item.ordinalLabel} percentile' : 'Pending Cohort',
+                                          available
+                                              ? '${item.ordinalLabel} percentile'
+                                              : 'Pending Cohort',
                                           style: TextStyle(
-                                              color: available
-                                                  ? (item.percentile >= 75 ? palette.success : palette.accentSoftText)
-                                                  : palette.textMuted,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w600),
+                                            color:
+                                                available
+                                                    ? (item.percentile >= 75
+                                                        ? palette.success
+                                                        : palette
+                                                            .accentSoftText)
+                                                    : palette.textMuted,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -354,9 +533,12 @@ class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen>
                                       value: available ? item.progress : 0,
                                       minHeight: 8,
                                       backgroundColor: palette.progressTrack,
-                                      color: available
-                                          ? (item.percentile >= 75 ? palette.success : palette.accent)
-                                          : palette.progressTrack,
+                                      color:
+                                          available
+                                              ? (item.percentile >= 75
+                                                  ? palette.success
+                                                  : palette.accent)
+                                              : palette.progressTrack,
                                     ),
                                   ),
                                   const SizedBox(height: 6),
@@ -364,7 +546,10 @@ class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen>
                                     available
                                         ? 'Performance relative to eligible applicant pool (${skill.eligibleCohortSize} applicants)'
                                         : 'Requires at least ${skill.minCohortRequired} eligible applicants (${skill.eligibleCohortSize}/${skill.minCohortRequired} evaluated)',
-                                    style: TextStyle(color: palette.textMuted, fontSize: 12),
+                                    style: TextStyle(
+                                      color: palette.textMuted,
+                                      fontSize: 12,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -374,10 +559,19 @@ class _SkillPercentilesScreenState extends ConsumerState<SkillPercentilesScreen>
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.verified_user_outlined, size: 15, color: palette.textMuted),
+                            Icon(
+                              Icons.verified_user_outlined,
+                              size: 15,
+                              color: palette.textMuted,
+                            ),
                             const SizedBox(width: 6),
-                            Text('This does not disqualify your application.',
-                                style: TextStyle(color: palette.textMuted, fontSize: 12)),
+                            Text(
+                              'This does not disqualify your application.',
+                              style: TextStyle(
+                                color: palette.textMuted,
+                                fontSize: 12,
+                              ),
+                            ),
                           ],
                         ),
                       ],

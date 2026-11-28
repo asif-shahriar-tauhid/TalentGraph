@@ -16,13 +16,23 @@ class AppliedJobsScreen extends ConsumerStatefulWidget {
 }
 
 class _AppliedJobsScreenState extends ConsumerState<AppliedJobsScreen> {
-  bool _previewEmpty = false;
+  final bool _previewEmpty = false;
   AppliedJobsFilter _filter = AppliedJobsFilter.all;
 
   String _formatDate(DateTime d) {
     const months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
     ];
     return 'Applied ${months[d.month - 1]} ${d.day}, ${d.year}';
   }
@@ -66,27 +76,39 @@ class _AppliedJobsScreenState extends ConsumerState<AppliedJobsScreen> {
         future: repo.listApplications(),
         builder: (context, snap) {
           if (snap.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator(color: palette.accent));
+            return Center(
+              child: CircularProgressIndicator(color: palette.accent),
+            );
           }
           if (snap.hasError) {
-            return Center(child: Text('Failed to load', style: TextStyle(color: palette.textMuted)));
+            return Center(
+              child: Text(
+                'Failed to load',
+                style: TextStyle(color: palette.textMuted),
+              ),
+            );
           }
           final apps = _previewEmpty ? <ApplicationModel>[] : (snap.data ?? []);
           final items = apps.map(_map).toList();
-          final filtered = items.where((it) {
-            switch (_filter) {
-              case AppliedJobsFilter.all:
-                return true;
-              case AppliedJobsFilter.inProgress:
-                return it.status == AppliedJobStatus.inProgress;
-              case AppliedJobsFilter.evaluated:
-                return it.status == AppliedJobStatus.evaluated;
-            }
-          }).toList();
+          final filtered =
+              items.where((it) {
+                switch (_filter) {
+                  case AppliedJobsFilter.all:
+                    return true;
+                  case AppliedJobsFilter.inProgress:
+                    return it.status == AppliedJobStatus.inProgress;
+                  case AppliedJobsFilter.evaluated:
+                    return it.status == AppliedJobStatus.evaluated;
+                }
+              }).toList();
 
           final allCount = items.length;
-          final inProgressCount = items.where((i) => i.status == AppliedJobStatus.inProgress).length;
-          final evaluatedCount = items.where((i) => i.status == AppliedJobStatus.evaluated).length;
+          final inProgressCount =
+              items
+                  .where((i) => i.status == AppliedJobStatus.inProgress)
+                  .length;
+          final evaluatedCount =
+              items.where((i) => i.status == AppliedJobStatus.evaluated).length;
 
           return SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
@@ -97,25 +119,55 @@ class _AppliedJobsScreenState extends ConsumerState<AppliedJobsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Applied Jobs',
-                        style: TextStyle(color: palette.textPrimary, fontSize: 22, fontWeight: FontWeight.bold)),
+                    Text(
+                      'Applied Jobs',
+                      style: TextStyle(
+                        color: palette.textPrimary,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     const SizedBox(height: 4),
-                    Text('Track your active applications and skill percentile standing.',
-                        style: TextStyle(color: palette.textMuted, fontSize: 13)),
+                    Text(
+                      'Track your active applications and skill percentile standing.',
+                      style: TextStyle(color: palette.textMuted, fontSize: 13),
+                    ),
                     const SizedBox(height: 16),
                     Wrap(
                       spacing: 8,
                       children: [
-                        _chip(palette, AppliedJobsFilter.all, 'All ($allCount)'),
-                        _chip(palette, AppliedJobsFilter.inProgress, 'In Progress ($inProgressCount)'),
-                        _chip(palette, AppliedJobsFilter.evaluated, 'Evaluated ($evaluatedCount)'),
+                        _chip(
+                          palette,
+                          AppliedJobsFilter.all,
+                          'All ($allCount)',
+                        ),
+                        _chip(
+                          palette,
+                          AppliedJobsFilter.inProgress,
+                          'In Progress ($inProgressCount)',
+                        ),
+                        _chip(
+                          palette,
+                          AppliedJobsFilter.evaluated,
+                          'Evaluated ($evaluatedCount)',
+                        ),
                       ],
                     ),
                     const SizedBox(height: 16),
                     if (items.isEmpty)
-                      Center(child: Text('No applications yet', style: TextStyle(color: palette.textMuted)))
+                      Center(
+                        child: Text(
+                          'No applications yet',
+                          style: TextStyle(color: palette.textMuted),
+                        ),
+                      )
                     else if (filtered.isEmpty)
-                      Center(child: Text('No matches for this filter', style: TextStyle(color: palette.textMuted)))
+                      Center(
+                        child: Text(
+                          'No matches for this filter',
+                          style: TextStyle(color: palette.textMuted),
+                        ),
+                      )
                     else
                       ...filtered.map((it) => _card(palette, it)),
                   ],
@@ -136,13 +188,18 @@ class _AppliedJobsScreenState extends ConsumerState<AppliedJobsScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
         decoration: BoxDecoration(
           color: selected ? palette.accentTint : palette.surface,
-          border: Border.all(color: selected ? palette.accentBorder : palette.border),
+          border: Border.all(
+            color: selected ? palette.accentBorder : palette.border,
+          ),
           borderRadius: BorderRadius.circular(999),
         ),
-        child: Text(label,
-            style: TextStyle(
-                color: selected ? palette.accentSoftText : palette.textSecondary,
-                fontWeight: selected ? FontWeight.bold : FontWeight.normal)),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: selected ? palette.accentSoftText : palette.textSecondary,
+            fontWeight: selected ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
       ),
     );
   }
@@ -165,20 +222,43 @@ class _AppliedJobsScreenState extends ConsumerState<AppliedJobsScreen> {
               Expanded(
                 child: Row(
                   children: [
-                    Text(it.companyName,
-                        style: TextStyle(color: palette.textSecondary, fontSize: 13, fontWeight: FontWeight.w600)),
+                    Flexible(
+                      child: Text(
+                        it.companyName,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: palette.textSecondary,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
                     if (it.isVerified) ...[
                       const SizedBox(width: 4),
-                      Icon(Icons.verified_rounded, size: 15, color: palette.accent),
+                      Icon(
+                        Icons.verified_rounded,
+                        size: 15,
+                        color: palette.accent,
+                      ),
                     ],
                   ],
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
-                  color: isInProgress ? palette.warningTint : palette.successTint,
-                  border: Border.all(color: isInProgress ? palette.warningBorder : palette.successBorder),
+                  color:
+                      isInProgress ? palette.warningTint : palette.successTint,
+                  border: Border.all(
+                    color:
+                        isInProgress
+                            ? palette.warningBorder
+                            : palette.successBorder,
+                  ),
                   borderRadius: BorderRadius.circular(999),
                 ),
                 child: Row(
@@ -193,31 +273,50 @@ class _AppliedJobsScreenState extends ConsumerState<AppliedJobsScreen> {
                       ),
                     ),
                     const SizedBox(width: 6),
-                    Text(it.status.label,
-                        style: TextStyle(
-                            color: isInProgress ? palette.warning : palette.success,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600)),
+                    Text(
+                      it.status.label,
+                      style: TextStyle(
+                        color: isInProgress ? palette.warning : palette.success,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ],
                 ),
               ),
             ],
           ),
           const SizedBox(height: 6),
-          Text(it.jobTitle,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: palette.textPrimary, fontSize: 16, fontWeight: FontWeight.w600)),
+          Text(
+            it.jobTitle,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: palette.textPrimary,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
           const SizedBox(height: 6),
           Row(
             children: [
-              Icon(it.isRemote ? Icons.public_rounded : Icons.location_on_outlined, size: 14, color: palette.textMuted),
+              Icon(
+                it.isRemote ? Icons.public_rounded : Icons.location_on_outlined,
+                size: 14,
+                color: palette.textMuted,
+              ),
               const SizedBox(width: 4),
-              Text(it.location, style: TextStyle(color: palette.textMuted, fontSize: 12.5)),
+              Text(
+                it.location,
+                style: TextStyle(color: palette.textMuted, fontSize: 12.5),
+              ),
               const SizedBox(width: 6),
               Text('·', style: TextStyle(color: palette.textMuted)),
               const SizedBox(width: 6),
-              Text(it.employmentType, style: TextStyle(color: palette.textMuted, fontSize: 12.5)),
+              Text(
+                it.employmentType,
+                style: TextStyle(color: palette.textMuted, fontSize: 12.5),
+              ),
             ],
           ),
           const SizedBox(height: 8),
@@ -225,13 +324,22 @@ class _AppliedJobsScreenState extends ConsumerState<AppliedJobsScreen> {
           const SizedBox(height: 8),
           Row(
             children: [
-              Text(it.appliedDateLabel,
-                  style: TextStyle(color: palette.dateHighlight, fontSize: 12, fontWeight: FontWeight.w500)),
+              Text(
+                it.appliedDateLabel,
+                style: TextStyle(
+                  color: palette.dateHighlight,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               const Spacer(),
               GestureDetector(
                 onTap: () => context.push('/applied-jobs/${it.id}/percentiles'),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: palette.accentTint,
                     border: Border.all(color: palette.accentBorder),
@@ -240,10 +348,20 @@ class _AppliedJobsScreenState extends ConsumerState<AppliedJobsScreen> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('See Percentile',
-                          style: TextStyle(color: palette.accentSoftText, fontSize: 12, fontWeight: FontWeight.w600)),
+                      Text(
+                        'See Percentile',
+                        style: TextStyle(
+                          color: palette.accentSoftText,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                       const SizedBox(width: 4),
-                      Icon(Icons.arrow_forward_rounded, size: 15, color: palette.accentSoftText),
+                      Icon(
+                        Icons.arrow_forward_rounded,
+                        size: 15,
+                        color: palette.accentSoftText,
+                      ),
                     ],
                   ),
                 ),

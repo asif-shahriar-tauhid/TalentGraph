@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:talentgraph/features/applications/presentation/talent_graph_palette.dart';
 
-enum SubmissionStageState {
-  completed,
-  queued,
-  pending,
-}
+enum SubmissionStageState { completed, queued, pending }
 
 @immutable
 class SubmissionStageItem {
@@ -24,10 +20,7 @@ class SubmissionStageItem {
 
 @immutable
 class SubmissionReceiptDetail {
-  const SubmissionReceiptDetail({
-    required this.label,
-    required this.value,
-  });
+  const SubmissionReceiptDetail({required this.label, required this.value});
 
   final String label;
   final String value;
@@ -68,7 +61,7 @@ abstract final class TalentGraphSubmittedSampleData {
     assessmentId: 'assess-1',
     bannerTitle: 'Assessment Submitted',
     bannerSubtitle:
-    'Your assessment submission has been successfully received.',
+        'Your assessment submission has been successfully received.',
     companyName: 'Aether Telemetry Systems',
     isCompanyVerified: true,
     roleTitle: 'Staff Distributed Systems Engineer - High Throughput Telemetry',
@@ -94,7 +87,7 @@ abstract final class TalentGraphSubmittedSampleData {
       ),
     ],
     processingNotice:
-    'Your submission is being processed. You will be notified when there is an update.',
+        'Your submission is being processed. You will be notified when there is an update.',
     receiptTitle: 'Submission Receipt & Technical Details',
     receiptDetails: [
       SubmissionReceiptDetail(
@@ -242,7 +235,7 @@ class _SubmissionSuccessBannerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final successColor =
-    isDark ? const Color(0xFF34D399) : const Color(0xFF059669);
+        isDark ? const Color(0xFF34D399) : const Color(0xFF059669);
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -319,7 +312,7 @@ class _SubmittedRoleSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final verifiedColor =
-    isDark ? const Color(0xFF34D399) : const Color(0xFF059669);
+        isDark ? const Color(0xFF34D399) : const Color(0xFF059669);
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -335,11 +328,7 @@ class _SubmittedRoleSummaryCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               if (isVerified) ...[
-                Icon(
-                  Icons.verified_rounded,
-                  size: 14.5,
-                  color: verifiedColor,
-                ),
+                Icon(Icons.verified_rounded, size: 14.5, color: verifiedColor),
                 const SizedBox(width: 6),
               ],
               Expanded(
@@ -380,10 +369,7 @@ class _SubmittedRoleSummaryCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   submittedAtLabel,
-                  style: TextStyle(
-                    color: palette.textMuted,
-                    fontSize: 12,
-                  ),
+                  style: TextStyle(color: palette.textMuted, fontSize: 12),
                 ),
               ),
             ],
@@ -471,12 +457,12 @@ class _SubmissionStageRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final successColor =
-    isDark ? const Color(0xFF34D399) : const Color(0xFF059669);
+        isDark ? const Color(0xFF34D399) : const Color(0xFF059669);
     final successTint = successColor.withAlpha(isDark ? 30 : 24);
     final successBorder = successColor.withAlpha(isDark ? 95 : 85);
 
     final warningColor =
-    isDark ? const Color(0xFFF59E0B) : const Color(0xFFD97706);
+        isDark ? const Color(0xFFF59E0B) : const Color(0xFFD97706);
     final warningTint = warningColor.withAlpha(isDark ? 30 : 24);
     final warningBorder = warningColor.withAlpha(isDark ? 95 : 85);
 
@@ -541,9 +527,10 @@ class _SubmissionStageRow extends StatelessWidget {
                     child: Container(
                       width: 1.5,
                       margin: const EdgeInsets.symmetric(vertical: 4),
-                      color: stage.state == SubmissionStageState.completed
-                          ? successBorder
-                          : palette.border,
+                      color:
+                          stage.state == SubmissionStageState.completed
+                              ? successBorder
+                              : palette.border,
                     ),
                   ),
               ],
@@ -562,9 +549,10 @@ class _SubmissionStageRow extends StatelessWidget {
                       style: TextStyle(
                         color: titleColor,
                         fontSize: 13.5,
-                        fontWeight: stage.state == SubmissionStageState.pending
-                            ? FontWeight.w500
-                            : FontWeight.w600,
+                        fontWeight:
+                            stage.state == SubmissionStageState.pending
+                                ? FontWeight.w500
+                                : FontWeight.w600,
                       ),
                     ),
                   ),
@@ -731,11 +719,7 @@ class _SubmissionReceiptAccordionState
               padding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
               child: Column(
                 children: [
-                  Divider(
-                    height: 1,
-                    thickness: 1,
-                    color: palette.subtleBorder,
-                  ),
+                  Divider(height: 1, thickness: 1, color: palette.subtleBorder),
                   const SizedBox(height: 12),
                   for (var i = 0; i < widget.details.length; i++) ...[
                     if (i > 0) const SizedBox(height: 8),
@@ -769,9 +753,10 @@ class _SubmissionReceiptAccordionState
                 ],
               ),
             ),
-            crossFadeState: _isExpanded
-                ? CrossFadeState.showSecond
-                : CrossFadeState.showFirst,
+            crossFadeState:
+                _isExpanded
+                    ? CrossFadeState.showSecond
+                    : CrossFadeState.showFirst,
             duration: const Duration(milliseconds: 180),
           ),
         ],

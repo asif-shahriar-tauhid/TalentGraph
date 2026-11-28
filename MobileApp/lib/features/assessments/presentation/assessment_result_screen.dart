@@ -128,15 +128,14 @@ abstract final class TalentGraphAssessmentResultSampleData {
     maxScore: 140,
     calculatedYieldLabel: '84.3%',
     calibrationNote:
-    'Calibrated against Staff benchmark criteria across 7 technical prompts.',
+        'Calibrated against Staff benchmark criteria across 7 technical prompts.',
     skillBreakdown: [
       SkillBreakdownItem(
         skillName: 'Distributed Consensus',
         earnedPoints: 36,
         maxPoints: 40,
         percentageLabel: '90%',
-        summary:
-        'Strong performance in quorum handling and leader election.',
+        summary: 'Strong performance in quorum handling and leader election.',
       ),
       SkillBreakdownItem(
         skillName: 'Storage Engine Internals',
@@ -144,15 +143,14 @@ abstract final class TalentGraphAssessmentResultSampleData {
         maxPoints: 35,
         percentageLabel: '85.7%',
         summary:
-        'Solid grasp of write-ahead logging and compaction trade-offs.',
+            'Solid grasp of write-ahead logging and compaction trade-offs.',
       ),
       SkillBreakdownItem(
         skillName: 'Concurrent Data Structures',
         earnedPoints: 28,
         maxPoints: 35,
         percentageLabel: '80%',
-        summary:
-        'Effective synchronization and lock-free primitive design.',
+        summary: 'Effective synchronization and lock-free primitive design.',
       ),
       SkillBreakdownItem(
         skillName: 'Network I/O & Backpressure',
@@ -160,7 +158,7 @@ abstract final class TalentGraphAssessmentResultSampleData {
         maxPoints: 30,
         percentageLabel: '80%',
         summary:
-        'Good mitigation strategies for tail latency and flow control.',
+            'Good mitigation strategies for tail latency and flow control.',
       ),
     ],
     evidenceTrail: [
@@ -282,10 +280,7 @@ class _AssessmentResultScreenState extends State<AssessmentResultScreen> {
             constraints: const BoxConstraints(maxWidth: 720),
             child: Column(
               children: [
-                _ResultTopBar(
-                  palette: palette,
-                  onBack: _handleBack,
-                ),
+                _ResultTopBar(palette: palette, onBack: _handleBack),
                 Expanded(
                   child: ListView(
                     physics: const AlwaysScrollableScrollPhysics(
@@ -309,18 +304,22 @@ class _AssessmentResultScreenState extends State<AssessmentResultScreen> {
                         palette: palette,
                         prompts: data.promptPerformances,
                         expanded: _promptExpanded,
-                        onToggle: () => setState(
+                        onToggle:
+                            () => setState(
                               () => _promptExpanded = !_promptExpanded,
-                        ),
+                            ),
                       ),
                       const SizedBox(height: 14),
                       _TechnicalVerificationCard(
                         palette: palette,
                         data: data,
                         expanded: _verificationExpanded,
-                        onToggle: () => setState(
-                              () => _verificationExpanded = !_verificationExpanded,
-                        ),
+                        onToggle:
+                            () => setState(
+                              () =>
+                                  _verificationExpanded =
+                                      !_verificationExpanded,
+                            ),
                       ),
                       const SizedBox(height: 20),
                       SizedBox(
@@ -398,10 +397,7 @@ class _AssessmentResultScreenState extends State<AssessmentResultScreen> {
 }
 
 class _ResultTopBar extends StatelessWidget {
-  const _ResultTopBar({
-    required this.palette,
-    required this.onBack,
-  });
+  const _ResultTopBar({required this.palette, required this.onBack});
 
   final TalentGraphPalette palette;
   final VoidCallback onBack;
@@ -476,10 +472,7 @@ class _ResultTopBar extends StatelessWidget {
 }
 
 class _ScoreSummaryCard extends StatelessWidget {
-  const _ScoreSummaryCard({
-    required this.palette,
-    required this.data,
-  });
+  const _ScoreSummaryCard({required this.palette, required this.data});
 
   final TalentGraphPalette palette;
   final AssessmentResultData data;
@@ -529,10 +522,7 @@ class _ScoreSummaryCard extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 data.cohortLabel,
-                style: TextStyle(
-                  fontSize: 11.5,
-                  color: palette.textMuted,
-                ),
+                style: TextStyle(fontSize: 11.5, color: palette.textMuted),
               ),
             ],
           ),
@@ -638,10 +628,7 @@ class _ScoreSummaryCard extends StatelessWidget {
 }
 
 class _SkillBreakdownCard extends StatelessWidget {
-  const _SkillBreakdownCard({
-    required this.palette,
-    required this.skills,
-  });
+  const _SkillBreakdownCard({required this.palette, required this.skills});
 
   final TalentGraphPalette palette;
   final List<SkillBreakdownItem> skills;
@@ -735,10 +722,7 @@ class _SkillBreakdownCard extends StatelessWidget {
 }
 
 class _EvidenceTrailCard extends StatelessWidget {
-  const _EvidenceTrailCard({
-    required this.palette,
-    required this.entries,
-  });
+  const _EvidenceTrailCard({required this.palette, required this.entries});
 
   final TalentGraphPalette palette;
   final List<EvidenceTrailEntry> entries;
@@ -807,8 +791,9 @@ class _EvidenceTrailCard extends StatelessWidget {
                               Expanded(
                                 child: Container(
                                   width: 1.5,
-                                  margin:
-                                  const EdgeInsets.symmetric(vertical: 3),
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: 3,
+                                  ),
                                   color: palette.successBorder,
                                 ),
                               ),
@@ -842,12 +827,13 @@ class _EvidenceTrailCard extends StatelessWidget {
                                       style: TextStyle(
                                         fontSize: 11.5,
                                         fontWeight:
-                                        entries[i].isHighlightedStatus
-                                            ? FontWeight.w600
-                                            : FontWeight.w400,
-                                        color: entries[i].isHighlightedStatus
-                                            ? palette.success
-                                            : palette.textMuted,
+                                            entries[i].isHighlightedStatus
+                                                ? FontWeight.w600
+                                                : FontWeight.w400,
+                                        color:
+                                            entries[i].isHighlightedStatus
+                                                ? palette.success
+                                                : palette.textMuted,
                                       ),
                                     ),
                                   ],
@@ -935,8 +921,10 @@ class _PromptPerformanceCard extends StatelessWidget {
             for (var i = 0; i < prompts.length; i++) ...[
               if (i > 0) Divider(color: palette.subtleBorder, height: 1),
               Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
                 child: Row(
                   children: [
                     Text(
@@ -1103,13 +1091,7 @@ class _VerificationMetaRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            color: palette.textMuted,
-          ),
-        ),
+        Text(label, style: TextStyle(fontSize: 12, color: palette.textMuted)),
         const Spacer(),
         Flexible(
           child: Text(

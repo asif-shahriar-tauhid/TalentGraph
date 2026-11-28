@@ -271,56 +271,74 @@ class _FilterJobsBottomSheetState extends State<FilterJobsBottomSheet> {
                 ),
               ),
               const SizedBox(height: 16),
-              Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () {
-                        widget.onResetFilters?.call();
-                        Navigator.of(context).pop();
-                      },
-                      style: OutlinedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 48),
-                        side: BorderSide(color: tokens.border, width: 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+              SafeArea(
+                top: false,
+                child: IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: OutlinedButton(
+                          onPressed: () {
+                            widget.onResetFilters?.call();
+                            Navigator.of(context).pop();
+                          },
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: const Size(0, 48),
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            side: BorderSide(color: tokens.border, width: 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: Text(
+                            'Reset all (${_activeCount()})',
+                            maxLines: 1,
+                            softWrap: false,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: tokens.text,
+                            ),
+                          ),
                         ),
                       ),
-                      child: Text(
-                        'Reset all (${_activeCount()})',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: tokens.text,
+                      const SizedBox(width: 12),
+                      Expanded(
+                        flex: 3,
+                        child: FilledButton(
+                          onPressed: () {
+                            widget.onApplyFilters?.call(_filters);
+                            Navigator.of(context).pop();
+                          },
+                          style: FilledButton.styleFrom(
+                            backgroundColor: tokens.brand,
+                            foregroundColor: tokens.onPrimary,
+                            minimumSize: const Size(0, 48),
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: const Text(
+                            'Show 38 Verified Roles →',
+                            maxLines: 1,
+                            softWrap: false,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: FilledButton(
-                      onPressed: () {
-                        widget.onApplyFilters?.call(_filters);
-                        Navigator.of(context).pop();
-                      },
-                      style: FilledButton.styleFrom(
-                        backgroundColor: tokens.brand,
-                        foregroundColor: tokens.onPrimary,
-                        minimumSize: const Size(double.infinity, 48),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child: const Text(
-                        'Show 38 Verified Roles →',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
               const SizedBox(height: 20),
             ],
